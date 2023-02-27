@@ -42,12 +42,53 @@
     height: 100%;
   }
 
-  #tres-cards-index {
+  #tres-cards-index, #download {
     display: flex;
     margin-top: 30px;
     margin-bottom: 30px;
     justify-content: space-around;
     width: 100%;
+  }
+
+  .download {
+    width: 200px;
+    height: 75px;
+    background: black;
+    float: left;
+    border-radius: 5px;
+    position: relative;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #fff;
+  }
+  
+  .download > .fa {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+  }
+  
+  .span_download,
+  .span_windows {
+    position: absolute;
+    left: 70px;
+  }
+  
+  .span_download {
+    top: 20px;
+    font-size: .68em;
+  }
+  
+  .span_windows {
+    top: 33px;
+    font-size: 1.08em;
+  }
+  
+  .download:hover {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
   }
 
   .card-index {
@@ -81,7 +122,7 @@
     width: 100%;
     height: 100%;
     -o-filter: blur(10px);
-    filter: blur(10px);
+    filter: blur(5px);
     overflow: hidden;
   }
 
