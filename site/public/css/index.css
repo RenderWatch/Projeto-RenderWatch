@@ -7,28 +7,20 @@
     z-index: 2;
   }
 
-  .titulo-inicial-index {
+  .texto-inicial-index {
     position: absolute;
-    margin-top: 140px;
+    margin-top: clamp(40px, 20vh, 140px);
     right: 0;
     margin-right: 15px;
     color: rgb(241, 241, 241);
     text-shadow: 2px 2px 1.5px black;
-    font-size: 30px;
+    font-size: clamp(8px, 2vw, 35px);
     width: 30%;
     text-align: left;
   }
 
-  .texto-inicial-index {
-    position: absolute;
-    margin-top: 520px;
-    right: 0;
-    margin-right: 15px;
-    color: rgb(241, 241, 241);
-    text-shadow: 2px 2px 1.5px black;
-    font-size: 30px;
-    width: 30%;
-    text-align: left;
+  .espaco-texto-inicial-index {
+    margin-bottom: 20vh;
   }
 
   #imagem-inicial-index {
