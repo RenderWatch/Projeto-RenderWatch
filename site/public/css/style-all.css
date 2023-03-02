@@ -30,3 +30,18 @@ header {
 body {
     background-color: rgb(28, 28, 28);
 }
+
+footer {
+    background-color: black;
+    padding: 45px 0;
+  }
+  
+  footer .container {
+    justify-content: center;
+  }
+  
+  footer .container p {
+    color: white;
+    text-align: center;
+    
+  }
