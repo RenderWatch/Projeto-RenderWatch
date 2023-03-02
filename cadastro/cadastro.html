@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+
+<body>
+    <main>
+        <section>
+            <nav>
+                <div class="divCaixaFormulario">
+                    <h2>Bem-vindo </h2> <img src="assets/index/RenderWatch_Logo_Branco.png" alt="" width="200px">
+
+                    <div class="divCampo">
+                        <label for="nome">Nome Completo</label>
+                        <input type="nome" id="iptNome" placeholder="Digite">
+                    </div>
+                    <div class="divCampo">
+                        <label for="dataNasc">Data de Nascimento</label>
+                        <input type="date" id="iptDataNasc">
+                    </div>
+                    <div class="divCampo">
+                        <label for="Cidade">Cidade</label>
+                        <input type="text" id="iptCidade" placeholder="Cidade">
+                    </div>
+
+                    <div class="divCampo">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="iptemail" placeholder="Email@example.com">
+                    </div>
+                    <div class="divCampo">
+                        <label for="senha">Senha</label>
+                        <input type="passwoard" id="iptSenha" placeholder="*********">
+                    </div>
+                    <div class="divCampo">
+                        <label for="confirmacaoSenha">Confirmação senha</label>
+                        <input type="passwoard" id="iptConfirmacaoSenha" placeholder="*********">
+                    </div>
+
+
+                    <button onclick="Cadastrar()">Cadastrar</button>
+                </div>
+            </nav>
+        </section>
+    </main>
+
+</body>
+
+</html>
+
+<script>
+    function Cadastrar() {
+        // Colocar o caminho do login
+        setTimeout(function () {
+            window.location = "...";
+        }, 1000);
+    }
+</script>

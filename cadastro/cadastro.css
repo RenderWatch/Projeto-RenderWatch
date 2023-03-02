@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* faz com que o navegador não calcule a dimensão de um elemento somando bordas e margens com altura e largura */
+    box-sizing: border-box;
+}
+
+nav {
+    width: 80%;
+    height: 600px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section {
+    /* background-image: url("./img/azulRosa.jpg"); */
+    background: linear-gradient(157deg, rgba(11, 172, 206, 1) 0%, rgba(214, 91, 162, 1) 50%);
+    padding: 100px 100px;
+    background-size: cover;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+}
+
+.divCaixaFormulario {
+    background-color: rgb(7, 6, 6);
+    padding: 100px 100px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 1.0;
+    width: 100%;
+    height: 110%;
+}
+
+.divCaixaFormulario h2 {
+    color: rgba(237, 223, 60, 1);
+    margin-bottom: 20px;
+}
+
+.divCampo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.divCampo label {
+    color: white;
+    font-size: 20px;
+    padding: 10px 0;
+}
+
+.divCampo input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid rgba(237, 223, 60, 1);
+    /*borda das inputs */
+}
+
+.divCaixaFormulario button {
+    margin-top: 20px;
+    width: 120px;
+    background-color: rgba(237, 223, 60, 1);
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
