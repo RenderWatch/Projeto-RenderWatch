@@ -95,6 +95,27 @@
   overflow: hidden;
 }
 
+#section-download{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.btn{
+  background: linear-gradient(157deg, rgba(11, 172, 206, 1) 0%, rgba(214, 91, 162, 1) 50%, rgba(237, 223, 60, 1) 100%);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.btn:hover {
+  background: linear-gradient(157deg, rgb(8, 156, 186) 0%, rgb(186, 79, 142) 50%, rgb(212, 199, 54) 100%);
+}
+  
+
 .texto-sobre {
   display: flex;
   position: absolute;
