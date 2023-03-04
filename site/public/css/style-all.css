@@ -27,6 +27,13 @@ header {
   color: white;
 }
 
+@media only screen and (max-width: 500px) {
+.renderwatch-header {
+display: none;
+visibility: hidden;
+}
+}
+
 body {
   background-color: rgb(28, 28, 28);
 }

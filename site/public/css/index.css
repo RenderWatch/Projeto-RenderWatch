@@ -13,6 +13,19 @@
   width: 100%;
 }
 
+.centralizar-renderwatch-main {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.renderwatch-main {
+  position: absolute;
+  visibility: hidden;
+  width: 180px;
+}
+
 .texto-inicial-index {
   margin-left: 68%;
   color: rgb(241, 241, 241);
@@ -131,6 +144,18 @@
     flex-direction: row;
   }
 
+  .renderwatch-main {
+    visibility: visible;
+  }
+
+}
+
+@media only screen and (max-width: 350px) {
+
+  .renderwatch-main {
+    width: 140px;
+  }
+  
 }
 
 .card-index {
