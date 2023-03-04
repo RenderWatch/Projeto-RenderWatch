@@ -18,10 +18,10 @@ header {
 }
 
 #div-header-logo {
-  margin-top: 20px;
+  margin-top: -60px;
   margin-left: 20px;
   display: flex;
-  height: 50%;
+  height: 200%;
   width: 20px;
   z-index: 999;
   color: white;
