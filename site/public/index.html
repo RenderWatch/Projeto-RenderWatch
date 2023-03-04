@@ -8,6 +8,7 @@
     <title>Página Inicial - RenderWatch</title>
     <link rel="stylesheet" href="css/style-all.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
 </head>
 
@@ -16,7 +17,8 @@
     <header>
         <a href="index.html">
             <div id="div-header-logo">
-                <img src="./assets/index/RenderWatch_Logo_Branco.png">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
             </div>
         </a>
     </header>
@@ -24,6 +26,9 @@
     <main>
 
         <section>
+            <span class="centralizar-renderwatch-main">
+                <img class="renderwatch-main" src="assets/index/renderwatch_somente_palavra_white.png">
+            </span>
             <div class="div-texto-inicial-index">
                 <p class="texto-inicial-index">
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur est dicta veniam quas sunt
@@ -49,15 +54,18 @@
         <section id="tres-cards-index">
             <div class="card-index">
                 <img src="assets/index/Cat astronaut-amico.png" width="50%">
-                <p>Texto texto texo</p>
+                <h4>Produtividade</h4>
+                <p>Evite interrupções na renderização e potencialize o tempo de entrega</p>
             </div>
             <div class="card-index">
                 <img src="assets/index/Firmware-amico.png" width="50%">
-                <p>Texto texto texo</p>
+                <h4>Monitoração</h4>
+                <p>Obtenha mais informações sobre o render e facilite a comunicação entre as áreas</p>
             </div>
             <div class="card-index">
                 <img src="assets/index/Server-amico.png" width="50%">
-                <p>Texto texto texo</p>
+                <h4>Otimização</h4>
+                <p>Melhore o desempenho das máquinas e preveja possíveis problemas</p>
             </div>
         </section>
 
@@ -71,8 +79,16 @@
 
     <footer>
         <div class="container">
-            <p>Todos os direitos reservados para RenderWatch &copy; </p>
-        </div>
+            <div class="col-lg-3 item social">
+                <a href="https://github.com/RenderWatch"><i class="icon ion-social-github"></i></a>
+                <a href="#"><i class="icon ion-social-instagram"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Início</a></li>
+                <li class="list-inline-item"><a href="#">Serviços</a></li>
+                <li class="list-inline-item"><a href="#">Sobre</a></li>
+            </ul>
+            <p>RenderWatch &copy; </p>
     </footer>
 
 </body>
