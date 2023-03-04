@@ -11,16 +11,17 @@
   flex-direction: column;
   position: absolute;
   width: 100%;
+  margin-top: 30px;
 }
 
 .texto-inicial-index {
   margin-left: 68%;
   color: rgb(241, 241, 241);
   text-shadow: 2px 2px 1.5px black;
-  font-size: clamp(8px, 2vw, 35px);
+  font-size: 2vw;
   width: 30%;
   text-align: left;
-  margin-top: 20vh;
+  margin-top: 100px;
 }
 
 #imagem-inicial-index {
@@ -66,6 +67,10 @@
   #imagem-inicial-index {
     margin-top: 90px;
 
+  }
+
+  .div-texto-inicial-index {
+    margin-top: 0;
   }
 
   .texto-inicial-index {
