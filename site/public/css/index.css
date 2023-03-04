@@ -41,6 +41,14 @@
   width: 100%;
 }
 
+#tres-cards-index p {
+  font-size: 14px;
+  margin-top: 9px;
+  width: 270px;
+  justify-content: center;
+  text-align: center;
+}
+
 .texto-sobre {
   display: flex;
   position: absolute;
@@ -61,10 +69,9 @@
   }
 } */
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) {}
 
 
-}
 
 @media only screen and (max-width: 800px) {
 
@@ -76,17 +83,33 @@
   .texto-inicial-index {
     margin-top: 75px;
   }
-
 }
 
-@media only screen and (min-width: 700px) {
+
+@media only screen and (min-width: 750px) {
   #tres-cards-index {
     display: flex;
 
   }
 
+}
 
+@media only screen and (max-width: 750px){
+  #tres-cards-index p{
+    font-size: 22px;
+    width: 413px;
+}
 
+}
+
+@media only screen and (max-width:700px){
+  #tres-cards-index p{
+    font-size: 18px;
+    margin-top: 9px;
+    width: 370px;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -130,7 +153,7 @@
 @media only screen and (max-width: 450px) {
   .div_gradiente {
     margin-top: -134px;
-  }  
+  }
 
 }
 
@@ -160,7 +183,7 @@
     display: flex;
     flex-direction: row;
   }
-  
+
   .texto-inicial-index {
     border-bottom: 1px solid white;
     text-align: justify;
@@ -174,9 +197,7 @@
   }
 }
 
-@media only screen and (max-width: 375px) {
-  
-}
+@media only screen and (max-width: 375px) {}
 
 #background-video {
   top: 2050px;
@@ -194,4 +215,12 @@
   -o-filter: blur(10px);
   filter: blur(5px);
   overflow: hidden;
+}
+
+@media only screen and (min-width: 280px){
+  #tres-cards-index p{
+        font-size: 13px;
+    margin-top: 9px;
+    width: 244px;
+  }
 }
