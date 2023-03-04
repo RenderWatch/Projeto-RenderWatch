@@ -6,7 +6,15 @@
   z-index: 2;
 }
 
+.div-texto-inicial-index {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+}
+
 .texto-inicial-index {
+  margin-left: 68%;
   position: absolute;
   margin-top: 18vh;
   right: 0;
@@ -16,10 +24,7 @@
   font-size: clamp(8px, 2vw, 35px);
   width: 30%;
   text-align: left;
-}
-
-.espaco-texto-inicial-index {
-  margin-bottom: 20vh;
+  margin-top: 20vh;
 }
 
 #imagem-inicial-index {
@@ -58,15 +63,9 @@
   .espaco-texto-inicial-index {
     margin-bottom: 10vh;
 
-  }
 
-  .texto-sobre{
-    width: 40%;
-    margin-left: 30%;
   }
-  
 }
-
 
 @media only screen and (max-width: 800px) {
 
@@ -79,26 +78,18 @@
     margin-top: 10vh;
   }
 
+}
+
+
+@media only screen and (max-width: 800px) {
+  .texto-inicial-index {
+    margin-top: 5vh;
+  }
+
   .espaco-texto-inicial-index {
     margin-bottom: 7vh;
   }
-
-  .texto-sobre{
-    width: 55%;
-    margin-left: 25%;
-  }
-
 }
-
-
-@media only screen and (min-width: 700px) {
-  #tres-cards-index {
-    display: flex;
-
-  }
-
-}
-
 
 .card-index {
   display: flex;
@@ -133,8 +124,6 @@
     margin-top: 40%;
   }
 }
-
-
 
 #background-video {
   top: 2050px;
