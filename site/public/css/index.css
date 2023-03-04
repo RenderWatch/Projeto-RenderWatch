@@ -15,10 +15,6 @@
 
 .texto-inicial-index {
   margin-left: 68%;
-  position: absolute;
-  margin-top: 18vh;
-  right: 0;
-  margin-right: 15px;
   color: rgb(241, 241, 241);
   text-shadow: 2px 2px 1.5px black;
   font-size: clamp(8px, 2vw, 35px);
@@ -59,14 +55,6 @@
   margin-top: 8%;
 }
 
-@media only screen and (max-width: 900px) {
-  .espaco-texto-inicial-index {
-    margin-bottom: 10vh;
-
-
-  }
-}
-
 @media only screen and (max-width: 800px) {
 
   #imagem-inicial-index {
@@ -78,17 +66,6 @@
     margin-top: 10vh;
   }
 
-}
-
-
-@media only screen and (max-width: 800px) {
-  .texto-inicial-index {
-    margin-top: 5vh;
-  }
-
-  .espaco-texto-inicial-index {
-    margin-bottom: 7vh;
-  }
 }
 
 .card-index {
@@ -109,9 +86,6 @@
 }
 
 
-
-
-
 @media only screen and (max-width: 450px) {
   .div_gradiente {
     margin-top: -134px;
@@ -122,6 +96,23 @@
     margin-left: 25%;
     height: 30%;
     margin-top: 40%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .div-texto-inicial-index {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .texto-inicial-index {
+    margin-left: 15%;
+    color: rgb(241, 241, 241);
+    text-shadow: 2px 2px 1.5px black;
+    font-size: clamp(8px, 2vw, 35px);
+    width: 30%;
+    text-align: left;
+    margin-top: 45vh;
   }
 }
 
