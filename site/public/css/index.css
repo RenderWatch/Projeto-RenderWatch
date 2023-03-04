@@ -139,7 +139,28 @@
   
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
+
+  .div-texto-inicial-index {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .texto-inicial-index {
+    border-bottom: 1px solid white;
+    text-align: justify;
+    margin-left: 15%;
+    color: rgb(241, 241, 241);
+    text-shadow: 2px 2px 1.5px black;
+    font-size: clamp(8px, 2vw, 35px);
+    width: 30%;
+    text-align: left;
+    margin-top: 290px;
+  }
+
+}
+
+@media only screen and (max-width: 350px) {
   .div-texto-inicial-index {
     display: flex;
     flex-direction: row;
@@ -154,24 +175,8 @@
     font-size: clamp(8px, 2vw, 35px);
     width: 30%;
     text-align: left;
-    margin-top: 280px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-
-  .texto-inicial-index {
-    border-bottom: 1px solid white;
-    text-align: justify;
-    margin-left: 15%;
-    color: rgb(241, 241, 241);
-    text-shadow: 2px 2px 1.5px black;
-    font-size: clamp(8px, 2vw, 35px);
-    width: 30%;
-    text-align: left;
     margin-top: 240px;
   }
-
 }
 
 #background-video {
