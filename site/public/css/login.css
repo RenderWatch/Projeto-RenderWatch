@@ -131,14 +131,14 @@ button {
 }
 
 button:hover {
-background-color: #1f91ca;
+background-color: #2180cf;
 transition: 0.2s;
-box-shadow: 3px 5px rgb(179, 179, 179);
+box-shadow: 3px 4px rgb(81, 81, 81);
 }
 
 button:active {
-    background-color: #167aac;
-    box-shadow: 2px 3px rgb(103, 103, 103);
+    background-color: rgb(36, 151, 208);
+    box-shadow: 2px 3px rgb(53, 53, 53);
     transform: translateY(4px);
     transition: 0.2s;
   }
