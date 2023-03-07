@@ -104,7 +104,11 @@ function cadastrar(){
         invalid_date = true;
     }
 
-    if (senha != "" && (senha != confirmacao_senha)){
+    if (confirmacao_senha == ""){
+        alerta_confirmacao_senha.innerHTML = "Este campo é obrigatório";
+        title_box.scrollIntoView();
+        invalid_date = true;
+    } else if (senha != "" && (senha != confirmacao_senha)){
         alerta_confirmacao_senha.innerHTML = "As senhas se divergem";
         title_box.scrollIntoView();
         invalid_date = true;
