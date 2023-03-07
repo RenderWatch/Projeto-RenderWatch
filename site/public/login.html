@@ -5,29 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login - RenderWatch</title>    
     <link rel="stylesheet" href="css/login.css">
-
+    <script src="js/script_login.js"></script>
 </head>
 
 <body>
     <main>
 
         <div class="btnBack">
-            <img src="assets/login/arrowBack.svg" onclick="voltarPagina()" />
+            <img src="assets/login/arrowBack.svg" onclick="history.back()" />
         </div>
 
         <div class="caixa_login">
 
-            <img src="./assets/login/renderwatch_logo_colorido.png" class="renderwatch-logo" width="200px">
+            <img src="./assets/login/renderwatch_logo_colorido.png" title="teste@teste.com | 123" class="renderwatch-logo" width="200px">
             <div class="div_bem_vindo"> Bem vindo</div>
-            <label for="email" class="div_Input"><input id="email" type="text" placeholder="Email"></label>
-            <span class="alerta">email incorreto</span>
-            <label for="senha" class="div_Input"><input id="senha" type="password" placeholder="Senha"></label>
-            <span class="alerta"> senha incorreta</span>
+            <label for="input_email" class="div_Input"><input id="input_email" type="text" placeholder="Email" id="input_email" onfocus="Focus(input_email, alerta_email)" onkeyup="keyUp(event, input_email, alerta_email)"></label>
+            <span class="alerta" id="alerta_email"></span>
+            <label for="input_senha" class="div_Input"><input id="input_senha" type="password" placeholder="Senha"id="input_senha" onfocus="Focus(input_senha, alerta_senha)" onkeyup="keyUp(event, input_senha, alerta_senha)"></label>
+            <span class="alerta" id="alerta_senha"></span>
 
-            <button>Entrar</button>
-            <div class="div_cadastre">Não tem login? <a href="">Cadastre-se aqui!</a></div>
+            <button onclick="entrar()">Entrar</button>
+            <div class="div_cadastre">Não tem login? <a href="cadastro.html">Cadastre-se aqui!</a></div>
             <!-- <img class="div_img" src="./assets/login/Logo_Branco.png" alt=""> -->
 
 
@@ -40,12 +40,6 @@
 
         </div>
         <!-- <div class="linha_gradient"></div> -->
-
-
-
-
-
-
 
     </main>
 

@@ -8,19 +8,15 @@
     font-family: 'Trebuchet MS';
     font-style: normal;
     font-weight: normal;
-    src: local('Trebuchet MS'), url('C:\Users\asusn\Desktop\2 SEMESTRE\SPRINT1-2S\Login\public\assets\trebuched_ms.woff') format('woff');
+    src: local('Trebuchet MS'), url('../fonts/trebuched_ms.woff') format('woff');
 }
-
-
-
-
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 105vh;
+    height: 130vh;
     background-color: rgb(231, 231, 231);
 }
 
@@ -48,7 +44,7 @@ main {
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
     color: rgb(235, 235, 235);
     width: 40%;
-    height: 640px;
+    height: 700px;
     margin-top: 13vh;
     border-radius: 20px;
     position: absolute;
@@ -122,13 +118,11 @@ button {
     height: 50px;
     width: 30%;
     font-size: 17px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     cursor: pointer;
     margin-top: 10px;
     background-color: #4199e1;
     box-shadow: 3px 4px rgb(99, 99, 99);
-
-
 }
 
 button:hover {
@@ -166,16 +160,15 @@ button:active {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60%;
-    height: 20px;
-    margin-top: 20px;
+    width: 60%;    
+    margin-top: 5px;
 }
 
 .div_telefone{
     flex-direction: row;
     align-items: center;
 }
-.DD{
+.DDD{
     width: 20%;
     margin-right: 5px;
 }
@@ -183,12 +176,7 @@ button:active {
 .alerta {
     color: rgb(222, 10, 38);
     font-size: 15px;
-    margin-bottom: -20px;
-    
-
 }
-
-
 
 .div_cadastre {
     font-size: 15px;
