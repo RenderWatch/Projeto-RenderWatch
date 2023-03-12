@@ -239,9 +239,17 @@ button {
 
 @media only screen and (max-width: 500px) {
 
+input{
+    padding: 0 12px;
+}
+
+.DDD{
+    width: 40%;
+}
+
 .caixa_login {
     width: 75%;
-    height: 490px;
+    height: 625px;
 }
 
 .div_bem_vindo {
@@ -259,15 +267,25 @@ button {
 
 }
 
+@media only screen and (max-width: 400px){
+    .alerta{
+        font-size: 12px;
+    }
+}
+
 @media only screen and (max-width: 350px) {
+
+.alerta{
+    font-size: 12px;
+}
 
 .caixa_login {
     width: 75%;
-    height: 420px;
+    height: 500px;
 }
 
 .div_bem_vindo {
-font-size: 24px;
+font-size: 22px;
 
 }
 
@@ -283,6 +301,10 @@ button {
     width: 40%;
 }
 
+.DDD{
+    width: 50%;
+}
+
 .div_cadastre {
     font-size: 12px;
 }
@@ -291,4 +313,16 @@ button {
     width: 160px;
 }
 
+}
+
+@media only screen and (max-width: 300px) {
+    .alerta{
+        font-size: 10px;   
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .div_bem_vindo {
+        font-size: 20px;
+    }
 }
