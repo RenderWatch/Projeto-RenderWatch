@@ -44,6 +44,11 @@ header {
   cursor: pointer;
 }
 
+.link:hover {
+  transform: translateY(-3px);
+  transition: 0.2s;
+}
+
 #div-header-logo {
   margin-top: -60px;
   margin-left: 20px;
