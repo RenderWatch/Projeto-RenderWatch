@@ -166,6 +166,16 @@ button:active {
     height: 20px;
 }
 
+.input_revelar_senha{
+
+    width: 16px;
+
+    margin-left: -25px;
+    margin-right: 8px;
+    background-color: white;
+    border-radius: 20px;
+}
+
 .alerta {
     color: rgb(222, 10, 38);
     font-size: 15px;

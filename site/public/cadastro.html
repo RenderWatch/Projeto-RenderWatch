@@ -35,9 +35,15 @@
 
             <label for="CPF" class="div_Input"><input type="text" placeholder="CPF" id="input_cpf" onfocus="Focus(input_cpf, alerta_cpf)" onkeyup="MaskNumber(input_cpf)" maxlength="11" onkeyup="keyUp(event, input_cpf, alerta_cpf)"></label>
             <span class="alerta" id="alerta_cpf"></span>
-            <label for="input_senha" class="div_Input"><input id="input_senha" type="password" placeholder="Senha" onfocus="Focus(input_senha, alerta_senha)" onkeyup="keyUp(event, input_senha, alerta_senha)"></label>
+            <label for="input_senha" class="div_Input"><input id="input_senha" type="password" placeholder="Senha" onfocus="Focus(input_senha, alerta_senha)" onkeyup="keyUp(event, input_senha, alerta_senha)">
+                <img src="assets/cadastro/olho_fechado.png.png" class="input_revelar_senha" onclick="revelar_senha()"
+                id="imagem_revelar_senha_dois">
+            </label>
             <span class="alerta" id="alerta_senha"></span>
-            <label for="confirmacaoSenha" class="div_Input"><input placeholder="Confirmação de senha" id="input_confirmacao_senha" type="password" onfocus="Focus(input_confirmacao_senha, alerta_confirmacao_senha)" onkeyup="keyUp(event, input_confirmacao_senha, alerta_confirmacao_senha)"></label>
+            <label for="confirmacaoSenha" class="div_Input"><input placeholder="Confirmação de senha" id="input_confirmacao_senha" type="password" onfocus="Focus(input_confirmacao_senha, alerta_confirmacao_senha)" onkeyup="keyUp(event, input_confirmacao_senha, alerta_confirmacao_senha)">
+             <img src="assets/cadastro/olho_fechado.png.png" class="input_revelar_senha" onclick="revelar_senha()"
+             id="imagem_revelar_senha_um">
+            </label> 
             <span class="alerta" id="alerta_confirmacao_senha"></span>
 
             <button onclick="cadastrar()">Cadastrar</button>
@@ -66,3 +72,38 @@
 </body>
 
 </html>
+
+<script>
+    function revelar_senha() {
+        var confirmar_senha=input_confirmacao_senha;
+        
+
+
+        if (confirmar_senha.type == 'password') {
+            confirmar_senha.type = 'text'
+            imagem_revelar_senha_um.src = "assets/cadastro/olho.png.png";
+            
+        } else {
+            confirmar_senha.type = 'password'
+            imagem_revelar_senha_um.src = "assets/cadastro/olho_fechado.png.png";
+            
+        }
+
+        var senha = input_senha;
+
+        if (senha.type == 'password') {
+            senha.type = 'text';
+            imagem_revelar_senha_dois.src = "assets/cadastro/olho.png.png";
+            
+        } else {
+            senha.type = 'password';
+            imagem_revelar_senha_dois.src = "assets/cadastro/olho_fechado.png.png";
+           
+        }
+
+
+
+    }
+
+
+</script>

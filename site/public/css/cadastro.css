@@ -164,6 +164,17 @@ button:active {
     margin-top: 5px;
 }
 
+.input_revelar_senha{
+
+    width: 18px;
+
+    margin-left: -25px;
+    margin-right: 8px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+
 .div_telefone{
     flex-direction: row;
     align-items: center;

@@ -24,7 +24,8 @@
             <div class="div_bem_vindo"> Bem vindo</div>
             <label for="input_email" class="div_Input"><input id="input_email" type="text" placeholder="Email" id="input_email" onfocus="Focus(input_email, alerta_email)" onkeyup="keyUp(event, input_email, alerta_email)"></label>
             <span class="alerta" id="alerta_email"></span>
-            <label for="input_senha" class="div_Input"><input id="input_senha" type="password" placeholder="Senha"id="input_senha" onfocus="Focus(input_senha, alerta_senha)" onkeyup="keyUp(event, input_senha, alerta_senha)"></label>
+            <label for="input_senha" class="div_Input"><input id="input_senha" type="password" placeholder="Senha"id="input_senha" onfocus="Focus(input_senha, alerta_senha)" onkeyup="keyUp(event, input_senha, alerta_senha)">   
+                <img src="assets/login/olho_fechado.png.png" class="input_revelar_senha" onclick="revelar_senha()" id="imagem_revelar_senha"></label>  
             <span class="alerta" id="alerta_senha"></span>
 
             <button onclick="entrar()">Entrar</button>
@@ -47,3 +48,21 @@
 </body>
 
 </html>
+
+<script>
+      function revelar_senha() {
+        var senha = input_senha.value
+
+        if (input_senha.type == 'password') {
+            input_senha.type = 'text'
+            imagem_revelar_senha.src = "assets/login/olho.png.png";
+          
+        } else {
+            input_senha.type = 'password'
+            imagem_revelar_senha.src = "assets/login/olho_fechado.png.png";
+            
+        }
+
+
+    }
+</script>
