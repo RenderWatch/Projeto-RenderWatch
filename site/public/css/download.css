@@ -1,0 +1,56 @@
+
+.bg-download-container {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.cor-bg {
+    width: 100%;
+    height: 120px;
+    margin-top: 70px;
+    background: linear-gradient(157deg, rgba(11,172,206,0.9) 0%, rgba(169,91,214,0.9) 100%);
+}
+
+.bg-download {
+    position: absolute;
+    width: 28%;
+    margin-top: 270px;
+    right: 0;
+}
+
+.titulo-download {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 50px;
+    margin-top: 160px;
+    margin-left: 100px;
+}
+
+.texto-download {
+    color: white;
+    font-size: 30px;
+    margin-top: 120px;
+    margin-left: 20px;
+    width: 70%;
+}
+
+.btn-download {
+    margin-left: 440px;
+    margin-top: 60px;
+    padding: 1% 4%;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-download:hover {
+    background-color: rgb(191, 191, 191);
+}
+
+.btn-download:active {
+    background-color: rgb(139, 139, 139);
+    transform: translateY(2px);
+}
