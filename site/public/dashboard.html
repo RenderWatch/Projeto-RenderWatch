@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-all.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+            </div>
+        </a>
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                    <img class="dashboard-download-icon" src="assets/index/setting.png" alt="">
+                    <li><a href="">Configurações</a></li>
+                </div>
+                <div style="margin-top: -25px;" class="link">
+                    <a href="login.html"><img class="dashboard-account-icon" src="assets/index/log-out.png"
+                            alt=""></a>
+                    <li><a href="login.html">Sair</a></li>
+                </div>
+            </ul>
+        </div>
+    </header>
+    <div class="titulo">
+        <h1>Máquina 1</h1>
+    </div>
+    <div class="container-alerta">
+        <div class="caixa-alerta">
+            <span class="span_alertas">5</span>
+            <p>Problemas identificados no total</p>
+        </div>
+        <div class="caixa-alerta">
+            <span class="span_alertas">2</span>
+            <p>Problemas identificados na máquina</p>
+        </div>
+        <div class="caixa-alerta">
+            <span class="span_alertas">CLUSTER USADO</span>
+        </div>
+    </div>
+
+    <div class="container-dashboard">
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de memoria RAM</span>
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="grafico">
+                <span>Uso de disco</span>
+                <canvas style="height: 300px;" id="myChart2"></canvas>
+            </div>
+        </div>
+
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de CPU</span>
+                <canvas id="myChart3"></canvas>
+            </div>
+            <div class="grafico">
+                <span>Temperatura da CPU</span>
+                <canvas id="myChart4"></canvas>
+            </div>
+        </div>
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Falhas mensais</span>
+                <canvas id="myChart5"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-maquinas">
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 1</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 2</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 3</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 4</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 5</span>
+        </div>
+    </div>
+
+</body>
+<script src="js/dashboard.js"></script>
+
+</html>
