@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - RenderWatch</title>
+    <link rel="icon" type="image/x-icon" href="./assets/style-all/icone_topo_colorido.png" />
+    <link rel="stylesheet" href="public/css/perfil-cadastro-empresa.css">
+
+</head>
+
+<body>
+
+
+
+    <header>
+
+
+        <img src="public/assets/cadastro/renderwatch_logo_colorido.png" alt="">
+        <button class="btn_sair">SAIR</button>
+
+
+
+    </header>
+    <main>
+        <div class="caixa_esquerda">
+
+            <div class="caixa um">
+                <button class="btn_caixa">Meu Cadastro</button>
+                <button class="btn_caixa">Empresa</button>
+                <button class="btn_caixa">Cluster</button>
+                <button class="btn_caixa">Gerenciar Permissões</button>
+
+            </div>
+
+            <div class="caixa dois">
+
+                <button class="btn_caixa">Monitoração</button>
+                <button class="btn_caixa">Histórico de Alertas</button>
+                <button class="btn_caixa">Suporte</button>
+            </div>
+
+
+        </div>
+
+
+        <div class="caixa_direita">
+            <div class="cadastro_empresa">
+
+
+                <div class="div_dados_empresa" id="title_box"> Dados da Empresa:</div>
+
+                <label for="input_razaoSocial" class="div_Input"><input type="text" placeholder="Razão Social"
+                        id="input_razaoSocial" onfocus="Focus(input_razaoSocial, alerta_razaoSocial)"
+                        onkeyup="keyUp(event, input_razaoSocial, alerta_razaoSocial)"></label>
+                <span class="alerta" id="alerta_razaoSocial"></span>
+
+                <label for="input_cnpj" class="div_Input"><input type="text" placeholder="CNPJ" id="input_cnpj"
+                        onfocus="Focus(input_cnpj, alerta_cnpj)"
+                        onkeyup="keyUp(event, input_cnpj, alerta_cnpj)"></label>
+                <span class="alerta" id="alerta_cnpj"></span>
+
+                <label for="input_ddd" class="div_Input Input_telefone"><input class="DDD" placeholder="DDD"
+                        id="input_ddd" onfocus="FocusTelefone()"
+                        onkeyup="MaskNumber(input_ddd);keyUp(event, input_ddd, alerta_telefone)" maxlength="2">
+                    <input placeholder="Telefone" id="input_telefone" onfocus="FocusTelefone()"
+                        onkeyup="MaskNumber(input_telefone);keyUp(event, input_telefone, alerta_telefone)"
+                        maxlength="9"></label>
+                <span class="alerta" id="alerta_telefone"></span>
+
+                <label for="input_cep" class="div_Input"><input type="text" placeholder="CEP" id="input_cep"
+                        onfocus="Focus(input_cep, alerta_cep)" onkeyup="keyUp(event, input_cep, alerta_cep)"></label>
+                <span class="alerta" id="alerta_cep"></span>
+
+
+                <label for="input_logradouro" class="div_Input"><input type="text" placeholder="Logradouro"
+                        id="input_logradouro" onfocus="Focus(input_logradouro, alerta_logradouro)"
+                        onkeyup="keyUp(event, input_logradouro, alerta_logradouro)">
+                    <input class="numero" placeholder="Número" id="input_numero"
+                        onkeyup="keyUp(event, input_numero, alerta_numero)" maxlength="2"></label>
+                <span class="alerta" id="alerta_logradouro"></span>
+
+
+
+
+
+
+
+                <label for="input_bairro" class="div_Input"><input type="text" placeholder="Bairro" id="input_bairro"
+                        onfocus="Focus(input_bairro, alerta_bairro)"
+                        onkeyup="keyUp(event, input_bairro, alerta_bairro)">
+                    <input class="complemento" placeholder="complemento" id="input_complemento"
+                        onkeyup="keyUp(event, input_complemento, alerta_complemento)" maxlength="2"></label>
+                <span class="alerta" id="alerta_logradouro"></span>
+
+                <label for="input_uf" class="div_Input"><input type="text" class="uf" placeholder="UF" id="input_uf"
+                        onfocus="Focus(input_uf, alerta_uf)" onkeyup="keyUp(event, input_uf, alerta_uf)">
+                    <input placeholder="Cidade" id="input_cidade" onkeyup="keyUp(event, input_cidade, alerta_cidade)"
+                        maxlength="2"></label>
+                <span class="alerta" id="alerta_logradouro"></span>
+
+
+
+
+                <button class="btn_cadastrar" onclick="cadastrar()">Cadastrar</button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
