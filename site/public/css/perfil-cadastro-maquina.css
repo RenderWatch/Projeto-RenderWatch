@@ -22,16 +22,6 @@
     color: rgb(237, 237, 237);
 }
 
-/* .container-titulo-card{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 7%;
-    margin-bottom: 8px;
-    border-bottom: 2px solid #7a7a7a;
-} */
-
 .inputs-card {
     display: flex;
     flex-direction: column;
