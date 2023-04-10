@@ -198,3 +198,18 @@ footer .container .social>a {
 footer .container .social>a:hover {
   opacity: 0.9;
 }
+
+/* Dentro do perfil*/
+
+
+.perfil-configuracoes-icon{
+  width: 30px; 
+  padding: 5px; 
+  margin-left: 35px;
+}
+
+.perfil-logout-icon{
+  width: 30px; 
+  padding: 5px; 
+  margin-left: 0px;
+}
