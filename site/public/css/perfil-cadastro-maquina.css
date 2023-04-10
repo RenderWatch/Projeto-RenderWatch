@@ -1,0 +1,66 @@
+
+.container-card{
+    display: flex;
+    position: absolute;
+    width: 88%;
+    height: 86%;
+    margin-top: 90px;
+    margin-left: 180px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75%;
+    width: 40%;
+    background-color: rgb(65, 65, 65);
+    border: 1px solid #7a7a7a;
+    color: rgb(237, 237, 237);
+}
+
+/* .container-titulo-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 7%;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #7a7a7a;
+} */
+
+.inputs-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    margin-top: 7%;
+    margin-bottom: 7%;
+}
+
+.inputs-card input {
+    border: none;
+    height: 32px;
+    width: 240px;
+    border-radius: 2px;
+    padding: 0 3%;
+}
+
+.btn-cadastrar-card {
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background-color: #026583;
+    color: rgb(237, 237, 237);
+    cursor: pointer;
+}
+
+.btn-cadastrar-card :hover {
+    
+}

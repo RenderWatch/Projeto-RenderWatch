@@ -226,7 +226,7 @@ footer .container .social>a:hover {
   position: fixed;
   height: 100%;
   width: 180px;
-  background-color: rgb(51, 51, 51);
+  background-color: rgb(58, 58, 58);
 }
 
 .sidebar ul {
@@ -248,7 +248,7 @@ footer .container .social>a:hover {
 .sidebar-element {
   color: #f8f8f8;
   list-style: none;
-  font-size: 1.2rem;
+  font-size: 1.18rem;
   text-decoration: none;
   display: flex;
   width: 100%;
@@ -262,8 +262,8 @@ footer .container .social>a:hover {
   background-image: linear-gradient(45deg, rgba(246, 246, 246, 0.6) 50%, rgba(76, 76, 76, 0) 50%);
   background-position: 100%;
   background-size: 400%;
-  -webkit-transition: background 600ms ease-in-out;
-  transition: background 600ms ease-in-out;
+  -webkit-transition: background 400ms ease-in-out;
+  transition: background 400ms ease-in-out;
 }
 
 .sidebar-element:hover {
