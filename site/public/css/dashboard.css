@@ -1,4 +1,4 @@
-.titulo{
+.titulo {
   width: 15vw;
   margin: 15vh auto;
   background-color: rgb(51, 51, 51);
@@ -10,20 +10,20 @@
 }
 
 
-.titulo h1{
+.titulo h1 {
   text-align: center;
   text-transform: uppercase;
   color: white;
 }
 
-.container-alerta{
+.container-alerta {
   display: flex;
   width: 50vw;
   color: white;
   margin: 10vh auto;
 }
 
-.caixa-alerta{
+.caixa-alerta {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -36,32 +36,32 @@
   border-top: 5px solid rgb(222, 0, 0);
 }
 
-.caixa-alerta:nth-child(n + 3){
+.caixa-alerta:nth-child(n + 3) {
   border: none;
 }
 
-.caixa-alerta p{
+.caixa-alerta p {
   text-transform: uppercase;
   font-size: 14px;
 }
 
-.caixa-alerta .span_alertas{
+.caixa-alerta .span_alertas {
   align-items: left;
   display: flex;
   justify-content: left;
   font-size: 25px;
 }
 
-.container-graficos{
+.container-graficos {
   justify-content: center;
   display: flex;
   height: 50vh;
 }
 
-.grafico{
-  position: relative; 
-  height:45vh; 
-  width:40vw; 
+.grafico {
+  position: relative;
+  height: 45vh;
+  width: 40vw;
   padding: 19px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   background-color: rgb(33, 33, 33);
@@ -69,19 +69,19 @@
   margin-left: 25px;
 }
 
-.grafico span{
+.grafico span {
   font-size: 20px;
   color: rgb(177, 174, 174);
 }
 
-.container-maquinas{
+.container-maquinas {
   display: flex;
   width: 50vw;
   color: white;
   margin: 5vh auto;
 }
 
-.caixa-maquina{
+.caixa-maquina {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -94,18 +94,118 @@
   cursor: pointer;
 }
 
-.caixa-maquina p{
+.caixa-maquina p {
   text-transform: uppercase;
   font-size: 14px;
 }
 
-.caixa-maquina .span_maquina{
+.caixa-maquina .span_maquina {
   align-items: center;
   display: flex;
   justify-content: center;
   font-size: 20px;
 }
 
-.caixa-maquina:hover{
+.caixa-maquina:hover {
   border-bottom: 3px solid rgb(83, 142, 245);
 }
+
+
+/* responsividade da tela de dashboard */
+
+@media only screen and (max-width: 1300px) {
+  .caixa-alerta .span_alertas {
+    font-size: 20px;
+  }
+
+  .caixa-alerta {
+    width: 21vw;
+  }
+
+  .container-graficos {
+    height: 40vh;
+  }
+
+  .titulo {
+    width: 20vw;
+  }
+
+  .caixa-alerta p {
+    font-size: 15px;
+  }
+
+  .grafico {
+    height: 35vh;
+  }
+
+  .container-maquinas {
+    width: 85vw;
+  }
+
+  .container-alerta {
+    width: 75vw;
+  }
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+  .grafico {
+    height: 28vh;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .caixa-maquina {
+    padding: 0;
+  }
+
+  .titulo {
+    width: 25vw;
+  }
+
+  .grafico {
+    width: 60vw;
+  }
+
+  .container-graficos {
+    flex-direction: column;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .titulo {
+    width: 40vw;
+  }
+
+  .grafico {
+    width: 83vw;
+    height: 28vh;
+  }
+
+  .caixa-maquina{
+    margin-left: 10px;
+  }
+
+  .caixa-maquina .span_maquina {
+    font-size: 12px;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {}
+
+@media only screen and (max-width: 350px) {}
+
+@media only screen and (max-width: 450px) {}
+
+@media only screen and (max-width: 500px) {}
+
+@media only screen and (max-width: 350px) {}
+
+@media only screen and (max-width: 375px) {}
+
+@media only screen and (min-width: 280px) {}
