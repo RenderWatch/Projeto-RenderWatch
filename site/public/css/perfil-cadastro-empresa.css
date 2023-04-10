@@ -256,8 +256,16 @@ box-shadow: 3px 4px rgb(81, 81, 81);
 }
 
 
-
+/* LINKS E ESTILIZAÇÃO LINKS */
 a{
     height: 100%;
  text-decoration: none;
+}
+
+.a_sair{
+
+}
+
+.a_btn_caixa{
+    width:100% ;
 }
