@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style-all.css">
+    <link rel="stylesheet" href="css/perfil-dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="cor-bg"></div>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+            </div>
+        </a>
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
+                    <li><a href="">Configurações</a></li>
+                </div>
+                <div style="margin-top: -25px;" class="link">
+                    <a href="login.html"><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></a>
+                    <li><a href="login.html">Sair</a></li>
+                </div>
+            </ul>
+        </div>
+    </header>z
+    <sidebar>
+        <div class="sidebar">
+            <ul>
+                <li><a href="" class="sidebar-element">
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
+            </ul>
+        </div>
+    </sidebar>
+    <div class="container-alerta">
+        <div class="caixa-alerta">
+            <span class="span_alertas">5</span>
+            <p>Alertas identificados no cluster</p>
+        </div>
+        <div class="caixa-alerta">
+            <span class="span_alertas">2</span>
+            <p>Alertas identificados na máquina atual</p>
+        </div>
+        <div class="caixa-alerta">
+            <span class="span_alertas">5</span>
+            <p>Alertas identificados na rede da máquina atual</p>
+        </div>
+    </div>
+
+    <div class="container-maquina">
+        <div class="card-maquina">
+            <h2>Apelido da máquina: Machine</h2>
+            <h2>Sistema operacional: Ubuntu</h2>
+            <h2>Fabricante: GNU/Linux</h2>
+            <h2>Arquitetura: 64 bits</h2>
+        </div>
+    </div>
+
+    <div class="container-processo">
+        <div class="card-processo">
+            <span class="processo">Uso de memoria RAM (%)</span>
+            <span class="porcent-processo">18%</span>
+        </div>
+        <div class="card-processo">
+            <span class="processo">Uso de Disco (%)</span>
+            <span class="porcent-processo">37%</span>
+        </div>
+        <div class="card-processo">
+            <span class="processo">Uso de CPU (%)</span>
+            <span class="porcent-processo">80%</span>
+        </div>
+        <div class="card-processo">
+            <span class="processo">Rede</span>
+        </div>
+    </div>
+
+    <div class="container-dashboard">
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de memoria RAM em tempo real</span>
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="grafico">
+                <span>Uso de disco em tempo real</span>
+                <canvas style="height: 300px;" id="myChart2"></canvas>
+            </div>
+        </div>
+
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de CPU em tempo real</span>
+                <canvas id="myChart3"></canvas>
+            </div>
+            <div class="grafico">
+                <span>Uso de rede em tempo real</span>
+                <canvas id="myChart4"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-lista-processos">
+        <div class="lista">
+            <h2>Processos ocorrendo no momento</h2>
+        </div>
+    </div>
+
+    <div class="container-totais">
+        <div class="threads">
+            <h2>Total de threads</h2>
+        </div>
+    </div>
+
+    <div class="container-maquinas">
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 1</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 2</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 3</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 4</span>
+        </div>
+        <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA 5</span>
+        </div>
+    </div>
+
+</body>
+<script src="../public/js/script_dashboard.js"></script>
+
+</html>
