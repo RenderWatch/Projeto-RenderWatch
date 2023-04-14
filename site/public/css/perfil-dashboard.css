@@ -99,6 +99,41 @@ body {
     font-size: 25px;
     font-weight: bold;
   }
+  
+  .container-media{
+    display: flex;
+    width: 65vw;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .card-media{
+    color: white;
+    margin: 5vh auto;
+    width: 18vw;
+    padding: 10px;
+    background-color: rgb(244, 244, 244);
+    height: 12vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+    border-top: 15px solid rgb(83, 142, 245);
+  }
+
+  .card-media .titulo-media{
+    display: flex;
+    color: black;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .card-media .valor-media{
+    margin: 15px;
+    display: flex;
+    color: black;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+  }
 
   .card-maquina {
     background-color: rgb(244, 244, 244);
@@ -184,6 +219,12 @@ body {
     border-bottom: 15px solid rgb(83, 142, 245);
   }
 
+  .container-card-processos{
+    display: flex;
+    color: white;
+    margin: 5vh auto;
+  }
+
   .container-lista-processos{
     display: flex;
     justify-content: left;
@@ -199,6 +240,39 @@ body {
   }
 
   .container-lista-processos h2{
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    padding: 10px;
+  }
+
+  .container-teste{
+    margin-top: -5vh;
+  }
+
+  .container-total{
+    justify-content: left;
+    flex-direction: column;
+    background-color: rgb(244, 244, 244);
+    width: 20vw;
+    padding: 10px;
+    height: 20vh;
+    margin-top: 15px;
+    margin-left: 14vw;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+    border-top: 15px solid rgb(83, 142, 245);
+    color: black;
+  }
+  
+  .total-threads{
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    padding: 10px;
+  }
+  .total-processos{
     justify-content: center;
     text-align: center;
     font-size: 20px;
