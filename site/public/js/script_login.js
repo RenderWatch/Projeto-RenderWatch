@@ -9,35 +9,6 @@ function keyUp(event,id_input, alerta) {
     }    
 }
 
-function entrar(){
-    const email = input_email.value;
-    const senha = input_senha.value;
-
-    // var invalid_date = false;
-
-    // if (email != "teste@teste.com"){
-    //     alerta_email.innerHTML = "E-mail inválido";
-    //     invalid_date = true;
-    // }
-
-    // if (senha != "123"){
-    //     alerta_senha.innerHTML = "Senha inválida";
-    //     invalid_date = true;
-    // }
-    
-    // if (!invalid_date) {        
-    //     login();
-    // }
-
-    login()
-}
-
-// function login() {
-//     alert("Login realizado");
-//     location.reload();
-// }
-
-
 function login() {
 
     var emailVar = input_email.value;
@@ -79,10 +50,11 @@ function login() {
 
             console.log("Houve um erro ao tentar realizar o login!");
 
-            resposta.text().then(texto => {
-                console.error(texto);
-                finalizarAguardar(texto);
-            });
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Autenticação inválida!',
+              })
         }
 
     }).catch(function (erro) {
