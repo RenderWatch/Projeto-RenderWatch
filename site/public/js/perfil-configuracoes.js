@@ -201,6 +201,162 @@ var tamanhoNome = inputNome.value;
 }
 }
 
+function alterarSobrenome() {
+  btnEditSobrenome.remove();
+
+  divContainerSobrenome.innerHTML += `
+    <div id="divChangeSobrenome" class="div-input">
+        <label for="change-sobrenome"></label>
+        <input class="input-user-pass-telefone" id="inputSobrenome" type="text">
+        <button onclick="confirmarSobrenome()" class="btn-user-pass-telefone">Confirmar</button>
+        <button onclick="cancelarSobrenome()" class="btn-user-pass-telefone-remove">Cancelar</button>
+    </div>
+    `;
+}
+
+
+function cancelarSobrenome() {
+  divChangeNome.remove();
+
+  divContainerNome.innerHTML += `
+    <button onclick="alterarSobrenome()" id="btnEditSobrenome" class="btn-edit">
+        Editar
+    </button>
+    `;
+}
+
+
+function confirmarSobrenome() {
+var tamanhoSobrenome = inputSobrenome.value;
+
+  if(tamanhoSobrenome.length > 2 && tamanhoSobrenome.length < 45){
+  sessionStorage.setItem("SOBRENOME_USUARIO", inputSobrenome.value);
+  fetch(`/usuario/confirmarSobrenome/${sessionStorage.getItem("SOBRENOME_USUARIO")}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      sobrenome: inputSobrenome.value,
+      id: sessionStorage.ID_USUARIO
+    })
+  }).then(function (resposta) {
+
+    if (resposta.ok) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Parabéns',
+        text: 'Sobrenome atualizado com sucesso!',
+      })
+
+    } else if (resposta.status == 404) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops...',
+        text: 'Deu 404!',
+      })
+    } else {
+      throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    }
+  }).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+  })
+
+  spanSobrenome.innerHTML = inputSobrenome.value;
+  divChangeSobrenome.remove();
+
+  divContainerSobrenome.innerHTML += ` 
+    <button onclick="alterarSobrenome()" id="btnEditSobrenome" class="btn-edit">
+      Editar
+    </button>
+    `;
+} else {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Houve um erro ao tentar alterar o sobrenome! Certifique-se que o sobrenome está entre 2 e 45 caracteres válidos e tente novamente.'
+  })
+}
+}
+
+function alterarTelefone() {
+  btnEditTelefone.remove();
+
+  divContainerTelefone.innerHTML += `
+    <div id="divChangeTelefone" class="div-input">
+        <label for="change-telefone"></label>
+        <input class="input-user-pass-telefone" id="inputTelefone" type="text">
+        <button onclick="confirmarTelefone()" class="btn-user-pass-telefone">Confirmar</button>
+        <button onclick="cancelarTelefone()" class="btn-user-pass-telefone-remove">Cancelar</button>
+    </div>
+    `;
+}
+
+
+function cancelarTelefone() {
+  divChangeTelefone.remove();
+
+  divContainerTelefone.innerHTML += `
+    <button onclick="alterarTelefone()" id="btnEditTelefone" class="btn-edit">
+        Editar
+    </button>
+    `;
+}
+
+
+function confirmarTelefone() {
+var tamanhoTelefone = inputTelefone.value;
+
+  if(tamanhoTelefone.length > 9 && tamanhoTelefone.length < 12){
+  sessionStorage.setItem("TELEFONE_USUARIO", inputTelefone.value);
+  fetch(`/usuario/confirmarTelefone/${sessionStorage.getItem("TELEFONE_USUARIO")}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      telefone: inputTelefone.value,
+      id: sessionStorage.ID_USUARIO
+    })
+  }).then(function (resposta) {
+
+    if (resposta.ok) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Parabéns',
+        text: 'Telefone atualizado com sucesso!',
+      })
+
+    } else if (resposta.status == 404) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops...',
+        text: 'Deu 404!',
+      })
+    } else {
+      throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    }
+  }).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+  })
+
+  spanTelefone.innerHTML = inputTelefone.value;
+  divChangeTelefone.remove();
+
+  divContainerTelefone.innerHTML += ` 
+    <button onclick="alterarTelefone()" id="btnEditTelefone" class="btn-edit">
+      Editar
+    </button>
+    `;
+} else {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Houve um erro ao tentar alterar o Telefone! Certifique-se que o telefone tem o DDD em seguida do número correto.'
+  })
+}
+}
+
 // function alterar_senha() {
 //   btn_edit_pass.remove();
 

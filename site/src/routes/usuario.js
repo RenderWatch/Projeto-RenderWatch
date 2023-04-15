@@ -19,5 +19,13 @@ router.put("/confirmarNome/:nome", function (req, res) {
     usuarioController.confirmarNome(req, res);
 })
 
+router.put("/confirmarSobrenome/:sobrenome", function (req, res) {
+    usuarioController.confirmarSobrenome(req, res);
+})
+
+router.put("/confirmarTelefone/:telefone", function (req, res) {
+    usuarioController.confirmarTelefone(req, res);
+})
+
 
 module.exports = router;
