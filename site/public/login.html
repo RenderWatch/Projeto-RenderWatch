@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - RenderWatch</title>    
     <link rel="icon" type="image/x-icon" href="./assets/style-all/icone_topo_colorido.png"/>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <link rel="stylesheet" href="css/login.css">
     <script src="js/script_login.js"></script>
 </head>
@@ -28,7 +29,7 @@
                 <img src="assets/login/olho_fechado.png.png" class="input_revelar_senha" onclick="revelar_senha()" id="imagem_revelar_senha"></label>  
             <span class="alerta" id="alerta_senha"></span>
 
-            <button onclick="entrar()">Entrar</button>
+            <button onclick="login()">Entrar</button>
             <div class="div_cadastre">Não tem login? <a href="cadastro.html">Cadastre-se aqui!</a></div>
             <!-- <img class="div_img" src="./assets/login/Logo_Branco.png" alt=""> -->
 
@@ -48,6 +49,7 @@
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
 <script>
       function revelar_senha() {
