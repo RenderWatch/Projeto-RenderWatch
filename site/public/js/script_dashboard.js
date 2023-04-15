@@ -2,25 +2,29 @@ const ram = document.getElementById('myChart');
 const disco = document.getElementById('myChart2');
 const cpu = document.getElementById('myChart3');
 const temperatura = document.getElementById('myChart4');
-const mensal = document.getElementById('myChart5');
 
-new Chart(ram, {
-    data: {
-        labels: ['13:00:15', '13:00:30', '13:00:45', '13:01:00', '13:01:15', '13:01:30', '13:01:45', '13:02:00', '13:02:15', '13:02:30', '13:02:45'],
-        datasets: [{
-            type: 'line',
-            label: 'Uso de memoria RAM',
-            data: [1.5, 2.0, 1.0, 3.5, 6.4, 2.3, 1.5, 1.8, 5.5, 7.8, 4.0],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
+// Gerar valores aleatórios para o gráfico de RAM
+const ramData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
+
+// Criar o gráfico de RAM com os dados aleatórios
+const ramChart = new Chart(ram, {
+  type: 'line',
+  data: {
+    labels: ['13:00:15', '13:00:30', '13:00:45', '13:01:00', '13:01:15', '13:01:30', '13:01:45', '13:02:00', '13:02:15', '13:02:30', '13:02:45'],
+    datasets: [{
+      type: 'line',
+      label: 'Uso de memoria RAM',
+      data: ramData,
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
     }
+  }
 });
 
 new Chart(disco, {
