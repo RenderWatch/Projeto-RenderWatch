@@ -2,6 +2,23 @@ var usuarioModel = require("../models/usuarioModel");
 
 var sessoes = [];
 
+function buscarDadosUsuario(req, res) {
+    var id = req.body.id;
+
+    usuarioModel.buscar(id)
+        .then(
+            function (resultado) {
+                res.json(resultado[0]);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -109,5 +126,6 @@ function confirmarNome(req, res) {
 module.exports = {
 cadastrar,
 entrar,
-confirmarNome
+confirmarNome,
+buscarDadosUsuario
 }

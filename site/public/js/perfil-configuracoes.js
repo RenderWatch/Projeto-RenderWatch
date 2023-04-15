@@ -1,48 +1,29 @@
 
-function dadosCliente() {
-  if (sessionStorage.ID_PERFIL) {
-    fetch(`/usuario?id=${sessionStorage.ID_PERFIL}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(function (resposta) {
-        if (resposta.ok) {
-          resposta.json().then((json) => {
-            console.log(json);
+function dadosUsuario() {
 
-            //Nome do Usuario
-            var nome = json.nome;
-            spanNome.innerHTML = nome;
+        //Nome do Usuario
+        spanNome.innerHTML = sessionStorage.NOME_USUARIO;
 
-            //Sobrenome do Usuario
-            var sobrenome = json.username;
-            spanSobrenome.innerHTML = sobrenome;
+        //Sobrenome do Usuario
+        spanSobrenome.innerHTML = sessionStorage.SOBRENOME_USUARIO;
 
-            //Senha do usuario
+        //Senha do usuario
 
-            var tamanhoSenha = json.senha;
+        var tamanhoSenha = sessionStorage.SENHA_USUARIO;
 
-            //Telefone do usuario
+        //Telefone do usuario
+        spanTelefone.innerHTML = sessionStorage.TELEFONE_USUARIO;
 
-            var telefone = json.telefone;
-            spanTelefone.innerHTML = telefone;
+        var visualSenha = "";
 
-            for (var a = 0; a < tamanhoSenha.length; a++) {
-              visualSenha += '*'
-            }
-
-            spanSenha.innerHTML = visualSenha;
-
-          });
+        for (var a = 0; a < tamanhoSenha.length; a++) {
+            visualSenha += '*'
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
+
+        spanSenha.innerHTML = visualSenha;
+
 }
+
 
 // Busca os dados do cliente assim que a página carrega
 
@@ -168,6 +149,10 @@ function cancelarNome() {
 
 
 function confirmarNome() {
+var tamanhoNome = inputNome.value;
+
+  if(tamanhoNome.length > 2 && tamanhoNome.length < 45){
+  sessionStorage.setItem("NOME_USUARIO", inputNome.value);
   fetch(`/usuario/confirmarNome/${sessionStorage.getItem("NOME_USUARIO")}`, {
     method: "PUT",
     headers: {
@@ -175,7 +160,7 @@ function confirmarNome() {
     },
     body: JSON.stringify({
       nome: inputNome.value,
-      id: sessionStorage.ID_PERFIL
+      id: sessionStorage.ID_USUARIO
     })
   }).then(function (resposta) {
 
@@ -207,8 +192,14 @@ function confirmarNome() {
       Editar
     </button>
     `;
+} else {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Houve um erro ao tentar alterar o nome! Certifique-se que o nome está entre 2 e 45 caracteres válidos e tente novamente.'
+  })
 }
-
+}
 
 // function alterar_senha() {
 //   btn_edit_pass.remove();
