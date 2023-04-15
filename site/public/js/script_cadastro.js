@@ -115,11 +115,60 @@ function cadastrar(){
     }
 
     if (!invalid_date) {        
-        efetuarCadastro();
+        cadastrar();
     }
 }
 
-function efetuarCadastro() {
-    alert("Cadastro realizado");
-    location.reload();
-}
+// function efetuarCadastro() {
+//     alert("Cadastro realizado");
+//     location.reload();
+// }
+
+
+function cadastrar() {
+    
+    var nomeVar = input_nome.value;
+    var sobrenomeVar = input_sobrenome.value;
+    var emailVar = input_email.value;
+    var telefoneVar = input_telefone.value;
+    var cpfVar = input_cpf.value;
+    var senhaVar = input_senha.value;
+    
+    fetch("/usuario/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomeServer: nomeVar,
+            sobrenomeServer: sobrenomeVar,
+            emailServer: emailVar,
+            telefoneServer: telefoneVar,
+            cpfServer: cpfVar,
+            senhaServer: senhaVar
+        })
+    }).then(function (resposta) {
+        
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+            setTimeout(() => {
+                window.location = "login.html";
+            }, "2000")
+            
+            limparFormulario();
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Houve um erro ao tentar realizar o cadastro!',
+          })
+  
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+  
+    return false;
+  }
+  
