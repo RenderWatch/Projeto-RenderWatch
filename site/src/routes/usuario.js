@@ -11,4 +11,9 @@ router.post("/login", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
+router.put("/confirmarNome", function (req, res) {
+    usuarioController.confirmarNome(req, res);
+})
+
+
 module.exports = router;
