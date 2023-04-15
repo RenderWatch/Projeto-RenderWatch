@@ -66,6 +66,14 @@ function confirmarSenha(senha, id) {
     return database.executar(instrucao);
 }
 
+function deletarConta(id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+
+    var instrucao = `DELETE FROM Usuario WHERE id = ${id}`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     cadastrar,
@@ -74,5 +82,6 @@ module.exports = {
     buscarDadosUsuario,
     confirmarSobrenome,
     confirmarTelefone,
-    confirmarSenha
+    confirmarSenha,
+    deletarConta
 };

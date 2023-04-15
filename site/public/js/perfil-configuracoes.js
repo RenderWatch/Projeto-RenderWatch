@@ -342,3 +342,51 @@ var novaSenha = inputSenha.value;
   })
 }
 }
+
+
+function deletarConta() {
+  Swal.fire({
+    title: 'Você tem certeza?',
+    text: "Você não poderá desfazer essa ação!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, excluir!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`/usuario/deletarConta/${sessionStorage.ID_USUARIO}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: sessionStorage.ID_USUARIO
+        })
+      }).then(function (resposta) {
+
+        if (resposta.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Parabéns',
+            text: 'Conta excluída com sucesso!',
+          })
+
+        } else if (resposta.status == 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Deu 404!',
+          })
+        } else {
+          throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        }
+      }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      })
+
+      sessionStorage.clear();
+      window.location.href = "/index.html";
+    }
+  })
+}

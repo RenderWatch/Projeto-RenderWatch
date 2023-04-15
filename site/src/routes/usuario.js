@@ -31,5 +31,9 @@ router.put("/confirmarSenha/:senha", function (req, res) {
     usuarioController.confirmarSenha(req, res);
 })
 
+router.delete("/deletarConta/:id", function (req, res) {
+    usuarioController.deletarConta(req, res);
+})
+
 
 module.exports = router;
