@@ -58,59 +58,59 @@
         </div>
     </sidebar>
     <div class="container-alerta">
-        <div class="caixa-alerta">
-            <span class="span_alertas">5</span>
+        <div id="caixa-alerta" class="caixa-alerta">
+            <span id="span_alertas_cluster" class="span_alertas"></span>
             <p>Alertas identificados no cluster</p>
         </div>
-        <div class="caixa-alerta">
-            <span class="span_alertas">2</span>
+        <div id="caixa-alerta" class="caixa-alerta">
+            <span id="span_alertas_maquina" class="span_alertas"></span>
             <p>Alertas identificados na máquina atual</p>
         </div>
-        <div class="caixa-alerta">
-            <span class="span_alertas">5</span>
+        <div id="caixa-alerta" class="caixa-alerta">
+            <span id="span_alertas_rede" class="span_alertas"></span>
             <p>Alertas identificados na rede da máquina atual</p>
+        </div>
+    </div>
+
+    <div class="container-maquinas">
+    </div>
+
+    <div class="container-maquina">
+        <div class="card-maquina">
+            <h2>Apelido da máquina: <span id="apelido"></span></h2>
+            <h2>Sistema operacional: <span id="sistema"></span></h2>
+            <h2>Fabricante: <span id="fabricante"></span></h2>
+            <h2>Arquitetura: <span id="arquitetura"></span></h2>
         </div>
     </div>
 
     <div class="container-media">
         <div class="card-media">
             <span class="titulo-media">Média de uso de processador</span>
-            <span class="valor-media">18</span>
+            <span id="media-CPU" class="valor-media"></span>
         </div>
         <div class="card-media">
             <span class="titulo-media">Média de uso de memória RAM</span>
-            <span class="valor-media">37</span>
+            <span id="media-RAM" class="valor-media"></span>
         </div>
         <div class="card-media">
             <span class="titulo-media">Média de uso do disco</span>
-            <span class="valor-media">80</span>
-        </div>
-    </div>
-
-    <div class="container-maquina">
-        <div class="card-maquina">
-            <h2>Apelido da máquina: Machine</h2>
-            <h2>Sistema operacional: Ubuntu</h2>
-            <h2>Fabricante: GNU/Linux</h2>
-            <h2>Arquitetura: 64 bits</h2>
+            <span id="media-HD" class="valor-media"></span>
         </div>
     </div>
 
     <div class="container-processo">
-        <div class="card-processo">
+        <div id="card-processo-ram" class="card-processo">
             <span class="processo">Uso de memoria RAM (%)</span>
-            <span class="porcent-processo">18%</span>
+            <span id="porcent-RAM" class="porcent-processo"></span>
         </div>
-        <div class="card-processo">
+        <div id="card-processo-hd" class="card-processo">
             <span class="processo">Uso de Disco (%)</span>
-            <span class="porcent-processo">37%</span>
+            <span id="porcent-HD" class="porcent-processo"></span>
         </div>
-        <div class="card-processo">
+        <div id="card-processo-cpu" class="card-processo">
             <span class="processo">Uso de CPU (%)</span>
-            <span class="porcent-processo">80%</span>
-        </div>
-        <div class="card-processo">
-            <span class="processo">Rede</span>
+            <span id="porcent-CPU" class="porcent-processo"></span>
         </div>
     </div>
 
@@ -143,40 +143,10 @@
             <div class="lista">
                 <h2>Processos ocorrendo no momento</h2>
             </div>
-        </div>
-    
-        <div class="container-teste">
-            <div class="container-total">
-                <div class="total-threads">
-                    <span class="span_threads">Total de threads:</span>
-                </div>
-            </div>    
-    
-            <div class="container-total">
-                <div class="total-processos">
-                    <span class="span_processos">Total de processos:</span>
-                </div>
-            </div>  
-        </div>
-
-    </div>
-
-    
-    <div class="container-maquinas">
-        <div class="caixa-maquina">
-            <span class="span_maquina">MÁQUINA 1</span>
-        </div>
-        <div class="caixa-maquina">
-            <span class="span_maquina">MÁQUINA 2</span>
-        </div>
-        <div class="caixa-maquina">
-            <span class="span_maquina">MÁQUINA 3</span>
-        </div>
-        <div class="caixa-maquina">
-            <span class="span_maquina">MÁQUINA 4</span>
-        </div>
-        <div class="caixa-maquina">
-            <span class="span_maquina">MÁQUINA 5</span>
+            <div class="total">
+                <p>Total de processos: <span id="total-processos">0</span></p>
+                <p>Total de threads: <span id="total-threads">0</span></p>
+            </div>
         </div>
     </div>
 
@@ -184,3 +154,129 @@
 <script src="../public/js/script_dashboard.js"></script>
 
 </html>
+
+<script>
+
+    // alertas
+    const spanCluster = document.getElementById("span_alertas_cluster");
+    const spanMaquina = document.getElementById("span_alertas_maquina");
+    const spanRede = document.getElementById("span_alertas_rede");
+
+    var alertasCluster = 4;
+    var alertasMaquina = 2;
+    var alertasRede = 5;
+
+    spanCluster.innerHTML = alertasCluster;
+    spanMaquina.innerHTML = alertasMaquina;
+    spanRede.innerHTML = alertasRede;
+
+
+    // botões de maquinas
+    var maquinas = 5;
+    for (let i = 1; i < maquinas; i++) {
+        const container = document.createElement('div');
+        container.innerHTML = ` <div class="caixa-maquina">
+            <span class="span_maquina">MÁQUINA ${i} </span>
+        </div>`;
+        document.querySelector('.container-maquinas').appendChild(container);
+    }
+
+
+    // media de uso do processador
+    const mediaCPU = document.getElementById("media-CPU");
+    var media = 80;
+    mediaCPU.innerHTML = media;
+
+    // media de uso da memoria ram
+    const mediaRAM = document.getElementById("media-RAM");
+    var media = 50;
+    mediaRAM.innerHTML = media;
+
+    // media de uso do disco
+    const mediaHD = document.getElementById("media-HD");
+    var media = 30;
+    mediaHD.innerHTML = media;
+
+
+
+    // descrição da maquina
+
+    const apelido = document.getElementById("apelido");
+    const sistema = document.getElementById("sistema");
+    const fabricante = document.getElementById("fabricante");
+    const arquitetura = document.getElementById("arquitetura");
+
+    var apelidoMaquina = "Maquina 1";
+    var sistemaOperacional = "Windows 10";
+    var fabricanteMaquina = "Dell";
+    var arquiteturaMaquina = "64 bits";
+
+    apelido.innerHTML = apelidoMaquina;
+    sistema.innerHTML = sistemaOperacional;
+    fabricante.innerHTML = fabricanteMaquina;
+    arquitetura.innerHTML = arquiteturaMaquina;
+
+
+    // porcentagem de uso de processos
+
+    const porcentRAM = document.getElementById("porcent-RAM");
+    const porcentHD = document.getElementById("porcent-HD");
+    const porcentCPU = document.getElementById("porcent-CPU");
+    const cardProcessoRam = document.getElementById("card-processo-ram");
+    const cardProcessoHD = document.getElementById("card-processo-hd");
+    const cardProcessoCPU = document.getElementById("card-processo-cpu");
+
+    var porcentagemRAM = 50;
+    var porcentagemHD = 30;
+    var porcentagemCPU = 80;
+
+    porcentRAM.innerHTML = `${porcentagemRAM}%`;
+    porcentHD.innerHTML = `${porcentagemHD}%`;
+    porcentCPU.innerHTML = `${porcentagemCPU}%`;
+
+    if (porcentagemRAM > 80) {
+        porcentRAM.style.color = "red";
+        cardProcessoRam.style.borderTop = "10px solid red";
+    } else if (porcentagemRAM > 50) {
+        porcentRAM.style.color = "orange";
+        cardProcessoRam.style.borderTop = "10px solid orange";
+    } else {
+        porcentRAM.style.color = "green";
+        cardProcessoRam.style.borderTop = "10px solid green";
+    }
+
+    if (porcentagemHD > 80) {
+        porcentHD.style.color = "red"; 
+        cardProcessoHD.style.borderTop = "10px solid red";
+    } else if (porcentagemHD > 50) {
+        porcentHD.style.color = "orange";
+        cardProcessoHD.style.borderTop = "10px solid orange";
+    } else {
+        porcentHD.style.color = "green";
+        cardProcessoHD.style.borderTop = "10px solid green";
+    }
+
+    if (porcentagemCPU > 80) {
+        porcentCPU.style.color = "red";
+        cardProcessoCPU.style.borderTop = "10px solid red";
+    } else if (porcentagemCPU > 50) {
+        porcentCPU.style.color = "orange";
+        cardProcessoCPU.style.borderTop = "10px solid orange";
+    } else {
+        porcentCPU.style.color = "green";
+        cardProcessoCPU.style.borderTop = "10px solid green";
+    }
+
+    // lista de processos
+
+    var totalProcessos = 8;
+    for (let i = 1; i < totalProcessos; i++) {
+        const container = document.createElement('div');
+        container.classList.add('processo');
+        container.innerHTML = ` <div class="lista">
+            <span class="span_processo">Processo ${i} </span>
+        </div>`;
+        document.querySelector('.container-lista-processos').appendChild(container);
+    }
+
+</script>
