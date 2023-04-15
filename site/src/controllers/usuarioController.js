@@ -85,7 +85,7 @@ function entrar(req, res) {
 function confirmarNome(req, res) {
     var nome = req.body.nome;
     var id = req.body.id;
-    if (user == undefined) {
+    if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else {
         usuarioModel.confirmarNome(nome, id)

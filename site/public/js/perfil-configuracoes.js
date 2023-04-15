@@ -148,7 +148,7 @@ function alterarNome() {
   divContainerNome.innerHTML += `
     <div id="divChangeNome" class="div-input">
         <label for="change-user"></label>
-        <input class="input-user-pass-telefone" id="inputNome" onkeyup="validarUsuario()" type="text">
+        <input class="input-user-pass-telefone" id="inputNome" type="text">
         <button onclick="confirmarNome()" class="btn-user-pass-telefone">Confirmar</button>
         <button onclick="cancelarNome()" class="btn-user-pass-telefone-remove">Cancelar</button>
     </div>
@@ -167,47 +167,47 @@ function cancelarNome() {
 }
 
 
-// function confirmarNome() {
-//   fetch(`/usuario/confirmarNome/${sessionStorage.getItem("NOME_USUARIO")}`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({
-//       nome: inputNome.value,
-//       id: sessionStorage.ID_PERFIL
-//     })
-//   }).then(function (resposta) {
+function confirmarNome() {
+  fetch(`/usuario/confirmarNome/${sessionStorage.getItem("NOME_USUARIO")}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      nome: inputNome.value,
+      id: sessionStorage.ID_PERFIL
+    })
+  }).then(function (resposta) {
 
-//     if (resposta.ok) {
-//       Swal.fire({
-//         icon: 'success',
-//         title: 'Parabéns',
-//         text: 'Nome atualizado com sucesso!',
-//       })
+    if (resposta.ok) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Parabéns',
+        text: 'Nome atualizado com sucesso!',
+      })
 
-//     } else if (resposta.status == 404) {
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Ops...',
-//         text: 'Deu 404!',
-//       })
-//     } else {
-//       throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-//     }
-//   }).catch(function (resposta) {
-//     console.log(`#ERRO: ${resposta}`);
-//   })
+    } else if (resposta.status == 404) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ops...',
+        text: 'Deu 404!',
+      })
+    } else {
+      throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    }
+  }).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+  })
 
-//   spanNome.innerHTML = inputNome.value;
-//   divChangeNome.remove();
+  spanNome.innerHTML = inputNome.value;
+  divChangeNome.remove();
 
-//   divContainerNome.innerHTML += ` 
-//     <button onclick="alterarNome()" id="btnEditNome" class="btn-edit">
-//       Editar
-//     </button>
-//     `;
-// }
+  divContainerNome.innerHTML += ` 
+    <button onclick="alterarNome()" id="btnEditNome" class="btn-edit">
+      Editar
+    </button>
+    `;
+}
 
 
 // function alterar_senha() {
