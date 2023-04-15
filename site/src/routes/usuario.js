@@ -27,5 +27,9 @@ router.put("/confirmarTelefone/:telefone", function (req, res) {
     usuarioController.confirmarTelefone(req, res);
 })
 
+router.put("/confirmarSenha/:senha", function (req, res) {
+    usuarioController.confirmarSenha(req, res);
+})
+
 
 module.exports = router;

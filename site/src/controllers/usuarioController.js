@@ -171,6 +171,30 @@ function confirmarTelefone(req, res) {
 }
 }
 
+function confirmarSenha(req, res) {
+    var senha = req.body.senha;
+    var id = req.body.id;
+    if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else {
+        usuarioModel.confirmarSenha(senha, id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
 
 module.exports = {
 cadastrar,
@@ -178,5 +202,6 @@ entrar,
 confirmarNome,
 buscarDadosUsuario,
 confirmarSobrenome,
-confirmarTelefone
+confirmarTelefone,
+confirmarSenha
 }

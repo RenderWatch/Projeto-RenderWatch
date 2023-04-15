@@ -57,6 +57,15 @@ function confirmarTelefone(telefone, id) {
     return database.executar(instrucao);
 }
 
+function confirmarSenha(senha, id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", senha, id)
+
+    var instrucao = `UPDATE Usuario SET senha = '${senha}'
+    WHERE id = ${id}`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     cadastrar,
@@ -64,5 +73,6 @@ module.exports = {
     confirmarNome,
     buscarDadosUsuario,
     confirmarSobrenome,
-    confirmarTelefone
+    confirmarTelefone,
+    confirmarSenha
 };

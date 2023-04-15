@@ -22,13 +22,13 @@
         </a>
         <div class="menu">
             <ul>
-                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                <div style="margin-top: -25px; margin-left: 50%;" class="link" href="perfil-configuracoes.html">
                     <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
-                    <li><a href="">Configurações</a></li>
+                    <li><span>Configurações</span></li>
                 </div>
-                <div style="margin-top: -25px;" class="link">
-                    <a href="login.html"><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></a>
-                    <li><a href="login.html">Sair</a></li>
+                <div style="margin-top: -25px;" class="link"  onclick="logout()">
+                    <span><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></span>
+                    <li><span>Sair</span></li>
                 </div>
             </ul>
         </div>
@@ -89,9 +89,9 @@
                                 <h4 class="titulo">Senha: </h4>
                                 <h4 class="info"><span id="spanSenha"></span></h4>
                             </div>
-                            <!-- <button onclick="alterarSenha()" id="btnEditSenha" class="btn-edit">
+                            <button onclick="alterarSenha()" id="btnEditSenha" class="btn-edit">
                                 Editar
-                            </button> -->
+                            </button>
                         </div>
                         <div id="divContainerTelefone" class="info-email">
                             <div class="div-telefone">
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="div-senha-logout">
-                        <button onclick="logout()" class="btn-logout">Sair</button>
+                        <button onclick="" class="btn-logout">Sair</button>
                     </div>
 
             </div>
@@ -115,5 +115,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script src="js/perfil-configuracoes.js"></script>
+<script src="js/perfil-sidebar-header.js"></script>
 
 </html>
