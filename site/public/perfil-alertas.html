@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas - RenderWatch</title>
+    <link rel="stylesheet" href="css/perfil-alertas.css">
+
+
+</head>
+
+<body>
+
+
+
+    <div class="header">
+
+
+        <img class="renderwatch_logo_colorido" src="assets/cadastro/RenderWatch_Logo_Branco.png" alt="">
+        <a class="a_sair" href="public/index.html">
+            <div class="sair">
+                <img class="log-out" src="public/assets/perfil/log-out.png" alt="">
+                Sair
+            </div>
+        </a>
+
+
+
+    </div>
+
+    <div class="caixa_esquerda">
+
+        <div class="caixa um">
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Meu Cadastro</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Empresa</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Cluster</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Gerenciar Permissões</button></a>
+
+        </div>
+
+        <div class="caixa dois">
+
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Monitoração</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Histórico de Alertas</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Suporte</button></a>
+        </div>
+
+
+    </div>
+    <main>
+
+
+
+        <div class="caixa_direita">
+
+            <div class="container-cards">
+                <div class="cards legenda">
+                    Perfil Tecnico ou Perfil Animador
+                </div>
+
+                <div class="cards status">
+                    Resolvido
+                    Em andamento
+                </div>
+
+            </div>
+
+
+            <div id="container_alerta" class="container-alertas">
+
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </main>
+
+</body>
+
+<script>
+    var qtdAlert = 2
+    for (i = 0; i < qtdAlert; i++) {
+
+        container_alerta.innerHTML += ` <div class="alerta"></div>`
+
+}
+
+
+</script>
