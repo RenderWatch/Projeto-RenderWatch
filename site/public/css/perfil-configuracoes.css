@@ -44,7 +44,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 18vw;
+    width: 26vw;
     height: 46vh;
     margin-top: 7%;
     margin-bottom: 2%;
@@ -57,63 +57,6 @@ body {
     align-items: center;
     justify-content: flex-start;
 }
-
-/* .titulo-info {
-    font-size: 20px;
-}
-
-.container-card-info {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 16px;
-    width: 100%;
-}
-
-.container-btn-edit {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 30px;
-}
-
-.inputs-card label{
-    font-size: 1.1rem;
-}
-
-.inputs-card input {
-    border: 1px solid rgb(35, 35, 35);
-    background-color: rgb(244, 244, 244);
-    height: 32px;
-    width: 240px;
-    border-radius: 2px;
-    padding: 0 3%;
-}
-
-.btn-cadastrar-card {
-    width: 100px;
-    height: 35px;
-    border-radius: 5px;
-    border: none;
-    background-color: #026583;
-    color: rgb(237, 237, 237);
-    cursor: pointer;
-    padding: 2%;
-    font-size: 0.9rem;
-    transition: 0.2s;
-}
-
-.btn-cadastrar-card:hover {
-    transition: 0.2s;
-    background-color: #0bacce;
-    color: white;
-}
-
-.btn-cadastrar-card:active {
-    background-color: #1094af;
-    transform: translateY(4px);
-    transition: 0.2s;
-  }
-
- */
 
 .div-info{
     height: 40%;
@@ -128,15 +71,18 @@ body {
     align-items: center;
 }
 .div-content{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 .titulo{
     font-weight: 900;
-    font-size: 1.1rem;
+    font-size: 1.35rem;
 }
 .btn-edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 3.5vh;
-    width: 25%;
+    padding: 10px;
     background-color: #1a488b;
     color: #FAFAFA;
     border: none;
@@ -144,7 +90,7 @@ body {
     font-weight: 600;
     font-size: 0.9rem;
     transition: 0.2s;
-    margin-left: 20px;
+    margin-left: 58px;
     cursor: pointer;
 }
 .btn-edit:hover{
@@ -224,8 +170,11 @@ body {
     margin-top: 6vh;
 }
 .btn-logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30%;
-    width: 25%;
+    padding: 12px;
     background-color: white;
     border: 2px solid red;
     color: black;
