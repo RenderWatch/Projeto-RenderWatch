@@ -69,8 +69,34 @@
 
 
             <div id="container_alerta" class="container-alertas">
+                <div class="alerta">
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Nivel do Alerta</li>
+                        <li class="alerta_li">crítico</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Descrição</li>
+                        <li class="alerta_li descricao_alerta">CPU com uso excedido</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Máquina</li>
+                        <li class="alerta_li">1</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta" >Cluster</li>
+                        <li class="alerta_li">2</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Data/Hora</li>
+                        <li class="hora_alerta">07/04/2023-16:00</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Status</li>
+                        <li class="alerta_li button_li"><button class="status" class="button_status" type="button">0</button></li>
+                    </ul>
 
-
+                </div>
+              
 
 
             </div>
@@ -87,12 +113,39 @@
 </body>
 
 <script>
-    var qtdAlert = 2
+    var qtdAlert = 0
     for (i = 0; i < qtdAlert; i++) {
 
-        container_alerta.innerHTML += ` <div class="alerta"></div>`
+        container_alerta.innerHTML += ` 
+        <div class="alerta">
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Nivel do Alerta</li>
+                        <li class="alerta_li">crítico</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Descrição</li>
+                        <li class="alerta_li descricao_alerta">CPU com uso excedido</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Máquina</li>
+                        <li class="alerta_li">1</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta" >Cluster</li>
+                        <li class="alerta_li">2</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Data/Hora</li>
+                        <li class="hora_alerta">07/04/2023-16:00</li>
+                    </ul>
+                    <ul class=" alerta_ul">
+                        <li class=" titulo_alerta">Status</li>
+                        <li class="alerta_li">Resolvido</li>
+                    </ul>
 
-}
+                </div>`
+
+    }
 
 
 </script>
