@@ -41,7 +41,7 @@ function login() {
                 sessionStorage.ID_USUARIO = json.id;
 
                 setTimeout(function () {
-                    window.location = "./teste.html";
+                    window.location = "./dashboard.html";
                 }, 1000); // apenas para exibir o loading
 
             });

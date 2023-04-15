@@ -44,7 +44,7 @@ function MaskNumber(id_input) {
     }
 }
 
-function cadastrar(){
+function validarCadastro(){
     const nome = input_nome.value;
     const sobrenome = input_sobrenome.value;
     const email = input_email.value;
@@ -54,83 +54,97 @@ function cadastrar(){
     const senha = input_senha.value;
     const confirmacao_senha = input_confirmacao_senha.value;
 
-    var invalid_date = false;
+    var dadosValidos = true;
 
-    if (nome == "" || nome[0] == " " || nome.length < 3){
+
+    if (nome == "" ){
         alerta_nome.innerHTML = "Este campo é obrigatório";
         title_box.scrollIntoView();
-        invalid_date = true;
-    }    
+        dadosValidos = false;
+    }   else if (nome.length < 2) {
+        alerta_nome.innerHTML = "Nome inválido";
+        title_box.scrollIntoView();
+        dadosValidos = false;
+    } 
 
-    if (sobrenome == "" || sobrenome[0] == " " || sobrenome.length < 3){
+    if (sobrenome == "" ){
         alerta_sobrenome.innerHTML = "Este campo é obrigatório";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
+    }   else if (sobrenome.length < 2) {
+        alerta_sobrenome.innerHTML = "sobrenome inválido";
+        title_box.scrollIntoView();
+        dadosValidos = false;
     } 
 
     if (email == ""){
         alerta_email.innerHTML = "Este campo é obrigatório";
         title_box.scrollIntoView();
-        invalid_date = true;
-    } else if (email.indexOf("@") < 3 || (email.lastIndexOf(".") - email.indexOf("@")) < 4 || (email.length - email.lastIndexOf(".")) < 3 || invalidEmailChar(email)) {
+        dadosValidos = false;
+    } else if (email.indexOf("@") < 3 || (email.lastIndexOf(".") - email.indexOf("@")) < 2 || (email.length - email.lastIndexOf(".")) < 2 || invalidEmailChar(email)) {
         alerta_email.innerHTML = "Email inválido";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
     }
 
-    if ((ddd != "" && ddd.length < 2) || (telefone != "" && telefone.length < 8) || (ddd == "" && telefone != "") || (ddd != "" && telefone == "")){
+    if (telefone == "" || ddd == ""){
+        alerta_email.innerHTML = "Este campo é obrigatório";
+        title_box.scrollIntoView();
+        dadosValidos = false;
+    } else if ((ddd.length < 2) || (telefone.length < 8)){
         alerta_telefone.innerHTML = "Telefone inválido";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
     }
 
     if (cpf == ""){
         alerta_cpf.innerHTML = "Este campo é obrigatório";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
     } else if (cpf.length < 11) {
         alerta_cpf.innerHTML = "CPF inválido";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
     }
 
     if (senha == ""){
         alerta_senha.innerHTML = "Este campo é obrigatório";
         title_box.scrollIntoView();
-        invalid_date = true;
-    } else if (senha.length < 5) {
-        alerta_senha.innerHTML = "Digite pelo menos 5 caracteres";
+        dadosValidos = false;
+    } else if (senha.length < 6 || senha.search(/[a-z]/) == -1 || senha.search(/[A-Z]/) == -1 || senha.search(/[0-9]/) == -1) {
+        alerta_senha.innerHTML = "Digite 6 caracteres, um número, letra maiúscula e minúscula";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
     }
 
     if (confirmacao_senha == ""){
         alerta_confirmacao_senha.innerHTML = "Este campo é obrigatório";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
     } else if (senha != "" && (senha != confirmacao_senha)){
         alerta_confirmacao_senha.innerHTML = "As senhas se divergem";
         title_box.scrollIntoView();
-        invalid_date = true;
+        dadosValidos = false;
     }
 
-    if (!invalid_date) {        
+    if (!dadosValidos) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Houve um erro ao tentar realizar o cadastro!'
+          })
+    }
+    else{        
         cadastrar();
     }
 }
-
-// function efetuarCadastro() {
-//     alert("Cadastro realizado");
-//     location.reload();
-// }
-
 
 function cadastrar() {
     
     var nomeVar = input_nome.value;
     var sobrenomeVar = input_sobrenome.value;
     var emailVar = input_email.value;
-    var telefoneVar = input_telefone.value;
+    var telefoneVar = input_ddd.value + input_telefone.value;
     var cpfVar = input_cpf.value;
     var senhaVar = input_senha.value;
     
