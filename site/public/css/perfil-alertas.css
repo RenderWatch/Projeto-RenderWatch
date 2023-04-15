@@ -14,7 +14,7 @@
 body {
     width: 1774px;
 
-    background-color: cadetblue;
+    background-color: rgba(0, 0, 0, 0.9);
     display: flex;
     align-items: start;
     flex-direction: column;
@@ -114,42 +114,71 @@ main {
     color: black;
     background-color: #fffdfd;
     margin-bottom: 40PX;
+    border: #2180cf groove;
 }
 
-.cards.legenda{
+.cards.legenda {
     width: 440px;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-around;
-}
-
-.cards.button{
-   display: flex 
-}
-
-.card_button{
-width: 90% ;
-height: 40px;
-border: none;
-background-color: white;
-
-}
-
-.card_button.button_todos{
-    background-color: #bd5757;
-}
-.card_button.button_resolvido{
-   background-image: url(../assets/style-all/check.png);
-   background-size: 100%;
-   
-}
-.card_button.button_pendente{
-    background-color: #bd5757;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 
-.titulo_legenda{
+
+.card_button {
+    width: 90%;
+    height: 40px;
+    border: none;
+    background-color: rgb(122, 49, 49);
+    font-size: 25px;
+    margin-left: -70px;
+    border-radius: 100px;
+}
+
+.button_li {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    
+}
+
+.cards_bullet_todos {
+    width: 48px;
+    height: 42px;
+    border-radius: 100px;
+    background: linear-gradient(90deg,  rgba(17, 196, 56, 0.8) 0%, rgba(197, 0, 0, 0.7) 90%, rgba(197, 0, 0, 0.7) 100%);
+    position: relative;
+}
+
+.cards_bullet_resolvido {
+    width: 48px;
+    height: 42px;
+    border-radius: 100px;
+    background-color: rgba(17, 196, 56, 0.8);
+    position: relative;
+}
+
+.cards_bullet_pendente {
+    width: 48px;
+    height: 42px;
+    border-radius: 100px;
+    position: relative;
+        background-color: rgba(197, 0, 0, 0.7)
+    }
+
+.card_button.button_todos {}
+
+.card_button.button_resolvido {}
+
+.card_button.button_pendente {}
+
+
+.titulo_legenda {
     margin-top: 7px;
     margin-left: 10px;
     margin-right: 10px;
@@ -157,23 +186,23 @@ background-color: white;
     color: #bd5757;
 }
 
-.legenda_ul{
+.legenda_ul {
     display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-around;
-width: 200px;
-height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    height: 200px;
 
 }
 
-.legenda_li{
+.legenda_li {
     width: 160px;
-margin-left: -8px;
+    margin-left: -8px;
     display: flex;
     border-radius: 20px;
     justify-content: space-between;
-   background-color: rgb(231, 231, 231, 0.4);
+    background-color: rgb(231, 231, 231, 0.4);
     flex-direction: row;
 }
 
@@ -184,33 +213,35 @@ margin-left: -8px;
     flex-direction: column;
     margin-top: 10px;
     width: 85%;
-border-radius: 10px;
-
+    border-radius: 10px;
+border: #2180cf groove;
 
 
 
 }
 
-.container-alertas_pendentes{
-background-color: rgb(255, 255, 255);
-margin-bottom: 20px;
+.container-alertas_pendentes {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 20px;
 
 
 }
 
-.container-alertas_resolvidos{
-background-color: aliceblue;
+.container-alertas_resolvidos {
+    background-color: aliceblue;
 
 }
 
-.container_titulo{
-    text-decoration: underline 2px ;
+.container_titulo {
+    text-decoration: underline 2px;
     color: #000000;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    font-size: 24px;
+    font-size: 22px;
+    margin-top: 10px;
+
 }
 
 
@@ -222,16 +253,18 @@ background-color: aliceblue;
     margin-top: 10px;
     margin-bottom: 30px;
     border-radius: 10px;
-   
+
     width: 1430px;
     height: 150px;
     color: #000000;
 }
-.alerta_resolvido{
-    background-color:rgba(17, 196, 56, 0.8);
- 
+
+.alerta_resolvido {
+    background-color: rgba(17, 196, 56, 0.8);
+
 }
-.alerta_pendente{
+
+.alerta_pendente {
     background-color: rgba(197, 0, 0, 0.7);
 
 }
@@ -241,25 +274,28 @@ background-color: aliceblue;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    background-color: rgb(255, 255, 255,0.6);
+    background-color: rgb(255, 255, 255, 0.6);
     height: 90%;
     width: 194px;
-    
-   
-    
+
+
+
 }
-.alerta_ul_um{
+
+.alerta_ul_um {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }
 
-.alerta_ul_seis{
+.alerta_ul_seis {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-li{
+
+li {
     list-style: none;
 }
+
 .alerta_li {
     list-style: none;
     width: 90%;
@@ -277,13 +313,13 @@ li{
     flex-direction: row;
     justify-content: center;
     color: #000000;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 0px;
     margin-left: -40px;
     margin-bottom: 25px;
     width: 229px;
     background-color: rgb(231, 231, 231, 0.4);
-   border-bottom: #000000 groove;
+    border-bottom: #000000 groove;
 
 }
 
@@ -304,38 +340,38 @@ li{
     font-size: 20px;
 }
 
-.button_status{
+.button_status {
     width: 47px;
     height: 45px;
-   border-radius: 40px;
-  
+    border-radius: 40px;
+
 }
 
-.resolvido{
- background-color: green;
- background-image: url(../assets/style-all/check.png);
- background-size: 110%;
+.resolvido {
+    background-color: green;
+    background-image: url(../assets/style-all/check.png);
+    background-size: 110%;
 }
 
-.pendente{
-background-color: rgba(197, 0, 0, 0.7);
-background-image: url(../assets/style-all/ampulheta.png);
-background-size: 180%;
-background-position: -18px;
+.pendente {
+    background-color: rgba(197, 0, 0, 0.7);
+    background-image: url(../assets/style-all/ampulheta.png);
+    background-size: 180%;
+    background-position: -18px;
 }
 
 
 
-.button_li{
+.button_li {
     /* background-color: #2180cf; */
     height: 100px;
-    
+
     align-items: start;
     flex-direction: row;
     justify-content: space-around;
- 
-    margin-bottom:10px ;
-    
+
+    margin-bottom: 10px;
+
 }
 
 
@@ -488,10 +524,10 @@ a {
 
 .a_btn_caixa {
     width: 100%;
-}  
+}
 
 
 /*//////////////////////  IMAGENS  ////////////////////////////////*/
-.alerta_icone{
-width: 40px;
+.alerta_icone {
+    width: 40px;
 }
