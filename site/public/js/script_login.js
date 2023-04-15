@@ -38,10 +38,13 @@ function login() {
 
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.SOBRENOME_USUARIO = json.sobrenome;
+                sessionStorage.TELEFONE_USUARIO = json.telefone;
+                sessionStorage.SENHA_USUARIO = json.senha;
                 sessionStorage.ID_USUARIO = json.id;
 
                 setTimeout(function () {
-                    window.location = "./dashboard.html";
+                    window.location = "./perfil-configuracoes.html";
                 }, 1000); // apenas para exibir o loading
 
             });

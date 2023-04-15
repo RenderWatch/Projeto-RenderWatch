@@ -2,6 +2,23 @@ var usuarioModel = require("../models/usuarioModel");
 
 var sessoes = [];
 
+function buscarDadosUsuario(req, res) {
+    var id = req.body.id;
+
+    usuarioModel.buscar(id)
+        .then(
+            function (resultado) {
+                res.json(resultado[0]);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -81,7 +98,134 @@ function entrar(req, res) {
 
 }
 
+
+function confirmarNome(req, res) {
+    var nome = req.body.nome;
+    var id = req.body.id;
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else {
+        usuarioModel.confirmarNome(nome, id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
+function confirmarSobrenome(req, res) {
+    var sobrenome = req.body.sobrenome;
+    var id = req.body.id;
+    if (sobrenome == undefined) {
+        res.status(400).send("Seu sobrenome está undefined!");
+    } else {
+        usuarioModel.confirmarSobrenome(sobrenome, id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
+function confirmarTelefone(req, res) {
+    var telefone = req.body.telefone;
+    var id = req.body.id;
+    if (telefone == undefined) {
+        res.status(400).send("Seu telefone está undefined!");
+    } else {
+        usuarioModel.confirmarTelefone(telefone, id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
+function confirmarSenha(req, res) {
+    var senha = req.body.senha;
+    var id = req.body.id;
+    if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else {
+        usuarioModel.confirmarSenha(senha, id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
+function deletarConta(req, res) {
+    var id = req.body.id;
+    if (id == undefined) {
+        res.status(400).send("Seu id está undefined!");
+    } else {
+        usuarioModel.deletarConta(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
+
 module.exports = {
 cadastrar,
-entrar
+entrar,
+confirmarNome,
+buscarDadosUsuario,
+confirmarSobrenome,
+confirmarTelefone,
+confirmarSenha,
+deletarConta
 }

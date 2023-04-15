@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações Perfil</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="css/style-all.css">
+    <link rel="stylesheet" href="css/perfil-configuracoes.css">
+</head>
+
+<body onload="dadosUsuario()">
+    <div class="cor-bg"></div>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+            </div>
+        </a>
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link" href="perfil-configuracoes.html">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
+                    <li><span>Configurações</span></li>
+                </div>
+                <div style="margin-top: -25px;" class="link"  onclick="logout()">
+                    <span><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></span>
+                    <li><span>Sair</span></li>
+                </div>
+            </ul>
+        </div>
+    </header>
+    <sidebar>
+        <div class="sidebar">
+            <ul>
+                <li><a href="" class="sidebar-element">
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
+            </ul>
+        </div>
+    </sidebar>
+
+    <main>
+        <section class="container-card">
+            <div class="card">
+                <span class="container-titulo-card">
+                    <h1>Configurações</h1>
+                </span>
+
+                    <div class="div-info">
+                        <div id="divContainerNome" class="info-usuario">
+                            <div id="divNome" class="div-content">
+                                <h4 class="titulo">Nome: </h4>
+                                <h4 class="info"><span id="spanNome"></span></h4>
+                            </div>
+                            <button onclick="alterarNome()" id="btnEditNome" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerSobrenome" class="info-usuario">
+                            <div id="divSobrenome" class="div-content">
+                                <h4 class="titulo">Sobrenome: </h4>
+                                <h4 class="info"><span id="spanSobrenome"></span></h4>
+                            </div>
+                            <button onclick="alterarSobrenome()" id="btnEditSobrenome" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerSenha" class="info-email">
+                            <div class="div-senha">
+                                <h4 class="titulo">Senha: </h4>
+                                <h4 class="info"><span id="spanSenha"></span></h4>
+                            </div>
+                            <button onclick="alterarSenha()" id="btnEditSenha" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerTelefone" class="info-email">
+                            <div class="div-telefone">
+                                <h4 class="titulo">Telefone: </h4>
+                                <h4 class="info"><span id="spanTelefone"></span></h4>
+                            </div>
+                            <button onclick="alterarTelefone()" id="btnEditTelefone" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="div-senha-logout">
+                        <button onclick="deletarConta()" class="btn-logout">Excluir Conta</button>
+                    </div>
+
+            </div>
+        </section>
+    </main>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="js/perfil-configuracoes.js"></script>
+<script src="js/perfil-sidebar-header.js"></script>
+
+</html>
