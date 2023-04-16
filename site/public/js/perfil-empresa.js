@@ -1090,6 +1090,54 @@ function atualizarEmpresaUsuario() {
         })
       }
       }
+
+      function deletarConta(){
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: "Você não poderá desfazer essa ação!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, excluir!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`/empresa/deletarEmpresa/${sessionStorage.ID_EMPRESA}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  id: sessionStorage.ID_EMPRESA
+                })
+              }).then(function (resposta) {
+        
+                if (resposta.ok) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Parabéns',
+                    text: 'Conta excluída com sucesso!',
+                  })
+
+                  window.location.href = "./index.html";
+        
+                } else if (resposta.status == 404) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Ops...',
+                    text: 'Deu 404!',
+                  })
+                } else {
+                  throw ("Houve um erro! Código da resposta: " + resposta.status);
+                }
+              }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+              })
+        
+              sessionStorage.clear('ID_EMPRESA');
+            }
+          })
+      }
       
 
 

@@ -54,6 +54,7 @@ body {
     width: 100%;
     justify-content: space-between;
     margin-bottom: 15px;
+    font-size: 1.2rem;
 }
 
 .container-btn-cadastrar {
