@@ -55,4 +55,8 @@ router.put("/confirmarCep/:idEmpresa", function (req, res) {
     empresaController.confirmarCep(req, res);
 })
 
+router.delete("/deletarEmpresa/:id", function (req, res) {
+    empresaController.deletarEmpresa(req, res);
+})
+
 module.exports = router;
