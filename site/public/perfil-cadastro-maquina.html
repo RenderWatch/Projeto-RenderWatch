@@ -5,58 +5,127 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style-all.css">
-    <link rel="stylesheet" href="css/cadastro-maquina.css">
+    <title>Alertas - RenderWatch</title>
+    <link rel="stylesheet" href="css/perfil-cadastro-maquina.css">
+
+
 </head>
 
 <body>
 
-    <header>
-        <a href="index.html">
-            <div id="div-header-logo">
-                <img src="assets/index/renderwatch_somente_logo_white.png">
-                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+
+
+    <div class="header">
+
+
+        <img class="renderwatch_logo_colorido" src="assets/cadastro/RenderWatch_Logo_Branco.png" alt="">
+        <a class="a_sair" href="public/index.html">
+            <div class="sair">
+                <img class="log-out" src="assets/perfil/log-out.png" alt="">
+                Sair
             </div>
         </a>
-        <div class="menu">
-            <ul>
-                <div style="margin-top: -25px; margin-left: 50%;" class="link">
-                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
-                    <li><a href="">Configurações</a></li>
-                </div>
-                <div style="margin-top: -25px;" class="link">
-                    <a href="login.html"><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></a>
-                    <li><a href="login.html">Sair</a></li>
-                </div>
-            </ul>
+
+
+
+    </div>
+
+    <div class="caixa_esquerda">
+
+        <div class="caixa um">
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Meu Cadastro</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Empresa</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Cluster</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Gerenciar Permissões</button></a>
+
         </div>
-    </header>
-    <sidebar>
-        <div class="sidebar">
-            <ul>
-                <li><a href="" class="sidebar-element">
-                        <div>Empresa</div>
-                    </a></li>
-                <li><a href="" class="sidebar-element">
-                        <div>Permissoes</div>
-                    </a></li>
-                <li><a href="" class="sidebar-element">
-                        <div>Alertas</div>
-                    </a></li>
-                <li><a href="" class="sidebar-element">
-                        <div>Dashboard</div>
-                    </a></li>
-                <li><a href="" class="sidebar-element">
-                        <div>Clusters</div>
-                    </a></li>
-                <li><a href="" class="sidebar-element">
-                        <div>Suporte</div>
-                    </a></li>
-            </ul>
+
+        <div class="caixa dois">
+
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Monitoração</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Histórico de Alertas</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Suporte</button></a>
         </div>
-    </sidebar>
+
+
+    </div>
+    <main>
+
+
+
+        <div class="caixa_direita">
+
+            <div class="cadastro_cluster">
+                <label class="label_cluster label_cadastro_cluster" for="nome_cluster"><input class="input_cadastro"
+                        id="nome_cluster" placeholder="Apelido do Cluster" type=""></label>
+
+                <label class="label_cluster label_cadastro_cluster" for="empresa_fk"><input class="input_cadastro"
+                        id="empresa_fk" placeholder="Empresa" type="text" inputmode=""></label>
+
+                <button class="button_adicionar" onclick="addCluster()">ADICIONAR CLUSTER</button>
+
+            </div>
+            <div id="all_cluster" class="all_cluster">
+                <div class="titulo_cluster">Clusters</div>
+               
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </main>
 
 </body>
 
 </html>
+
+<script>
+    var id =[]
+    function addCluster() {
+        //DEVE SER TRAZIDO DO BANCO DE DADOS
+
+        var qtdCluster=2
+        for(i=0; i<qtdCluster; i++){
+            id.push(` <div class="cluster"
+                    <label class="label_cluster label_all_cluster" for="nome_cluster_bd"><input class="input_cluster_bd"
+                        id="nome_cluster_bd${i}" placeholder="Apelido do Cluster" type="text" disabled></label>
+
+                <label class="label_cluster label_all_cluster" for="empresa_fk_bd"><input class="input_cluster_bd"
+                        id="empresa_fk_bd${i}" placeholder="Empresa" type="text" disabled></label>
+
+                    <button class="button_cluster button_excluir" onclick="excluirCluster()">EXCLUIR</button>
+                    <button class="button_cluster button_editar" onclick="editarCluster()">EDITAR</button>
+                 </div>`)
+            
+      all_cluster.innerHTML+= id[i]
+                 
+              
+
+               console.log(id)
+              
+                }
+       //CADASTRAR NO BANCO DE DADOS
+      
+    }
+
+
+    function editarCluster(){
+
+
+
+        //MUDAR NO BANCO DE DADOS 
+       
+        // id[0].value = "Filipe" // NÃO FUNCIONA POR ALGUM MOTIVO
+
+    }
+
+    function excluirCluster(){
+//EXCLUIR DO BANCO DE DADOS 
+id[0]
+
+    }
+
+</script>
