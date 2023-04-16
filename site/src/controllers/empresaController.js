@@ -53,6 +53,53 @@ function cadastrarEmpresa(req, res) {
     }
 }
 
+function atualizarEmpresaUsuario(req, res) {
+
+    var idUser = req.body.idUser
+    var cnpj = req.body.cnpj
+
+
+    if (cnpj == undefined) {
+        res.status(400).send("cnpj está undefined!");
+    } else {
+        
+        empresaModel.atualizarEmpresaUsuario(idUser, cnpj)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function mostrarDadosEmpresa(req, res) {
+    var idUser = req.params.idUser
+
+    empresaModel.mostrarDadosEmpresa(idUser).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao realizar a consulta: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
-    cadastrarEmpresa
+    cadastrarEmpresa,
+    atualizarEmpresaUsuario,
+    mostrarDadosEmpresa
     }
