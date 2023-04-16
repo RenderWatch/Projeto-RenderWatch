@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alertas - RenderWatch</title>
-    <link rel="stylesheet" href="css/perfil-cadastro-maquina.css">
+    <link rel="stylesheet" href="css/perfil-cadastro-cluster.css">
 
 
 </head>
@@ -67,6 +67,8 @@
             </div>
             <div id="all_cluster" class="all_cluster">
                 <div class="titulo_cluster">Clusters</div>
+
+                
                
                 </div>
             </div>
@@ -107,10 +109,24 @@
                console.log(id)
               
                 }
+
+
+
+
+                }
        //CADASTRAR NO BANCO DE DADOS
       
-    }
+    
+function lerDados(){
+    
 
+    let cluster = {}
+
+    cluster.nomeCluster = document.getElementById("nome_cluster").value
+    cluster.empresa = document.getElementById("empresa_fk").value
+
+    return cluster
+}
 
     function editarCluster(){
 
@@ -124,8 +140,10 @@
 
     function excluirCluster(){
 //EXCLUIR DO BANCO DE DADOS 
-id[0].
+alert('foi excluido')
 
     }
+
+    
 
 </script>

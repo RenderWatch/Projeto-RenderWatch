@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maquinas - RenderWatch</title>
+    <link rel="stylesheet" href="site/public/css/perfil-cadastro-maquin.css">
+
+
+</head>
+
+<body onload="listaClusters()">
+
+
+
+    <div class="header">
+
+
+        <img class="renderwatch_logo_colorido" src="assets/cadastro/RenderWatch_Logo_Branco.png" alt="">
+        <a class="a_sair" href="public/index.html">
+            <div class="sair">
+                <img class="log-out" src="assets/perfil/log-out.png" alt="">
+                Sair
+            </div>
+        </a>
+
+
+
+    </div>
+
+    <div class="caixa_esquerda">
+
+        <div class="caixa um">
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Meu Cadastro</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Empresa</button></a>
+            <a class="a_btn_caixa" href="site/public/perfil-cadastro-cluster.html"><button class="btn_caixa">Cluster</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Gerenciar Permissões</button></a>
+
+        </div>
+
+        <div class="caixa dois">
+
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Monitoração</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Histórico de Alertas</button></a>
+            <a class="a_btn_caixa" href=""><button class="btn_caixa">Suporte</button></a>
+        </div>
+
+
+    </div>
+    <main>
+
+
+
+        <div class="caixa_direita">
+           
+<select name="clusters" id="select_cluster" >
+   
+</select>
+            <div class="cadastro_maquina">
+                <label class="label_maquina label_cadastro_maquina" for="nome_cluster"><input class="input_cadastro"
+                        id="input_nome" placeholder="Apelido" type=""></label>
+
+                <label class="label_maquina label_cadastro_maquina" for="empresa_fk"><input class="input_cadastro"
+                        id="input_sitemaOperacional" placeholder="S.O Máquina" type="text" inputmode=""></label>
+
+                        <label class="label_maquina label_cadastro_maquina" for="nome_cluster"><input class="input_cadastro"
+                            id="input_fabricante" placeholder="Fabricante" type=""></label>
+    
+                    <label class="label_maquina label_cadastro_maquina" for="empresa_fk"><input class="input_cadastro"
+                            id="input_arquitetura" placeholder="Arquitetura" type="text" inputmode=""></label>
+
+                <button class="button_adicionar"  onclick="addCluster()">ADICIONAR MAQUINA</button>
+
+            </div>
+            <div id="all_maquinas" class="all_maquinas">
+                <div class="titulo_maquinas">Maquinas deste cluster</div>
+
+                
+               
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </main>
+
+</body>
+
+</html>
+<script>
+
+var listaCluster = document.getElementById("select_cluster")
+function listaClusters(){
+    var qtdCluster = 2
+    if(listaCluster.innerHTML == 0){
+for(i=0;i<=qtdCluster;i++){
+    listaCluster.innerHTML+= ` <option value="">cluster</option>`
+
+}
+    }
+}
+
+
+
+
+
+</script>
+
+<script>
+    var id =[]
+    function addCluster() {
+        //DEVE SER TRAZIDO DO BANCO DE DADOS
+
+        var qtdCluster=2
+        for(i=0; i<qtdCluster; i++){
+            id.push(` <div class="cluster"
+                    <label class="label_cluster label_all_cluster" for="nome_cluster_bd"><input class="input_cluster_bd"
+                        id="nome_cluster_bd${i}" placeholder="Apelido do Cluster" type="text" disabled></label>
+
+                <label class="label_cluster label_all_cluster" for="empresa_fk_bd"><input class="input_cluster_bd"
+                        id="empresa_fk_bd${i}" placeholder="Empresa" type="text" disabled></label>
+
+                    <button class="button_cluster button_excluir" onclick="excluirCluster()">EXCLUIR</button>
+                    <button class="button_cluster button_editar" onclick="editarCluster()">EDITAR</button>
+                 </div>`)
+            
+      all_cluster.innerHTML+= id[i]
+                 
+              
+
+               console.log(id)
+              
+                }
+
+
+
+
+                }
+       //CADASTRAR NO BANCO DE DADOS
+      
+    
+function lerDados(){
+    
+
+    let cluster = {}
+
+    cluster.nomeCluster = document.getElementById("nome_cluster").value
+    cluster.empresa = document.getElementById("empresa_fk").value
+
+    return cluster
+}
+
+    function editarCluster(){
+
+
+
+        //MUDAR NO BANCO DE DADOS 
+       
+        // id[0].value = "Filipe" // NÃO FUNCIONA POR ALGUM MOTIVO
+
+    }
+
+    function excluirCluster(){
+//EXCLUIR DO BANCO DE DADOS 
+alert('foi excluido')
+
+    }
+
+    
+
+</script>
