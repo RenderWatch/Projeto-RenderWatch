@@ -18,7 +18,103 @@ function mostrarDadosEmpresa() {
                     var dados = resposta[0];
                     sessionStorage.ID_EMPRESA = dados.id;
 
-                containerInfoEmpresa.innerHTML = 'hi'
+                    
+                containerInfoEmpresa.innerHTML = `
+                <div id="divContainerRazaoSocial" class="info-empresa container-info-empresa">
+                            <div id="divRazaoSocial" class="div-content">
+                                <h4 class="titulo">Razão Social: </h4>
+                                <h4 class="info"><span id="spanRazaoSocial">${dados.razaoSocial}</span></h4>
+                            </div>
+                            <button onclick="alterarRazaoSocial()" id="btnEditRazaoSocial" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerCnpj" class="info-empresa">
+                            <div id="divCnpj" class="div-content">
+                                <h4 class="titulo">CNPJ: </h4>
+                                <h4 class="info"><span id="spanCnpj">${dados.cnpj}</span></h4>
+                            </div>
+                            <button onclick="alterarCnpj()" id="btnEditCnpj" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerTelefone" class="info-empresa">
+                            <div id="divTelefone" class="div-content">
+                                <h4 class="titulo">Telefone: </h4>
+                                <h4 class="info"><span id="spanTelefone">${dados.telefone}</span></h4>
+                            </div>
+                            <button onclick="alterarTelefone()" id="btnEditTelefone" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerLogradouro" class="info-empresa">
+                            <div id="divLogradouro" class="div-content">
+                                <h4 class="titulo">Logradouro: </h4>
+                                <h4 class="info"><span id="spanLogradouro">${dados.logradouro}</span></h4>
+                            </div>
+                            <button onclick="alterarLogradouro()" id="btnEditLogradouro" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerNumero" class="info-empresa">
+                            <div id="divNumero" class="div-content">
+                                <h4 class="titulo">Número: </h4>
+                                <h4 class="info"><span id="spanNumero">${dados.numero}</span></h4>
+                            </div>
+                            <button onclick="alterarNumero()" id="btnEditNumero" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerBairro" class="info-empresa">
+                            <div id="divBairro" class="div-content">
+                                <h4 class="titulo">Bairro: </h4>
+                                <h4 class="info"><span id="spanBairro">${dados.bairro}</span></h4>
+                            </div>
+                            <button onclick="alterarBairro()" id="btnEditBairro" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerComplemento" class="info-empresa">
+                            <div id="divComplemento" class="div-content">
+                                <h4 class="titulo">Complemento: </h4>
+                                <h4 class="info"><span id="spanComplemento">${dados.complemento}</span></h4>
+                            </div>
+                            <button onclick="alterarComplemento()" id="btnEditComplemento" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerCidade" class="info-empresa">
+                            <div id="divCidade" class="div-content">
+                                <h4 class="titulo">Cidade: </h4>
+                                <h4 class="info"><span id="spanCidade">${dados.cidade}</span></h4>
+                            </div>
+                            <button onclick="alterarCidade()" id="btnEditCidade" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerEstado" class="info-empresa">
+                            <div id="divEstado" class="div-content">
+                                <h4 class="titulo">Estado: </h4>
+                                <h4 class="info"><span id="spanEstado">${dados.estado}</span></h4>
+                            </div>
+                            <button onclick="alterarEstado()" id="btnEditEstado" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                        <div id="divContainerCep" class="info-empresa">
+                            <div id="divCep" class="div-content">
+                                <h4 class="titulo">CEP: </h4>
+                                <h4 class="info"><span id="spanCep">${dados.cep}</span></h4>
+                            </div>
+                            <button onclick="alterarCep()" id="btnEditCep" class="btn-edit">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="div-btn-excluir">
+                        <button onclick="deletarConta()" class="btn-excluir">Excluir Conta</button>
+                    </div>
+                `
 
             });
         } else {
