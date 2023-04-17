@@ -84,10 +84,37 @@ function adicionarMaquina(req, res) {
     }
 }
 
+function confirmarNomeCluster(req, res) {
+    var idCluster = req.body.idCluster;
+    var nome = req.body.nome
+    if (idCluster == undefined) {
+        res.status(400).send("idCluster está undefined!");
+    } else if (nome == undefined) {
+        res.status(400).send("nome está undefined!");
+    } else {
+        clusterModel.confirmarNomeCluster(idCluster, nome)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
 
 module.exports = {
     buscarDadosCluster,
     buscarDadosMaquina,
     adicionarCluster,
-    adicionarMaquina
+    adicionarMaquina,
+    confirmarNomeCluster
     }

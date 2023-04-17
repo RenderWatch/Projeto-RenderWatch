@@ -12,11 +12,16 @@ function buscarDadosCluster() {
                 for (let i = 0; i < resposta.length; i++) {
 
                     tabelaContainer.innerHTML += `
-                    <div id='nomeCluster${i+1}' class='nome-cluster'>
+                    <div id='nomeCluster${resposta[i].id}' class='nome-cluster'>
                         ${resposta[i].nome}
                     </div>
-                    <div id="containerCluster${i + 1}">
-                        <table id='tabelaCluster${i + 1}' class='"tabela-cluster"'>
+                    <span id='containerBtn${resposta[i].id}'>
+                    <button onclick="alterarNomeCluster(${resposta[i].id})" id="btnEditNomeCluster" class="btn-edit">
+                    Editar
+                    </button>
+                    </span>
+                    <div id="containerCluster${resposta[i].id}">
+                        <table id='tabelaCluster${resposta[i].id}' class="tabela-cluster">
                             <tr>
                                 <th>ID</th>
                                 <th>Máquina</th>
@@ -29,9 +34,8 @@ function buscarDadosCluster() {
                     </div>
                                     `
                     var idCluster = resposta[i].id
-                    var idTable = i + 1
 
-                    buscarDadosMaquina(idCluster, idTable);
+                    buscarDadosMaquina(idCluster);
                 }
             });
 
@@ -46,7 +50,7 @@ function buscarDadosCluster() {
 }
 
 
-function buscarDadosMaquina(idCluster, idTable) {
+function buscarDadosMaquina(idCluster) {
     fetch(`/cluster/buscarDadosMaquina/${idCluster}`).then(function (resposta) {
         if (resposta.ok) {
 
@@ -55,7 +59,7 @@ function buscarDadosMaquina(idCluster, idTable) {
 
                 for (let i = 0; i < resposta.length; i++) {
 
-                    document.getElementById(`tabelaCluster${idTable}`).innerHTML += `
+                    document.getElementById(`tabelaCluster${idCluster}`).innerHTML += `
                     <tr>
                         <td>${resposta[i].id}</td>
                         <td>${resposta[i].nome}</td>
@@ -142,6 +146,84 @@ function adicionarMaquina(clusterId) {
     
     return false;
 }
+
+function alterarNomeCluster(clusterId) {
+    document.getElementById(`containerBtn${clusterId}`).innerHTML = `
+      <div id="divChangeNomeCluster" class="div-input">
+          <input class="input-cluster-info" id="inputNomeCluster${clusterId}" type="text">
+          <button onclick="confirmarNomeCluster(${clusterId}, inputNomeCluster${clusterId})" class="btn-cluster-info">Confirmar</button>
+          <button onclick="cancelarNomeCluster(${clusterId})" class="btn-cluster-info-cancelar">Cancelar</button>
+      </div>
+      `;
+  }
+  
+  
+  function cancelarNomeCluster(clusterId) {
+  
+    document.getElementById(`containerBtn${clusterId}`).innerHTML = `
+      <button onclick="alterarNomeCluster(${clusterId})" id="btnEditNomeCluster${clusterId}" class="btn-edit">
+          Editar
+      </button>
+      `;
+  }
+  
+  
+  function confirmarNomeCluster(clusterId, inputNome) {
+  var inputNomeCluster = inputNome.value;
+  console.log(inputNomeCluster)
+  
+  if (inputNomeCluster.length >= 3 && inputNomeCluster.length <= 45) {
+    fetch(`/cluster/confirmarNomeCluster/${clusterId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idCluster:clusterId,
+        nome: inputNomeCluster
+      })
+    }).then(function (resposta) {
+  
+      if (resposta.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Parabéns',
+          text: 'Nome do cluster atualizado com sucesso!',
+        })
+  
+      } else if (resposta.status == 404) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ops...',
+          text: 'Deu 404!',
+        })
+      } else {
+        throw ("Houve um erro ao tentar realizar a alteração! Código da resposta: " + resposta.status);
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    })
+  
+    // document.getElementById(`nomeCluster${clusterId}`).innerHTML = inputNomeCluster;
+  
+    document.getElementById(`containerBtn${clusterId}`).innerHTML = ` 
+      <button onclick="alterarNomeCluster(${clusterId})" id="btnEditNomeCluster${clusterId}" class="btn-edit">
+        Editar
+      </button>
+      `;
+
+      location.reload();
+
+  } 
+  else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Houve um erro ao tentar alterar o nome do cluster! Certifique-se que o texto está entre 3 e 45 caracteres válidos e tente novamente.'
+    })
+  }
+  }
+  
 
 function excluirTabela(numero) {
     // var container = document.getElementById("tabelaContainer");
