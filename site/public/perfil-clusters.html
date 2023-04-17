@@ -74,30 +74,65 @@
 
     var idEmpresa = sessionStorage.ID_EMPRESA;
 
-    function buscarDadosCluster(){
+    function buscarDadosCluster() {
         fetch(`/cluster/buscarDadosCluster/${idEmpresa}`).then(function (resposta) {
-        if (resposta.ok) {
-            
-            resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
-                
-                    // var dados = resposta[0];
-                    // sessionStorage.ID_EMPRESA = dados.id;
+            if (resposta.ok) {
 
-                    tabelaContainer.innerHTML =  `
-                    Foi
-                    `
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-            });
-        } else {
-            throw ('Houve um erro na API!');
-        }
-    }).catch(function (resposta) {
-        console.error(resposta);
-    });
+                    for (let i = 0; i < resposta.length; i++) {
 
-}
-    
+                        tabelaContainer.innerHTML += `
+                                    <div id="containerCluster${i+1}">
+                                        <div id="cluster${i+1}">${resposta[i].nome}</div>
+                                        <span id="containerMaquinas${i+1}"></span>
+                                    </div>
+                                        `
+                                    var idCluster = resposta[i].id
+                                    var idSpan = i+1
+
+                                        buscarDadosMaquina(idCluster, idSpan);
+                    }
+                });
+
+
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+
+    }
+
+
+    function buscarDadosMaquina(idCluster, idSpan){
+        fetch(`/cluster/buscarDadosMaquina/${idCluster}`).then(function (resposta) {
+            if (resposta.ok) {
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+
+                        document.getElementById(`containerMaquinas${idSpan}`).innerHTML += `
+                                    <div id="maquina${i+1}">
+                                        ${resposta[i].nome}
+                                    </div>
+                                        `	
+
+                    }
+                });
+
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
 
     buscarDadosCluster();
 

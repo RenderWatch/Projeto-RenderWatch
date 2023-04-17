@@ -7,4 +7,8 @@ router.get("/buscarDadosCluster/:idEmpresa", function (req, res) {
     clusterController.buscarDadosCluster(req, res);
 });
 
+router.get("/buscarDadosMaquina/:idCluster", function (req, res) {
+    clusterController.buscarDadosMaquina(req, res);
+});
+
 module.exports = router;
