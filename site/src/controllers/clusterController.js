@@ -128,11 +128,34 @@ function confirmarNomeCluster(req, res) {
 }
 
 function deletarClusterComMaquina(req, res) {
-    var clusterId = req.body.clusterId;
+    var id = req.body.id;
     if (id == undefined) {
-        res.status(400).send("Seu clusterId está undefined!");
+        res.status(400).send("Seu id está undefined!");
     } else {
-        clusterModel.deletarClusterComMaquina(clusterId)
+        clusterModel.deletarClusterSemMaquina(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+}
+
+function deletarMaquinaDoCluster(req, res) {
+    var id = req.body.id;
+    if (id == undefined) {
+        res.status(400).send("Seu id está undefined!");
+    } else {
+        clusterModel.deletarMaquinaDoCluster(id)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -181,5 +204,6 @@ module.exports = {
     confirmarNomeCluster,
     deletarCluster,
     deletarClusterComMaquina,
-    deletarClusterSemMaquina
+    deletarClusterSemMaquina,
+    deletarMaquinaDoCluster
 }

@@ -70,14 +70,24 @@ function confirmarNomeCluster(idCluster, nome) {
     return database.executar(instrucao);
 }
 
-function deletarClusterComMaquina(clusterId) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", clusterId)
+function deletarClusterComMaquina(id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
 
     var instrucao = `    
-    DELETE maquina, cluster 
+    DELETE 
+    FROM cluster 
+    WHERE id = ${id};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function deletarMaquinaDoCluster(id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+
+    var instrucao = `    
+    DELETE 
     FROM maquina 
-    INNER JOIN cluster ON maquina.cluster_id = cluster.id 
-    WHERE maquina.cluster_id = ${clusterId} OR cluster.id = ${clusterId};`;
+    WHERE cluster_id = ${id};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -101,5 +111,6 @@ module.exports = {
     confirmarNomeCluster,
     deletarCluster,
     deletarClusterComMaquina,
-    deletarClusterSemMaquina
+    deletarClusterSemMaquina,
+    deletarMaquinaDoCluster
 };

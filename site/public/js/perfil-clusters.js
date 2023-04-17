@@ -240,14 +240,14 @@ function alterarNomeCluster(clusterId) {
   }
   
 
-function deletarClusterComMaquina(clusterId){
+  function deletarClusterComMaquina(clusterId){
     fetch(`/cluster/deletarClusterComMaquina/${clusterId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            clusterId: clusterId
+            id: clusterId
         })
     }).then(function (resposta) {
 
@@ -256,6 +256,38 @@ function deletarClusterComMaquina(clusterId){
         if (resposta.ok) {
             
             location.reload();
+            
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Houve um erro!',
+            })
+
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
+
+  function deletarMaquinaDoCluster(clusterId){
+    fetch(`/cluster/deletarMaquinaDoCluster/${clusterId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: clusterId
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+            
+            deletarClusterComMaquina(clusterId);
             
         } else {
             Swal.fire({
@@ -307,8 +339,9 @@ function deletarClusterSemMaquina(clusterId){
 function deletarCluster(clusterId) {
     fetch(`/cluster/deletarCluster/${clusterId}`).then(function (resposta) {
         if (resposta.ok) {
-            if(resposta.status !== 204){
-                deletarClusterComMaquina(clusterId);
+            if(resposta.status == 200){
+                deletarMaquinaDoCluster(clusterId);
+                console.log('deu 200')
             } else {
                 deletarClusterSemMaquina(clusterId);
             }

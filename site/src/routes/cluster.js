@@ -27,8 +27,12 @@ router.put("/confirmarNomeCluster/:idCluster", function (req, res) {
     clusterController.confirmarNomeCluster(req, res);
 })
 
-router.delete("/deletarClusterComMaquina/:clusterId", function (req, res) {
+router.delete("/deletarClusterComMaquina/:idCluster", function (req, res) {
     clusterController.deletarClusterComMaquina(req, res);
+})
+
+router.delete("/deletarMaquinaDoCluster/:idCluster", function (req, res) {
+    clusterController.deletarMaquinaDoCluster(req, res);
 })
 
 router.delete("/deletarClusterSemMaquina/:idCluster", function (req, res) {
