@@ -11,4 +11,8 @@ router.get("/buscarDadosMaquina/:idCluster", function (req, res) {
     clusterController.buscarDadosMaquina(req, res);
 });
 
+router.post("/adicionarCluster", function (req, res) {
+    clusterController.adicionarCluster(req, res);
+});
+
 module.exports = router;

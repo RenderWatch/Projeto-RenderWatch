@@ -32,8 +32,35 @@ function buscarDadosMaquina(req, res) {
     });
 }
 
+function adicionarCluster(req, res) {
+
+    var idEmpresa = req.body.idEmpresa
+
+    if (idEmpresa == undefined) {
+        res.status(400).send("idEmpresa está undefined!");
+    } else {
+        
+        clusterModel.adicionarCluster(idEmpresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 
 module.exports = {
     buscarDadosCluster,
-    buscarDadosMaquina
+    buscarDadosMaquina,
+    adicionarCluster
     }

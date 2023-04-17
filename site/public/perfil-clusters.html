@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <link rel="stylesheet" href="css/style-all.css">
     <link rel="stylesheet" href="css/perfil-clusters.css">
 </head>
@@ -69,6 +70,8 @@
     </main>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
 <script>
 
@@ -147,61 +150,53 @@
     }
 
 
-    buscarDadosCluster();
-
-    var idCluster = 0;
-
+    
     function adicionarCluster() {
-        idCluster += 1;
 
-        var tabela = document.createElement("table");
-        tabela.id = `tabela${idCluster}`;
-        tabela.className = "tabela-cluster"
+        fetch("/cluster/adicionarCluster", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idEmpresa: idEmpresa
+        })
+    }).then(function (resposta) {
 
-        var tbody = document.createElement("tbody");
-        tabela.appendChild(tbody);
+        console.log("resposta: ", resposta);
+        
+        if (resposta.ok) {
+            
+            location.reload();
+            
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Houve um erro ao tentar realizar o cadastro!',
+            })
 
-        var trCabecalho = document.createElement("tr");
-        tbody.appendChild(trCabecalho);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+    
+    return false;
 
-        var th1 = document.createElement("th");
-        th1.textContent = "Máquina";
-        trCabecalho.appendChild(th1);
-
-        var th2 = document.createElement("th");
-        th2.textContent = "ID";
-        trCabecalho.appendChild(th2);
-
-        var btnAdicionarMaquina = document.createElement("button");
-        btnAdicionarMaquina.innerHTML = "Editar";
-        btnAdicionarMaquina.className = "btn-tabela"
-        btnAdicionarMaquina.id = "btnAdicionarMaquina" + idCluster;
-        btnAdicionarMaquina.setAttribute("onclick", `editarTabela(${idCluster})`);
-
-        var btnExcluir = document.createElement("button");
-        btnExcluir.innerHTML = "Excluir";
-        btnExcluir.className = "btn-tabela"
-        btnExcluir.id = "btnExcluir" + idCluster;
-        btnExcluir.setAttribute("onclick", `excluirTabela(${idCluster})`);
-
-
-        var container = document.getElementById("tabelaContainer");
-        container.appendChild(tabela);
-        container.appendChild(btnAdicionarMaquina);
-        container.appendChild(btnExcluir);
     }
-
+    
     function excluirTabela(numero) {
-        var container = document.getElementById("tabelaContainer");
-        var tabela = document.getElementById(`tabela${numero}`);
-        var btnAdicionarMaquina = document.getElementById(`btnAdicionarMaquina${numero}`);
-        var btnExcluir = document.getElementById(`btnExcluir${numero}`);
-        container.removeChild(tabela);
-        container.removeChild(btnAdicionarMaquina);
-        container.removeChild(btnExcluir);
+        // var container = document.getElementById("tabelaContainer");
+        // var tabela = document.getElementById(`tabela${numero}`);
+        // var btnAdicionarMaquina = document.getElementById(`btnAdicionarMaquina${numero}`);
+        // var btnExcluir = document.getElementById(`btnExcluir${numero}`);
+        // container.removeChild(tabela);
+        // container.removeChild(btnAdicionarMaquina);
+        // container.removeChild(btnExcluir);
     }
-
-
+    
+    buscarDadosCluster();
+    
 </script>
 
 </html>
