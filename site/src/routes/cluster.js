@@ -15,4 +15,8 @@ router.post("/adicionarCluster", function (req, res) {
     clusterController.adicionarCluster(req, res);
 });
 
+router.post("/adicionarMaquina", function (req, res) {
+    clusterController.adicionarMaquina(req, res);
+});
+
 module.exports = router;
