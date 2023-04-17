@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style-all.css">
+    <link rel="stylesheet" href="css/perfil-clusters.css">
+</head>
+
+<body>
+    <div class="cor-bg"></div>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+            </div>
+        </a>
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
+                    <li><a href="">Configurações</a></li>
+                </div>
+                <div style="margin-top: -25px;" class="link">
+                    <a href="login.html"><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></a>
+                    <li><a href="login.html">Sair</a></li>
+                </div>
+            </ul>
+        </div>
+    </header>
+    <sidebar>
+        <div class="sidebar">
+            <ul>
+                <li><a href="" class="sidebar-element">
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
+            </ul>
+        </div>
+    </sidebar>
+
+    <main>
+        <section class="container-card">
+            <div class="card">
+                <h1>Clusters</h1>
+                <div id="tabelaContainer" class="tabela-cluster"></div>
+                <button onclick="adicionarCluster()">Adicionar Cluster</button>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+
+<script>
+
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+
+    function buscarDadosCluster(){
+        fetch(`/cluster/buscarDadosCluster/${idEmpresa}`).then(function (resposta) {
+        if (resposta.ok) {
+            
+            resposta.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+                
+                    // var dados = resposta[0];
+                    // sessionStorage.ID_EMPRESA = dados.id;
+
+                    tabelaContainer.innerHTML =  `
+                    Foi
+                    `
+
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+    });
+
+}
+    
+
+    buscarDadosCluster();
+
+    var idCluster = 0;
+
+    function adicionarCluster() {
+        idCluster += 1;
+
+        var tabela = document.createElement("table");
+        tabela.id = `tabela${idCluster}`;
+        tabela.className = "tabela-cluster"
+
+        var tbody = document.createElement("tbody");
+        tabela.appendChild(tbody);
+
+        var trCabecalho = document.createElement("tr");
+        tbody.appendChild(trCabecalho);
+
+        var th1 = document.createElement("th");
+        th1.textContent = "Máquina";
+        trCabecalho.appendChild(th1);
+
+        var th2 = document.createElement("th");
+        th2.textContent = "ID";
+        trCabecalho.appendChild(th2);
+
+        var btnAdicionarMaquina = document.createElement("button");
+        btnAdicionarMaquina.innerHTML = "Editar";
+        btnAdicionarMaquina.className = "btn-tabela"
+        btnAdicionarMaquina.id = "btnAdicionarMaquina" + idCluster;
+        btnAdicionarMaquina.setAttribute("onclick", `editarTabela(${idCluster})`);
+
+        var btnExcluir = document.createElement("button");
+        btnExcluir.innerHTML = "Excluir";
+        btnExcluir.className = "btn-tabela"
+        btnExcluir.id = "btnExcluir" + idCluster;
+        btnExcluir.setAttribute("onclick", `excluirTabela(${idCluster})`);
+
+
+        var container = document.getElementById("tabelaContainer");
+        container.appendChild(tabela);
+        container.appendChild(btnAdicionarMaquina);
+        container.appendChild(btnExcluir);
+    }
+
+    function excluirTabela(numero) {
+        var container = document.getElementById("tabelaContainer");
+        var tabela = document.getElementById(`tabela${numero}`);
+        var btnAdicionarMaquina = document.getElementById(`btnAdicionarMaquina${numero}`);
+        var btnExcluir = document.getElementById(`btnExcluir${numero}`);
+        container.removeChild(tabela);
+        container.removeChild(btnAdicionarMaquina);
+        container.removeChild(btnExcluir);
+    }
+
+
+</script>
+
+</html>
