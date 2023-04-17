@@ -84,15 +84,25 @@
                     for (let i = 0; i < resposta.length; i++) {
 
                         tabelaContainer.innerHTML += `
-                                    <div id="containerCluster${i+1}">
-                                        <div id="cluster${i+1}">${resposta[i].nome}</div>
-                                        <span id="containerMaquinas${i+1}"></span>
-                                    </div>
+                        <div id='nomeCluster${i+1}' class='nome-cluster'>
+                            ${resposta[i].nome}
+                        </div>
+                        <div id="containerCluster${i + 1}">
+                            <table id='tabelaCluster${i + 1}' class='"tabela-cluster"'>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Máquina</th>
+                                    <th>Métrica CPU</th>
+                                    <th>Métrica Disco</th>
+                                    <th>Métrica Memória</th>
+                                </tr>
+                            </table>
+                        </div>
                                         `
-                                    var idCluster = resposta[i].id
-                                    var idSpan = i+1
+                        var idCluster = resposta[i].id
+                        var idTable = i + 1
 
-                                        buscarDadosMaquina(idCluster, idSpan);
+                        buscarDadosMaquina(idCluster, idTable);
                     }
                 });
 
@@ -107,7 +117,7 @@
     }
 
 
-    function buscarDadosMaquina(idCluster, idSpan){
+    function buscarDadosMaquina(idCluster, idTable) {
         fetch(`/cluster/buscarDadosMaquina/${idCluster}`).then(function (resposta) {
             if (resposta.ok) {
 
@@ -116,12 +126,15 @@
 
                     for (let i = 0; i < resposta.length; i++) {
 
-                        document.getElementById(`containerMaquinas${idSpan}`).innerHTML += `
-                                    <div id="maquina${i+1}">
-                                        ${resposta[i].nome}
-                                    </div>
-                                        `	
-
+                        document.getElementById(`tabelaCluster${idTable}`).innerHTML += `
+                        <tr>
+                            <td>${resposta[i].id}</td>
+                            <td>${resposta[i].nome}</td>
+                            <td>${resposta[i].metrica_cpu}%</td>
+                            <td>${resposta[i].metrica_disco}%</td>
+                            <td>${resposta[i].metrica_memoria}%</td>
+                        </tr>
+                        `
                     }
                 });
 
