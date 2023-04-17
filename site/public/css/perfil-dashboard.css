@@ -4,14 +4,14 @@ body {
 
 .container-cluster-maquina {
   /* display: flex;  */
-    width: 12vw;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    margin: 35vh 86vw;
-    position: absolute;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+  width: 12vw;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  margin: 15vh 86vw;
+  position: absolute;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
 }
 
 .selecao-cluster {
@@ -24,11 +24,11 @@ body {
   height: 100%;
 }
 
-.selecao-cluster li{  
+.selecao-cluster li {
   list-style-type: none;
 }
 
-.selecao-cluster button{  
+.selecao-cluster button {
   width: 100%;
   border: none;
   height: 10vh;
@@ -36,7 +36,7 @@ body {
   font-size: 15px;
 }
 
-.selecao-cluster button:hover{  
+.selecao-cluster button:hover {
   background-color: rgb(83, 142, 245);
 }
 
@@ -50,11 +50,11 @@ body {
   height: 100%;
 }
 
-.selecao-maquina li{  
+.selecao-maquina li {
   list-style-type: none;
 }
 
-.selecao-maquina button{  
+.selecao-maquina button {
   width: 100%;
   border: none;
   height: 10vh;
@@ -62,7 +62,7 @@ body {
   font-size: 15px;
 }
 
-.selecao-maquina button:hover{  
+.selecao-maquina button:hover {
   background-color: rgb(83, 142, 245);
 }
 
@@ -93,9 +93,10 @@ body {
 
 .container-alerta {
   display: flex;
-  width: 65vw;
+  width: 80vw;
   color: white;
-  margin: 25vh auto;
+  margin-top: 30vh;
+  margin-left: 10vw;
 }
 
 .caixa-alerta {
@@ -227,12 +228,12 @@ body {
 .container-graficos {
   justify-content: center;
   display: flex;
-  height: 50vh;
+  margin-bottom: 20px;
 }
 
 .grafico {
   position: relative;
-  height: 45vh;
+  height: auto;
   width: 33vw;
   padding: 19px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
@@ -335,4 +336,55 @@ body {
 .total span {
   font-weight: bold;
   margin-left: 5px;
+}
+
+
+.descricao {
+  display: flex;
+}
+
+.recebidos {
+  padding: 5px;
+  height: 6vh;
+  margin-top: 2vh;
+  border-left: 4px dashed rgb(83, 142, 245);
+}
+
+.recebidos p {
+  margin-bottom: 5px;
+}
+
+.enviados {
+  margin-top: 2vh;
+  padding: 5px;
+  border-left: 4px solid rgb(83, 142, 245);
+}
+
+.descricao-rede {
+  padding: 5px;
+  height: 6vh;
+  margin-top: 2vh;
+  margin-left: 3vw;
+}
+
+.descricao-rede p {
+  margin-bottom: 5px;
+}
+
+.descricao-rede span{
+  font-size: 18px;
+}
+
+.em-uso{
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.em-uso p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.descricao-componente p{
+  margin-bottom: 5px;
 }

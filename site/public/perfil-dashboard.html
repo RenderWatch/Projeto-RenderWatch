@@ -76,78 +76,134 @@
 
         <div class="container-alerta">
             <div id="caixa-alerta" class="caixa-alerta">
-                <span id="span_alertas_cluster" class="span_alertas"></span>
+                <span id="span_alertas_cluster" class="span_alertas">2</span>
                 <p>Alertas identificados no cluster</p>
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
-                <span id="span_alertas_maquina" class="span_alertas"></span>
+                <span id="span_alertas_maquina" class="span_alertas">5</span>
                 <p>Alertas identificados na máquina atual</p>
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
-                <span id="span_alertas_rede" class="span_alertas"></span>
+                <span id="span_alertas_rede" class="span_alertas">3</span>
                 <p>Alertas identificados na rede da máquina atual</p>
             </div>
         </div>
 
         <div class="container-maquina">
             <div class="card-maquina">
-                <h2>Apelido da máquina: <span id="apelido"></span></h2>
-                <h2>Sistema operacional: <span id="sistema"></span></h2>
-                <h2>Fabricante: <span id="fabricante"></span></h2>
-                <h2>Arquitetura: <span id="arquitetura"></span></h2>
+                <h2>Apelido da máquina: <span id="apelido">Machine</span></h2>
+                <h2>Sistema operacional: <span id="sistema">Ubuntu/Linux</span></h2>
+                <h2>Fabricante: <span id="fabricante">Gnome</span></h2>
+                <h2>Arquitetura: <span id="arquitetura">64 bits</span></h2>
             </div>
         </div>
 
         <div class="container-media">
             <div class="card-media">
                 <span class="titulo-media">Média de uso de processador</span>
-                <span id="media-CPU" class="valor-media"></span>
+                <span id="media-CPU" class="valor-media">23</span>
             </div>
             <div class="card-media">
                 <span class="titulo-media">Média de uso de memória RAM</span>
-                <span id="media-RAM" class="valor-media"></span>
+                <span id="media-RAM" class="valor-media">53</span>
             </div>
             <div class="card-media">
                 <span class="titulo-media">Média de uso do disco</span>
-                <span id="media-HD" class="valor-media"></span>
+                <span id="media-HD" class="valor-media">23</span>
             </div>
         </div>
 
         <div class="container-processo">
-            <div id="card-processo-ram" class="card-processo">
+            <div id="cardProcessoRam" class="card-processo">
                 <span class="processo">Uso de memoria RAM (%)</span>
-                <span id="porcent-RAM" class="porcent-processo"></span>
+                <span id="porcentRAM" class="porcent-processo"></span>
             </div>
-            <div id="card-processo-hd" class="card-processo">
+            <div id="cardProcessoHD" class="card-processo">
                 <span class="processo">Uso de Disco (%)</span>
-                <span id="porcent-HD" class="porcent-processo"></span>
+                <span id="porcentHD" class="porcent-processo"></span>
             </div>
-            <div id="card-processo-cpu" class="card-processo">
+            <div id="cardProcessoCPU" class="card-processo">
                 <span class="processo">Uso de CPU (%)</span>
-                <span id="porcent-CPU" class="porcent-processo"></span>
+                <span id="porcentCPU" class="porcent-processo"></span>
             </div>
         </div>
 
-        <div class="container-dashboard">
-            <div class="container-graficos">
-                <div class="grafico">
-                    <span>Uso de memoria RAM em tempo real</span>
-                    <canvas id="myChart"></canvas>
-                </div>
-                <div class="grafico">
-                    <span>Uso de disco em tempo real</span>
-                    <canvas style="height: 300px;" id="myChart2"></canvas>
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de memoria RAM em tempo real</span>
+                <canvas id="myChart"></canvas>
+                <div class="descricao">
+                    <div class="descricao-componente">
+                        <div class="em-uso">
+                            <p>Em uso</p><span id="em-uso">0%</span>
+                        </div>
+                        <p>Nome: <span id="nome-componente"></span></p>
+                        <p>Modelo: <span id="modelo-componente"></span></p>
+                        <p>Total: <span id="total-componente"></span></p>
+                        <p>Identificador: <span id="identificador-componente"></span></p>
+                        <p>Tipo: <span id="tipo-componente"></span></p>
+                        <p>Frequência: <span id="frequencia-componente"></span></p>
+                    </div>
                 </div>
             </div>
-
-            <div class="container-graficos">
-                <div class="grafico">
-                    <span>Uso de CPU em tempo real</span>
-                    <canvas id="myChart3"></canvas>
+            <div class="grafico">
+                <span>Uso de disco em tempo real</span>
+                <canvas style="height: 300px;" id="myChart2"></canvas>
+                <div class="descricao">
+                    <div class="descricao-componente">
+                        <div class="em-uso">
+                            <p>Em uso</p><span id="em-uso">0%</span>
+                        </div>
+                        <p>Nome: <span id="nome-componente"></span></p>
+                        <p>Modelo: <span id="modelo-componente"></span></p>
+                        <p>Total: <span id="total-componente"></span></p>
+                        <p>Identificador: <span id="identificador-componente"></span></p>
+                        <p>Tipo <span id="tipo-componente"></span></p>
+                        <p>Frequência <span id="frequencia-componente"></span></p>
+                    </div>
                 </div>
-                <div class="grafico">
-                    <span>Uso de rede em tempo real</span>
-                    <canvas id="myChart4"></canvas>
+            </div>
+        </div>
+
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de CPU em tempo real</span>
+                <canvas id="myChart3"></canvas>
+                <div class="descricao">
+                    <div class="descricao-componente">
+                        <div class="em-uso">
+                            <p>Em uso</p><span id="em-uso">0%</span>
+                        </div>
+                        <p>Nome: <span id="nome-componente"></span></p>
+                        <p>Modelo: <span id="modelo-componente"></span></p>
+                        <p>Total: <span id="total-componente"></span></p>
+                        <p>Identificador: <span id="identificador-componente"></span></p>
+                        <p>Tipo: <span id="tipo-componente"></span></p>
+                        <p>Frequência: <span id="frequencia-componente"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="grafico">
+                <span>Uso de rede em tempo real</span>
+                <canvas id="myChart4"></canvas>
+                <div class="descricao">
+                    <div class="bytes">
+                        <div class="recebidos">
+                            <p>Bytes recebidos</p><span id="bytes-recebidos">0 Kbps</span>
+                        </div>
+                        <div class="enviados">
+                            <p>Bytes enviados</p><span id="bytes-enviados">0 Kbps</span>
+                        </div>
+                    </div>
+                    <div class="descricao-rede">
+                        <p>Nome: <span id="nome-rede"></span></p>
+                        <p>Endereço IPV4: <span id="endereco-rede-ipv4"></span></p>
+                        <p>Endereço IPV6: <span id="endereco-rede-ipv6"></span></p>
+                        <p>Endereço Mac: <span id="endereco-rede-mac"></span></p>
+                        <p>Dominio: <span id="dominio-rede"></span></p>
+                        <p>Hostname: <span id="hostname-rede"></span></p>
+                        <p>Nome DNS: <span id="nome-rede-dns"></span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -261,7 +317,7 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
+            labels.push(registro.dt_hora);
             dados.datasets[0].data.push(registro.em_uso);
         }
 
@@ -308,25 +364,22 @@
                     avisoCaptura.innerHTML = ""
 
 
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                    if (novoRegistro[0].dt_hora == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
                         avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
                         console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
+                        console.log(novoRegistro[0].dt_hora)
                         console.log("Horário do último dado capturado:")
                         console.log(dados.labels[dados.labels.length - 1])
                         console.log("---------------------------------------------------------------")
                     } else {
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+                        dados.labels.push(novoRegistro[0].dt_hora); // incluir um novo momento
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+                        dados.datasets[0].data.push(novoRegistro[0].em_uso); // incluir uma nova medida de umidade
 
                         myChart.update();
                     }
@@ -347,9 +400,9 @@
 </script>
 
 <script>
-    // lista de processos
-    var totalProcessos = 8;
-    for (let i = 1; i < totalProcessos; i++) {
+    // Para criar novos processos :D
+    var totalProcessos = 9;
+    for (let i = 1; i <= totalProcessos; i++) {
         const container = document.createElement('div');
         container.classList.add('processo');
         container.innerHTML = ` <div class="lista">
@@ -358,10 +411,10 @@
         document.querySelector('.container-lista-processos').appendChild(container);
     }
 
-    // seleciona o elemento pai dos botões do cluster
-    const clusterContainer = document.querySelector('.selecao-cluster ul');
 
-    // cria os botões do cluster
+    // Para criar novos botões de cluster e de máquina :D
+    const clusterContainer = document.querySelector('.selecao-cluster ul');
+    
     for (let i = 1; i <= 6; i++) {
         const button = document.createElement('button');
         button.value = `cluster${i}`;
@@ -371,11 +424,9 @@
         clusterContainer.appendChild(listItem);
     }
 
-    // seleciona o elemento pai dos botões da máquina
     const maquinaContainer = document.querySelector('.selecao-maquina ul');
 
-    // cria os botões da máquina
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 10; i++) {
         const button = document.createElement('button');
         button.value = `maquina${i}`;
         button.textContent = `Máquina ${i}`;
@@ -383,5 +434,37 @@
         listItem.appendChild(button);
         maquinaContainer.appendChild(listItem);
     }
-</script>
 
+    // Para mudar a corzinha dos cards de acordo com a porcentagem de uso :D
+    const porcentagemRAM = Math.floor(Math.random() * 100);
+    const porcentagemHD = Math.floor(Math.random() * 100);
+    const porcentagemCPU = Math.floor(Math.random() * 100);
+    porcentRAM.innerHTML = `${porcentagemRAM}%`;
+    porcentHD.innerHTML = `${porcentagemHD}%`;
+    porcentCPU.innerHTML = `${porcentagemCPU}%`;
+
+    if (porcentagemRAM > 80) {
+        porcentRAM.style.color = "red";
+        cardProcessoRam.style.borderTop = "15px solid red";
+    } else if (porcentagemRAM > 50) {
+        porcentRAM.style.color = "orange";
+        cardProcessoRam.style.borderTop = "15px solid orange";
+    } 
+
+    if (porcentagemHD > 80) {
+        porcentHD.style.color = "red";
+        cardProcessoHD.style.borderTop = "15px solid red";
+    } else if (porcentagemHD > 50) {
+        porcentHD.style.color = "orange";
+        cardProcessoHD.style.borderTop = "15px solid orange";
+    } 
+
+    if (porcentagemCPU > 80) {
+        porcentCPU.style.color = "red";
+        cardProcessoCPU.style.borderTop = "15px solid red";
+    } else if (porcentagemCPU > 50) {
+        porcentCPU.style.color = "orange";
+        cardProcessoCPU.style.borderTop = "15px solid orange";
+    } 
+
+</script>
