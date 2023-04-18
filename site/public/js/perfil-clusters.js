@@ -83,6 +83,12 @@ function buscarDadosMaquina(idCluster) {
                                         " id="btnEditInfoMaquina${resposta[i].id}" class="btn-edit">
                                     Editar
                                 </button>
+                                <button onclick="deletarMaquina(
+                                    ${resposta[i].id}
+                                    )
+                                        " id="btnDeleteMaquina${resposta[i].id}" class="btn-edit">
+                                    Deletar
+                                </button>
                             </span>
                         `
                     }
@@ -467,15 +473,47 @@ function deletarCluster(clusterId) {
             } else {
                 deletarClusterSemMaquina(clusterId);
             }
-
-
+            
+            
         } else {
             throw ('Houve um erro na API!');
         }
     }).catch(function (resposta) {
         console.error(resposta);
     });
+    
+}
 
+function deletarMaquina(idMaquina) {
+    fetch(`/cluster/deletarMaquina/${idMaquina}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idMaquina
+        })
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+            location.reload();
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Houve um erro!',
+            })
+
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
 }
 
 buscarDadosCluster();

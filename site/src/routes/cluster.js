@@ -43,4 +43,8 @@ router.delete("/deletarClusterSemMaquina/:idCluster", function (req, res) {
     clusterController.deletarClusterSemMaquina(req, res);
 })
 
+router.delete("/deletarMaquina/:idMaquina", function (req, res) {
+    clusterController.deletarMaquina(req, res);
+})
+
 module.exports = router;

@@ -233,6 +233,29 @@ function deletarClusterSemMaquina(req, res) {
     }
 }
 
+function deletarMaquina(req, res) {
+    var idMaquina = req.body.idMaquina;
+    if (idMaquina == undefined) {
+        res.status(400).send("idMaquina está undefined!");
+    } else {
+        clusterModel.deletarMaquina(idMaquina)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     buscarDadosCluster,
     buscarDadosMaquina,
@@ -243,5 +266,6 @@ module.exports = {
     deletarClusterComMaquina,
     deletarClusterSemMaquina,
     deletarMaquinaDoCluster,
-    confirmarAlteracaoInfoMaquina
+    confirmarAlteracaoInfoMaquina,
+    deletarMaquina
 }

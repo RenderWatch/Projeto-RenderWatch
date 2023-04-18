@@ -113,6 +113,17 @@ function deletarClusterSemMaquina(id) {
     return database.executar(instrucao);
 }
 
+function deletarMaquina(idMaquina) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", idMaquina)
+
+    var instrucao = `    
+    DELETE 
+    FROM Maquina 
+    WHERE id = ${idMaquina};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarDadosCluster,
     buscarDadosMaquina,
@@ -123,5 +134,6 @@ module.exports = {
     deletarClusterComMaquina,
     deletarClusterSemMaquina,
     deletarMaquinaDoCluster,
-    confirmarAlteracaoInfoMaquina
+    confirmarAlteracaoInfoMaquina,
+    deletarMaquina
 };
