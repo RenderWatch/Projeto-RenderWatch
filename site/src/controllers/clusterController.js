@@ -101,6 +101,43 @@ function adicionarMaquina(req, res) {
     }
 }
 
+function confirmarAlteracaoInfoMaquina(req, res) {
+
+    var idMaquina = req.body.idMaquina;
+    var inputNome = req.body.inputNome;
+    var inputCpu = req.body.inputCpu;
+    var inputDisco = req.body.inputDisco;
+    var inputMemoria = req.body.inputMemoria;
+
+    if (idMaquina == undefined) {
+        res.status(400).send("idMaquina está undefined!");
+    } else if (inputNome == undefined) {
+        res.status(400).send("inputNome está undefined!");
+    } else if (inputCpu == undefined) {
+        res.status(400).send("inputCpu está undefined!");
+    } else if (inputDisco == undefined) {
+        res.status(400).send("inputDisco está undefined!");
+    } else if (inputMemoria == undefined) {
+        res.status(400).send("inputMemoria está undefined!");
+    } else {
+        clusterModel.confirmarAlteracaoInfoMaquina(idMaquina, inputNome, inputCpu, inputDisco, inputMemoria)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function confirmarNomeCluster(req, res) {
     var idCluster = req.body.idCluster;
     var nome = req.body.nome
@@ -133,21 +170,21 @@ function deletarClusterComMaquina(req, res) {
         res.status(400).send("Seu id está undefined!");
     } else {
         clusterModel.deletarClusterSemMaquina(id)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 }
 
 function deletarMaquinaDoCluster(req, res) {
@@ -156,21 +193,21 @@ function deletarMaquinaDoCluster(req, res) {
         res.status(400).send("Seu id está undefined!");
     } else {
         clusterModel.deletarMaquinaDoCluster(id)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 }
 
 function deletarClusterSemMaquina(req, res) {
@@ -179,21 +216,21 @@ function deletarClusterSemMaquina(req, res) {
         res.status(400).send("Seu id está undefined!");
     } else {
         clusterModel.deletarClusterSemMaquina(id)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 }
 
 module.exports = {
@@ -205,5 +242,6 @@ module.exports = {
     deletarCluster,
     deletarClusterComMaquina,
     deletarClusterSemMaquina,
-    deletarMaquinaDoCluster
+    deletarMaquinaDoCluster,
+    confirmarAlteracaoInfoMaquina
 }

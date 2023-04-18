@@ -61,6 +61,16 @@ function adicionarMaquina(id) {
     return database.executar(instrucao);
 }
 
+function confirmarAlteracaoInfoMaquina(idMaquina, inputNome, inputCpu, inputDisco, inputMemoria) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idMaquina, inputNome, inputCpu, inputDisco, inputMemoria)
+
+    var instrucao = ` 
+    UPDATE Maquina SET nome = '${inputNome}', metrica_cpu = ${inputCpu}, metrica_disco = ${inputDisco}, metrica_memoria = ${inputMemoria} 
+    Where id = ${idMaquina};`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function confirmarNomeCluster(idCluster, nome) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idCluster, nome)
 
@@ -112,5 +122,6 @@ module.exports = {
     deletarCluster,
     deletarClusterComMaquina,
     deletarClusterSemMaquina,
-    deletarMaquinaDoCluster
+    deletarMaquinaDoCluster,
+    confirmarAlteracaoInfoMaquina
 };

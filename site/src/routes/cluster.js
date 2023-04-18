@@ -23,6 +23,10 @@ router.post("/adicionarMaquina", function (req, res) {
     clusterController.adicionarMaquina(req, res);
 });
 
+router.put("/confirmarAlteracaoInfoMaquina/:idMaquina", function (req, res) {
+    clusterController.confirmarAlteracaoInfoMaquina(req, res);
+})
+
 router.put("/confirmarNomeCluster/:idCluster", function (req, res) {
     clusterController.confirmarNomeCluster(req, res);
 })
