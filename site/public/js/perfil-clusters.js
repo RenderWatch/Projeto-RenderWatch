@@ -33,7 +33,6 @@ function buscarDadosCluster() {
                                 <th>Métrica CPU</th>
                                 <th>Métrica Disco</th>
                                 <th>Métrica Memória</th>
-                                <th>Editar</th>
                             </tr>
                         </table>
                         <span class="container-btn-add-maquina">
