@@ -33,7 +33,7 @@ function buscarDadosCluster() {
                                 <th>Métrica Memória</th>
                             </tr>
                         </table>
-                        <button id='btnAddMaquinaCluster${i+1}' class='btn-add-maquina' onclick='adicionarMaquina(${resposta[i].id})'>Adicionar Máquina</button>
+                        <button id='btnAddMaquinaCluster${i + 1}' class='btn-add-maquina' onclick='adicionarMaquina(${resposta[i].id})'>Adicionar Máquina</button>
                     </div>
                                     `
                     var idCluster = resposta[i].id
@@ -63,14 +63,27 @@ function buscarDadosMaquina(idCluster) {
 
                     for (let i = 0; i < resposta.length; i++) {
 
+
                         document.getElementById(`tabelaCluster${idCluster}`).innerHTML += `
-                            <tr>
+                            <tr id="trEditInfoMaquina${resposta[i].id}">
                                 <td>${resposta[i].id}</td>
                                 <td>${resposta[i].nome}</td>
                                 <td>${resposta[i].metrica_cpu}%</td>
                                 <td>${resposta[i].metrica_disco}%</td>
                                 <td>${resposta[i].metrica_memoria}%</td>
                             </tr>
+                            <span id="containerEditInfoMaquina${resposta[i].id}">
+                                <button onclick="alterarInfoMaquina(
+                                    ${resposta[i].id},
+                                    '${resposta[i].nome}',
+                                      ${resposta[i].metrica_cpu},
+                                       ${resposta[i].metrica_disco},
+                                        ${resposta[i].metrica_memoria}
+                                    )
+                                        " id="btnEditInfoMaquina${resposta[i].id}" class="btn-edit">
+                                    Editar
+                                </button>
+                            </span>
                         `
                     }
                 });
@@ -83,38 +96,83 @@ function buscarDadosMaquina(idCluster) {
     });
 }
 
+function alterarInfoMaquina(idMaquina, nome, metrica_cpu, metrica_disco, metrica_memoria) {
+
+    document.getElementById(`trEditInfoMaquina${idMaquina}`).innerHTML = `
+    <td>${idMaquina}</td>
+    <td><input id="inputNomeMaquina${idMaquina}" class="input-maquina-info" type="text" value="${nome}"></td>
+    <td><input id="inputMetricaCpuMaquina${idMaquina}" class="input-maquina-info" type="text" value="${metrica_cpu}%"></td>
+    <td><input id="inputMetricaDiscoMaquina${idMaquina}" class="input-maquina-info" type="text" value="${metrica_disco}%"></td>
+    <td><input id="inputMetricaMemoriaMaquina${idMaquina}" class="input-maquina-info" type="text" value="${metrica_memoria}%"></td>
+    `
+    document.getElementById(`containerEditInfoMaquina${idMaquina}`).innerHTML = `
+    <button onclick="confirmarAlteracaoInfoMaquina(${idMaquina})" class="btn-maquina-info">Confirmar</button>
+    <button onclick="cancelaAlteracaoInfoMaquina( ${idMaquina},
+        '${nome}',
+          ${metrica_cpu},
+           ${metrica_disco},
+            ${metrica_memoria})" class="btn-maquina-info-cancelar">Cancelar</button>
+    `
+}
+
+
+function cancelaAlteracaoInfoMaquina(idMaquina, nome, metrica_cpu, metrica_disco, metrica_memoria) {
+
+    document.getElementById(`trEditInfoMaquina${idMaquina}`).innerHTML = `
+                                <td>${idMaquina}</td>
+                                <td>${nome}</td>
+                                <td>${metrica_cpu}%</td>
+                                <td>${metrica_disco}%</td>
+                                <td>${metrica_memoria}%</td>
+    `
+
+    document.getElementById(`containerEditInfoMaquina${idMaquina}`).innerHTML = `
+    <button onclick="alterarInfoMaquina(
+        ${idMaquina},
+        '${nome}',
+          ${metrica_cpu},
+           ${metrica_disco},
+            ${metrica_memoria}
+        )
+            " id="btnEditInfoMaquina${idMaquina}" class="btn-edit">
+        Editar
+    </button>
+    `
+
+}
+
 
 function adicionarCluster() {
 
     fetch("/cluster/adicionarCluster", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        idEmpresa: idEmpresa
-    })
-}).then(function (resposta) {
-
-    console.log("resposta: ", resposta);
-    
-    if (resposta.ok) {
-        
-        location.reload();
-        
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Houve um erro ao tentar realizar o cadastro!',
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idEmpresa: idEmpresa
         })
+    }).then(function (resposta) {
 
-    }
-}).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-});
+        console.log("resposta: ", resposta);
 
-return false;
+        if (resposta.ok) {
+
+            location.reload();
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Houve um erro ao tentar realizar o cadastro!',
+            })
+
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
 
 }
 
@@ -127,9 +185,9 @@ function alterarNomeCluster(clusterId) {
           <button onclick="cancelarNomeCluster(${clusterId})" class="btn-cluster-info-cancelar">Cancelar</button>
       </div>
       `;
-  }
-  
-  
+}
+
+
 function adicionarMaquina(clusterId) {
     fetch("/cluster/adicionarMaquina", {
         method: "POST",
@@ -140,25 +198,25 @@ function adicionarMaquina(clusterId) {
             id: clusterId
         })
     }).then(function (resposta) {
-    
+
         console.log("resposta: ", resposta);
-        
+
         if (resposta.ok) {
-            
+
             location.reload();
-            
+
         } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Houve um erro ao tentar realizar o cadastro!',
             })
-    
+
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
     });
-    
+
     return false;
 }
 
@@ -170,77 +228,77 @@ function alterarNomeCluster(clusterId) {
           <button onclick="cancelarNomeCluster(${clusterId})" class="btn-cluster-info-cancelar">Cancelar</button>
       </div>
       `;
-  }
-  
-  
-  function cancelarNomeCluster(clusterId) {
-  
+}
+
+
+function cancelarNomeCluster(clusterId) {
+
     document.getElementById(`containerBtn${clusterId}`).innerHTML = `
       <button onclick="alterarNomeCluster(${clusterId})" id="btnEditNomeCluster${clusterId}" class="btn-edit">
           Editar
       </button>
       `;
-  }
-  
-  
-  function confirmarNomeCluster(clusterId, inputNome) {
-  var inputNomeCluster = inputNome.value;
-  console.log(inputNomeCluster)
-  
-  if (inputNomeCluster.length >= 3 && inputNomeCluster.length <= 45) {
-    fetch(`/cluster/confirmarNomeCluster/${clusterId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        idCluster:clusterId,
-        nome: inputNomeCluster
-      })
-    }).then(function (resposta) {
-  
-      if (resposta.ok) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Parabéns',
-          text: 'Nome do cluster atualizado com sucesso!',
+}
+
+
+function confirmarNomeCluster(clusterId, inputNome) {
+    var inputNomeCluster = inputNome.value;
+    console.log(inputNomeCluster)
+
+    if (inputNomeCluster.length >= 3 && inputNomeCluster.length <= 45) {
+        fetch(`/cluster/confirmarNomeCluster/${clusterId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idCluster: clusterId,
+                nome: inputNomeCluster
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Parabéns',
+                    text: 'Nome do cluster atualizado com sucesso!',
+                })
+
+            } else if (resposta.status == 404) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops...',
+                    text: 'Deu 404!',
+                })
+            } else {
+                throw ("Houve um erro ao tentar realizar a alteração! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
         })
-  
-      } else if (resposta.status == 404) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Ops...',
-          text: 'Deu 404!',
-        })
-      } else {
-        throw ("Houve um erro ao tentar realizar a alteração! Código da resposta: " + resposta.status);
-      }
-    }).catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
-    })
-  
-    // document.getElementById(`nomeCluster${clusterId}`).innerHTML = inputNomeCluster;
-  
-    document.getElementById(`containerBtn${clusterId}`).innerHTML = ` 
+
+        // document.getElementById(`nomeCluster${clusterId}`).innerHTML = inputNomeCluster;
+
+        document.getElementById(`containerBtn${clusterId}`).innerHTML = ` 
       <button onclick="alterarNomeCluster(${clusterId})" id="btnEditNomeCluster${clusterId}" class="btn-edit">
         Editar
       </button>
       `;
 
-      location.reload();
+        location.reload();
 
-  } 
-  else {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Houve um erro ao tentar alterar o nome do cluster! Certifique-se que o texto está entre 3 e 45 caracteres válidos e tente novamente.'
-    })
-  }
-  }
-  
+    }
+    else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Houve um erro ao tentar alterar o nome do cluster! Certifique-se que o texto está entre 3 e 45 caracteres válidos e tente novamente.'
+        })
+    }
+}
 
-  function deletarClusterComMaquina(clusterId){
+
+function deletarClusterComMaquina(clusterId) {
     fetch(`/cluster/deletarClusterComMaquina/${clusterId}`, {
         method: "DELETE",
         headers: {
@@ -252,11 +310,11 @@ function alterarNomeCluster(clusterId) {
     }).then(function (resposta) {
 
         console.log("resposta: ", resposta);
-        
+
         if (resposta.ok) {
-            
+
             location.reload();
-            
+
         } else {
             Swal.fire({
                 icon: 'error',
@@ -272,7 +330,7 @@ function alterarNomeCluster(clusterId) {
     return false;
 }
 
-  function deletarMaquinaDoCluster(clusterId){
+function deletarMaquinaDoCluster(clusterId) {
     fetch(`/cluster/deletarMaquinaDoCluster/${clusterId}`, {
         method: "DELETE",
         headers: {
@@ -284,11 +342,11 @@ function alterarNomeCluster(clusterId) {
     }).then(function (resposta) {
 
         console.log("resposta: ", resposta);
-        
+
         if (resposta.ok) {
-            
+
             deletarClusterComMaquina(clusterId);
-            
+
         } else {
             Swal.fire({
                 icon: 'error',
@@ -304,7 +362,7 @@ function alterarNomeCluster(clusterId) {
     return false;
 }
 
-function deletarClusterSemMaquina(clusterId){
+function deletarClusterSemMaquina(clusterId) {
     fetch(`/cluster/deletarClusterSemMaquina/${clusterId}`, {
         method: "DELETE",
         headers: {
@@ -316,11 +374,11 @@ function deletarClusterSemMaquina(clusterId){
     }).then(function (resposta) {
 
         console.log("resposta: ", resposta);
-        
+
         if (resposta.ok) {
-            
+
             location.reload();
-            
+
         } else {
             Swal.fire({
                 icon: 'error',
@@ -339,13 +397,13 @@ function deletarClusterSemMaquina(clusterId){
 function deletarCluster(clusterId) {
     fetch(`/cluster/deletarCluster/${clusterId}`).then(function (resposta) {
         if (resposta.ok) {
-            if(resposta.status == 200){
+            if (resposta.status == 200) {
                 deletarMaquinaDoCluster(clusterId);
                 console.log('deu 200')
             } else {
                 deletarClusterSemMaquina(clusterId);
             }
-                
+
 
         } else {
             throw ('Houve um erro na API!');
@@ -353,7 +411,7 @@ function deletarCluster(clusterId) {
     }).catch(function (resposta) {
         console.error(resposta);
     });
- 
+
 }
 
 buscarDadosCluster();
