@@ -35,7 +35,13 @@ body {
 }
 
 .card h1 {
-    margin-bottom: 15px;
+    margin-top: 1vh;
+    margin-bottom: 8vh;
+    font-size: 2rem;
+}
+
+.nome-cluster{
+    font-size: 1.5rem;
 }
 
 .inputs-card {
@@ -77,4 +83,166 @@ tr:nth-child(even) {
 th {
     background-color: #0bacce;
     color: white;
+}
+
+.tabela-cluster{
+    width: 100%;
+}
+
+.info-titulo-cluster{
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-btn-cluster{
+    display: flex;
+}
+
+.btn-deletar{
+    margin-left: 20px;
+}
+
+.btn-edit-maquina {
+    display: flex;
+    margin-left: 6px;
+    padding: 1px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #0bacce;
+    color: black;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.btn-edit-maquina:hover{
+    background-color: #bfd1d4;
+    transition: 0.2s;
+    border: 1px solid #0079a1;
+}
+
+.btn-edit-maquina-vermelho {
+    display: flex;
+    margin-left: 6px;
+    padding: 1px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #0bacce;
+    color: black;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.btn-edit-maquina-vermelho:hover{
+    background-color: #e0cece;
+    transition: 0.2s;
+    border: 1px solid #9d0c0c;
+}
+
+.btn-edit{
+    display: flex;
+    margin-left: 6px;
+    padding: 0 6px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #0bacce;
+    color: black;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.btn-edit:hover{
+    background-color: #bfd1d4;
+    transition: 0.2s;
+    border: 1px solid #0079a1;
+}
+
+.btn-edit-vermelho {
+    display: flex;
+    margin-left: 6px;
+    padding: 0 6px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #0bacce;
+    color: black;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.btn-edit-vermelho:hover{
+    background-color: #e0cece;
+    transition: 0.2s;
+    border: 1px solid #9d0c0c;
+}
+
+.btn-maquina{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.container-btn-add-maquina{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 4vh;
+    margin-bottom: 10vh;
+}
+
+.btn-add-maquina {
+    display: flex;
+    margin-left: 6px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 2px solid #0bacce;
+    color: black;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.btn-add-maquina:hover{
+    background-color: #bfd1d4;
+    transition: 0.2s;
+    border: 2px solid #0079a1;
+}
+
+.btn-add-cluster{
+    display: flex;
+    margin-left: 6px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 133, 178);
+    border: none;
+    color: rgb(244, 244, 244);
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.btn-add-cluster:hover{    
+    background-color: #12556b;
+    transition: 0.2s;
 }
