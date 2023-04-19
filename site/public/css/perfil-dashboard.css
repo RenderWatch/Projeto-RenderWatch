@@ -2,21 +2,59 @@ body {
   background-color: #e8e9ea;
 }
 
-.container-cluster-maquina {
+.container-selecao-cluster {
   /* display: flex;  */
   width: 12vw;
-  height: auto;
+  height: 60vh;
   align-items: center;
   justify-content: center;
   margin: 15vh 86vw;
   position: absolute;
   padding: 10px;
+  overflow-y: scroll;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+}
+
+.container-selecao-cluster::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.container-selecao-cluster::-webkit-scrollbar-track {
+  background: rgb(132, 175, 249);        /* color of the tracking area */
+}
+
+.container-selecao-cluster::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
+.container-selecao-maquina {
+  width: 12vw;
+  height: 60vh;
+  align-items: center;
+  justify-content: center;
+  margin: 80vh 86vw;
+  position: absolute;
+  padding: 10px;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+}
+
+.container-selecao-maquina::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.container-selecao-maquina::-webkit-scrollbar-track {
+  background: rgb(132, 175, 249);        /* color of the tracking area */
+}
+
+.container-selecao-maquina::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
 .selecao-cluster {
   background-color: rgb(244, 244, 244);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -42,7 +80,6 @@ body {
 
 .selecao-maquina {
   background-color: rgb(244, 244, 244);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   flex-direction: column;
   align-items: center;
   justify-content: center;

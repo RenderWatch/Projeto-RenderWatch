@@ -36,10 +36,13 @@ create table Cluster (
 
 create table  Maquina (	
 	id int primary key auto_increment,
-	apelido double,
+	nome varchar(45),
     sistema_operacional varchar(45),
     fabricante varchar(45),
     arquitetura varchar(45),
+    metrica_cpu double,
+    metrica_disco double,
+    metrica_memoria double,
     cluster_id int,
     foreign key (cluster_id) references Cluster (id)
 );
@@ -97,8 +100,8 @@ create table MetricaRede (
 
 create table RegistroRede (
 	id int primary key auto_increment,
-    bytes_enviados int,
-    bytes_recebidos int,
+    metrica_bytes_enviados int,
+    metrica_bytes_recebidos int,
     dt_hora datetime,
     rede_id int,
     foreign key (rede_id) references Rede (id) 
