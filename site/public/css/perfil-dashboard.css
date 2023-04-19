@@ -5,22 +5,24 @@ body {
 .container-selecao-cluster {
   /* display: flex;  */
   width: 12vw;
-  height: 60vh;
   align-items: center;
   justify-content: center;
-  margin: 15vh 86vw;
+  margin: 96vh 86vw;
   position: absolute;
   padding: 10px;
-  overflow-y: scroll;
+  max-height: 60vh; /* definindo a altura máxima da div */
+  overflow-y: auto; /* exibindo a barra de rolagem vertical */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
 }
 
 .container-selecao-cluster::-webkit-scrollbar {
   width: 12px;               /* width of the entire scrollbar */
+  height: auto;
 }
 
 .container-selecao-cluster::-webkit-scrollbar-track {
   background: rgb(132, 175, 249);        /* color of the tracking area */
+  border-radius: 20px;
 }
 
 .container-selecao-cluster::-webkit-scrollbar-thumb {
@@ -30,13 +32,13 @@ body {
 
 .container-selecao-maquina {
   width: 12vw;
-  height: 60vh;
   align-items: center;
   justify-content: center;
-  margin: 80vh 86vw;
+  margin: 155vh 86vw;
   position: absolute;
   padding: 10px;
-  overflow-y: scroll;
+  max-height: 60vh; /* definindo a altura máxima da div */
+  overflow-y: auto; /* exibindo a barra de rolagem vertical */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
 }
 
@@ -54,7 +56,6 @@ body {
 }
 
 .selecao-cluster {
-  background-color: rgb(244, 244, 244);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -79,7 +80,6 @@ body {
 }
 
 .selecao-maquina {
-  background-color: rgb(244, 244, 244);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -261,6 +261,17 @@ body {
   font-size: 20px;
 }
 
+.metricas{
+  padding: 5px;
+  height: 6vh;
+  margin-top: 2vh;
+  border-left: 4px solid rgb(83, 142, 245);
+  margin: auto;
+}
+
+.metricas p{
+  margin-bottom: 5px;
+}
 
 .container-graficos {
   justify-content: center;
@@ -277,6 +288,7 @@ body {
   background-color: rgb(244, 244, 244);
   margin: 5px;
   margin-left: 25px;
+  border-radius: 10px;
 }
 
 .grafico span {
@@ -324,6 +336,8 @@ body {
   display: flex;
   color: white;
   margin: 5vh auto;
+  max-height: 60vh; /* definindo a altura máxima da div */
+  overflow-y: auto; /* exibindo a barra de rolagem vertical */
 }
 
 .container-lista-processos {
@@ -334,12 +348,31 @@ body {
   background-color: rgb(244, 244, 244);
   width: 73vw;
   padding: 10px;
-  height: auto;
   margin-left: 14vw;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   border-top: 15px solid rgb(83, 142, 245);
   color: black;
+  max-height: 30vh; /* definindo a altura máxima da div */
+  overflow-y: auto; /* exibindo a barra de rolagem vertical */
+  cursor: pointer;
 }
+
+
+.container-lista-processos::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+  height: auto;
+}
+
+.container-lista-processos::-webkit-scrollbar-track {
+  background: rgb(132, 175, 249);        /* color of the tracking area */
+  border-radius: 20px;
+}
+
+.container-lista-processos::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
 
 .container-lista-processos h2 {
   justify-content: center;
@@ -424,4 +457,8 @@ body {
 
 .descricao-componente p{
   margin-bottom: 5px;
+}
+
+.hidden {
+  display: none;
 }

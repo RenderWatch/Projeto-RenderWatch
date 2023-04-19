@@ -57,12 +57,10 @@
             </ul>
         </div>
     </sidebar>
-
     <div class="container-dashboard">
-        
         <div class="container-selecao-cluster">
             <div class="selecao-cluster">
-                <h2 style="background-color: rgb(83 142 245 / 19%); text-align: center;">Cluster</h2>
+                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Cluster</h2>
                 <ul>
                 </ul>
             </div>
@@ -70,12 +68,12 @@
 
         <div class="container-selecao-maquina">
             <div class="selecao-maquina">
-                <h2 style="background-color: rgb(83 142 245 / 19%); text-align: center;">Maquina</h2>
+                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Maquina</h2>
                 <ul>
                 </ul>
             </div>
         </div>
-        
+
 
         <div class="container-alerta">
             <div id="caixa-alerta" class="caixa-alerta">
@@ -93,11 +91,34 @@
         </div>
 
         <div class="container-maquina">
-            <div class="card-maquina">
-                <h2>Nome da máquina: <span id="apelido">Machine</span></h2>
-                <h2>Sistema operacional: <span id="sistema">Ubuntu/Linux</span></h2>
-                <h2>Fabricante: <span id="fabricante">Gnome</span></h2>
-                <h2>Arquitetura: <span id="arquitetura">64 bits</span></h2>
+            <div style="display: flex;" class="card-maquina">
+                <div class="sla">
+                    <h2>Nome da máquina: <span id="apelido">Machine</span></h2>
+                    <h2>Sistema operacional: <span id="sistema">Ubuntu/Linux</span></h2>
+                    <h2>Fabricante: <span id="fabricante">Gnome</span></h2>
+                    <h2>Arquitetura: <span id="arquitetura">64 bits</span></h2>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - CPU</p><span id="bytes-recebidos">70%</span>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - HD</p><span id="bytes-recebidos">70%</span>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - RAM</p><span id="bytes-recebidos">70%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-card-processos">
+            <div class="container-lista-processos">
+                <div class="lista">
+                    <h2>Processos ocorrendo no momento</h2>
+                </div>
+                <div class="total">
+                    <p>Total de processos: <span id="total-processos">0</span></p>
+                    <p>Total de threads: <span id="total-threads">0</span></p>
+                </div>
             </div>
         </div>
 
@@ -198,19 +219,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="container-card-processos">
-            <div class="container-lista-processos">
-                <div class="lista">
-                    <h2>Processos ocorrendo no momento</h2>
-                </div>
-                <div class="total">
-                    <p>Total de processos: <span id="total-processos">0</span></p>
-                    <p>Total de threads: <span id="total-threads">0</span></p>
-                </div>
-            </div>
-        </div>
-
     </div>
 
 </body>
@@ -219,22 +227,36 @@
 </html>
 
 <script>
-    // Para criar novos processos :D
-    var totalProcessos = 9;
-    for (let i = 1; i <= totalProcessos; i++) {
-        const container = document.createElement('div');
-        container.classList.add('processo');
-        container.innerHTML = ` <div class="lista">
+    // Seleciona os elementos necessários
+    const lista = document.querySelector('.lista');
+    const containerLista = document.querySelector('.container-lista-processos');
+
+    let exibirProcessos = false;
+
+    function toggleProcessos() {
+        if (exibirProcessos) {
+            containerLista.querySelectorAll('.processo').forEach(el => el.remove());
+            exibirProcessos = false;
+        } else {
+            const totalProcessos = 10;
+            for (let i = 1; i <= totalProcessos; i++) {
+                const container = document.createElement('div');
+                container.classList.add('processo');
+                container.innerHTML = ` <div class="lista">
             <span class="span_processo">Processo ${i} </span>
         </div>`;
-        document.querySelector('.container-lista-processos').appendChild(container);
+                containerLista.appendChild(container);
+            }
+            exibirProcessos = true;
+        }
     }
 
+    lista.addEventListener('click', toggleProcessos)
 
     // Para criar novos botões de cluster e de máquina :D
     const clusterContainer = document.querySelector('.selecao-cluster ul');
-    
-    for (let i = 1; i <= 7; i++) {
+
+    for (let i = 1; i <= 5; i++) {
         const button = document.createElement('button');
         button.value = `cluster${i}`;
         button.textContent = `Cluster ${i}`;
@@ -245,7 +267,7 @@
 
     const maquinaContainer = document.querySelector('.selecao-maquina ul');
 
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 1; i <= 5; i++) {
         const button = document.createElement('button');
         button.value = `maquina${i}`;
         button.textContent = `Máquina ${i}`;
@@ -268,7 +290,7 @@
     } else if (porcentagemRAM > 60) {
         porcentRAM.style.color = "orange";
         cardProcessoRam.style.borderTop = "15px solid orange";
-    } 
+    }
 
     if (porcentagemHD > 70) {
         porcentHD.style.color = "red";
@@ -276,7 +298,7 @@
     } else if (porcentagemHD > 60) {
         porcentHD.style.color = "orange";
         cardProcessoHD.style.borderTop = "15px solid orange";
-    } 
+    }
 
     if (porcentagemCPU > 70) {
         porcentCPU.style.color = "red";
@@ -284,6 +306,5 @@
     } else if (porcentagemCPU > 60) {
         porcentCPU.style.color = "orange";
         cardProcessoCPU.style.borderTop = "15px solid orange";
-    } 
-
+    }
 </script>
