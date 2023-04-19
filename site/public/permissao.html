@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Conceder Permissão</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/permissao.css">
+    <link rel="stylesheet" href="css/style-all.css">
+</head>
+
+<body>
+    <div class="cor-bg"></div>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+            </div>
+        </a>
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link" href="perfil-configuracoes.html">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
+                    <li><span>Configurações</span></li>
+                </div>
+                <div style="margin-top: -25px;" class="link"  onclick="logout()">
+                    <span><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></span>
+                    <li><span>Sair</span></li>
+                </div>
+            </ul>
+        </div>
+    </header>
+    <sidebar>
+        <div class="sidebar">
+            <ul>
+                <li><a href="" class="sidebar-element">
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
+            </ul>
+        </div>
+    </sidebar>
+   <br><br><br>
+    <main class="spaceTop">
+        <h2>Formulário para Conceder Permissão</h2>
+        <form id="conceder-permissao-form">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="permissao">Conceder permissão:</label>
+            <input type="checkbox" id="permissao" name="permissao">
+            <br>
+            <button type="submit">Conceder Acesso</button>
+        </form>
+        <hr>
+        <h2>Permissões Concedidas</h2>
+        <table id="permissao-table">
+            <thead>
+                <tr>
+                    <th>E-mail</th>
+                    <th>Permissão</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- linhas da tabela vão ser adicionadas dinamicamente com javascript -->
+            </tbody>
+        </table>
+    </main>
+</body>
+
+</html>
+
+<script src="js/permissao.js"></script>
+<script src="js/perfil-sidebar-header.js"></script>

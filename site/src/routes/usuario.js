@@ -35,5 +35,16 @@ router.delete("/deletarConta/:id", function (req, res) {
     usuarioController.deletarConta(req, res);
 })
 
+router.post("/adicionarPermissao/:id,email,permissao", function (req, res) {
+    usuarioController.adicionarPermissao(req, res);
+})
+
+router.delete("/excluirPermissao/:email", function (req, res) {
+    usuarioController.excluirPermissao(req, res);
+})
+
+router.get("/listarHistorico/:idUsuario", function (req, res) {
+    usuarioController.listarHistorico(req, res);
+});
 
 module.exports = router;

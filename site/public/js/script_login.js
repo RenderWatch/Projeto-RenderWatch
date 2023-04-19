@@ -42,7 +42,6 @@ function login() {
                 sessionStorage.TELEFONE_USUARIO = json.telefone;
                 sessionStorage.SENHA_USUARIO = json.senha;
                 sessionStorage.ID_USUARIO = json.id;
-                sessionStorage.ID_EMPRESA = json.empresa_id;
 
                 setTimeout(function () {
                     window.location = "./perfil-configuracoes.html";

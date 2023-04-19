@@ -7,10 +7,6 @@ function acessarPerfil() {
     }
 }
 
-function irPaginaConfiguracoes(){
-    window.location.href = "perfil-configuracoes.html"
-}
-
 
 function logout() {
 
