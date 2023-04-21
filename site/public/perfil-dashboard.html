@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style-all.css">
+    <link rel="stylesheet" href="css/perfil-dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="cor-bg"></div>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+            </div>
+        </a>
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
+                    <li><a href="">Configurações</a></li>
+                </div>
+                <div style="margin-top: -25px;" class="link">
+                    <a href="login.html"><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></a>
+                    <li><a href="login.html">Sair</a></li>
+                </div>
+            </ul>
+        </div>
+    </header>z
+    <sidebar>
+        <div class="sidebar">
+            <ul>
+                <li><a href="" class="sidebar-element">
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
+            </ul>
+        </div>
+    </sidebar>
+    <div class="container-dashboard">
+        <h2 class="topico-alerta">Alertas identificados</h2>
+
+        <div class="container-selecao-cluster">
+            <div class="selecao-cluster">
+                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Cluster</h2>
+                <ul>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container-selecao-maquina">
+            <div class="selecao-maquina">
+                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Maquina</h2>
+                <ul>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="container-alerta">
+            <div id="caixa-alerta" class="caixa-alerta">
+                <span id="span_alertas_cluster" class="span_alertas">5</span>
+                <p>Alertas identificados no cluster</p>
+            </div>
+            <div id="caixa-alerta" class="caixa-alerta">
+                <span id="span_alertas_maquina" class="span_alertas">5</span>
+                <p>Alertas identificados na máquina</p>
+            </div>
+        </div>
+
+        <div class="container-maquina">
+            <h2 class="topico-maquina">Análise da máquina atual</h2>
+            <div style="display: flex;" class="card-maquina">
+                <div class="sla">
+                    <h2>Nome da máquina: <span id="apelido">Machine</span></h2>
+                    <h2>Sistema operacional: <span id="sistema">Ubuntu/Linux</span></h2>
+                    <h2>Fabricante: <span id="fabricante">Gnome</span></h2>
+                    <h2>Arquitetura: <span id="arquitetura">64 bits</span></h2>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - CPU</p><span id="bytes-recebidos">70%</span>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - HD</p><span id="bytes-recebidos">70%</span>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - RAM</p><span id="bytes-recebidos">70%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="container-media">
+            <div class="card-media">
+                <span class="titulo-media">Quantidade de falhas do processador</span>
+                <span id="media-CPU" class="valor-media">23</span>
+            </div>
+            <div class="card-media">
+                <span class="titulo-media">Quantidade de falhas de memória RAM</span>
+                <span id="media-RAM" class="valor-media">53</span>
+            </div>
+            <div class="card-media">
+                <span class="titulo-media">Quantidade de falhas do HD</span>
+                <span id="media-HD" class="valor-media">23</span>
+            </div>
+        </div> -->
+
+        <h2 class="topico-porcentagem">Porcentagem e gráficos de uso dos componentes</h2>
+
+        <div class="container-processo">
+            <div id="cardProcessoRam" class="card-processo">
+                <span class="processo">Uso de memoria RAM (%)</span>
+                <span id="porcentRAM" class="porcent-processo"></span>
+            </div>
+            <div id="cardProcessoHD" class="card-processo">
+                <span class="processo">Uso de Disco (%)</span>
+                <span id="porcentHD" class="porcent-processo"></span>
+            </div>
+            <div id="cardProcessoCPU" class="card-processo">
+                <span class="processo">Uso de CPU (%)</span>
+                <span id="porcentCPU" class="porcent-processo"></span>
+            </div>
+        </div>
+
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de memoria RAM em tempo real</span>
+                <canvas id="myChart"></canvas>
+                <div class="descricao">
+                    <div class="descricao-componente">
+                    </div>
+                </div>
+            </div>
+            <div class="grafico">
+                <span>Uso de disco em tempo real</span>
+                <canvas style="height: 300px;" id="myChart2"></canvas>
+                <div class="descricao">
+                    <div class="descricao-componente">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-graficos">
+            <div class="grafico">
+                <span>Uso de CPU em tempo real</span>
+                <canvas id="myChart3"></canvas>
+                <div class="descricao">
+                    <div class="descricao-componente">
+                        <p>Nome: <span id="nome-componente"></span></p>
+                        <p>Modelo: <span id="modelo-componente"></span></p>
+                        <p>Total: <span id="total-componente"></span></p>
+                        <p>Identificador: <span id="identificador-componente"></span></p>
+                        <p>Tipo: <span id="tipo-componente"></span></p>
+                        <p>Frequência: <span id="frequencia-componente"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="grafico">
+                <span>Uso de rede em tempo real</span>
+                <canvas id="myChart4"></canvas>
+                <div class="descricao">
+                    <div class="bytes">
+                        <div class="recebidos">
+                            <p>Bytes recebidos</p><span id="bytes-recebidos">0 Kbps</span>
+                        </div>
+                        <div class="enviados">
+                            <p>Bytes enviados</p><span id="bytes-enviados">0 Kbps</span>
+                        </div>
+                    </div>
+                    <div class="descricao-rede">
+                        <p>Nome: <span id="nome-rede"></span></p>
+                        <p>Endereço IPV4: <span id="endereco-rede-ipv4"></span></p>
+                        <p>Endereço IPV6: <span id="endereco-rede-ipv6"></span></p>
+                        <p>Endereço Mac: <span id="endereco-rede-mac"></span></p>
+                        <p>Dominio: <span id="dominio-rede"></span></p>
+                        <p>Hostname: <span id="hostname-rede"></span></p>
+                        <p>Nome DNS: <span id="nome-rede-dns"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="topico-processo">Lista de processos</h2>
+
+    <div class="container-card-processos">
+        <div class="container-lista-processos">
+            <div class="lista">
+                <h2>Processos ocorrendo no momento</h2>
+            </div>
+            <div class="total">
+                <p>Total de processos: <span id="total-processos">0</span></p>
+                <p>Total de threads: <span id="total-threads">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    
+
+</body>
+<script src="js/perfil-dashboard.js"></script>
+
+</html>
+
+<script>
+    // Seleciona os elementos necessários
+    const lista = document.querySelector('.lista');
+    const containerLista = document.querySelector('.container-lista-processos');
+
+    let exibirProcessos = false;
+
+    function toggleProcessos() {
+        if (exibirProcessos) {
+            containerLista.querySelectorAll('.processo').forEach(el => el.remove());
+            exibirProcessos = false;
+        } else {
+            const totalProcessos = 10;
+            for (let i = 1; i <= totalProcessos; i++) {
+                const container = document.createElement('div');
+                container.classList.add('processo');
+                container.innerHTML = ` <div class="lista">
+            <span class="span_processo">Processo ${i} </span>
+        </div>`;
+                containerLista.appendChild(container);
+            }
+            exibirProcessos = true;
+        }
+    }
+
+    lista.addEventListener('click', toggleProcessos)
+
+    // Para criar novos botões de cluster e de máquina :D
+    const clusterContainer = document.querySelector('.selecao-cluster ul');
+
+    for (let i = 1; i <= 5; i++) {
+        const button = document.createElement('button');
+        button.value = `cluster${i}`;
+        button.textContent = `Cluster ${i}`;
+        const listItem = document.createElement('li');
+        listItem.appendChild(button);
+        clusterContainer.appendChild(listItem);
+    }
+
+    const maquinaContainer = document.querySelector('.selecao-maquina ul');
+
+    for (let i = 1; i <= 5; i++) {
+        const button = document.createElement('button');
+        button.value = `maquina${i}`;
+        button.textContent = `Máquina ${i}`;
+        const listItem = document.createElement('li');
+        listItem.appendChild(button);
+        maquinaContainer.appendChild(listItem);
+    }
+
+    // Para mudar a corzinha dos cards de acordo com a porcentagem de uso :D
+    const porcentagemRAM = Math.floor(Math.random() * 100);
+    const porcentagemHD = Math.floor(Math.random() * 100);
+    const porcentagemCPU = Math.floor(Math.random() * 100);
+    porcentRAM.innerHTML = `${porcentagemRAM}%`;
+    porcentHD.innerHTML = `${porcentagemHD}%`;
+    porcentCPU.innerHTML = `${porcentagemCPU}%`;
+
+    if (porcentagemRAM > 70) {
+        porcentRAM.style.color = "red";
+        cardProcessoRam.style.borderTop = "15px solid red";
+    } else if (porcentagemRAM > 60) {
+        porcentRAM.style.color = "orange";
+        cardProcessoRam.style.borderTop = "15px solid orange";
+    }
+
+    if (porcentagemHD > 70) {
+        porcentHD.style.color = "red";
+        cardProcessoHD.style.borderTop = "15px solid red";
+    } else if (porcentagemHD > 60) {
+        porcentHD.style.color = "orange";
+        cardProcessoHD.style.borderTop = "15px solid orange";
+    }
+
+    if (porcentagemCPU > 70) {
+        porcentCPU.style.color = "red";
+        cardProcessoCPU.style.borderTop = "15px solid red";
+    } else if (porcentagemCPU > 60) {
+        porcentCPU.style.color = "orange";
+        cardProcessoCPU.style.borderTop = "15px solid orange";
+    }
+</script>
