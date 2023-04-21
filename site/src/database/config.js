@@ -22,11 +22,8 @@ var mySqlConfig = {
     host: "localhost",
     database: "renderwatch",
     user: "root",
-<<<<<<< HEAD
-    password: "#Gf12431771601",
-=======
     password: "3423",
->>>>>>> alertas
+
 };
 
 function executar(instrucao) {
