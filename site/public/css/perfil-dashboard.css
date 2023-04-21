@@ -7,7 +7,7 @@ body {
   width: 12vw;
   align-items: center;
   justify-content: center;
-  margin: 96vh 86vw;
+  margin: 30vh 86vw;
   position: absolute;
   padding: 10px;
   max-height: 60vh; /* definindo a altura máxima da div */
@@ -34,7 +34,7 @@ body {
   width: 12vw;
   align-items: center;
   justify-content: center;
-  margin: 155vh 86vw;
+  margin: 90vh 86vw;
   position: absolute;
   padding: 10px;
   max-height: 60vh; /* definindo a altura máxima da div */
@@ -163,7 +163,7 @@ body {
   align-items: left;
   display: flex;
   justify-content: left;
-  font-size: 25px;
+  font-size: 35px;
 }
 
 .container-processo {
@@ -212,7 +212,7 @@ body {
 .card-media {
   color: white;
   margin: 5vh auto;
-  width: 18vw;
+  width: 20vw;
   padding: 10px;
   background-color: rgb(244, 244, 244);
   height: 12vh;
@@ -302,6 +302,14 @@ body {
   color: white;
   margin: 5vh auto;
 }
+
+.topico-maquina{
+  margin-left: 15%;
+  margin-top: 5%;
+  padding: 5px;
+  border-left: 15px solid rgb(83, 142, 245);
+}
+
 
 .caixa-maquina {
   display: flex;
