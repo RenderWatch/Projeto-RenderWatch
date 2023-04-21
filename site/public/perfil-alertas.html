@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="css/style-all.css">
+    <link rel="stylesheet" href="css/perfil-alertas.css">
+ 
+</head>
+
+<body>
+    <div class="cor-bg"></div>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
+            </div>
+        </a>
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
+                    <li><a href="perfil-configuracoes.html">Configurações</a></li>
+                </div>
+                <div style="margin-top: -25px;" class="link">
+                    <a href="login.html"><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></a>
+                    <li><a href="login.html">Sair</a></li>
+                </div>
+            </ul>
+        </div>
+    </header>
+    <sidebar>
+        <div class="sidebar">
+            <ul>
+                <li><a href="perfil-empresa.html" class="sidebar-element">
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="perfil-clusters.html" class="sidebar-element">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
+            </ul>
+        </div>
+    </sidebar>
+
+
+     <main>
+
+
+
+        <div class="caixa_direita">
+
+            <div class="container-cards">
+
+
+                <div class="cards status">
+                    Tecnico ou animador
+                </div>
+                <div class="cards legenda">
+                    <ul class="legenda_ul">
+                        <li class="legenda_li"><img class="alerta_icone" src="assets/style-all/alerta_amarelo.png"
+                                alt=""><span class="titulo_legenda"> ATENÇÃO</span> </li>
+                        <li class="legenda_li"><img class="alerta_icone" src="assets/style-all/alerta_vermelho.png"
+                                alt=""><span class="titulo_legenda">CRÍTICO </span></li>
+                    </ul>
+                    <ul class="legenda_ul">
+                        <li class="legenda_li"><span
+                                style="background-color: brown; border-radius: 40px; width: 42px;height: 40px;; display: flex; align-items: center; justify-content: center; flex-direction: row;"><img
+                                    class="alerta_icone" src="assets/style-all/ampulheta.png" alt=""></span><span
+                                class="titulo_legenda">PENDENTE </span> </li>
+                        <li class="legenda_li"><img class="alerta_icone" src="assets/style-all/check.png" alt=""><span
+                                class="titulo_legenda"> RESOLVIDO </span></li>
+                    </ul>
+
+                </div>
+
+                <div class="cards button">
+                    <li class="button_li"><button onclick="todos_alertas()" class="cards_bullet_todos"></button><button
+                            class="card_button button_todos" onclick="todos_alertas()">Todos</button></li>
+                    <li class="button_li"><button onclick="resolvidos_alertas()"
+                            class="cards_bullet_resolvido"></button><button class="card_button button_resolvido"
+                            onclick="resolvidos_alertas()">Resolvidos</button></li>
+                    <li class="button_li"><button onclick="pendentes_alertas()"
+                            class="cards_bullet_pendente"></button><button class="card_button button_pendente"
+                            onclick="pendentes_alertas()">Pendentes</button></li>
+                </div>
+
+            </div>
+
+
+            <div id="container_alerta_pendentes" class="container-alertas container-alertas_pendentes">
+                <div class="container_titulo">ALERTAS PENDENTES</div>
+
+
+            </div>
+
+
+
+        </div>
+
+        <div id="container_alerta_resolvidos" class="container-alertas container-alertas_resolvidos">
+            <div class="container_titulo">ALERTAS RESOLVIDOS</div>
+            
+
+
+
+        </div>
+
+
+
+
+        </div>
+
+
+
+    </main>
+
+
+  
+
+</body>
+
+
+
+
+   
+
+
+</html>
+<script>
+
+
+
+    // VIZUALIZAÇÃO 
+    function todos_alertas() {
+        if (container_alerta_resolvidos.style.display = "none") {
+
+
+            container_alerta_resolvidos.style.display = "flex";
+            container_alerta_pendentes.style.display = "flex";
+
+            if (container_alerta_pendentes.style.display = "none") {
+                container_alerta_resolvidos.style.display = "flex";
+                container_alerta_pendentes.style.display = "flex";
+            }
+
+
+        }
+    }
+
+    function resolvidos_alertas() {
+        if (container_alerta_resolvidos.style.display = "none") {
+            container_alerta_resolvidos.style.display = "flex";
+
+        }
+        if (container_alerta_pendentes.style.display = "flex") {
+
+            container_alerta_pendentes.style.display = "none";
+        }
+    }
+
+    function pendentes_alertas() {
+        if (container_alerta_resolvidos.style.display = "flex") {
+            container_alerta_resolvidos.style.display = "none";
+
+        }
+        if (container_alerta_pendentes.style.display = "none") {
+
+            container_alerta_pendentes.style.display = "flex";
+        }
+    }
+
+
+
+
+</script>
+
+<script>
+   
+    var qtdAlert = 1
+    for (i = 0; i < qtdAlert; i++) {
+
+        container_alerta_resolvidos.innerHTML += ` 
+        <div id="alerta1" class="alerta alerta_resolvido">
+                    <ul class=" alerta_ul alerta_ul_um">
+                        <li class=" titulo_alerta">Nivel do Alerta</li>
+                        <li class="alerta_li">
+                            <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
+                            Alerta
+                        </li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_dois">
+                        <li class=" titulo_alerta">Descrição</li>
+                        <li class="alerta_li descricao_alerta">CPU com uso excedido</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_tres">
+                        <li class=" titulo_alerta">Máquina</li>
+                        <li class="alerta_li">1</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_quatro">
+                        <li class=" titulo_alerta">Cluster</li>
+                        <li class="alerta_li">2</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_cinco">
+                        <li class=" titulo_alerta">Data/Hora</li>
+                        <li class="hora_alerta">07/04/2023-16:00</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_seis">
+                        <li class=" titulo_alerta">Status</li>
+                        <li class="alerta_li button_li">
+                            <button onclick="button_status_resolvido()" class="button_status resolvido"></button>
+                            <button onclick="button_status_pendente()" class="button_status pendente"></button>
+                        </li>
+                    </ul>
+
+                </div>`
+
+                container_alerta_pendentes.innerHTML += ` 
+        <div id="alerta1" class="alerta alerta_resolvido">
+                    <ul class=" alerta_ul alerta_ul_um">
+                        <li class=" titulo_alerta">Nivel do Alerta</li>
+                        <li class="alerta_li">
+                            <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
+                            Alerta
+                        </li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_dois">
+                        <li class=" titulo_alerta">Descrição</li>
+                        <li class="alerta_li descricao_alerta">CPU com uso excedido</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_tres">
+                        <li class=" titulo_alerta">Máquina</li>
+                        <li class="alerta_li">1</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_quatro">
+                        <li class=" titulo_alerta">Cluster</li>
+                        <li class="alerta_li">2</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_cinco">
+                        <li class=" titulo_alerta">Data/Hora</li>
+                        <li class="hora_alerta">07/04/2023-16:00</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_seis">
+                        <li class=" titulo_alerta">Status</li>
+                        <li class="alerta_li button_li">
+                            <button onclick="button_status_resolvido()" class="button_status resolvido"></button>
+                            <button onclick="button_status_pendente()" class="button_status pendente"></button>
+                        </li>
+                    </ul>
+
+                </div>`
+
+                
+
+    
+
+}
+
+    
+    //BOTÕES DE STATUS
+
+    function button_status_pendente() {
+        alerta1.style.backgroundColor = "rgba(197, 0, 0, 0.7)";
+        img_nivel_alerta.src = "assets/style-all/alerta_vermelho.png"
+
+
+    }
+
+    function button_status_resolvido() {
+        alerta1.style.backgroundColor = "rgba(17, 196, 56, 0.8)";
+        img_nivel_alerta.src = 'assets/style-all/alerta_amarelo.png'
+    }
+
+    //
+
+  </script>

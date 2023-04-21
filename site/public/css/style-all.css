@@ -231,10 +231,14 @@ footer .container .social>a:hover {
   position: fixed;
   height: 100%;
   width: 180px;
+<<<<<<< HEAD
   background-color: #43484a;
   -webkit-box-shadow: 4px 0px 8px 0px rgba(0,0,0,0.25); 
 box-shadow: 1px 0px 6px 0px rgba(0,0,0,0.25);
 z-index: 9;
+=======
+  background-color: rgb(51, 51, 51);
+>>>>>>> alertas
 }
 
 .sidebar ul {
@@ -256,7 +260,11 @@ z-index: 9;
 .sidebar-element {
   color: #f8f8f8;
   list-style: none;
+<<<<<<< HEAD
   font-size: 1.18rem;
+=======
+  font-size: 1.2rem;
+>>>>>>> alertas
   text-decoration: none;
   display: flex;
   width: 100%;
@@ -270,8 +278,13 @@ z-index: 9;
   background-image: linear-gradient(45deg, rgba(246, 246, 246, 0.6) 50%, rgba(76, 76, 76, 0) 50%);
   background-position: 100%;
   background-size: 400%;
+<<<<<<< HEAD
   -webkit-transition: background 400ms ease-in-out;
   transition: background 400ms ease-in-out;
+=======
+  -webkit-transition: background 600ms ease-in-out;
+  transition: background 600ms ease-in-out;
+>>>>>>> alertas
 }
 
 .sidebar-element:hover {
