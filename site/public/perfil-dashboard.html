@@ -58,6 +58,8 @@
         </div>
     </sidebar>
     <div class="container-dashboard">
+        <h2 class="topico-alerta">Alertas identificados</h2>
+
         <div class="container-selecao-cluster">
             <div class="selecao-cluster">
                 <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Cluster</h2>
@@ -87,7 +89,7 @@
         </div>
 
         <div class="container-maquina">
-            <h2 class="topico-maquina">Análise de gráfico da máquina atual</h2>
+            <h2 class="topico-maquina">Análise da máquina atual</h2>
             <div style="display: flex;" class="card-maquina">
                 <div class="sla">
                     <h2>Nome da máquina: <span id="apelido">Machine</span></h2>
@@ -121,6 +123,8 @@
                 <span id="media-HD" class="valor-media">23</span>
             </div>
         </div> -->
+
+        <h2 class="topico-porcentagem">Porcentagem e gráficos de uso dos componentes</h2>
 
         <div class="container-processo">
             <div id="cardProcessoRam" class="card-processo">
@@ -162,9 +166,6 @@
                 <canvas id="myChart3"></canvas>
                 <div class="descricao">
                     <div class="descricao-componente">
-                        <div class="em-uso">
-                            <p>Em uso</p><span id="em-uso">0%</span>
-                        </div>
                         <p>Nome: <span id="nome-componente"></span></p>
                         <p>Modelo: <span id="modelo-componente"></span></p>
                         <p>Total: <span id="total-componente"></span></p>
@@ -200,6 +201,8 @@
         </div>
     </div>
 
+    <h2 class="topico-processo">Lista de processos</h2>
+
     <div class="container-card-processos">
         <div class="container-lista-processos">
             <div class="lista">
@@ -211,6 +214,8 @@
             </div>
         </div>
     </div>
+
+    
 
 </body>
 <script src="js/perfil-dashboard.js"></script>
