@@ -5,51 +5,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alertas - RenderWatch</title>
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link rel="stylesheet" href="css/style-all.css">
     <link rel="stylesheet" href="css/perfil-alertas.css">
-
-
+ 
 </head>
 
-<body >
-
-
-
-    <div class="header">
-
-
-        <img class="renderwatch_logo_colorido" src="assets/cadastro/RenderWatch_Logo_Branco.png" alt="">
-        <a class="a_sair" href="public/index.html">
-            <div class="sair">
-                <img class="log-out" src="assets/perfil/log-out.png" alt="">
-                Sair
+<body>
+    <div class="cor-bg"></div>
+    <header>
+        <a href="index.html">
+            <div id="div-header-logo">
+                <img src="assets/index/renderwatch_somente_logo_white.png">
+                <img class="renderwatch-header" src="assets/index/renderwatch_somente_palavra_white.png">
             </div>
         </a>
-
-
-
-    </div>
-
-    <div class="caixa_esquerda">
-
-        <div class="caixa um">
-            <a class="a_btn_caixa" href=""><button class="btn_caixa">Meu Cadastro</button></a>
-            <a class="a_btn_caixa" href=""><button class="btn_caixa">Empresa</button></a>
-            <a class="a_btn_caixa" href=""><button class="btn_caixa">Cluster</button></a>
-            <a class="a_btn_caixa" href=""><button class="btn_caixa">Gerenciar Permissões</button></a>
-
+        <div class="menu">
+            <ul>
+                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
+                    <li><a href="perfil-configuracoes.html">Configurações</a></li>
+                </div>
+                <div style="margin-top: -25px;" class="link">
+                    <a href="login.html"><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></a>
+                    <li><a href="login.html">Sair</a></li>
+                </div>
+            </ul>
         </div>
-
-        <div class="caixa dois">
-
-            <a class="a_btn_caixa" href=""><button class="btn_caixa">Monitoração</button></a>
-            <a class="a_btn_caixa" href=""><button class="btn_caixa">Histórico de Alertas</button></a>
-            <a class="a_btn_caixa" href=""><button class="btn_caixa">Suporte</button></a>
+    </header>
+    <sidebar>
+        <div class="sidebar">
+            <ul>
+                <li><a href="perfil-empresa.html" class="sidebar-element">
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="perfil-clusters.html" class="sidebar-element">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
+            </ul>
         </div>
+    </sidebar>
 
 
-    </div>
-    <main>
+     <main>
 
 
 
@@ -120,7 +131,16 @@
 
     </main>
 
+
+  
+
 </body>
+
+
+
+
+   
+
 
 </html>
 <script>
