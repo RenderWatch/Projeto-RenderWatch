@@ -57,7 +57,7 @@
             </ul>
         </div>
     </sidebar>
-    <div class="container-dashboard">
+    <div id="id_container_dashboard" class="container-dashboard">
         <h2 class="topico-alerta">Alertas identificados</h2>
 
         <div class="container-selecao-cluster">
@@ -211,17 +211,36 @@
             <div class="total">
                 <p>Total de processos: <span id="total-processos">0</span></p>
                 <p>Total de threads: <span id="total-threads">0</span></p>
+                <button value="IMPRIMIR" onclick="gerarPdf()"> PDF</button>
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+        crossorigin="anonymous"></script>
 
-    
+
+
+
 
 </body>
 <script src="js/perfil-dashboard.js"></script>
 
 </html>
 
+<script>
+    // FUNÇÃO DOWLOAND PDF
+
+    function gerarPdf() {
+var printDash = document.getElementById(id_container_dashboard).innerHTML
+        var doc = new jsPDF()
+        doc.text(printDash, 10, 10)
+        doc.save('relatório.pdf')
+    }
+
+
+
+</script>
 <script>
     // Seleciona os elementos necessários
     const lista = document.querySelector('.lista');
