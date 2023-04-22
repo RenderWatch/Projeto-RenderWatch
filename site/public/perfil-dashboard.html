@@ -211,13 +211,11 @@
             <div class="total">
                 <p>Total de processos: <span id="total-processos">0</span></p>
                 <p>Total de threads: <span id="total-threads">0</span></p>
-                <button value="IMPRIMIR" onclick="gerarPdf()"> PDF</button>
+                <button value="IMPRIMIR" onclick="gerarPdf()"> Gerar relatório</button>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
-        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
-        crossorigin="anonymous"></script>
+
 
 
 
@@ -226,15 +224,25 @@
 </body>
 <script src="js/perfil-dashboard.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+    integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+    crossorigin="anonymous"></script>
+
 </html>
 
 <script>
     // FUNÇÃO DOWLOAND PDF
-
+    var dados = ` Data:$0 Hora:$0 <br>
+    Relatório: $0
+    Quantidade de Alertas na ultíma semana: $0 <br>
+              Máquina que apresentou maior quantidade de problemas: $0 <br>
+               `
     function gerarPdf() {
-var printDash = document.getElementById(id_container_dashboard).innerHTML
         var doc = new jsPDF()
-        doc.text(printDash, 10, 10)
+        //doc.text(dados);
+        doc.fromHTML(`<h3> ${dados} </h3>`)
+
+
         doc.save('relatório.pdf')
     }
 
