@@ -62,13 +62,13 @@
     <body>
         <div class="cards-container">
             <div class="card">
-                <h2>Relatório Adaptado</h2>
+                <h2>Relatório Técnico</h2>
                 <img class="img-relatorio" src="assets/perfil/Computer troubleshooting-amico.png" alt="">
                 <p>Este relatório fornece informações técnicas detalhadas sobre o desempenho do sistema.</p>
                 <button class="card-button" value="IMPRIMIR" onclick="gerarPdf()">Gerar relatório</button>
             </div>
             <div class="card">
-                <h2>Relatório para Artistas</h2>
+                <h2>Relatório Adaptado</h2>
                 <img class="img-relatorio" src="assets/perfil/Designer life-amico.png" alt="">
                 <p>Este relatório fornece informações adaptadas para usuários comuns sobre o desempenho do sistema.</p>
                 <button class="card-button" value="IMPRIMIR" onclick="gerarPdf()">Gerar relatório</button>
@@ -85,17 +85,35 @@
 
 <script>
     // FUNÇÃO DOWLOAND PDF
-    var dados = ` Data:$0 Hora:$0 <br>
-    Relatório: $0
-    Quantidade de Alertas na ultíma semana: $0 <br>
-              Máquina que apresentou maior quantidade de problemas: $0 <br>
-               `
+    var dados = `
+    <span>Maquinas que emitiram  alerta no mês 04/2023<br></span>
+        <span style="">Cluster 2 - maquina 1 - dia 02/04/2023 10:45 - Alerta CPU - Resolvido </span><br>
+        <span style="">Cluster 2 - maquina 2 - dia 02/04/2023 12:45 - Alerta CPU - Resolvido </span><br>
+        <span style="">Cluster 2 - maquina 5 - dia 02/04/2023 21:39 - Alerta CPU - Resolvido </span><br>
+        <span style="">Cluster 3 - maquina 5 - dia 02/04/2023 22:12 - Alerta Memoria - Resolvido </span><br>
+
+        <span>Quantidade de alertas pendentes: 0<br></span>
+        <span>Quantidade de alertas resolvidos: 4<br></span>
+
+        <span>cluster com o maior numero de alertas: 2<br></span>
+        <span>componente mais presente nos alertas: CPU<br></span>
+
+        <span>Máquinas que ficaram ociosas:<br> </span>
+        <span>Cluster 2 - máquina 1 - dia 02/04/2023 10:00 até dia 03/04/2023 20:32<br></span>
+        <span>total de processos feitos:<br></span>
+        <span>34554<br></span>
+
+        <span>Data e hora da emissão do relatório: 22/04/2023 - 19:00<br></span>`
+        
     function gerarPdf() {
         var doc = new jsPDF()
-        //doc.text(dados);
-        doc.fromHTML(`<h3> ${dados} </h3>`)
+        //doc.text();
+        doc.fromHTML(`<div style="margin-top: -40px;font-size: 22px;display: flex;flex-direction: column;width: 100%;color: rgb(0, 0, 0); align-items: center; text-align: justify; height: 100%;""> ${dados} </div>`, 5, 5)
 
 
         doc.save('relatório.pdf')
     }
+
+
+
 </script>

@@ -220,13 +220,10 @@ body {
   color: black;
 }
 
-.caixa-alerta:nth-child(n + 4) {
-  border: none;
-}
 
 .caixa-alerta p {
   /* text-transform: uppercase; */
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .caixa-alerta .span_alertas {

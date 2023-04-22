@@ -22,7 +22,11 @@
         </a>
         <div class="menu">
             <ul>
-                <div style="margin-top: -25px; margin-left: 50%;" class="link">
+                 <div style="margin-top: -25px; margin-left: -9%;" class="link">
+                    <img class="perfil-configuracoes-icon" src="assets/perfil/relatorio (1).png" alt="">
+                    <li><a style="margin-left: 12px;" href="perfil-relatorio.html">Relatórios</a></li>
+                </div>
+                <div style="margin-top: -25px; margin-left: 0;" class="link">
                     <img class="perfil-configuracoes-icon" src="assets/perfil/setting.png" alt="">
                     <li><a href="">Configurações</a></li>
                 </div>
@@ -60,27 +64,27 @@
     <div id="id_container_dashboard" class="container-dashboard">
         <h2 class="topico-alerta">Alertas identificados</h2>
 
-            <div class="container-selecao-cluster">
-                <div class="selecao-cluster">
-                    <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Cluster</h2>
-                    <ul>
-                    </ul>
-                </div>
+        <div class="container-selecao-cluster">
+            <div class="selecao-cluster">
+                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Cluster</h2>
+                <ul>
+                </ul>
             </div>
-    
-            <div class="container-selecao-maquina">
-                <div class="selecao-maquina">
-                    <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Maquina</h2>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
+        </div>
 
-            <div class="container-selecao-relatorio">
-                <div class="selecao-relatorio">
-                    <button value="IMPRIMIR" onclick="gerarPdf()"> Gerar relatório</button> 
-                </div>
+        <div class="container-selecao-maquina">
+            <div class="selecao-maquina">
+                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Maquina</h2>
+                <ul>
+                </ul>
             </div>
+        </div>
+
+        <!-- <div class="container-selecao-relatorio">
+            <div class="selecao-relatorio">
+                <button value="IMPRIMIR" onclick="gerarPdf()"> Gerar relatório</button>
+            </div>
+        </div> -->
 
         <div class="container-alerta">
             <div id="caixa-alerta" class="caixa-alerta">
@@ -91,7 +95,17 @@
                 <span id="span_alertas_maquina" class="span_alertas">5</span>
                 <p>Alertas identificados na máquina</p>
             </div>
+            <div id="caixa-alerta" class="caixa-alerta">
+                <span id="span_alertas_maquina" class="span_alertas">4</span>
+                <p>Falhas recorrentes no cluster 2</p>
+            </div>
+            <div id="caixa-alerta" class="caixa-alerta">
+                <span id="span_alertas_maquina" class="span_alertas">7</span>
+                <p>Falhas recorrentes na máquina 3</p>
+            </div>
         </div>
+
+        
 
         <div class="container-maquina">
             <h2 class="topico-maquina">Análise do Sistema</h2>
@@ -148,6 +162,10 @@
                 <span class="processo">Uso de CPU (%)</span>
                 <span id="porcentCPU" class="porcent-processo"></span>
             </div>
+            <div id="cardProcessoRede" class="card-processo">
+                <span class="processo">Uso de Rede (%)</span>
+                <span id="porcentRede" class="porcent-processo"></span>
+            </div>
         </div>
 
         <div class="container-graficos">
@@ -156,8 +174,8 @@
                 <canvas id="myChart"></canvas>
                 <div class="descricao">
                     <div class="descricao-componente" style="margin-top: 5vh;">
-                        <p>Disponível: <span id="memoria-disponivel">2,0</span></p>
-                        <p>Total: <span id="memoria-disponivel">8,0</span></p>
+                        <p>Memória disponível: <span id="memoria-disponivel">2,0</span></p>
+                        <p>Memória total: <span id="memoria-disponivel">8,0</span></p>
                     </div>
                 </div>
             </div>
@@ -184,13 +202,9 @@
                 <span>Uso de CPU em tempo real</span>
                 <canvas id="myChart3"></canvas>
                 <div class="descricao">
-                    <div class="descricao-componente">
-                        <p>Nome: <span id="nome-componente"></span></p>
-                        <p>Modelo: <span id="modelo-componente"></span></p>
-                        <p>Total: <span id="total-componente"></span></p>
-                        <p>Identificador: <span id="identificador-componente"></span></p>
-                        <p>Tipo: <span id="tipo-componente"></span></p>
-                        <p>Frequência: <span id="frequencia-componente"></span></p>
+                    <div class="descricao-componente" style="margin-top: 5vh;">
+                        <p id="nome-componente">Intel(R) Core(TM) I5-3570</p>
+                        <p id="identificador-componente">Identificador: <span> Intel 64</span></p>
                     </div>
                 </div>
             </div>
@@ -211,8 +225,6 @@
                         <p>Endereço IPV4: <span id="endereco-rede-ipv4"></span></p>
                         <p>Endereço IPV6: <span id="endereco-rede-ipv6"></span></p>
                         <p>Endereço Mac: <span id="endereco-rede-mac"></span></p>
-                        <p>Dominio: <span id="dominio-rede"></span></p>
-                        <p>Hostname: <span id="hostname-rede"></span></p>
                         <p>Nome DNS: <span id="nome-rede-dns"></span></p>
                     </div>
                 </div>
@@ -234,11 +246,6 @@
         </div>
     </div>
 
-
-
-
-
-
 </body>
 <script src="js/perfil-dashboard.js"></script>
 
@@ -250,23 +257,36 @@
 
 <script>
     // FUNÇÃO DOWLOAND PDF
-    var dados = ` Data:$0 Hora:$0 <br>
-    Relatório: $0
-    Quantidade de Alertas na ultíma semana: $0 <br>
-              Máquina que apresentou maior quantidade de problemas: $0 <br>
-               `
+    var dados = `
+    <span>Maquinas que emitiram  alerta no mês 04/2023<br></span>
+        <span style="">Cluster 2 - maquina 1 - dia 02/04/2023 10:45 - Alerta CPU - Resolvido </span><br>
+        <span style="">Cluster 2 - maquina 2 - dia 02/04/2023 12:45 - Alerta CPU - Resolvido </span><br>
+        <span style="">Cluster 2 - maquina 5 - dia 02/04/2023 21:39 - Alerta CPU - Resolvido </span><br>
+        <span style="">Cluster 3 - maquina 5 - dia 02/04/2023 22:12 - Alerta Memoria - Resolvido </span><br>
+
+        <span>Quantidade de alertas pendentes: 0<br></span>
+        <span>Quantidade de alertas resolvidos: 4<br></span>
+
+        <span>cluster com o maior numero de alertas: 2<br></span>
+        <span>componente mais presente nos alertas: CPU<br></span>
+
+        <span>Máquinas que ficaram ociosas:<br> </span>
+        <span>Cluster 2 - máquina 1 - dia 02/04/2023 10:00 até dia 03/04/2023 20:32<br></span>
+        <span>total de processos feitos:<br></span>
+        <span>34554<br></span>
+
+        <span>Data e hora da emissão do relatório: 22/04/2023 - 19:00<br></span>`
+
     function gerarPdf() {
         var doc = new jsPDF()
-        //doc.text(dados);
-        doc.fromHTML(`<h3> ${dados} </h3>`)
+        //doc.text();
+        doc.fromHTML(`<div style="margin-top: -40px;font-size: 22px;display: flex;flex-direction: column;width: 100%;color: rgb(0, 0, 0); align-items: center; text-align: justify; height: 100%;""> ${dados} </div>`, 5, 5)
 
 
         doc.save('relatório.pdf')
     }
-
-
-
 </script>
+
 <script>
     // Seleciona os elementos necessários
     const lista = document.querySelector('.lista');
@@ -321,9 +341,11 @@
     const porcentagemRAM = Math.floor(Math.random() * 100);
     const porcentagemHD = Math.floor(Math.random() * 100);
     const porcentagemCPU = Math.floor(Math.random() * 100);
+    const porcentagemRede = Math.floor(Math.random() * 100);
     porcentRAM.innerHTML = `${porcentagemRAM}%`;
     porcentHD.innerHTML = `${porcentagemHD}%`;
     porcentCPU.innerHTML = `${porcentagemCPU}%`;
+    porcentRede.innerHTML = `${porcentagemRede}%`;
 
     if (porcentagemRAM > 70) {
         porcentRAM.style.color = "red";
@@ -348,4 +370,13 @@
         porcentCPU.style.color = "orange";
         cardProcessoCPU.style.borderTop = "15px solid orange";
     }
+
+    if (porcentagemRede > 70) {
+        porcentRede.style.color = "red";
+        cardProcessoRede.style.borderTop = "15px solid red";
+    } else if (porcentagemRede > 60) {
+        porcentRede.style.color = "orange";
+        cardProcessoRede.style.borderTop = "15px solid orange";
+    }
+
 </script>
