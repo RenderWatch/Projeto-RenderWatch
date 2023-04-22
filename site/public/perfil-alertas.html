@@ -75,8 +75,7 @@
                     <ul class="legenda_ul">
                         <li class="legenda_li"><img class="alerta_icone" src="assets/style-all/alerta_amarelo.png"
                                 alt=""><span class="titulo_legenda"> ATENÇÃO</span> </li>
-                        <li class="legenda_li"><img class="alerta_icone" src="assets/style-all/alerta_vermelho.png"
-                                alt=""><span class="titulo_legenda">CRÍTICO </span></li>
+                        
                     </ul>
                     <ul class="legenda_ul">
                         <li class="legenda_li"><span
@@ -104,7 +103,7 @@
 
 
             <div id="container_alerta_pendentes" class="container-alertas container-alertas_pendentes">
-                <div class="container_titulo">ALERTAS PENDENTES</div>
+                <div class="container_titulo"><b>ALERTAS PENDENTES</b></div>
 
 
             </div>
@@ -113,8 +112,8 @@
 
         </div>
 
-        <div id="container_alerta_resolvidos" class="container-alertas container-alertas_resolvidos">
-            <div class="container_titulo">ALERTAS RESOLVIDOS</div>
+        <div   id="container_alerta_resolvidos" class="container-alertas container-alertas_resolvidos">
+            <div class="container_titulo"><b>ALERTAS RESOLVIDOS</b></div>
             
 
 
@@ -129,6 +128,7 @@
 
 
     </main>
+    
 
 
   
@@ -190,80 +190,73 @@
 
 </script>
 
+
 <script>
    
-    var qtdAlert = 1
-    for (i = 0; i < qtdAlert; i++) {
+    var qtdAlert = 3
+    
+    var alertaPendente =[]
+    var alertaResolvido =[]
 
-        container_alerta_resolvidos.innerHTML += ` 
-        <div id="alerta1" class="alerta alerta_resolvido">
+for(i = 0; i < qtdAlert; i++){
+
+    alertaPendente.push({
+    id: `alerta${i}`
+   });
+    
+
+
+
+}
+
+
+
+
+
+    for (i = 0; i <=alertaPendente.length; i++) {
+        
+var id = alertaPendente[i].id;
+        container_alerta_pendentes.innerHTML += ` 
+        <span id="alerta${i}">
+        <div  class="alerta alerta_resolvido">
                     <ul class=" alerta_ul alerta_ul_um">
-                        <li class=" titulo_alerta">Nivel do Alerta</li>
+                        <li class=" titulo_alerta"><b>Alerta</b></li>
                         <li class="alerta_li">
                             <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
-                            Alerta
+                            
                         </li>
                     </ul>
                     <ul class=" alerta_ul alerta_ul_dois">
-                        <li class=" titulo_alerta">Descrição</li>
+                        <li class=" titulo_alerta"><b>Descrição</b></li>
                         <li class="alerta_li descricao_alerta">CPU com uso excedido</li>
                     </ul>
                     <ul class=" alerta_ul alerta_ul_tres">
-                        <li class=" titulo_alerta">Máquina</li>
+                        <li class=" titulo_alerta"><b>Máquina</b></li>
                         <li class="alerta_li">1</li>
                     </ul>
                     <ul class=" alerta_ul alerta_ul_quatro">
-                        <li class=" titulo_alerta">Cluster</li>
+                        <li class=" titulo_alerta"><b>Cluster</b></li>
                         <li class="alerta_li">2</li>
                     </ul>
                     <ul class=" alerta_ul alerta_ul_cinco">
-                        <li class=" titulo_alerta">Data/Hora</li>
+                        <li class=" titulo_alerta"><b>Data/Hora</b></li>
                         <li class="hora_alerta">07/04/2023-16:00</li>
                     </ul>
                     <ul class=" alerta_ul alerta_ul_seis">
-                        <li class=" titulo_alerta">Status</li>
+                        <li class=" titulo_alerta"><b>Status</b></li>
                         <li class="alerta_li button_li">
-                            <button onclick="button_status_resolvido()" class="button_status resolvido"></button>
-                            <button onclick="button_status_pendente()" class="button_status pendente"></button>
+                            <button  onclick="button_status_resolvido(${id})" class="button_status resolvido"></button>
+                            <button style="opacity: 50%;"onclick="button_status_pendente(${id})" class="button_status pendente"></button>
                         </li>
                     </ul>
 
-                </div>`
+                </div>
+                <span>`
 
-                container_alerta_pendentes.innerHTML += ` 
-        <div id="alerta1" class="alerta alerta_resolvido">
-                    <ul class=" alerta_ul alerta_ul_um">
-                        <li class=" titulo_alerta">Nivel do Alerta</li>
-                        <li class="alerta_li">
-                            <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
-                            Alerta
-                        </li>
-                    </ul>
-                    <ul class=" alerta_ul alerta_ul_dois">
-                        <li class=" titulo_alerta">Descrição</li>
-                        <li class="alerta_li descricao_alerta">CPU com uso excedido</li>
-                    </ul>
-                    <ul class=" alerta_ul alerta_ul_tres">
-                        <li class=" titulo_alerta">Máquina</li>
-                        <li class="alerta_li">1</li>
-                    </ul>
-                    <ul class=" alerta_ul alerta_ul_quatro">
-                        <li class=" titulo_alerta">Cluster</li>
-                        <li class="alerta_li">2</li>
-                    </ul>
-                    <ul class=" alerta_ul alerta_ul_cinco">
-                        <li class=" titulo_alerta">Data/Hora</li>
-                        <li class="hora_alerta">07/04/2023-16:00</li>
-                    </ul>
-                    <ul class=" alerta_ul alerta_ul_seis">
-                        <li class=" titulo_alerta">Status</li>
-                        <li class="alerta_li button_li">
-                            <button onclick="button_status_resolvido()" class="button_status resolvido"></button>
-                            <button onclick="button_status_pendente()" class="button_status pendente"></button>
-                        </li>
-                    </ul>
+                console.log(alertaPendente[i].id)
 
-                </div>`
+          
+            
 
                 
 
@@ -271,20 +264,56 @@
 
 }
 
+
+
     
     //BOTÕES DE STATUS
 
-    function button_status_pendente() {
-        alerta1.style.backgroundColor = "rgba(197, 0, 0, 0.7)";
-        img_nivel_alerta.src = "assets/style-all/alerta_vermelho.png"
+    function button_status_pendente(id) {
+alert("Alerta Pendente")
+       
+}
 
+    function button_status_resolvido(id) {
+        id.style.display='none'
+    container_alerta_resolvidos.innerHTML+=` <span id="alerta${i}">
+        <div  class="alerta alerta_resolvido">
+                    <ul class=" alerta_ul alerta_ul_um">
+                        <li class=" titulo_alerta"><b>Alerta</b></li>
+                        <li class="alerta_li">
+                            <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
+                            
+                        </li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_dois">
+                        <li class=" titulo_alerta"><b>Descrição</b></li>
+                        <li class="alerta_li descricao_alerta">CPU com uso excedido</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_tres">
+                        <li class=" titulo_alerta"><b>Máquina</b></li>
+                        <li class="alerta_li">1</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_quatro">
+                        <li class=" titulo_alerta"><b>Cluster</b></li>
+                        <li class="alerta_li">2</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_cinco">
+                        <li class=" titulo_alerta"><b>Data/Hora</b></li>
+                        <li class="hora_alerta">07/04/2023-16:00</li>
+                    </ul>
+                    <ul class=" alerta_ul alerta_ul_seis">
+                        <li class=" titulo_alerta"><b>Status</b></li>
+                        <li class="alerta_li button_li">
+                            <button class="button_status resolvido"></button>
+                            
+                        </li>
+                    </ul>
 
-    }
+                </div>
+                <span>`
+        }
+        
 
-    function button_status_resolvido() {
-        alerta1.style.backgroundColor = "rgba(17, 196, 56, 0.8)";
-        img_nivel_alerta.src = 'assets/style-all/alerta_amarelo.png'
-    }
 
     //
 
