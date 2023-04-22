@@ -60,22 +60,27 @@
     <div id="id_container_dashboard" class="container-dashboard">
         <h2 class="topico-alerta">Alertas identificados</h2>
 
-        <div class="container-selecao-cluster">
-            <div class="selecao-cluster">
-                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Cluster</h2>
-                <ul>
-                </ul>
+            <div class="container-selecao-cluster">
+                <div class="selecao-cluster">
+                    <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Cluster</h2>
+                    <ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-
-        <div class="container-selecao-maquina">
-            <div class="selecao-maquina">
-                <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Maquina</h2>
-                <ul>
-                </ul>
+    
+            <div class="container-selecao-maquina">
+                <div class="selecao-maquina">
+                    <h2 style="background-color: rgb(81 81 81 / 19%); text-align: center;">Maquina</h2>
+                    <ul>
+                    </ul>
+                </div>
             </div>
-        </div>
 
+            <div class="container-selecao-relatorio">
+                <div class="selecao-relatorio">
+                    <button value="IMPRIMIR" onclick="gerarPdf()"> Gerar relatório</button> 
+                </div>
+            </div>
 
         <div class="container-alerta">
             <div id="caixa-alerta" class="caixa-alerta">
@@ -89,14 +94,18 @@
         </div>
 
         <div class="container-maquina">
-            <h2 class="topico-maquina">Análise da máquina atual</h2>
+            <h2 class="topico-maquina">Análise do Sistema</h2>
             <div style="display: flex;" class="card-maquina">
-                <div class="sla">
+                <div class="descricao-maquina">
                     <h2>Nome da máquina: <span id="apelido">Machine</span></h2>
                     <h2>Sistema operacional: <span id="sistema">Ubuntu/Linux</span></h2>
                     <h2>Fabricante: <span id="fabricante">Gnome</span></h2>
                     <h2>Arquitetura: <span id="arquitetura">64 bits</span></h2>
+                    <h2>Inicializado: <span id="data-inicializado">2023-04-16 17:40:30</span></h2>
+                    <h2>Tempo de atividade: <span id="tempo-atividade">5 dias, 22:26:29</span></h2>
+                    <h2>Permissões: <span id="permissao-usuario">Executando como usuário padrão</span></h2>
                 </div>
+
                 <div class="metricas">
                     <p>Métricas definidas - CPU</p><span id="bytes-recebidos">70%</span>
                 </div>
@@ -146,7 +155,9 @@
                 <span>Uso de memoria RAM em tempo real</span>
                 <canvas id="myChart"></canvas>
                 <div class="descricao">
-                    <div class="descricao-componente">
+                    <div class="descricao-componente" style="margin-top: 5vh;">
+                        <p>Disponível: <span id="memoria-disponivel">2,0</span></p>
+                        <p>Total: <span id="memoria-disponivel">8,0</span></p>
                     </div>
                 </div>
             </div>
@@ -155,6 +166,14 @@
                 <canvas style="height: 300px;" id="myChart2"></canvas>
                 <div class="descricao">
                     <div class="descricao-componente">
+                        <div class="bytes">
+                            <div class="recebidos">
+                                <p>Bytes de Leitura</p><span id="bytes-recebidos">0 Kbps</span>
+                            </div>
+                            <div class="enviados">
+                                <p>Bytes de Escritas</p><span id="bytes-enviados">0 Kbps</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -211,7 +230,6 @@
             <div class="total">
                 <p>Total de processos: <span id="total-processos">0</span></p>
                 <p>Total de threads: <span id="total-threads">0</span></p>
-                <button value="IMPRIMIR" onclick="gerarPdf()"> Gerar relatório</button>
             </div>
         </div>
     </div>
