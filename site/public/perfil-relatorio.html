@@ -75,6 +75,7 @@
             </div>
         </div>
     </body>
+
 </html>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
@@ -86,34 +87,34 @@
 <script>
     // FUNÇÃO DOWLOAND PDF
     var dados = `
-    <span>Maquinas que emitiram  alerta no mês 04/2023<br></span>
-        <span style="">Cluster 2 - maquina 1 - dia 02/04/2023 10:45 - Alerta CPU - Resolvido </span><br>
-        <span style="">Cluster 2 - maquina 2 - dia 02/04/2023 12:45 - Alerta CPU - Resolvido </span><br>
-        <span style="">Cluster 2 - maquina 5 - dia 02/04/2023 21:39 - Alerta CPU - Resolvido </span><br>
-        <span style="">Cluster 3 - maquina 5 - dia 02/04/2023 22:12 - Alerta Memoria - Resolvido </span><br>
-
-        <span>Quantidade de alertas pendentes: 0<br></span>
-        <span>Quantidade de alertas resolvidos: 4<br></span>
-
-        <span>cluster com o maior numero de alertas: 2<br></span>
-        <span>componente mais presente nos alertas: CPU<br></span>
-
-        <span>Máquinas que ficaram ociosas:<br> </span>
-        <span>Cluster 2 - máquina 1 - dia 02/04/2023 10:00 até dia 03/04/2023 20:32<br></span>
-        <span>total de processos feitos:<br></span>
-        <span>34554<br></span>
-
-        <span>Data e hora da emissão do relatório: 22/04/2023 - 19:00<br></span>`
-        
+    <div class="header" style="background-color: blue; padding: 20px;">
+        <h1 style="color: white; text-align: center;">Relatório de Alertas</h1>
+    </div>
+<div>
+    <ul>
+        <li>Maquinas que emitiram  alerta no mês 04/2023</li>
+        <ul>
+            <li>Cluster 2 - maquina 1 - dia 02/04/2023 10:45 - Alerta CPU - Resolvido</li>
+            <li>Cluster 2 - maquina 2 - dia 02/04/2023 12:45 - Alerta CPU - Resolvido</li>
+            <li>Cluster 2 - maquina 5 - dia 02/04/2023 21:39 - Alerta CPU - Resolvido</li>
+            <li>Cluster 3 - maquina 5 - dia 02/04/2023 22:12 - Alerta Memoria - Resolvido</li>
+        </ul>
+        <li>Quantidade de alertas pendentes: 0</li>
+        <li>Quantidade de alertas resolvidos: 4</li>
+        <li>Cluster com o maior numero de alertas: 2</li>
+        <li>Componente mais presente nos alertas: CPU</li>
+        <li>Máquinas que ficaram ociosas:</li>
+        <ul>
+            <li>Cluster 2 - máquina 1 - dia 02/04/2023 10:00 até dia 03/04/2023 20:32</li>
+        </ul>
+        <li>Total de processos feitos: 34554</li>
+        <li>Data e hora da emissão do relatório: 22/04/2023 - 19:00</li>
+    </ul>
+</div>`
     function gerarPdf() {
         var doc = new jsPDF()
         //doc.text();
-        doc.fromHTML(`<div style="margin-top: -40px;font-size: 22px;display: flex;flex-direction: column;width: 100%;color: rgb(0, 0, 0); align-items: center; text-align: justify; height: 100%;""> ${dados} </div>`, 5, 5)
-
-
+        doc.fromHTML(`<div class="header" style="font-size: 14px; line-height: 1.5;">${dados}</div>`, 10, 10)
         doc.save('relatório.pdf')
     }
-
-
-
 </script>
