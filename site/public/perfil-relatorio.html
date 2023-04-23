@@ -71,7 +71,7 @@
                 <h2>Relatório Adaptado</h2>
                 <img class="img-relatorio" src="assets/perfil/Designer life-amico.png" alt="">
                 <p>Este relatório fornece informações adaptadas para usuários comuns sobre o desempenho do sistema.</p>
-                <button class="card-button" value="IMPRIMIR" onclick="gerarPdf()">Gerar relatório</button>
+                <button class="card-button" value="IMPRIMIR" onclick="gerarPdfAdaptado()">Gerar relatório</button>
             </div>
         </div>
     </body>
@@ -87,18 +87,109 @@
 <script>
     // FUNÇÃO DOWLOAND PDF
     var dados = `
-    <div class="header" style="background-color: blue; padding: 20px;">
-        <h1 style="color: white; text-align: center;">Relatório de Alertas</h1>
-    </div>
-<div>
-    <ul>
-        <li>Maquinas que emitiram  alerta no mês 04/2023</li>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(242, 242, 242)
+    }
+    ul {
+        font-size: 15px;
+        line-height: 1.0;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    </style>
+
+    <div>
+        <h2>Relatório de Uso de Máquinas - Abril/2023</h2>
         <ul>
-            <li>Cluster 2 - maquina 1 - dia 02/04/2023 10:45 - Alerta CPU - Resolvido</li>
-            <li>Cluster 2 - maquina 2 - dia 02/04/2023 12:45 - Alerta CPU - Resolvido</li>
-            <li>Cluster 2 - maquina 5 - dia 02/04/2023 21:39 - Alerta CPU - Resolvido</li>
-            <li>Cluster 3 - maquina 5 - dia 02/04/2023 22:12 - Alerta Memoria - Resolvido</li>
+            <li>Maquinas que emitiram alerta no mês 04/2023</li>
+            <ul>
+                <li>Cluster 2 - maquina 1 - dia 02/04/2023 10:45 - Alerta CPU - Resolvido</li>
+                <li>Cluster 2 - maquina 2 - dia 02/04/2023 12:45 - Alerta CPU - Resolvido</li>
+                <li>Cluster 2 - maquina 5 - dia 02/04/2023 21:39 - Alerta CPU - Resolvido</li>
+                <li>Cluster 3 - maquina 5 - dia 02/04/2023 22:12 - Alerta Memoria - Resolvido</li>
+            </ul>
+            <li>Quantidade de alertas pendentes: 0</li>
+            <li>Quantidade de alertas resolvidos: 4</li>
+            <li>Cluster com o maior numero de alertas: 2</li>
+            <li>Componente mais presente nos alertas: CPU</li>
+            <li>Máquinas que ficaram ociosas:</li>
+            <ul>
+                <li>Cluster 2 - máquina 1 - dia 02/04/2023 10:00 até dia 03/04/2023 20:32</li>
+            </ul>
+            <li>Total de processos feitos: 34554</li>
+            <li>Data e hora da emissão do relatório: 22/04/2023 - 19:00</li>
+            <li>Uso de CPU por cluster:</li>
+            <ul>
+                <li>Cluster 1 - 56%</li>
+                <li>Cluster 2 - 75%</li>
+                <li>Cluster 3 - 40%</li>
+            </ul>
+            <li>Uso de memória por cluster:</li>
+            <ul>
+                <li>Cluster 1 - 80%</li>
+                <li>Cluster 2 - 64%</li>
+                <li>Cluster 3 - 45%</li>
+            </ul>
+            <li>Quantidade de disco livre por cluster:</li>
+            <ul>
+                <li>Cluster 1 - 200GB</li>
+                <li>Cluster 2 - 60GB</li>
+                <li>Cluster 3 - 120GB</li>
+            </ul>
         </ul>
+    </div>`
+    function gerarPdf() {
+        var doc = new jsPDF()
+            
+        doc.setFontSize(16);
+        doc.setTextColor('blue');
+        doc.text('Relatório de Alertas', 60, 30);
+        doc.line(20, 20, 190, 20)
+        doc.setLineWidth(0.5);
+        doc.setDrawColor(83, 142, 245);
+        doc.line(10, 10, 10, 280);
+        doc.setFillColor(242, 242, 242) // Define a cor de fundo 
+        doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F') // Desenha um retângulo com a cor de fundo definida
+        doc.fromHTML(`<div class="header" style="background-color: blue; padding: 20px;" style="font-size: 14px; line-height: 1.5;"> 
+        <h1 style="color: rgb(83, 142, 245);background-color: black; text-align: center;">Relatório Técnico</h1>
+        </div>
+        <div>
+        ${dados}</div>`, 10, 10)
+        doc.save('relatório.pdf')
+    }
+</script>
+
+<script>
+    // FUNÇÃO DOWLOAND PDF
+    var dadosAdaptados = `
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(242, 242, 242)
+    }
+    ul {
+        font-size: 15px;
+        line-height: 1.0;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    </style>
+
+    <div>
+    <h2>Relatório de Uso de Máquinas - Abril/2023</h2>
+    <p>Olá, usuário. Segue abaixo um resumo do uso das nossas máquinas no mês de abril:</p>
+    <ul>
         <li>Quantidade de alertas pendentes: 0</li>
         <li>Quantidade de alertas resolvidos: 4</li>
         <li>Cluster com o maior numero de alertas: 2</li>
@@ -110,11 +201,23 @@
         <li>Total de processos feitos: 34554</li>
         <li>Data e hora da emissão do relatório: 22/04/2023 - 19:00</li>
     </ul>
+    <p>Caso queira mais informações, entre em contato com o nosso suporte técnico.</p>
 </div>`
-    function gerarPdf() {
-        var doc = new jsPDF()
-        //doc.text();
-        doc.fromHTML(`<div class="header" style="font-size: 14px; line-height: 1.5;">${dados}</div>`, 10, 10)
-        doc.save('relatório.pdf')
+    function gerarPdfAdaptado() {
+        var docAdaptado = new jsPDF()
+        docAdaptado.setFontSize(16);
+        docAdaptado.setTextColor('blue');
+        docAdaptado.text('Relatório de Alertas', 60, 30);
+        docAdaptado.line(20, 20, 190, 20)
+        docAdaptado.setLineWidth(0.5);
+        docAdaptado.setDrawColor(214, 91, 162);
+        docAdaptado.line(10, 10, 10, 280);
+        docAdaptado.setFillColor(242, 242, 242) // Define a cor de fundo 
+        docAdaptado.rect(0, 0, docAdaptado.internal.pageSize.width, docAdaptado.internal.pageSize.height, 'F') // Desenha um retângulo com a cor de fundo definida
+        docAdaptado.fromHTML(`<div class="header" style="background-color: blue; padding: 20px;" style="font-size: 14px; line-height: 1.5;"> 
+        <h1 style="color: rgb(214, 91, 162);background-color: black; text-align: center;">Relatório Adaptado</h1>
+        </div>
+        ${dadosAdaptados}</div>`, 10, 10)
+        docAdaptado.save('relatório.pdf')
     }
 </script>

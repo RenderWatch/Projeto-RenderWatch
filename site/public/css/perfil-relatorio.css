@@ -24,18 +24,18 @@
 }
 
 .card-button {
-    background-color: rgb(83, 142, 245); /* cor de fundo */
-    color: white; /* cor do texto */
-    padding: 10px 20px; /* espaço interno */
-    border: none; /* sem borda */
-    border-radius: 5px; /* borda arredondada */
-    font-size: 16px; /* tamanho da fonte */
-    cursor: pointer; /* mudar o cursor ao passar o mouse */
+    background-color: rgb(83, 142, 245); 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer;
 }
 
 .card p {
-    font-size: 16px; /* tamanho da fonte do parágrafo */
-    margin: 10px 0; /* margem superior e inferior de 10px e sem margem nos lados */
+    font-size: 16px; 
+    margin: 10px 0; 
 }
 
 .img-relatorio{
