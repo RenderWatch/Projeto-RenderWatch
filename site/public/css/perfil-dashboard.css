@@ -308,7 +308,7 @@ body {
   border-top: 15px solid rgb(83, 142, 245);
   width: 70vw;
   padding: 10px;
-  height: 35vh;
+  height: 42vh;
   margin: 5vh auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
 }
@@ -327,6 +327,14 @@ body {
 .card-maquina span {
   justify-content: left;
   font-size: 20px;
+}
+
+.cluster-maquina-atual h2 {
+  font-size: 30px;
+}
+.cluster-maquina-atual span{
+  font-size: 30px;
+  margin-left: 10px;
 }
 
 .metricas {
