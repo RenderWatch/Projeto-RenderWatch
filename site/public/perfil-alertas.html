@@ -73,30 +73,25 @@
             
                 <div class="cards legenda">
                     <ul class="legenda_ul">
-                        <li class="legenda_li"><img class="alerta_icone" src="assets/style-all/alerta_amarelo.png"
+                        <li class="legenda_li"><img class="alerta_icone_card" src="assets/style-all/alerta_amarelo.png"
                                 alt=""><span class="titulo_legenda"><b> ATENÇÃO </b></span> </li>
                         
                     </ul>
                     <ul class="legenda_ul">
                         <li class="legenda_li"><span
-                                style="background-color: brown; border-radius: 40px; width: 42px;height: 40px;; display: flex; align-items: center; justify-content: center; flex-direction: row;"><img
-                                    class="alerta_icone" src="assets/style-all/ampulheta.png" alt=""></span><span
+                                style="background-color: brown; border-radius: 40px; width: 32px;height: 30px;; display: flex; align-items: center; justify-content: center; flex-direction: row;"><img
+                                    class="alerta_icone_card" src="assets/style-all/ampulheta.png" alt=""></span><span
                                 class="titulo_legenda"><b>PENDENTE</b> </span> </li>
-                        <li class="legenda_li"><img class="alerta_icone" src="assets/style-all/check.png" alt=""><span
+                        <li class="legenda_li"><img class="alerta_icone_card" src="assets/style-all/check.png" alt=""><span
                                 class="titulo_legenda"><b> RESOLVIDO </b> </span></li>
                     </ul>
 
                 </div>
 
                 <div class="cards button">
-                    <li class="button_li"><button onclick="todos_alertas()" class="cards_bullet_todos"></button><button
-                            class="card_button button_todos" onclick="todos_alertas()">Todos Alertas</button></li>
-                    <li class="button_li"><button onclick="resolvidos_alertas()"
-                            class="cards_bullet_resolvido"></button><button class="card_button button_resolvido"
-                            onclick="resolvidos_alertas()">Resolvidos</button></li>
-                    <li class="button_li"><button onclick="pendentes_alertas()"
-                            class="cards_bullet_pendente"></button><button class="card_button button_pendente"
-                            onclick="pendentes_alertas()">Pendentes</button></li>
+                    <li class="button_li"><button class="card_button button_todos" onclick="todos_alertas()">Todos Alertas</button></li>
+                    <li class="button_li"><button class="card_button button_resolvido"onclick="resolvidos_alertas()">Resolvidos</button></li>
+                    <li class="button_li"><button class="card_button button_pendente"onclick="pendentes_alertas()">Pendentes</button></li>
                 </div>
 
             </div>
@@ -213,7 +208,7 @@ for(i = 0; i < qtdAlert; i++){
 
 
 
-    for (i = 0; i <=alertaPendente.length; i++) {
+    for (i = 0; i <     alertaPendente.length; i++) {
         
 var id = alertaPendente[i].id;
         container_alerta_pendentes.innerHTML += ` 
@@ -232,11 +227,11 @@ var id = alertaPendente[i].id;
                     </ul>
                     <ul class=" alerta_ul alerta_ul_tres">
                         <li class=" titulo_alerta"><b>Máquina</b></li>
-                        <li class="alerta_li">1</li>
+                        <li class="alerta_li maquina">1</li>
                     </ul>
                     <ul class=" alerta_ul alerta_ul_quatro">
                         <li class=" titulo_alerta"><b>Cluster</b></li>
-                        <li class="alerta_li">2</li>
+                        <li class="alerta_li cluster">2</li>
                     </ul>
                     <ul class=" alerta_ul alerta_ul_cinco">
                         <li class=" titulo_alerta"><b>Data/Hora</b></li>
