@@ -12,37 +12,25 @@
 }
 
 body {
-    
-
     background-color: rgb(212, 202, 202);
     display: flex;
     align-items: start;
     flex-direction: column;
     justify-content: space-around;
-
-
-
-
 }
 
-.color_back {
+/* .color_back {
     position: absolute;
     height: 35%;
     width: 100%;
     /* background-color:#d65ba38f; */
-}
 
-.header {
+.cor-bg {
+    position: absolute;
     width: 100%;
-    height: 100px;
-    display: flex;
-    border-bottom: groove #fffdfd;
-    border-width: 1px;
-    position: fixed;
-    align-items: center;
-    background-color: rgb(0, 0, 0);
-    flex-direction: row;
-    justify-content: space-between;
+    height: 250px;
+    background-color: #0375a2;
+    margin-top: -61vh;
 }
 
 
@@ -93,7 +81,7 @@ main {
     align-items: center;
     width: 100%;
     margin-top: 20px;
-    
+    position: relative;
     color: aliceblue;
     font-size: 10px;
 
@@ -122,25 +110,27 @@ main {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    border-radius: 25px;
+    border-radius: 10px;
     width: 40%;
     height: 170px;
     color: black;
-    background-color: #fffdfd;
+    background-color: rgb(244, 244, 244);
     margin-bottom: 40PX;
-    box-shadow: -4px 4px 4px black;
+    -webkit-box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.25);
 }
 
 .cards.legenda {
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: rgb(244, 244, 244);
     justify-content: space-around;
 }
 
 
-.button{
+.button {
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -148,7 +138,7 @@ main {
     flex-direction: column;
 }
 
-.button_todos{
+.button_todos {
     margin-top: 10px;
 }
 
@@ -156,17 +146,17 @@ main {
 .card_button {
 
     height: 40px;
-width: 80%;
+    width: 80%;
     border: none;
     background-color: rgb(102, 95, 95, 0, 3);
     font-size: 15px;
 
-    border-radius: 100px;
+    border-radius: 5px;
 }
 
 .button_li {
- 
-   align-items: center;
+
+    align-items: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -240,28 +230,25 @@ width: 80%;
     margin-top: 10px;
     width: 85%;
     border-radius: 10px;
-    border: #000000 groove 1px;
-    
-    box-shadow: -4px 4px 4px black;
-
-
-
+    -webkit-box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.25);
 }
 
-.container-alertas_pendentes {
 
+
+.container-alertas_pendentes {
+    border: 3px red solid;
     margin-bottom: 20px;
-    background-color: rgba(197, 0, 0, 0.7);
+    background-color: rgb(244, 244, 244);
 
 }
 
 .container-alertas_resolvidos {
-
-    background-color: rgba(17, 196, 56, 0.8);
+    border: 3px green solid;
+    background-color: rgb(244, 244, 244);
 }
 
 .container_titulo {
-    text-decoration: underline 2px;
     color: #000000;
     display: flex;
     align-items: center;
@@ -290,7 +277,7 @@ width: 80%;
 
 
 .alerta_resolvido {
-    background-color: aliceblue;
+    background-color: rgb(236, 233, 233);
 
 }
 
@@ -352,11 +339,12 @@ li {
 
 
 }
-.maquina{
-margin-top: -12px;
+
+.maquina {
+    margin-top: -12px;
 }
 
-.cluster{
+.cluster {
     margin-top: -12px;
 }
 
@@ -374,7 +362,7 @@ margin-top: -12px;
     align-items: center;
     justify-content: center;
     display: flex;
-margin-top: -10px;
+    margin-top: -10px;
     font-size: 15px;
 }
 
@@ -585,6 +573,6 @@ a {
     width: 30px;
 }
 
-.alerta_icone_card{
-   width: 30px; 
+.alerta_icone_card {
+    width: 30px;
 }
