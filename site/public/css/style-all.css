@@ -210,6 +210,10 @@ footer .container .social>a:hover {
 
 /* Dentro do perfil*/
 
+.link {
+  margin-top: -25px;
+}
+
 
 .perfil-configuracoes-icon{
   width: 30px; 
