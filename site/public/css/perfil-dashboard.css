@@ -1,5 +1,8 @@
 body {
   background-color: #e8e9ea;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .container-selecao-cluster {
