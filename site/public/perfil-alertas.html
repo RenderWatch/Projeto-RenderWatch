@@ -9,7 +9,7 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <link rel="stylesheet" href="css/style-all.css">
     <link rel="stylesheet" href="css/perfil-alertas.css">
- 
+
 </head>
 
 <body>
@@ -25,7 +25,8 @@
         <div class="menu">
             <ul>
                 <div class="link">
-                    <a href="perfil-download.html"><img class="perfil-configuracoes-icon" src="assets/perfil/botaodownload.png"></a>
+                    <a href="perfil-download.html"><img class="perfil-configuracoes-icon"
+                            src="assets/perfil/botaodownload.png"></a>
                     <li><a style="margin-left: 12px;" href="perfil-download.html">Download</a></li>
                 </div>
                 <div class="link">
@@ -38,7 +39,7 @@
                             src="assets/perfil/setting.png" alt=""></a>
                     <li><a href="perfil-configuracoes.html">Configurações</a></li>
                 </div>
-                <div class="link"  onclick="logout()">
+                <div class="link" onclick="logout()">
                     <span><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></span>
                     <li><span>Sair</span></li>
                 </div>
@@ -63,7 +64,10 @@
                 <li><a href="perfil-clusters.html" class="sidebar-element">
                         <div>Clusters</div>
                     </a></li>
-                    <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
+                    <li><a href="perfil-clusters.html" class="sidebar-element">
+                        <div>Rede</div>
+                    </a></li>
+                <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
                         <div>Suporte</div>
                     </a></li>
             </ul>
@@ -71,7 +75,7 @@
     </sidebar>
 
 
-     <main>
+    <main>
 
 
 
@@ -80,28 +84,31 @@
             <div class="container-cards">
 
 
-            
+
                 <div class="cards legenda">
                     <ul class="legenda_ul">
                         <li class="legenda_li"><img class="alerta_icone_card" src="assets/style-all/alerta_amarelo.png"
                                 alt=""><span class="titulo_legenda"><b> ATENÇÃO </b></span> </li>
-                        
+
                     </ul>
                     <ul class="legenda_ul">
                         <li class="legenda_li"><span
                                 style="background-color: brown; border-radius: 40px; width: 32px;height: 30px;; display: flex; align-items: center; justify-content: center; flex-direction: row;"><img
                                     class="alerta_icone_card" src="assets/style-all/ampulheta.png" alt=""></span><span
                                 class="titulo_legenda"><b>PENDENTE</b> </span> </li>
-                        <li class="legenda_li"><img class="alerta_icone_card" src="assets/style-all/check.png" alt=""><span
-                                class="titulo_legenda"><b> RESOLVIDO </b> </span></li>
+                        <li class="legenda_li"><img class="alerta_icone_card" src="assets/style-all/check.png"
+                                alt=""><span class="titulo_legenda"><b> RESOLVIDO </b> </span></li>
                     </ul>
 
                 </div>
 
                 <div class="cards button">
-                    <li class="button_li"><button class="card_button button_todos" onclick="todos_alertas()">Todos Alertas</button></li>
-                    <li class="button_li"><button class="card_button button_resolvido"onclick="resolvidos_alertas()">Resolvidos</button></li>
-                    <li class="button_li"><button class="card_button button_pendente"onclick="pendentes_alertas()">Pendentes</button></li>
+                    <li class="button_li"><button class="card_button button_todos" onclick="todos_alertas()">Todos
+                            Alertas</button></li>
+                    <li class="button_li"><button class="card_button button_resolvido"
+                            onclick="resolvidos_alertas()">Resolvidos</button></li>
+                    <li class="button_li"><button class="card_button button_pendente"
+                            onclick="pendentes_alertas()">Pendentes</button></li>
                 </div>
 
             </div>
@@ -117,9 +124,9 @@
 
         </div>
 
-        <div   id="container_alerta_resolvidos" class="container-alertas container-alertas_resolvidos">
+        <div id="container_alerta_resolvidos" class="container-alertas container-alertas_resolvidos">
             <div class="container_titulo"><b>ALERTAS RESOLVIDOS</b></div>
-            
+
 
 
 
@@ -133,17 +140,17 @@
 
 
     </main>
-    
 
 
-  
+
+
 
 </body>
 
 
 
 
-   
+
 <script src="js/perfil-sidebar-header.js"></script>
 
 </html>
@@ -197,30 +204,30 @@
 
 
 <script>
-   
+
     var qtdAlert = 3
-    
-    var alertaPendente =[]
-    var alertaResolvido =[]
 
-for(i = 0; i < qtdAlert; i++){
+    var alertaPendente = []
+    var alertaResolvido = []
 
-    alertaPendente.push({
-    id: `alerta${i}`
-   });
-    
+    for (i = 0; i < qtdAlert; i++) {
 
-
-
-}
+        alertaPendente.push({
+            id: `alerta${i}`
+        });
 
 
 
 
+    }
 
-    for (i = 0; i <     alertaPendente.length; i++) {
-        
-var id = alertaPendente[i].id;
+
+
+
+
+    for (i = 0; i < alertaPendente.length; i++) {
+
+        var id = alertaPendente[i].id;
         container_alerta_pendentes.innerHTML += ` 
         <span id="alerta${i}">
         <div  class="alerta alerta_resolvido">
@@ -258,30 +265,30 @@ var id = alertaPendente[i].id;
                 </div>
                 <span>`
 
-                console.log(alertaPendente[i].id)
-
-          
-            
-
-                
-
-    
-
-}
+        console.log(alertaPendente[i].id)
 
 
 
-    
+
+
+
+
+
+    }
+
+
+
+
     //BOTÕES DE STATUS
 
     function button_status_pendente(id) {
-alert("Alerta Pendente")
-       
-}
+        alert("Alerta Pendente")
+
+    }
 
     function button_status_resolvido(id) {
-        id.style.display='none'
-    container_alerta_resolvidos.innerHTML+=` <span id="alerta${i}">
+        id.style.display = 'none'
+        container_alerta_resolvidos.innerHTML += ` <span id="alerta${i}">
         <div  class="alerta alerta_resolvido">
                     <ul class=" alerta_ul alerta_ul_um">
                         <li class=" titulo_alerta"><b>Alerta</b></li>
@@ -316,11 +323,11 @@ alert("Alerta Pendente")
 
                 </div>
                 <span>`
-        }
-        
+    }
+
 
 
     //
 
-  </script>
-  <script src="js/perfil-sidebar-header.js"></script>
+</script>
+<script src="js/perfil-sidebar-header.js"></script>

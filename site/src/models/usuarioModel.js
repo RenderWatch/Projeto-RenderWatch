@@ -6,7 +6,7 @@ if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
 function buscarDadosUsuario(id) {
     console.log("ACESSEI O Perfil MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarDadosUsuario():", id);
         
-    const instrucao = `SELECT * FROM Perfil WHERE id = ${id}`;
+    const instrucao = `SELECT * FROM usuario WHERE id = ${id}`;
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
