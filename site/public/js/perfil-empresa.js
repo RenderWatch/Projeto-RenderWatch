@@ -158,7 +158,7 @@ function validacoesDadosEmpresa() {
         dadosValidos = false;
         listaDadosInvalidos.push('Telefone')
     }
-    if (cep.length != 9) {
+    if (cep.length != 8) {
         dadosValidos = false;
         listaDadosInvalidos.push('CEP')
     }
