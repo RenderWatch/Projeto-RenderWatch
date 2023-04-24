@@ -106,12 +106,12 @@
                 <p>Alertas identificados na máquina</p>
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
-                <span id="span_alertas_maquina" class="span_alertas">4</span>
-                <p>Falhas recorrentes no cluster 2</p>
+                <p>Componente que mais gera alertas na máquina</p>
+                <span id="span_alertas_maquina" class="span_alertas">CPU</span>
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
-                <span id="span_alertas_maquina" class="span_alertas">7</span>
-                <p>Falhas recorrentes na máquina 3</p>
+                <p>Máquina com maior número de alertas no mês</p>
+                <span id="span_alertas_maquina" class="span_alertas">Máquina 2</span>
             </div>
         </div>
 
@@ -141,6 +141,38 @@
                 <div class="metricas">
                     <p>Métricas definidas - RAM</p><span id="bytes-recebidos">70%</span>
                 </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="container-rede">
+            <div style="display: flex;" class="card-rede">
+                <div class="descricao-rede">
+                    <div class="cluster-rede-atual">
+                        <h2>Rede</h2>
+                    </div>
+                    <h2>Nome:<span id="nome_rede"></span></h2>
+                    <h2>Hostname: <span id="hostname"></span></h2>
+                    <h2>Endereço IPV4: <span id="ipv4"></span></h2>
+                    <h2>Endereço IPV6: <span id="ipv6"></span></h2>
+                    <h2>DNS: <span id="dns"></span></h2>
+                    <h2>Endereço Mac: <span id="endereco_mac"></span></h2>
+                </div>
+                <div class="bytes-rede">
+                    <div class="recebidos">
+                        <p>Bytes recebidos</p><span id="bytes-recebidos">0 Kbps</span>
+                    </div>
+                    <div class="enviados">
+                        <p>Bytes enviados</p><span id="bytes-enviados">0 Kbps</span>
+                    </div>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - Bytes recebidos</p><span id="bytes-recebidos">0 Kbps</span>
+                </div>
+                <div class="metricas">
+                    <p>Métricas definidas - Bytes enviados</p><span id="bytes-recebidos">0 Kbps</span>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -174,10 +206,6 @@
                 <span class="processo">Uso de CPU (%)</span>
                 <span id="porcentCPU" class="porcent-processo"></span>
             </div>
-            <div id="cardProcessoRede" class="card-processo">
-                <span class="processo">Uso de Rede (%)</span>
-                <span id="porcentRede" class="porcent-processo"></span>
-            </div>
         </div>
 
         <div class="container-graficos">
@@ -198,10 +226,10 @@
                     <div class="descricao-componente">
                         <div class="bytes">
                             <div class="recebidos">
-                                <p>Bytes de Leitura</p><span id="bytes-recebidos">207307865088 Kbps</span>
+                                <p>Disco total:</p><span id="bytes-recebidos">550Gb</span>
                             </div>
                             <div class="enviados">
-                                <p>Bytes de Escritas</p><span id="bytes-enviados">225261741056 Kbps</span>
+                                <p>Disponível</p><span id="bytes-enviados">258Mb</span>
                             </div>
                         </div>
                     </div>
@@ -217,26 +245,6 @@
                     <div class="descricao-componente" style="margin-top: 5vh;">
                         <p id="nome-componente">Intel(R) Core(TM) I5-3570</p>
                         <p id="identificador-componente">Identificador: <span> Intel 64</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="grafico">
-                <span>Uso de rede em tempo real</span>
-                <canvas id="myChart4"></canvas>
-                <div class="descricao">
-                    <div class="bytes">
-                        <div class="recebidos">
-                            <p>Bytes recebidos</p><span id="bytes-recebidos">70 Kbps</span>
-                        </div>
-                        <div class="enviados">
-                            <p>Bytes enviados</p><span id="bytes-enviados">8441 Kbps</span>
-                        </div>
-                    </div>
-                    <div class="descricao-rede">
-                        <p>Nome: <span id="nome-rede">Eth1</span></p>
-                        <p>Nome de exibição: <span id="nome-rede">VMWare Virtual Ethernet</span></p>
-                        <p>Endereço IPV4: <span id="endereco-rede-ipv4">192.168.0.169</span></p>
-                        <p>Endereço Mac: <span id="endereco-rede-mac">0a:e0:af:a2:39:57</span></p>
                     </div>
                 </div>
             </div>

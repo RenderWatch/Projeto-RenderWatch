@@ -216,7 +216,7 @@ body {
   background-color: rgb(244, 244, 244);
   width: 15vw;
   padding: 10px;
-  height: 12vh;
+  height: 15vh;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   border-top: 15px solid rgb(222, 0, 0);
@@ -338,6 +338,50 @@ body {
 .cluster-maquina-atual span{
   font-size: 30px;
   margin-left: 10px;
+}
+
+
+.card-rede {
+  background-color: rgb(244, 244, 244);
+  border-top: 15px solid rgb(83, 142, 245);
+  width: 70vw;
+  padding: 10px;
+  height: 42vh;
+  margin: 5vh auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+}
+
+
+
+.card-rede h2 {
+  font-size: 20px;
+  display: flex;
+  padding: 10px;
+  border-left: 8px solid rgb(83, 142, 245);
+}
+
+.card-rede:nth-child(n + 4) {
+  border: none;
+}
+
+.card-rede span {
+  justify-content: left;
+  font-size: 20px;
+}
+
+.cluster-rede-atual h2 {
+  font-size: 30px;
+}
+.cluster-rede-atual span{
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+
+.bytes-rede{
+  margin-left: 5vw;
+  margin-top: 10vh;
+  font-size: 3vh;
 }
 
 .metricas {
@@ -539,15 +583,15 @@ body {
 }
 
 .enviados {
-  margin-top: 2vh;
-  padding: 5px;
-  border-left: 4px solid rgb(83, 142, 245);
+  margin-top: 5vh;
+    padding: 8px;
+    border-left: 4px dashed rgb(83, 142, 245);
 }
 
 .descricao-rede {
   padding: 5px;
   margin-top: 2vh;
-  margin-left: 3vw;
+  margin-left: 0vw;
 }
 
 .descricao-rede p {
