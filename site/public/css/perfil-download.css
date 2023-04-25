@@ -26,6 +26,24 @@ body {
     margin-top: 4vh;
 }
 
+.code-box {
+    margin-left: 15px;
+}
+
+.code {
+    padding: 2%;
+    border-radius: 4px;
+    background-color: #45494a;
+    color: rgb(239, 239, 239);
+    margin-left: 10px
+}
+
+.img-clipboard{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
 .container-instrucoes-download{
     display: flex;
     flex-direction: column;
@@ -44,12 +62,21 @@ body {
 }
 
 .elemento-info-download{
+    display: flex;
     margin-bottom: 22px;
+    justify-content: center;
+    align-items: center;
+}
+
+.copy-code {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .btn-download{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
     margin-left: 10px;
 }
@@ -83,4 +110,12 @@ body {
     margin-top: 1vh;
     margin-bottom: 4vh;
     font-size: 2rem;
+}
+
+.popup{
+    display: none;
+    position: absolute;
+    margin-bottom: 30px;
+    right: 64vh;
+    color: #5b5b5b;
 }
