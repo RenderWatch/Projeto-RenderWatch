@@ -1,10 +1,10 @@
 var database = require("../database/config");
 if(process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
 function buscarDadosCluster(idEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
     SELECT *
-    FROM Cluster 
+    FROM cluster 
     WHERE empresa_id = '${idEmpresa}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -12,10 +12,10 @@ function buscarDadosCluster(idEmpresa) {
 }
 
 function buscarDadosMaquina(idCluster) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
     SELECT *
-    FROM Maquina 
+    FROM maquina 
     WHERE cluster_id = '${idCluster}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -23,10 +23,10 @@ function buscarDadosMaquina(idCluster) {
 }
 
 function deletarCluster(clusterId) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
     SELECT *
-    FROM Maquina 
+    FROM maquina 
     WHERE cluster_id = '${clusterId}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -34,13 +34,13 @@ function deletarCluster(clusterId) {
 }
 
 function adicionarCluster(idEmpresa) {
-    console.log("ACESSEI O Perfil MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", idEmpresa);
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", idEmpresa);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
 
-    INSERT INTO Cluster (nome, empresa_id) VALUES 
+    INSERT INTO cluster (nome, empresa_id) VALUES 
     ('Cluster', '${idEmpresa}');
 
     `;
@@ -49,7 +49,7 @@ function adicionarCluster(idEmpresa) {
 }
 
 function adicionarMaquina(id) {
-    console.log("ACESSEI O Perfil MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", id);
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", id);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
@@ -62,26 +62,26 @@ function adicionarMaquina(id) {
 }
 
 function confirmarAlteracaoInfoMaquina(idMaquina, inputNome, inputCpu, inputDisco, inputMemoria) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idMaquina, inputNome, inputCpu, inputDisco, inputMemoria)
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idMaquina, inputNome, inputCpu, inputDisco, inputMemoria)
 
     var instrucao = ` 
-    UPDATE Maquina SET nome = '${inputNome}', metrica_cpu = ${inputCpu}, metrica_disco = ${inputDisco}, metrica_memoria = ${inputMemoria} 
+    UPDATE maquina SET nome = '${inputNome}', metrica_cpu = ${inputCpu}, metrica_disco = ${inputDisco}, metrica_memoria = ${inputMemoria} 
     Where id = ${idMaquina};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 function confirmarNomeCluster(idCluster, nome) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idCluster, nome)
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idCluster, nome)
 
-    var instrucao = `UPDATE Cluster SET nome = '${nome}'
+    var instrucao = `UPDATE cluster SET nome = '${nome}'
     WHERE id = ${idCluster}`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 function deletarClusterComMaquina(id) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
 
     var instrucao = `    
     DELETE 
@@ -92,7 +92,7 @@ function deletarClusterComMaquina(id) {
 }
 
 function deletarMaquinaDoCluster(id) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
 
     var instrucao = `    
     DELETE 
@@ -103,7 +103,7 @@ function deletarMaquinaDoCluster(id) {
 }
 
 function deletarClusterSemMaquina(id) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
 
     var instrucao = `    
     DELETE 
@@ -114,11 +114,11 @@ function deletarClusterSemMaquina(id) {
 }
 
 function deletarMaquina(idMaquina) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", idMaquina)
+    console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", idMaquina)
 
     var instrucao = `    
     DELETE 
-    FROM Maquina 
+    FROM maquina 
     WHERE id = ${idMaquina};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -128,10 +128,10 @@ function deletarMaquina(idMaquina) {
 
 }else if(process.env.AMBIENTE_PROCESSO == "producao"){
     function buscarDadosCluster(idEmpresa) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
         var instrucao = `
         SELECT *
-        FROM Cluster 
+        FROM cluster 
         WHERE empresa_id = '${idEmpresa}';
         `;
         console.log("Executando a instrução SQL: \n" + instrucao);
@@ -139,10 +139,10 @@ function deletarMaquina(idMaquina) {
     }
     
     function buscarDadosMaquina(idCluster) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
         var instrucao = `
         SELECT *
-        FROM Maquina 
+        FROM maquina 
         WHERE cluster_id = '${idCluster}';
         `;
         console.log("Executando a instrução SQL: \n" + instrucao);
@@ -150,10 +150,10 @@ function deletarMaquina(idMaquina) {
     }
     
     function deletarCluster(clusterId) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
         var instrucao = `
         SELECT *
-        FROM Maquina 
+        FROM maquina 
         WHERE cluster_id = '${clusterId}';
         `;
         console.log("Executando a instrução SQL: \n" + instrucao);
@@ -161,13 +161,13 @@ function deletarMaquina(idMaquina) {
     }
     
     function adicionarCluster(idEmpresa) {
-        console.log("ACESSEI O Perfil MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", idEmpresa);
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", idEmpresa);
         
         // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
         //  e na ordem de inserção dos dados.
         var instrucao = `
     
-        INSERT INTO Cluster (nome, empresa_id) VALUES 
+        INSERT INTO cluster (nome, empresa_id) VALUES 
         ('Cluster', '${idEmpresa}');
     
         `;
@@ -176,7 +176,7 @@ function deletarMaquina(idMaquina) {
     }
     
     function adicionarMaquina(id) {
-        console.log("ACESSEI O Perfil MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", id);
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", id);
         
         // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
         //  e na ordem de inserção dos dados.
@@ -189,26 +189,26 @@ function deletarMaquina(idMaquina) {
     }
     
     function confirmarAlteracaoInfoMaquina(idMaquina, inputNome, inputCpu, inputDisco, inputMemoria) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idMaquina, inputNome, inputCpu, inputDisco, inputMemoria)
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idMaquina, inputNome, inputCpu, inputDisco, inputMemoria)
     
         var instrucao = ` 
-        UPDATE Maquina SET nome = '${inputNome}', metrica_cpu = ${inputCpu}, metrica_disco = ${inputDisco}, metrica_memoria = ${inputMemoria} 
+        UPDATE maquina SET nome = '${inputNome}', metrica_cpu = ${inputCpu}, metrica_disco = ${inputDisco}, metrica_memoria = ${inputMemoria} 
         Where id = ${idMaquina};`;
         console.log("Executando a instrução SQL: \n" + instrucao);
         return database.executar(instrucao);
     }
     
     function confirmarNomeCluster(idCluster, nome) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idCluster, nome)
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar(): ", idCluster, nome)
     
-        var instrucao = `UPDATE Cluster SET nome = '${nome}'
+        var instrucao = `UPDATE cluster SET nome = '${nome}'
         WHERE id = ${idCluster}`;
         console.log("Executando a instrução SQL: \n" + instrucao);
         return database.executar(instrucao);
     }
     
     function deletarClusterComMaquina(id) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
     
         var instrucao = `    
         DELETE 
@@ -219,7 +219,7 @@ function deletarMaquina(idMaquina) {
     }
     
     function deletarMaquinaDoCluster(id) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
     
         var instrucao = `    
         DELETE 
@@ -230,7 +230,7 @@ function deletarMaquina(idMaquina) {
     }
     
     function deletarClusterSemMaquina(id) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
     
         var instrucao = `    
         DELETE 
@@ -241,11 +241,11 @@ function deletarMaquina(idMaquina) {
     }
     
     function deletarMaquina(idMaquina) {
-        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", idMaquina)
+        console.log("ACESSEI O ALERTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", idMaquina)
     
         var instrucao = `    
         DELETE 
-        FROM Maquina 
+        FROM maquina 
         WHERE id = ${idMaquina};`;
         console.log("Executando a instrução SQL: \n" + instrucao);
         return database.executar(instrucao);
