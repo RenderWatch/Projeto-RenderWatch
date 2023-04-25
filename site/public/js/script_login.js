@@ -45,8 +45,8 @@ function login() {
                 sessionStorage.ID_EMPRESA = json.empresa_id;
 
                 setTimeout(function () {
-                    window.location = "./perfil-configuracoes.html";
-                }, 1000); // apenas para exibir o loading
+                    window.location = "./perfil-empresa.html";
+                }, 1000); 
 
             });
 
