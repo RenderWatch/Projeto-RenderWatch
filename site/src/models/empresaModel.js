@@ -7,7 +7,7 @@ function mostrarDadosEmpresa(idUser) {
     var instrucao = `
     SELECT *
     FROM empresa
-    WHERE id = (SELECT empresa_id FROM Usuario WHERE id = ${idUser});
+    WHERE id = (SELECT empresa_id FROM usuario WHERE id = ${idUser});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -32,7 +32,7 @@ function atualizarEmpresaUsuario(idUser, cnpj) {
     //  e na ordem de inserção dos dados.
     var instrucao = `
     UPDATE usuario 
-    SET empresa_id = (SELECT id FROM Empresa where cnpj = ${cnpj})
+    SET empresa_id = (SELECT id FROM empresa where cnpj = ${cnpj})
     where id = ${idUser};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -150,7 +150,7 @@ function deletarEmpresa(id) {
         var instrucao = `
         SELECT *
         FROM empresa
-        WHERE id = (SELECT empresa_id FROM Usuario WHERE id = ${idUser});
+        WHERE id = (SELECT empresa_id FROM usuario WHERE id = ${idUser});
         `;
         console.log("Executando a instrução SQL: \n" + instrucao);
         return database.executar(instrucao);
@@ -175,7 +175,7 @@ function deletarEmpresa(id) {
         //  e na ordem de inserção dos dados.
         var instrucao = `
         UPDATE usuario 
-        SET empresa_id = (SELECT id FROM Empresa where cnpj = ${cnpj})
+        SET empresa_id = (SELECT id FROM empresa where cnpj = ${cnpj})
         where id = ${idUser};
         `;
         console.log("Executando a instrução SQL: \n" + instrucao);
