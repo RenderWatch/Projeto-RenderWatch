@@ -46,10 +46,30 @@ function listarPorUsuario(req, res) {
 }
 
 function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idPermissao = req.params.idPermissao;
+    var emailEditar = req.params.emailEditar;
+    var adm = req.body.adm;
 
-    permissaoModel.editar(novaDescricao, idPermissao)
+    permissaoModel.editar(emailEditar, adm)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function tirar(req, res) {
+    var emailEditar = req.params.emailEditar;
+    var adm = req.body.adm;
+
+    permissaoModel.tirar(emailEditar, adm)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -89,5 +109,6 @@ module.exports = {
     listarPorUsuario,
     editar,
     deletar,
-    listar
+    listar,
+    tirar
 }

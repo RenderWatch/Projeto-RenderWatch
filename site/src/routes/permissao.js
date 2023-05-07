@@ -7,9 +7,14 @@ router.get("/", function (req, res) {
     permissaoController.testar(req, res);
 });
 
-router.put("/editar/:idPermissao", function (req, res) {
+router.put("/editar/:emailEditar", function (req, res) {
     permissaoController.editar(req, res);
 });
+
+router.put("/tirar/:emailEditar", function (req, res) {
+    permissaoController.tirar(req, res);
+});
+
 
 router.delete("/deletar/:idPermissao", function (req, res) {
     permissaoController.deletar(req, res);
