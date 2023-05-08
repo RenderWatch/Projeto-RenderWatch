@@ -18,8 +18,8 @@ function editar(adm, emailEditar) {
     return database.executar(instrucao);
 }
 
-function tirar(emailEditar, adm) {
-    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function tirar(): ", emailEditar, adm);
+function tirar(emailEditar) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function tirar(): ", emailEditar);
     var instrucao = `
         UPDATE usuario SET adm = 0 WHERE email = '${emailEditar}';
     `;

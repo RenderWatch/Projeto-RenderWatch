@@ -175,7 +175,11 @@
                             excluirButton.addEventListener('click', () => {
                                 const checkbox = tr.querySelector('input[type="checkbox"]');
                                 const email = tr.querySelector('td:first-child').textContent;
-                                const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
+                                checkbox.disabled = false;
+                                checkbox.focus();
+                                editarButton.style.display = 'none';
+                                excluirButton.style.display = 'none';
+                                salvarButton.style.display = '';
 
 
                             });
@@ -184,7 +188,7 @@
                                 const checkbox = tr.querySelector('input[type="checkbox"]');
                                 const email = tr.querySelector('td:first-child').textContent;
                                 const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
-                                tirar(email, permissao);
+                                tirar(email);
 
                                 checkbox.disabled = true;
                                 salvarButton.style.display = 'none';
@@ -236,15 +240,12 @@
             });
     }
 
-    function tirar(admEditar, emailEditar) {
+    function tirar(emailEditar) {
         fetch(`/permissao/tirar/${emailEditar}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                adm: admEditar
-            })
+            }
         })
             .then(function (resposta) {
                 if (resposta.ok) {

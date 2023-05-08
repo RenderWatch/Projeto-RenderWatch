@@ -67,9 +67,8 @@ function editar(req, res) {
 
 function tirar(req, res) {
     var emailEditar = req.params.emailEditar;
-    var adm = req.body.adm;
 
-    permissaoModel.tirar(emailEditar, adm)
+    permissaoModel.tirar(emailEditar)
         .then(
             function (resultado) {
                 res.json(resultado);
