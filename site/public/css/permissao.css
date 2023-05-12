@@ -121,6 +121,23 @@ button {
   background-color: #4CAF50;
 }
 
+.salvar-button-conceder {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.salvar-button-conceder:hover {
+  background-color: #4CAF50;
+}
+
+.salvar-button-tirar {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.salvar-button-tirar:hover {
+  background-color: #4CAF50;
+}
 .editar-button {
   background-color: rgb(83, 142, 245);
   color: #fff;
