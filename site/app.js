@@ -13,6 +13,7 @@ var empresaRouter = require("./src/routes/empresa");
 var clusterRouter = require("./src/routes/cluster");
 var redeRouter = require("./src/routes/rede");
 var permissaoRouter = require("./src/routes/permissao");
+var dashboardRouter = require("./src/routes/dashboard");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,6 +26,7 @@ app.use("/empresa", empresaRouter);
 app.use("/cluster", clusterRouter);
 app.use("/rede", redeRouter);
 app.use("/permissao", permissaoRouter);
+app.use("/dashboard", dashboardRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
