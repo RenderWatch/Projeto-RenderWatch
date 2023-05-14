@@ -23,7 +23,8 @@
         <div class="menu">
             <ul>
                 <div class="link">
-                    <a href="perfil-download.html"><img class="perfil-configuracoes-icon" src="assets/perfil/botaodownload.png"></a>
+                    <a href="perfil-download.html"><img class="perfil-configuracoes-icon"
+                            src="assets/perfil/botaodownload.png"></a>
                     <li><a style="margin-left: 12px;" href="perfil-download.html">Download</a></li>
                 </div>
                 <div class="link">
@@ -36,14 +37,14 @@
                             src="assets/perfil/setting.png" alt=""></a>
                     <li><a href="perfil-configuracoes.html">Configurações</a></li>
                 </div>
-                <div class="link"  onclick="logout()">
+                <div class="link" onclick="logout()">
                     <span><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></span>
                     <li><span>Sair</span></li>
                 </div>
             </ul>
         </div>
     </header>
-        
+
     <sidebar>
         <div class="sidebar">
             <ul>
@@ -62,10 +63,10 @@
                 <li><a href="perfil-clusters.html" class="sidebar-element">
                         <div>Clusters</div>
                     </a></li>
-                    <li><a href="perfil-rede.html" class="sidebar-element">
+                <li><a href="perfil-rede.html" class="sidebar-element">
                         <div>Rede</div>
                     </a></li>
-                    <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
+                <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
                         <div>Suporte</div>
                     </a></li>
             </ul>
@@ -108,14 +109,15 @@
             </div>
         </div>
 
-        
+
 
         <div class="container-maquina">
             <h2 class="topico-maquina">Análise do Sistema</h2>
             <div style="display: flex;" class="card-maquina">
                 <div class="descricao-maquina">
                     <div class="cluster-maquina-atual">
-                        <h2>Cluster <span style="border-right: 5px solid rgb(83, 142, 245);" id="cluster">1</span><span style="margin: 0 2px;"></span>Maquina <span id="maquina">2</span></h2>
+                        <h2>Cluster <span style="border-right: 5px solid rgb(83, 142, 245);" id="cluster">1</span><span
+                                style="margin: 0 2px;"></span>Maquina <span id="maquina">2</span></h2>
                     </div>
                     <p>Nome da máquina: <span id="apelido">Machine</span></p>
                     <p>Sistema operacional: <span id="sistema">Ubuntu/Linux</span></p>
@@ -135,97 +137,97 @@
                     <p>Métricas definidas - RAM</p><span id="bytes-recebidos">70%</span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container-rede">
+        <div style="display: flex;" class="card-rede">
+            <div class="descricao-rede">
+                <div class="cluster-rede-atual">
+                    <h2>Rede</h2>
+                </div>
+                <p>Nome: <span id="nome_rede">wlo1</span></p>
+                <!-- <p>Hostname: <span id="hostname">Intel Corp</span></p> -->
+                <p>Endereço IPV4: <span id="ipv4">10.18.7.48</span></p>
+                <p>Endereço IPV6: <span id="ipv6">:db8:3333:4444:5555:6666:1.2.3.4.</span></p>
+                <p>DNS: <span id="dns">www.amazon.com</span></p>
+                <!-- <p>Endereço Mac:  <span id="endereco_mac"> 00:1B:44:11:3A:B7</span></p> -->
+            </div>
+            <div class="bytes-rede">
+                <div class="recebidos">
+                    <p>Bytes recebidos</p><span id="bytes-recebidos">213928422 Kbps</span>
+                </div>
+                <div class="enviados">
+                    <p>Bytes enviados</p><span id="bytes-enviados">1238219572 Kbps</span>
+                </div>
+            </div>
+            <div class="metricas">
+                <p>Métricas definidas - Bytes recebidos</p><span id="bytes-recebidos">5923022 Kbps</span>
+            </div>
+            <div class="metricas">
+                <p>Métricas definidas - Bytes enviados</p><span id="bytes-recebidos">4275232 Kbps</span>
             </div>
         </div>
+    </div>
+    </div>
+    <h2 class="topico-porcentagem">Porcentagem e gráficos de uso dos componentes</h2>
 
-        <div class="container-rede">
-            <div style="display: flex;" class="card-rede">
-                <div class="descricao-rede">
-                    <div class="cluster-rede-atual">
-                        <h2>Rede</h2>
-                    </div>
-                    <p>Nome: <span id="nome_rede">wlo1</span></p>
-                    <!-- <p>Hostname: <span id="hostname">Intel Corp</span></p> -->
-                    <p>Endereço IPV4: <span id="ipv4">10.18.7.48</span></p>
-                    <p>Endereço IPV6: <span id="ipv6">:db8:3333:4444:5555:6666:1.2.3.4.</span></p>
-                    <p>DNS: <span id="dns">www.amazon.com</span></p>
-                    <!-- <p>Endereço Mac:  <span id="endereco_mac"> 00:1B:44:11:3A:B7</span></p> -->
+    <div class="container-processo">
+        <div id="cardProcessoRam" class="card-processo">
+            <span class="processo">Uso de memoria RAM (%)</span>
+            <span id="porcentRAM" class="porcent-processo"></span>
+        </div>
+        <div id="cardProcessoHD" class="card-processo">
+            <span class="processo">Uso de Disco (%)</span>
+            <span id="porcentHD" class="porcent-processo"></span>
+        </div>
+        <div id="cardProcessoCPU" class="card-processo">
+            <span class="processo">Uso de CPU (%)</span>
+            <span id="porcentCPU" class="porcent-processo"></span>
+        </div>
+    </div>
+
+    <div class="container-graficos">
+        <div class="grafico">
+            <span>Uso de memoria RAM em tempo real</span>
+            <canvas id="myChart"></canvas>
+            <div class="descricao">
+                <div class="descricao-componente" style="margin-top: 5vh;">
+                    <p>Memória disponível: <span id="memoria-disponivel">2,0</span></p>
+                    <p>Memória total: <span id="memoria-disponivel">8,0</span></p>
                 </div>
-                <div class="bytes-rede">
-                    <div class="recebidos">
-                        <p>Bytes recebidos</p><span id="bytes-recebidos">213928422 Kbps</span>
-                    </div>
-                    <div class="enviados">
-                        <p>Bytes enviados</p><span id="bytes-enviados">1238219572 Kbps</span>
-                    </div>
-                </div>
-                <div class="metricas">
-                    <p>Métricas definidas - Bytes recebidos</p><span id="bytes-recebidos">5923022 Kbps</span>
-                </div>
-                <div class="metricas">
-                    <p>Métricas definidas - Bytes enviados</p><span id="bytes-recebidos">4275232 Kbps</span>
-                </div>
-            </div>
             </div>
         </div>
-        <h2 class="topico-porcentagem">Porcentagem e gráficos de uso dos componentes</h2>
-
-        <div class="container-processo">
-            <div id="cardProcessoRam" class="card-processo">
-                <span class="processo">Uso de memoria RAM (%)</span>
-                <span id="porcentRAM" class="porcent-processo"></span>
-            </div>
-            <div id="cardProcessoHD" class="card-processo">
-                <span class="processo">Uso de Disco (%)</span>
-                <span id="porcentHD" class="porcent-processo"></span>
-            </div>
-            <div id="cardProcessoCPU" class="card-processo">
-                <span class="processo">Uso de CPU (%)</span>
-                <span id="porcentCPU" class="porcent-processo"></span>
-            </div>
-        </div>
-
-        <div class="container-graficos">
-            <div class="grafico">
-                <span>Uso de memoria RAM em tempo real</span>
-                <canvas id="myChart"></canvas>
-                <div class="descricao">
-                    <div class="descricao-componente" style="margin-top: 5vh;">
-                        <p>Memória disponível: <span id="memoria-disponivel">2,0</span></p>
-                        <p>Memória total: <span id="memoria-disponivel">8,0</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="grafico">
-                <span>Uso de disco em tempo real</span>
-                <canvas style="height: 300px;" id="myChart2"></canvas>
-                <div class="descricao">
-                    <div class="descricao-componente">
-                        <div class="bytes">
-                            <div class="recebidos-grafico">
-                                <p>Disco total:</p><span id="bytes-recebidos">550Gb</span>
-                            </div>
-                            <div class="enviados-grafico">
-                                <p>Disponível</p><span id="bytes-enviados">258Mb</span>
-                            </div>
+        <div class="grafico">
+            <span>Uso de disco em tempo real</span>
+            <canvas style="height: 300px;" id="myChart2"></canvas>
+            <div class="descricao">
+                <div class="descricao-componente">
+                    <div class="bytes">
+                        <div class="recebidos-grafico">
+                            <p>Disco total:</p><span id="bytes-recebidos">550Gb</span>
+                        </div>
+                        <div class="enviados-grafico">
+                            <p>Disponível</p><span id="bytes-enviados">258Mb</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container-graficos">
-            <div class="grafico">
-                <span>Uso de CPU em tempo real</span>
-                <canvas id="myChart3"></canvas>
-                <div class="descricao">
-                    <div class="descricao-componente" style="margin-top: 5vh;">
-                        <p id="nome-componente">Intel(R) Core(TM) I5-3570</p>
-                        <p id="identificador-componente">Identificador: <span> Intel 64</span></p>
-                    </div>
+    <div class="container-graficos">
+        <div class="grafico">
+            <span>Uso de CPU em tempo real</span>
+            <canvas id="myChart3"></canvas>
+            <div class="descricao">
+                <div class="descricao-componente" style="margin-top: 5vh;">
+                    <p id="nome-componente">Intel(R) Core(TM) I5-3570</p>
+                    <p id="identificador-componente">Identificador: <span> Intel 64</span></p>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <h2 class="topico-processo">Lista de processos</h2>
@@ -253,31 +255,22 @@
 </html>
 
 <script>
+    // Função toggleProcessos
+    function toggleProcessos(event) {
+        const idMaquina = event.target.getAttribute('data-id');
+        console.log('Máquina selecionada:', idMaquina);
+
+        // Chama a função atualizarDados() e passa o idMaquina como argumento
+        atualizarDados(idMaquina);
+    }
+
     // Seleciona os elementos necessários
     const lista = document.querySelector('.lista');
     const containerLista = document.querySelector('.container-lista-processos');
 
     let exibirProcessos = false;
 
-    function toggleProcessos() {
-        if (exibirProcessos) {
-            containerLista.querySelectorAll('.processo').forEach(el => el.remove());
-            exibirProcessos = false;
-        } else {
-            const totalProcessos = 10;
-            for (let i = 1; i <= totalProcessos; i++) {
-                const container = document.createElement('div');
-                container.classList.add('processo');
-                container.innerHTML = ` <div class="lista">
-            <span class="span_processo">Processo ${i} </span>
-        </div>`;
-                containerLista.appendChild(container);
-            }
-            exibirProcessos = true;
-        }
-    }
-
-    lista.addEventListener('click', toggleProcessos)
+    lista.addEventListener('click', toggleProcessos);
 
     // Para criar novos botões de cluster e de máquina :D
     const clusterContainer = document.querySelector('.selecao-cluster ul');
@@ -297,6 +290,7 @@
         const button = document.createElement('button');
         button.value = `maquina${i}`;
         button.textContent = `Máquina ${i}`;
+        button.setAttribute('data-id', `maquina${i}`); // Adiciona o atributo data-id com o valor da identificação da máquina
         const listItem = document.createElement('li');
         listItem.appendChild(button);
         maquinaContainer.appendChild(listItem);
