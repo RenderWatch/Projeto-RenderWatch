@@ -7,7 +7,7 @@ router.get("/", function (req, res) {
     dashboardController.testar(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:idMaquina", function (req, res) {
     dashboardController.listar(req, res);
 });
 

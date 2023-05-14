@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style-all.css">
     <link rel="stylesheet" href="css/perfil-dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -242,7 +243,10 @@
                 <p>Total de threads: <span id="total-threads">0</span></p>
             </div>
         </div>
+    
     </div>
+    <div id="feed_container"></div>
+
 
 </body>
 <script src="js/perfil-dashboard.js"></script>
@@ -300,11 +304,11 @@
     const porcentagemRAM = Math.floor(Math.random() * 100);
     const porcentagemHD = Math.floor(Math.random() * 100);
     const porcentagemCPU = Math.floor(Math.random() * 100);
-    const porcentagemRede = Math.floor(Math.random() * 100);
+    // const porcentagemRede = Math.floor(Math.random() * 100);
     porcentRAM.innerHTML = `${porcentagemRAM}%`;
     porcentHD.innerHTML = `${porcentagemHD}%`;
     porcentCPU.innerHTML = `${porcentagemCPU}%`;
-    porcentRede.innerHTML = `${porcentagemRede}%`;
+    // porcentRede.innerHTML = `${porcentagemRede}%`;
 
     if (porcentagemRAM > 70) {
         porcentRAM.style.color = "red";
@@ -330,13 +334,13 @@
         cardProcessoCPU.style.borderTop = "15px solid orange";
     }
 
-    if (porcentagemRede > 70) {
-        porcentRede.style.color = "red";
-        cardProcessoRede.style.borderTop = "15px solid red";
-    } else if (porcentagemRede > 60) {
-        porcentRede.style.color = "orange";
-        cardProcessoRede.style.borderTop = "15px solid orange";
-    }
+    // if (porcentagemRede > 70) {
+    //     porcentRede.style.color = "red";
+    //     cardProcessoRede.style.borderTop = "15px solid red";
+    // } else if (porcentagemRede > 60) {
+    //     porcentRede.style.color = "orange";
+    //     cardProcessoRede.style.borderTop = "15px solid orange";
+    // }
 
 </script>
 <script src="js/perfil-sidebar-header.js"></script>
