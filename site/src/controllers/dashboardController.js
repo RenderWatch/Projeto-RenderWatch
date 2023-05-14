@@ -24,11 +24,11 @@ function buscarUltimasMedidas(req, res) {
 
 function buscarMedidasEmTempoReal(req, res) {
 
-    var idAquario = req.params.idAquario;
+    var idMaquina = req.params.idMaquina;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(idAquario).then(function (resultado) {
+    dashboardModel.buscarMedidasEmTempoReal(idMaquina).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -42,9 +42,9 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 function listarPorMaquina(req, res) {
-    var idUsuario = req.params.idUsuario;
+    var idMaquina = req.params.idMaquina;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    dashboardModel.listarPorMaquina(idMaquina)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
