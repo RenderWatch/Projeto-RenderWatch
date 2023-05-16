@@ -243,7 +243,7 @@
                 <p>Total de threads: <span id="total-threads">0</span></p>
             </div>
         </div>
-    
+
     </div>
     <div id="feed_container"></div>
 
@@ -259,13 +259,16 @@
 </html>
 
 <script>
+
+    // window.onload = obterDadosGraficos();
+
     // Função toggleProcessos
     function toggleProcessos(event) {
         const idMaquina = event.target.getAttribute('data-id');
         console.log('Máquina selecionada:', idMaquina);
 
-        // Chama a função atualizarDados() e passa o idMaquina como argumento
-        atualizarDados(idMaquina);
+        // Chama a função obterDadosGrafico() e passa o idMaquina como argumento
+        obterDadosGrafico(idMaquina);
     }
 
     // Seleciona os elementos necessários
@@ -344,3 +347,4 @@
 
 </script>
 <script src="js/perfil-sidebar-header.js"></script>
+

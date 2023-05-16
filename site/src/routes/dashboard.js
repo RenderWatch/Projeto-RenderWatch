@@ -11,5 +11,9 @@ router.get("/listar/:idMaquina", function (req, res) {
     dashboardController.listar(req, res);
 });
 
+router.get("/tempo-real/:idMaquina", function (req, res) {
+    dashboardController.listarTempoReal(req, res);
+})
+
 
 module.exports = router;
