@@ -11,9 +11,12 @@ router.get("/listar/:idMaquina", function (req, res) {
     dashboardController.listar(req, res);
 });
 
-router.get("/tempo-real/:idMaquina", function (req, res) {
-    dashboardController.listarTempoReal(req, res);
-})
+router.get("/listarRam/:idMaquina", function (req, res) {
+    dashboardController.listarRam(req, res);
+});
 
+router.get("/listarDisco/:idMaquina", function (req, res) {
+    dashboardController.listarDisco(req, res);
+});
 
 module.exports = router;

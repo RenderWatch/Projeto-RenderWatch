@@ -18,27 +18,45 @@ function listar(req, res) {
         });
 }
 
-function listarTempoReal(req, res) {
+function listarRam(req, res) {
 
     var idMaquina = req.params.idMaquina;
 
-    console.log(`Recuperando medidas em tempo real`);
+    dashboardModel.listarRam(idMaquina)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os dashboards: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
-    medidaModel.listarTempoReal(idMaquina).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
+function listarDisco(req, res) {
+
+    var idMaquina = req.params.idMaquina;
+
+    dashboardModel.listarDisco(idMaquina)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os dashboards: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
 module.exports = {
     listar,
-    listarTempoReal
+    listarRam,
+    listarDisco
 
 }
