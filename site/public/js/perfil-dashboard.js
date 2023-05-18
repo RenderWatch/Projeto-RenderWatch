@@ -142,7 +142,7 @@ function atualizarDadosRam(idMaquina) {
             const componenteDescricao = dados.componente_descricao;
             const componenteIdentificador = dados.componente_identificador;
 
-            if (componenteNome === "memoria") {
+            if (componenteNome === "memória") {
               ramChart.data.datasets[0].data.push(dados.em_uso);
               ramChart.data.labels.push(dados.dt_hora_formatada);
               document.getElementById("nome-componente").innerText = componenteDescricao;
