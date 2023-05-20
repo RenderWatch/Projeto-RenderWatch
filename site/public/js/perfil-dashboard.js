@@ -139,14 +139,10 @@ function atualizarDadosRam(idMaquina) {
           for (let i = 0; i < resposta.length; i++) {
             const dados = resposta[i];
             const componenteNome = dados.componente_nome.toLowerCase();
-            const componenteDescricao = dados.componente_descricao;
-            const componenteIdentificador = dados.componente_identificador;
-
-            if (componenteNome === "memória") {
+            
+            if (componenteNome === "memoria") {
               ramChart.data.datasets[0].data.push(dados.em_uso);
               ramChart.data.labels.push(dados.dt_hora_formatada);
-              document.getElementById("nome-componente").innerText = componenteDescricao;
-              document.getElementById("identificador-componente").innerHTML = `Identificador: <span>${componenteIdentificador}</span>`;
             }
           }
 
@@ -191,15 +187,10 @@ function atualizarDadosDisco(idMaquina) {
           for (let i = 0; i < resposta.length; i++) {
             const dados = resposta[i];
             const componenteNome = dados.componente_nome.toLowerCase();
-            const componenteDescricao = dados.componente_descricao;
-            const componenteIdentificador = dados.componente_identificador;
 
-            
             if (componenteNome === "disco") {
               discoChart.data.datasets[0].data.push(dados.em_uso);
               discoChart.data.labels.push(dados.dt_hora_formatada);
-              document.getElementById("nome-componente").innerText = componenteDescricao;
-              document.getElementById("identificador-componente").innerHTML = `Identificador: <span>${componenteIdentificador}</span>`;
             }
           }
 
@@ -220,6 +211,14 @@ function atualizarDadosDisco(idMaquina) {
 
 setInterval(function () {
   atualizarDados();
+}, 5000);
+
+setInterval(function () {
   atualizarDadosRam();
+}, 5000);
+
+setInterval(function () {
   atualizarDadosDisco();
 }, 5000);
+
+

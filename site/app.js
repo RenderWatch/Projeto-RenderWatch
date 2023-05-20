@@ -11,7 +11,7 @@ var app = express();
 var usuarioRouter = require("./src/routes/usuario");
 var empresaRouter = require("./src/routes/empresa");
 var clusterRouter = require("./src/routes/cluster");
-var redeRouter = require("./src/routes/rede");
+var redeMaquinaRouter = require("./src/routes/redeMaquina");
 var permissaoRouter = require("./src/routes/permissao");
 var dashboardRouter = require("./src/routes/dashboard");
 
@@ -24,7 +24,7 @@ app.use(cors());
 app.use("/usuario", usuarioRouter);
 app.use("/empresa", empresaRouter);
 app.use("/cluster", clusterRouter);
-app.use("/rede", redeRouter);
+app.use("/redeMaquina", redeMaquinaRouter);
 app.use("/permissao", permissaoRouter);
 app.use("/dashboard", dashboardRouter);
 
