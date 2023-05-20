@@ -20,7 +20,7 @@ router.delete("/deletar/:idPermissao", function (req, res) {
     permissaoController.deletar(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:razaoSocial", function (req, res) {
     permissaoController.listar(req, res);
 });
 

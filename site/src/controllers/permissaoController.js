@@ -6,7 +6,9 @@ function testar(req, res) {
 }
 
 function listar(req, res) {
-    permissaoModel.listar().then(function (resultado) {
+    var razaoSocial = req.params.razaoSocial
+
+    permissaoModel.listar(razaoSocial).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

@@ -1,5 +1,6 @@
+var razaoSocial =sessionStorage.RAZAO_SOCIAL;
 function listar() {
-    fetch("/permissao/listar")
+    fetch(`/permissao/listar/${razaoSocial}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
@@ -54,19 +55,6 @@ function listar() {
                             salvarButtonConceder.style.display = '';
                         });
                         
-                        // salvarButtonConceder.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0;
-                        
-                        //     conceder(permissao, email);
-                        
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                        // });
-                        
                         excluirButton.addEventListener('click', () => {
                             const checkbox = tr.querySelector('input[type="checkbox"]');
                             const email = tr.querySelector('td:first-child').textContent;
@@ -78,20 +66,6 @@ function listar() {
                             excluirButton.style.display = 'none';
                             salvarButtonTirar.style.display = '';
                         });
-                        
-                        
-                        // salvarButtonTirar.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
-                        //     tirar(email);
-                        
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                        //     salvarButtonTirar.style.display = 'none';
-                        // });
                         
                         salvarButtonConceder.addEventListener('click', () => {
                             const checkbox = tr.querySelector('input[type="checkbox"]');
@@ -119,55 +93,6 @@ function listar() {
                             excluirButton.style.display = '';
                         });
                         
-                        
-                        // editarButton.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     checkbox.disabled = false;
-                        //     checkbox.focus();
-                        //     editarButton.style.display = 'none';
-                        //     excluirButton.style.display = 'none';
-                        //     salvarButton.style.display = '';
-                        // });
-
-                        // salvarButton.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
-
-                        //     conceder(email, permissao); // Alteração na ordem dos parâmetros
-
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                            
-
-                        // });
-
-                        // excluirButton.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     checkbox.disabled = false;
-                        //     checkbox.focus();
-                        //     editarButton.style.display = 'none';
-                        //     excluirButton.style.display = 'none';
-                        //     salvarButtonTirar.style.display = '';
-
-
-                        // });
-                        
-                        // salvarButtonTirar.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
-                        //     tirar(email);
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                        //     salvarButtonTirar.style.display = 'none';
-
-                        // });
 
 
                     }
