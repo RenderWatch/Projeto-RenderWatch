@@ -25,7 +25,7 @@ function listar(idMaquina) {
         SELECT c.nome AS componente_nome, c.descricao AS componente_descricao, c.identificador AS componente_identificador, r.em_uso, DATE_FORMAT(r.dt_hora, '%H:%i:%s') AS dt_hora_formatada
         FROM componente AS c
         JOIN registro_componente AS r ON c.id = r.componente_id
-        WHERE c.maquina_id = 1 AND c.nome = 'cpu'
+        WHERE c.maquina_id = '${idMaquina}' AND c.nome = 'cpu'
         ORDER BY r.componente_id DESC
         LIMIT 7;
         `
@@ -57,14 +57,13 @@ function listarRam(idMaquina) {
         WHERE c.maquina_id = 1 AND c.nome = 'memoria'
         ORDER BY r.componente_id DESC;
     `;
-
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
         var instrucao = `
         SELECT c.nome AS componente_nome, c.descricao AS componente_descricao, c.identificador AS componente_identificador, r.em_uso, DATE_FORMAT(r.dt_hora, '%H:%i:%s') AS dt_hora_formatada
         FROM componente AS c
         JOIN registro_componente AS r ON c.id = r.componente_id
-        WHERE c.maquina_id = 1 AND c.nome = 'memoria'
+        WHERE c.maquina_id = '${idMaquina}' AND c.nome = 'memoria'
         ORDER BY r.componente_id DESC
         LIMIT 7;
         `
@@ -102,7 +101,7 @@ function listarDisco(idMaquina) {
         SELECT c.nome AS componente_nome, c.descricao AS componente_descricao, c.identificador AS componente_identificador, r.em_uso, DATE_FORMAT(r.dt_hora, '%H:%i:%s') AS dt_hora_formatada
         FROM componente AS c
         JOIN registro_componente AS r ON c.id = r.componente_id
-        WHERE c.maquina_id = 1 AND c.nome = 'disco'
+        WHERE c.maquina_id = '${idMaquina}' AND c.nome = 'disco'
         ORDER BY r.componente_id DESC
         LIMIT 7;
         `

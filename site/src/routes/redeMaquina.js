@@ -3,13 +3,16 @@ var router = express.Router();
 
 var redeMaquinaController = require("../controllers/redeMaquinaController");
 
-router.get("/listarRede", function (req, res) {
+router.get("/listarRede/:idMaquina", function (req, res) {
     redeMaquinaController.listarRede(req, res);
 });
 
-router.get("/listarMaquina", function (req, res) {
+router.get("/listarMaquina/:idCluster", function (req, res) {
     redeMaquinaController.listarMaquina(req, res);
 });
 
+router.get("/listarCluster/:razaoSocial", function (req, res) {
+    redeMaquinaController.listarCluster(req, res);
+});
 
 module.exports = router;
