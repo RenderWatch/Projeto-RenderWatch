@@ -80,7 +80,7 @@ function atualizarDados(idMaquina) {
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           cpuChart.data.datasets[0].data = [];
           cpuChart.data.labels = [];
-         
+
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
             const dados = resposta[i];
@@ -93,13 +93,23 @@ function atualizarDados(idMaquina) {
               cpuChart.data.labels.push(dados.dt_hora_formatada);
               document.getElementById("nome-componente").innerText = componenteDescricao;
               document.getElementById("identificador-componente").innerHTML = `Identificador: <span>${componenteIdentificador}</span>`;
+              document.getElementById("porcentCPU").innerHTML = `${parseInt(dados.em_uso)}%`;
+
+              if (dados.em_uso > 70) {
+                porcentCPU.style.color = "red";
+                cardProcessoCPU.style.borderTop = "15px solid red";
+              } else if (dados.em_uso > 60) {
+                porcentCPU.style.color = "orange";
+                cardProcessoCPU.style.borderTop = "15px solid orange";
+              }
+
             }
           }
 
           // Atualizar os gráficos
           cpuChart.update();
           discoChart.update();
-          
+
 
           // finalizarAguardar();
         });
@@ -140,9 +150,20 @@ function atualizarDadosRam(idMaquina) {
             const dados = resposta[i];
             const componenteNome = dados.componente_nome.toLowerCase();
             
+
             if (componenteNome === "memoria") {
               ramChart.data.datasets[0].data.push(dados.em_uso);
               ramChart.data.labels.push(dados.dt_hora_formatada);
+              document.getElementById("porcentRAM").innerHTML = `${parseInt(dados.em_uso)}%`;
+
+              if (dados.em_uso > 70) {
+                porcentRAM.style.color = "red";
+                cardProcessoRam.style.borderTop = "15px solid red";
+              } else if (dados.em_uso > 60) {
+                porcentRAM.style.color = "orange";
+                cardProcessoRam.style.borderTop = "15px solid orange";
+              }
+
             }
           }
 
@@ -182,7 +203,7 @@ function atualizarDadosDisco(idMaquina) {
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           discoChart.data.datasets[0].data = [];
           discoChart.data.labels = [];
-          
+
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
             const dados = resposta[i];
@@ -191,11 +212,21 @@ function atualizarDadosDisco(idMaquina) {
             if (componenteNome === "disco") {
               discoChart.data.datasets[0].data.push(dados.em_uso);
               discoChart.data.labels.push(dados.dt_hora_formatada);
+              document.getElementById("porcentHD").innerHTML = `${parseInt(dados.em_uso)}%`;
+
+              if (dados.em_uso > 70) {
+                porcentHD.style.color = "red";
+                cardProcessoHD.style.borderTop = "15px solid red";
+              } else if (dados.em_uso > 60) {
+                porcentHD.style.color = "orange";
+                cardProcessoRHD.style.borderTop = "15px solid orange";
+              }
+
             }
           }
 
           // Atualizar os gráficos
-         
+
           discoChart.update();
           // finalizarAguardar();
         });
