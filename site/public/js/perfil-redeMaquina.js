@@ -111,8 +111,8 @@ function atualizarDadosMaquina() {
                         document.getElementById("fabricante").innerHTML = fabricante;
                         document.getElementById("arquitetura").innerHTML = arquitetura;
                         document.getElementById("metrica_cpu").innerHTML = metricaCpu;
-                        document.getElementById("metrica_disco").innerHTML = metricaDisco;
-                        document.getElementById("metrica_memoria").innerHTML = metricaMemoria;
+                        document.getElementById("metrica_hd").innerHTML = metricaDisco;
+                        document.getElementById("metrica_ram").innerHTML = metricaMemoria;
                     } else {
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado.";

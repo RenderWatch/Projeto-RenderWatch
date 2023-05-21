@@ -60,6 +60,7 @@ const cpuChart = new Chart(cpu, {
 });
 
 var idMaquina = sessionStorage.MAQUINA;
+
 function atualizarDados() {
   fetch(`/dashboard/listar/${idMaquina}`)
     .then(function (resposta) {
@@ -83,6 +84,8 @@ function atualizarDados() {
           cpuChart.data.labels = [];
           const metricaCpu = resposta[0].metrica_cpu;
 
+          let countCPU = 0;
+
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
             let dados = resposta[i];
@@ -98,13 +101,11 @@ function atualizarDados() {
               document.getElementById("porcentCPU").innerHTML = `${parseInt(dados.em_uso)}%`;
 
               if (dados.em_uso > metricaCpu) {
-                porcentCPU.style.color = "red";
-                cardProcessoCPU.style.borderTop = "15px solid red";
-              } else if (dados.em_uso > metricaCpu) {
                 porcentCPU.style.color = "orange";
                 cardProcessoCPU.style.borderTop = "15px solid orange";
-              }
 
+                countCPU++;
+              }
             }
           }
 
@@ -147,6 +148,8 @@ function atualizarDadosRam() {
           ramChart.data.labels = [];
           const metricaRam = resposta[0].metrica_memoria;
 
+          let countRam = 0;
+
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
             let dados = resposta[i];
@@ -159,13 +162,11 @@ function atualizarDadosRam() {
               document.getElementById("porcentRAM").innerHTML = `${parseInt(dados.em_uso)}%`;
 
               if (dados.em_uso > metricaRam) {
-                porcentRAM.style.color = "red";
-                cardProcessoRam.style.borderTop = "15px solid red";
-              } else if (dados.em_uso > metricaRam) {
                 porcentRAM.style.color = "orange";
                 cardProcessoRam.style.borderTop = "15px solid orange";
-              }
 
+                countRam++;
+              } 
             }
           }
 
@@ -207,6 +208,8 @@ function atualizarDadosDisco() {
           discoChart.data.labels = [];
           const metricaDisco = resposta[0].metrica_disco;
 
+          let countHD = 0;
+
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
             let dados = resposta[i];
@@ -218,13 +221,11 @@ function atualizarDadosDisco() {
               document.getElementById("porcentHD").innerHTML = `${parseInt(dados.em_uso)}%`;
 
               if (dados.em_uso > metricaDisco) {
-                porcentHD.style.color = "red";
-                cardProcessoHD.style.borderTop = "15px solid red";
-              } else if (dados.em_uso > metricaDisco) {
                 porcentHD.style.color = "orange";
-                cardProcessoRHD.style.borderTop = "15px solid orange";
-              }
+                cardProcessoHD.style.borderTop = "15px solid orange";
 
+                countHD++;
+              } 
             }
           }
 

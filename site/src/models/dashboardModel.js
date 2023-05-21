@@ -15,7 +15,7 @@ function listar(idMaquina) {
     FROM componente AS c
     JOIN registro_componente AS r ON c.id = r.componente_id
     JOIN maquina AS m ON m.id = c.maquina_id
-    WHERE c.maquina_id = 1 AND c.nome = 'cpu'
+    WHERE c.maquina_id = ${idMaquina} AND c.nome = 'cpu'
     ORDER BY r.componente_id DESC;
 `;
 
@@ -54,7 +54,7 @@ function listarRam(idMaquina) {
         FROM componente AS c
         JOIN registro_componente AS r ON c.id = r.componente_id
         JOIN maquina AS m ON m.id = c.maquina_id
-        WHERE c.maquina_id = 1 AND c.nome = 'memoria'
+        WHERE c.maquina_id = ${idMaquina} AND c.nome = 'memoria'
         ORDER BY r.componente_id DESC;
     `;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -92,7 +92,7 @@ function listarDisco(idMaquina) {
     FROM componente AS c
     JOIN registro_componente AS r ON c.id = r.componente_id
     JOIN maquina AS m ON m.id = c.maquina_id
-    WHERE c.maquina_id = 1 AND c.nome = 'disco'
+    WHERE c.maquina_id = ${idMaquina} AND c.nome = 'disco'
     ORDER BY r.componente_id DESC;
         `;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {

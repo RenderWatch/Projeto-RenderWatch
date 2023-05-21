@@ -102,7 +102,7 @@
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
                 <p>Componente que mais gera alertas na máquina</p>
-                <span id="span_alertas_maquina" class="span_alertas">CPU</span>
+                <span id="componente_alerta" class="span_alertas"></span>
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
                 <p>Máquina com maior número de alertas no mês</p>
@@ -266,18 +266,5 @@
     const containerLista = document.querySelector('.container-lista-processos');
 
     let exibirProcessos = false;
-
-    // Para criar novos botões de cluster e de máquina :D
-
-    const clusterContainer = document.querySelector('.selecao-cluster ul');
-
-    for (let i = 1; i <= 5; i++) {
-        const button = document.createElement('button');
-        button.value = `cluster${i}`;
-        button.textContent = `Cluster ${i}`;
-        const listItem = document.createElement('li');
-        listItem.appendChild(button);
-        clusterContainer.appendChild(listItem);
-    }
 </script>
 <script src="js/perfil-sidebar-header.js"></script>
