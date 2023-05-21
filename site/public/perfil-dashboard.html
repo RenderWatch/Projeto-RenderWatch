@@ -132,10 +132,10 @@
                     <p>Métricas definidas - CPU</p><span id="metrica_cpu">70%</span>
                 </div>
                 <div class="metricas">
-                    <p>Métricas definidas - HD</p><span id="metrica_hd">70%</span>
+                    <p>Métricas definidas - HD</p><span id="metrica_disco">70%</span>
                 </div>
                 <div class="metricas">
-                    <p>Métricas definidas - RAM</p><span id="metrica_ram">70%</span>
+                    <p>Métricas definidas - RAM</p><span id="metrica_memoria">70%</span>
                 </div>
             </div>
         </div>
@@ -268,16 +268,16 @@
     let exibirProcessos = false;
 
     // Para criar novos botões de cluster e de máquina :D
-    const clusterContainer = document.querySelector('.selecao-cluster ul');
+    // const clusterContainer = document.querySelector('.selecao-cluster ul');
 
-    for (let i = 1; i <= 5; i++) {
-        const button = document.createElement('button');
-        button.value = `cluster${i}`;
-        button.textContent = `Cluster ${i}`;
-        const listItem = document.createElement('li');
-        listItem.appendChild(button);
-        clusterContainer.appendChild(listItem);
-    }
+    // for (let i = 1; i <= 5; i++) {
+    //     const button = document.createElement('button');
+    //     button.value = `cluster${i}`;
+    //     button.textContent = `Cluster ${i}`;
+    //     const listItem = document.createElement('li');
+    //     listItem.appendChild(button);
+    //     clusterContainer.appendChild(listItem);
+    // }
 
     // const maquinaContainer = document.querySelector('.selecao-maquina ul');
 

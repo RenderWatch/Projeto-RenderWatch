@@ -5,16 +5,16 @@ function listarRede(idMaquina) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     var instrucao = `
-        SELECT nome, ipv4, ipv6, nome_dominio
+        SELECT id, nome, ipv4, ipv6, nome_dominio
         FROM rede
-        WHERE maquina_id = 1;
+        WHERE maquina_id = '${idMaquina}';
         `;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
     var instrucao = `
-        SELECT nome, ipv4, ipv6, nome_dominio
+        SELECT id, nome, ipv4, ipv6, nome_dominio
         FROM rede
-        WHERE maquina_id = 1;
+        WHERE maquina_id = '${idMaquina}';
         `
 
   } else {
@@ -26,22 +26,22 @@ function listarRede(idMaquina) {
   return database.executar(instrucao);
 }
 
-function listarMaquina(idMaquina) {
+function listarMaquina(idCluster) {
   console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     var instrucao = `
-        SELECT nome, sistema_operacional, fabricante, arquitetura, metrica_cpu, metrica_disco, metrica_memoria
+        SELECT id, nome, sistema_operacional, fabricante, arquitetura, metrica_cpu, metrica_disco, metrica_memoria
         FROM maquina
-        WHERE cluster_id = 1;
+        WHERE cluster_id = '${idCluster}';
 
         `;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
     var instrucao = `
-        SELECT nome, sistema_operacional, fabricante, arquitetura, metrica_cpu, metrica_disco, metrica_memoria
+        SELECT id, nome, sistema_operacional, fabricante, arquitetura, metrica_cpu, metrica_disco, metrica_memoria
         FROM maquina
-        WHERE cluster_id = 1;
+        WHERE cluster_id = '${idCluster}';
         `
 
   } else {
@@ -49,12 +49,26 @@ function listarMaquina(idMaquina) {
     return
   }
 
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
+function listarCluster(razaoSocial) {
+  console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  var instrucao = `
+  SELECT cluster.*
+  FROM cluster
+  JOIN empresa ON cluster.empresa_id = empresa.id
+  WHERE empresa.razao_social = '${razaoSocial}';
+  
+  `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
 
 module.exports = {
   listarRede,
-  listarMaquina
+  listarMaquina,
+  listarCluster
 }
 

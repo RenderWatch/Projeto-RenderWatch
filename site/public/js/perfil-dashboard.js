@@ -17,7 +17,7 @@ const ramChart = new Chart(ram, {
       }
     }
   }
-});
+}); 
 
 const disco = document.getElementById('myChart2');
 const discoChart = new Chart(disco, {
@@ -59,7 +59,8 @@ const cpuChart = new Chart(cpu, {
   }
 });
 
-function atualizarDados(idMaquina) {
+var idMaquina = sessionStorage.MAQUINA;
+function atualizarDados() {
   fetch(`/dashboard/listar/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -113,7 +114,7 @@ function atualizarDados(idMaquina) {
     });
 }
 
-function atualizarDadosRam(idMaquina) {
+function atualizarDadosRam() {
   fetch(`/dashboard/listarRam/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -161,7 +162,7 @@ function atualizarDadosRam(idMaquina) {
     });
 }
 
-function atualizarDadosDisco(idMaquina) {
+function atualizarDadosDisco() {
   fetch(`/dashboard/listarDisco/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
