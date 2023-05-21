@@ -64,9 +64,9 @@
                 <li><a href="perfil-clusters.html" class="sidebar-element">
                         <div>Clusters</div>
                     </a></li>
-                <li><a href="perfil-rede.html" class="sidebar-element">
+                <!-- <li><a href="perfil-rede.html" class="sidebar-element">
                         <div>Rede</div>
-                    </a></li>
+                    </a></li> -->
                 <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
                         <div>Suporte</div>
                     </a></li>
@@ -120,22 +120,22 @@
                         <h2>Cluster <span style="border-right: 5px solid rgb(83, 142, 245);" id="cluster">1</span><span
                                 style="margin: 0 2px;"></span>Maquina <span id="maquina">2</span></h2>
                     </div>
-                    <p>Nome da máquina: <span id="apelido">Machine</span></p>
-                    <p>Sistema operacional: <span id="sistema">Ubuntu/Linux</span></p>
-                    <p>Fabricante: <span id="fabricante">Gnome</span></p>
-                    <p>Arquitetura: <span id="arquitetura">64 bits</span></p>
+                    <p>Nome da máquina: <span id="apelido"></span></p>
+                    <p>Sistema operacional: <span id="sistema"></span></p>
+                    <p>Fabricante: <span id="fabricante"></span></p>
+                    <p>Arquitetura: <span id="arquitetura"></span></p>
                     <!-- <p>Inicializado: <span id="data-inicializado">2023-04-16 17:40:30</span></p>
                     <p>Tempo de atividade: <span id="tempo-atividade">5 dias, 22:26:29</span></p>
                     <p>Permissões: <span id="permissao-usuario">Executando como usuário padrão</span></p> -->
                 </div>
                 <div class="metricas">
-                    <p>Métricas definidas - CPU</p><span id="metrica_cpu">70%</span>
+                    <p>Métricas definidas - CPU</p><span id="metrica_cpu"></span>
                 </div>
                 <div class="metricas">
-                    <p>Métricas definidas - HD</p><span id="metrica_disco">70%</span>
+                    <p>Métricas definidas - HD</p><span id="metrica_hd"></span>
                 </div>
                 <div class="metricas">
-                    <p>Métricas definidas - RAM</p><span id="metrica_memoria">70%</span>
+                    <p>Métricas definidas - RAM</p><span id="metrica_ram"></span>
                 </div>
             </div>
         </div>
@@ -147,11 +147,11 @@
                 <div class="cluster-rede-atual">
                     <h2>Rede</h2>
                 </div>
-                <p>Nome: <span id="nome_rede">wlo1</span></p>
+                <p>Nome: <span id="nome_rede"></span></p>
                 <!-- <p>Hostname: <span id="hostname">Intel Corp</span></p> -->
-                <p>Endereço IPV4: <span id="ipv4">10.18.7.48</span></p>
-                <p>Endereço IPV6: <span id="ipv6">:db8:3333:4444:5555:6666:1.2.3.4.</span></p>
-                <p>DNS: <span id="dns">www.amazon.com</span></p>
+                <p>Endereço IPV4: <span id="ipv4"></span></p>
+                <p>Endereço IPV6: <span id="ipv6"></span></p>
+                <p>DNS: <span id="dns"></span></p>
                 <!-- <p>Endereço Mac:  <span id="endereco_mac"> 00:1B:44:11:3A:B7</span></p> -->
             </div>
             <!-- <div class="bytes-rede">
@@ -223,8 +223,8 @@
             <canvas id="myChart3"></canvas>
             <div class="descricao">
                 <div class="descricao-componente" style="margin-top: 5vh;">
-                    <p id="nome-componente">Intel(R) Core(TM) I5-3570</p>
-                    <p id="identificador-componente">Identificador: <span> Intel 64</span></p>
+                    <p id="nome-componente"></p>
+                    <p id="identificador-componente">Identificador: <span></span></p>
                 </div>
             </div>
         </div>
@@ -268,70 +268,16 @@
     let exibirProcessos = false;
 
     // Para criar novos botões de cluster e de máquina :D
-    // const clusterContainer = document.querySelector('.selecao-cluster ul');
 
-    // for (let i = 1; i <= 5; i++) {
-    //     const button = document.createElement('button');
-    //     button.value = `cluster${i}`;
-    //     button.textContent = `Cluster ${i}`;
-    //     const listItem = document.createElement('li');
-    //     listItem.appendChild(button);
-    //     clusterContainer.appendChild(listItem);
-    // }
+    const clusterContainer = document.querySelector('.selecao-cluster ul');
 
-    // const maquinaContainer = document.querySelector('.selecao-maquina ul');
-
-    // for (let i = 1; i <= 5; i++) {
-    //     const button = document.createElement('button');
-    //     button.value = `maquina${i}`;
-    //     button.textContent = `Máquina ${i}`;
-    //     button.setAttribute('data-id', `maquina${i}`); // Adiciona o atributo data-id com o valor da identificação da máquina
-    //     const listItem = document.createElement('li');
-    //     listItem.appendChild(button);
-    //     maquinaContainer.appendChild(listItem);
-    // }
-
-    // Para mudar a corzinha dos cards de acordo com a porcentagem de uso :D
-    const porcentagemRAM = Math.floor(Math.random() * 100);
-    const porcentagemHD = Math.floor(Math.random() * 100);
-    const porcentagemCPU = Math.floor(Math.random() * 100);
-    // const porcentagemRede = Math.floor(Math.random() * 100);
-    porcentRAM.innerHTML = `${porcentagemRAM}%`;
-    porcentHD.innerHTML = `${porcentagemHD}%`;
-    porcentCPU.innerHTML = `${porcentagemCPU}%`;
-    // porcentRede.innerHTML = `${porcentagemRede}%`;
-
-    if (porcentagemRAM > 70) {
-        porcentRAM.style.color = "red";
-        cardProcessoRam.style.borderTop = "15px solid red";
-    } else if (porcentagemRAM > 60) {
-        porcentRAM.style.color = "orange";
-        cardProcessoRam.style.borderTop = "15px solid orange";
+    for (let i = 1; i <= 5; i++) {
+        const button = document.createElement('button');
+        button.value = `cluster${i}`;
+        button.textContent = `Cluster ${i}`;
+        const listItem = document.createElement('li');
+        listItem.appendChild(button);
+        clusterContainer.appendChild(listItem);
     }
-
-    if (porcentagemHD > 70) {
-        porcentHD.style.color = "red";
-        cardProcessoHD.style.borderTop = "15px solid red";
-    } else if (porcentagemHD > 60) {
-        porcentHD.style.color = "orange";
-        cardProcessoHD.style.borderTop = "15px solid orange";
-    }
-
-    if (porcentagemCPU > 70) {
-        porcentCPU.style.color = "red";
-        cardProcessoCPU.style.borderTop = "15px solid red";
-    } else if (porcentagemCPU > 60) {
-        porcentCPU.style.color = "orange";
-        cardProcessoCPU.style.borderTop = "15px solid orange";
-    }
-
-    // if (porcentagemRede > 70) {
-    //     porcentRede.style.color = "red";
-    //     cardProcessoRede.style.borderTop = "15px solid red";
-    // } else if (porcentagemRede > 60) {
-    //     porcentRede.style.color = "orange";
-    //     cardProcessoRede.style.borderTop = "15px solid orange";
-    // }
-
 </script>
 <script src="js/perfil-sidebar-header.js"></script>

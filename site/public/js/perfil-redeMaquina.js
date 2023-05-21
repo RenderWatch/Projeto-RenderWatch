@@ -41,6 +41,19 @@ function atualizarDadosCluster() {
                     }
 
                     atualizarDadosMaquina();
+                    for (let i = 0; i < resposta.length; i++) {
+                        const dados = resposta[i];
+                        const nomeRede = dados.nome;
+                        const ipv4 = dados.ipv4;
+                        const ipv6 = dados.ipv6;
+                        const nomeDominio = dados.nome_dominio;
+
+                        // Inserir os valores nos elementos HTML correspondentes
+                        document.getElementById("nome_rede").innerHTML = nomeRede;
+                        document.getElementById("ipv4").innerHTML = ipv4;
+                        document.getElementById("ipv6").innerHTML = ipv6;
+                        document.getElementById("dns").innerHTML = nomeDominio;
+                    }
                 });
             } else {
                 throw "Houve um erro na API!";
