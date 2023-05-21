@@ -80,10 +80,11 @@ function atualizarDados(idMaquina) {
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           cpuChart.data.datasets[0].data = [];
           cpuChart.data.labels = [];
+          const metricaCpu = resposta[0].metrica_cpu;
 
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
-            const dados = resposta[i];
+            let dados = resposta[i];
             const componenteNome = dados.componente_nome.toLowerCase();
             const componenteDescricao = dados.componente_descricao;
             const componenteIdentificador = dados.componente_identificador;
@@ -95,10 +96,10 @@ function atualizarDados(idMaquina) {
               document.getElementById("identificador-componente").innerHTML = `Identificador: <span>${componenteIdentificador}</span>`;
               document.getElementById("porcentCPU").innerHTML = `${parseInt(dados.em_uso)}%`;
 
-              if (dados.em_uso > 70) {
+              if (dados.em_uso > metricaCpu) {
                 porcentCPU.style.color = "red";
                 cardProcessoCPU.style.borderTop = "15px solid red";
-              } else if (dados.em_uso > 60) {
+              } else if (dados.em_uso > metricaCpu) {
                 porcentCPU.style.color = "orange";
                 cardProcessoCPU.style.borderTop = "15px solid orange";
               }
@@ -108,7 +109,6 @@ function atualizarDados(idMaquina) {
 
           // Atualizar os gráficos
           cpuChart.update();
-          discoChart.update();
 
 
           // finalizarAguardar();
@@ -144,10 +144,11 @@ function atualizarDadosRam(idMaquina) {
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           ramChart.data.datasets[0].data = [];
           ramChart.data.labels = [];
+          const metricaRam = resposta[0].metrica_memoria;
 
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
-            const dados = resposta[i];
+            let dados = resposta[i];
             const componenteNome = dados.componente_nome.toLowerCase();
             
 
@@ -156,10 +157,10 @@ function atualizarDadosRam(idMaquina) {
               ramChart.data.labels.push(dados.dt_hora_formatada);
               document.getElementById("porcentRAM").innerHTML = `${parseInt(dados.em_uso)}%`;
 
-              if (dados.em_uso > 70) {
+              if (dados.em_uso > metricaRam) {
                 porcentRAM.style.color = "red";
                 cardProcessoRam.style.borderTop = "15px solid red";
-              } else if (dados.em_uso > 60) {
+              } else if (dados.em_uso > metricaRam) {
                 porcentRAM.style.color = "orange";
                 cardProcessoRam.style.borderTop = "15px solid orange";
               }
@@ -203,10 +204,11 @@ function atualizarDadosDisco(idMaquina) {
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           discoChart.data.datasets[0].data = [];
           discoChart.data.labels = [];
+          const metricaDisco = resposta[0].metrica_disco;
 
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
-            const dados = resposta[i];
+            let dados = resposta[i];
             const componenteNome = dados.componente_nome.toLowerCase();
 
             if (componenteNome === "disco") {
@@ -214,10 +216,10 @@ function atualizarDadosDisco(idMaquina) {
               discoChart.data.labels.push(dados.dt_hora_formatada);
               document.getElementById("porcentHD").innerHTML = `${parseInt(dados.em_uso)}%`;
 
-              if (dados.em_uso > 70) {
+              if (dados.em_uso > metricaDisco) {
                 porcentHD.style.color = "red";
                 cardProcessoHD.style.borderTop = "15px solid red";
-              } else if (dados.em_uso > 60) {
+              } else if (dados.em_uso > metricaDisco) {
                 porcentHD.style.color = "orange";
                 cardProcessoRHD.style.borderTop = "15px solid orange";
               }
@@ -241,15 +243,16 @@ function atualizarDadosDisco(idMaquina) {
 }
 
 setInterval(function () {
-  atualizarDados();
+  const idMaquina = 1; // Substitua pelo ID da máquina desejada
+  atualizarDados(idMaquina);
 }, 5000);
 
 setInterval(function () {
-  atualizarDadosRam();
+  const idMaquina = 1; // Substitua pelo ID da máquina desejada
+  atualizarDadosRam(idMaquina);
 }, 5000);
 
 setInterval(function () {
-  atualizarDadosDisco();
+  const idMaquina = 1; // Substitua pelo ID da máquina desejada
+  atualizarDadosDisco(idMaquina);
 }, 5000);
-
-
