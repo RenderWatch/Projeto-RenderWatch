@@ -15,4 +15,9 @@ router.get("/listarCluster/:razaoSocial", function (req, res) {
     redeMaquinaController.listarCluster(req, res);
 });
 
+router.get("/listarProcessos/:idMaquina", function (req, res) {
+    redeMaquinaController.listarProcessos(req, res);
+});
+
+
 module.exports = router;

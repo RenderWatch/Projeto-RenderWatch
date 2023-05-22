@@ -117,8 +117,8 @@
             <div style="display: flex;" class="card-maquina">
                 <div class="descricao-maquina">
                     <div class="cluster-maquina-atual">
-                        <h2>Cluster <span style="border-right: 5px solid rgb(83, 142, 245);" id="cluster">1</span><span
-                                style="margin: 0 2px;"></span>Maquina <span id="maquina">2</span></h2>
+                        <h2><span style="border-right: 5px solid rgb(83, 142, 245);" id="cluster">1</span><span
+                                style="margin: 0 2px;"></span><span id="maquina"></span></h2>
                     </div>
                     <p>Nome da máquina: <span id="apelido"></span></p>
                     <p>Sistema operacional: <span id="sistema"></span></p>
@@ -224,7 +224,7 @@
             <div class="descricao">
                 <div class="descricao-componente" style="margin-top: 5vh;">
                     <p id="nome-componente"></p>
-                    <p id="identificador-componente">Identificador: <span></span></p>
+                    <p id="identificador-componente"></p>
                 </div>
             </div>
         </div>
@@ -243,7 +243,6 @@
                 <p>Total de threads: <span id="total-threads">0</span></p>
             </div>
         </div>
-
     </div>
     <div id="feed_container"></div>
 
@@ -265,6 +264,6 @@
     const lista = document.querySelector('.lista');
     const containerLista = document.querySelector('.container-lista-processos');
 
-    let exibirProcessos = false;
+    let exibirProcessos = true;
 </script>
 <script src="js/perfil-sidebar-header.js"></script>

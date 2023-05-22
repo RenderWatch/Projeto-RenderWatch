@@ -19,8 +19,4 @@ router.get("/listarDisco/:idMaquina", function (req, res) {
     dashboardController.listarDisco(req, res);
 });
 
-router.get("/listarProcessos/:idGrupoProcessos", function (req, res) {
-    dashboardController.listarDisco(req, res);
-});
-
 module.exports = router;

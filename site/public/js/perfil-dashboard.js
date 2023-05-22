@@ -5,19 +5,42 @@ const ramChart = new Chart(ram, {
     labels: [],
     datasets: [{
       type: 'line',
-      label: 'Uso de memoria RAM',
+      label: 'Uso de memória RAM',
       data: [],
-      borderWidth: 1
+      borderColor: 'rgba(0, 123, 255, 1)', // Cor da linha do gráfico
+      backgroundColor: 'rgba(0, 123, 255, 0.3)',
+      borderWidth: 1,
+      fill: 'start'
     }]
   },
   options: {
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return value + '%'; // Adiciona o símbolo de porcentagem aos valores do eixo y
+          }
+        }
+      },
+    },
+    plugins: {
+      legend: {
+        display: false // Oculta a legenda do gráfico
+      },
+    },
+    elements: {
+      point: {
+        radius: 0 // Remove os pontos de dados no gráfico
+      }
+    },
+    plugins: {
+      filler: {
+        propagate: true // Preenche a área sob a linha do gráfico
       }
     }
   }
-}); 
+});
 
 const disco = document.getElementById('myChart2');
 const discoChart = new Chart(disco, {
@@ -27,13 +50,36 @@ const discoChart = new Chart(disco, {
     datasets: [{
       label: 'Uso de disco',
       data: [],
-      borderWidth: 1
+      borderColor: 'rgba(255, 99, 132, 1)',
+      backgroundColor: 'rgba(255, 99, 132, 0.3)',
+      borderWidth: 1,
+      fill: 'start'
     }]
   },
   options: {
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return value + '%';
+          }
+        }
+      },
+    },
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    plugins: {
+      filler: {
+        propagate: true
       }
     }
   }
@@ -47,19 +93,46 @@ const cpuChart = new Chart(cpu, {
     datasets: [{
       label: 'Uso de CPU',
       data: [],
-      borderWidth: 1
+      borderColor: 'rgba(40, 167, 69, 1)',
+      backgroundColor: 'rgba(40, 167, 69, 0.3)',
+      borderWidth: 1,
+      fill: 'start'
     }]
   },
   options: {
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return value + '%';
+          }
+        }
+      },
+    },
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    plugins: {
+      filler: {
+        propagate: true
       }
     }
   }
 });
 
 var idMaquina = sessionStorage.MAQUINA;
+var componenteAlerta = "";
+let countHD = 0;
+let countCPU = 0;
+let countRam = 0;
 
 function atualizarDados() {
   fetch(`/dashboard/listar/${idMaquina}`)
@@ -84,7 +157,7 @@ function atualizarDados() {
           cpuChart.data.labels = [];
           const metricaCpu = resposta[0].metrica_cpu;
 
-          let countCPU = 0;
+       
 
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
@@ -97,7 +170,7 @@ function atualizarDados() {
               cpuChart.data.datasets[0].data.push(dados.em_uso);
               cpuChart.data.labels.push(dados.dt_hora_formatada);
               document.getElementById("nome-componente").innerText = componenteDescricao;
-              document.getElementById("identificador-componente").innerHTML = `Identificador: <span>${componenteIdentificador}</span>`;
+              document.getElementById("identificador-componente").innerHTML = componenteIdentificador;
               document.getElementById("porcentCPU").innerHTML = `${parseInt(dados.em_uso)}%`;
 
               if (dados.em_uso > metricaCpu) {
@@ -112,8 +185,10 @@ function atualizarDados() {
           // Atualizar os gráficos
           cpuChart.update();
 
-
+          
           // finalizarAguardar();
+
+          determinarComponenteAlerta();
         });
       } else {
         throw "Houve um erro na API!";
@@ -148,13 +223,10 @@ function atualizarDadosRam() {
           ramChart.data.labels = [];
           const metricaRam = resposta[0].metrica_memoria;
 
-          let countRam = 0;
-
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
             let dados = resposta[i];
             const componenteNome = dados.componente_nome.toLowerCase();
-            
 
             if (componenteNome === "memoria") {
               ramChart.data.datasets[0].data.push(dados.em_uso);
@@ -166,7 +238,7 @@ function atualizarDadosRam() {
                 cardProcessoRam.style.borderTop = "15px solid orange";
 
                 countRam++;
-              } 
+              }
             }
           }
 
@@ -174,6 +246,8 @@ function atualizarDadosRam() {
           ramChart.update();
 
           // finalizarAguardar();
+          determinarComponenteAlerta();
+          
         });
       } else {
         throw "Houve um erro na API!";
@@ -208,8 +282,6 @@ function atualizarDadosDisco() {
           discoChart.data.labels = [];
           const metricaDisco = resposta[0].metrica_disco;
 
-          let countHD = 0;
-
           // Atualizar os dados dos gráficos existentes com os novos valores
           for (let i = 0; i < resposta.length; i++) {
             let dados = resposta[i];
@@ -225,14 +297,14 @@ function atualizarDadosDisco() {
                 cardProcessoHD.style.borderTop = "15px solid orange";
 
                 countHD++;
-              } 
+              }
             }
           }
 
           // Atualizar os gráficos
-
           discoChart.update();
           // finalizarAguardar();
+          determinarComponenteAlerta();
         });
       } else {
         throw "Houve um erro na API!";
@@ -240,21 +312,36 @@ function atualizarDadosDisco() {
     })
     .catch(function (resposta) {
       console.error(resposta);
+
+
       // finalizarAguardar();
     });
 }
 
+function determinarComponenteAlerta() {
+  let maxAlertas = Math.max(countCPU, countRAM, countHD);
+  
+  if (maxAlertas === countCPU) {
+    componenteAlerta = "CPU";
+  } else if (maxAlertas === countRam) {
+    componenteAlerta = "RAM";
+  } else if (maxAlertas === countHD) {
+    componenteAlerta = "Disco";
+  }
+  
+  // Exibir o componente que gera mais alertas
+  document.getElementById("componente_alerta").textContent = componenteAlerta;
+}
+
+
 setInterval(function () {
-  const idMaquina = 1; // Substitua pelo ID da máquina desejada
-  atualizarDados(idMaquina);
+  atualizarDados();
+}, 5000);
+
+setInterval(function () {;
+  atualizarDadosRam();
 }, 5000);
 
 setInterval(function () {
-  const idMaquina = 1; // Substitua pelo ID da máquina desejada
-  atualizarDadosRam(idMaquina);
-}, 5000);
-
-setInterval(function () {
-  const idMaquina = 1; // Substitua pelo ID da máquina desejada
-  atualizarDadosDisco(idMaquina);
+  atualizarDadosDisco();
 }, 5000);

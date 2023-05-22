@@ -32,6 +32,9 @@ function atualizarDadosCluster() {
                             const listItem = document.createElement('li');
                             listItem.appendChild(button);
                             clusterContainer.appendChild(listItem);
+
+                            document.getElementById("cluster").innerHTML = `Cluster ${idCluster}`;
+
                         }
                     } else {
                         var mensagem = document.createElement("span");
@@ -96,6 +99,9 @@ function atualizarDadosMaquina() {
                             const listItem = document.createElement('li');
                             listItem.appendChild(button);
                             maquinaContainer.appendChild(listItem);
+
+                            document.getElementById("maquina").innerHTML = `Máquina ${idMaquina}`;
+
                         }
 
                         const nomeMaquina = dados.nome;
@@ -154,6 +160,9 @@ function atualizarDadosRede() {
                             document.getElementById("ipv4").innerHTML = `<span>${ipv4}</span>`;
                             document.getElementById("ipv6").innerHTML = ipv6;
                             document.getElementById("dns").innerHTML = nomeDominio;
+
+
+
                         }
                     } else {
                         var mensagem = document.createElement("span");
@@ -170,5 +179,45 @@ function atualizarDadosRede() {
             console.error(resposta);
         });
 }
+
+function atualizarDadosProcesso() {
+    fetch(`/redeMaquina/listarProcessos/${idMaquina}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+
+                    if (resposta.length > 0) {
+                        for (let i = 0; i < resposta.length; i++) {
+                            const dados = resposta[i];
+                            const total_processos = dados.total_processos;
+                            const total_threads = dados.total_threads;
+                        
+                            document.getElementById("total-processos").innerHTML = `<span>${total_processos}</span>`;
+                            document.getElementById("total-threads").innerHTML = `<span>${total_threads}</span>`;
+                    
+                        }
+                    } else {
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum resultado encontrado.";
+                        feed.appendChild(mensagem);
+                        throw "Nenhum resultado encontrado!";
+                    }
+
+                    atualizarDadosProcesso();
+
+                });
+            } else {
+                throw "Houve um erro na API!";
+            }
+        })
+        .catch(function (resposta) {
+            console.error(resposta);
+        });
+}
+
 
 atualizarDadosCluster();
