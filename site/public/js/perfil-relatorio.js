@@ -88,6 +88,8 @@ let componenteEmMaisAlertas;
 let usoCpuPorCluster;
 let usoMemoriaPorCluster;
 let discoLivrePorCluster;
+let qtdCluster;
+let qtdMaquina;
 
 
 async function montarDadosRelatorio() {
@@ -98,6 +100,8 @@ async function montarDadosRelatorio() {
     await getUsoCpuPorCluster();
     await getUsoMemoriaPorCluster();
     await getDiscoLivrePorCluster();
+    await getQtdMaquinas();
+    await getQtdClusters();
 
     dados = `
     <style>
@@ -122,6 +126,8 @@ async function montarDadosRelatorio() {
             <ul>
             <ul>
             <h2>Valores totais</h2>
+            <li>Quantidade de clusters: ${qtdCluster}</li>
+            <li>Quantidade de máquinas: ${qtdMaquina}</li>
             <li>Quantidade total de alertas em todos os cluster: ${qtdAlertas}</li>
             <br>
             ${componenteEmMaisAlertas}
@@ -205,7 +211,7 @@ async function getAlertas() {
 
                     let dadosAlerta = '';
                     for (let i = 0; i < json.length; i++) {
-                        dadosAlerta += `<li>Id Cluster: ${json[i].clusterId}  Cluster: ${json[i].clusterNome} - Id Máquina: ${json[i].maquinaId} Máquina ${json[i].maquinaNome} </li><p> Alerta ${json[i].componenteAlerta}  Uso: ${(json[i].usoAlerta).toFixed(2)} </p><p> Data: ${json[i].dataAlerta} </p>`;
+                        dadosAlerta += `<li class="color-pdf-text">Id Cluster: ${json[i].clusterId}  Cluster: ${json[i].clusterNome} - Id Máquina: ${json[i].maquinaId} Máquina ${json[i].maquinaNome} </li><p> Alerta ${json[i].componenteAlerta}  Uso: ${(json[i].usoAlerta).toFixed(2)}%</p><p> Data: ${json[i].dataAlerta} </p>`;
                     }
 
                     dadosAlertas = dadosAlerta;
@@ -240,6 +246,50 @@ async function getQtdAlertas() {
             }
         }).catch(erro => {
             console.log("Erro na requisição dos dados da quantidade de alertas:", erro);
+            return '';
+        })
+}
+
+
+async function getQtdClusters() {
+    return fetch(`/relatorio/buscarQtdClusters/${idEmpresa}`)
+        .then(resposta => {
+            if (resposta.ok) {
+                return resposta.json().then((json) => {
+                    console.log("Dados recebidos: ", JSON.stringify(json));
+
+                    let qtdClusters = json[0].qtdClusters;
+
+                    qtdCluster = qtdClusters;
+
+                })
+            } else {
+                throw new Error('Houve um erro na API!')
+            }
+        }).catch(erro => {
+            console.log("Erro na requisição da quantidade de clusters:", erro);
+            return '';
+        })
+}
+
+
+async function getQtdMaquinas() {
+    return fetch(`/relatorio/buscarQtdMaquinas/${idEmpresa}`)
+        .then(resposta => {
+            if (resposta.ok) {
+                return resposta.json().then((json) => {
+                    console.log("Dados recebidos: ", JSON.stringify(json));
+
+                    let qtdMaquinas = json[0].qtdMaquinas;
+
+                    qtdMaquina = qtdMaquinas;
+
+                })
+            } else {
+                throw new Error('Houve um erro na API!')
+            }
+        }).catch(erro => {
+            console.log("Erro na requisição da quantidade de maquinas:", erro);
             return '';
         })
 }
@@ -304,7 +354,7 @@ async function getUsoCpuPorCluster() {
                     let dadosUsoCpu = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosUsoCpu += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p> Média de uso: ${(json[i].average_uso).toFixed(2)}%</p>`;
+                        dadosUsoCpu += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p> Média de uso CPU: ${(json[i].average_uso).toFixed(2)}%</p>`;
                     }
 
                     usoCpuPorCluster = dadosUsoCpu;
@@ -329,7 +379,7 @@ async function getUsoMemoriaPorCluster() {
                     let dadosUsoMemoria = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosUsoMemoria += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p> Média de uso: ${(json[i].average_uso).toFixed(2)}%</p>`;
+                        dadosUsoMemoria += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p> Média de uso memória: ${(json[i].average_uso).toFixed(2)}%</p>`;
                     }
 
                     usoMemoriaPorCluster = dadosUsoMemoria;
@@ -355,7 +405,7 @@ async function getDiscoLivrePorCluster() {
                     let dadosDiscoLivre = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosDiscoLivre += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p> Média de uso: ${(json[i].discoLivrePercentagem).toFixed(2)}%</p>`;
+                        dadosDiscoLivre += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p> Disco livre: ${(json[i].discoLivrePercentagem).toFixed(2)}%</p>`;
                     }
 
                     discoLivrePorCluster = dadosDiscoLivre;

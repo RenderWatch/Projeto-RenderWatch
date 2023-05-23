@@ -119,6 +119,40 @@ function buscarDiscoLivrePorCluster(req, res) {
         );
 }
 
+function buscarQtdMaquinas(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    relatorioModel.buscarQtdMaquinas(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function buscarQtdClusters(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    relatorioModel.buscarQtdClusters(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     buscarDadosAlertas,
     buscarQuantidadeAlertas,
@@ -126,5 +160,7 @@ module.exports = {
     buscarComponenteEmMaisAlertas,
     buscarUsoCpuPorCluster,
     buscarUsoMemoriaPorCluster,
-    buscarDiscoLivrePorCluster
+    buscarDiscoLivrePorCluster,
+    buscarQtdMaquinas,
+    buscarQtdClusters
     }

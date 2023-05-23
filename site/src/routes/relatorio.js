@@ -31,4 +31,12 @@ router.get("/buscarDiscoLivrePorCluster/:idEmpresa", function (req, res) {
     relatorioController.buscarDiscoLivrePorCluster(req, res);
 });
 
+router.get("/buscarQtdClusters/:idEmpresa", function (req, res) {
+    relatorioController.buscarQtdClusters(req, res);
+});
+
+router.get("/buscarQtdMaquinas/:idEmpresa", function (req, res) {
+    relatorioController.buscarQtdMaquinas(req, res);
+});
+
 module.exports = router;

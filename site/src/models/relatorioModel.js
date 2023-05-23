@@ -249,6 +249,35 @@ function buscarDiscoLivrePorCluster(idEmpresa) {
     return database.executar(instrucao);
 }
 
+function buscarQtdMaquinas(idEmpresa) {
+    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarQtdMaquinas():", idEmpresa);
+
+    let instrucao = `
+    SELECT COUNT(m.id) AS qtdMaquinas 
+    FROM maquina AS m 
+    JOIN cluster as c ON m.cluster_id = c.id 
+    JOIN empresa as e ON c.empresa_id = e.id 
+    WHERE e.id = ${idEmpresa} ;
+    `;
+    
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarQtdClusters(idEmpresa) {
+    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarQtdClusters():", idEmpresa);
+
+    let instrucao = `
+    SELECT COUNT(c.id) AS qtdClusters
+    FROM cluster as c 
+    JOIN empresa as e ON c.empresa_id = e.id 
+    WHERE e.id = ${idEmpresa} ;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarDadosAlertas,
     buscarQuantidadeAlertas,
@@ -256,6 +285,8 @@ module.exports = {
     buscarComponenteEmMaisAlertas,
     buscarUsoCpuPorCluster,
     buscarUsoMemoriaPorCluster,
-    buscarDiscoLivrePorCluster
+    buscarDiscoLivrePorCluster,
+    buscarQtdMaquinas,
+    buscarQtdClusters
 };
 
