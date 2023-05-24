@@ -66,38 +66,46 @@ function listarCluster(razaoSocial) {
   return database.executar(instrucao);
 }
 
-function listarProcessos(idMaquina) {
-  console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor do seu BD está rodando corretamente. \n\n function listar()");
+// function listarProcessos(idMaquina) {
+//   console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor do seu BD está rodando corretamente. \n\n function listar()");
 
-  if (process.env.AMBIENTE_PROCESSO == "producao") {
-    var instrucao = `
-    SELECT gp.lista_processos, gp.total_processos, gp.total_threads
-    FROM grupo_processos AS gp
-    JOIN maquina AS m ON m.id = gp.maquina_id
-    WHERE gp.maquina_id = '${idMaquina}'
-    ORDER BY gp.maquina_id DESC
-    LIMIT 7;
-    `;
-  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-    var instrucao = `
-    SELECT gp.lista_processos, gp.total_processos, gp.total_threads
-    FROM grupo_processos AS gp
-    JOIN maquina AS m ON m.id = gp.maquina_id
-    WHERE gp.maquina_id = '${idMaquina}'
-    ORDER BY gp.maquina_id DESC
-    LIMIT 7;
-    `;
+//   if (process.env.AMBIENTE_PROCESSO == "producao") {
+//     // var instrucao = `
+//     // SELECT gp.lista_processos, gp.total_processos, gp.total_threads
+//     // FROM grupo_processos AS gp
+//     // JOIN maquina AS m ON m.id = gp.maquina_id
+//     // WHERE gp.maquina_id = '${idMaquina}'
+//     // ORDER BY gp.maquina_id DESC
+//     // LIMIT 7;
+//     // `;
+//     var instrucao = `
+//     SELECT gp.lista_processos, gp.total_processos, gp.total_threads
+//     FROM grupo_processos AS gp
+//     JOIN maquina AS m ON m.id = gp.maquina_id
+//     WHERE gp.maquina_id = '${idMaquina}'
+//     ORDER BY gp.maquina_id DESC
+//     LIMIT 1;
+//     `;
+//   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+//     var instrucao = `
+//     SELECT gp.lista_processos, gp.total_processos, gp.total_threads
+//     FROM grupo_processos AS gp
+//     JOIN maquina AS m ON m.id = gp.maquina_id
+//     WHERE gp.maquina_id = '${idMaquina}'
+//     ORDER BY gp.maquina_id DESC
+//     LIMIT 7;
+//     `;
 
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-  }
-}
+//     console.log("Executando a instrução SQL: \n" + instrucao);
+//     return database.executar(instrucao);
+//   }
+// }
 
 
   module.exports = {
     listarRede,
     listarMaquina,
     listarCluster,
-    listarProcessos
+    // listarProcessos
   }
 

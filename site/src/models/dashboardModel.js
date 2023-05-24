@@ -5,19 +5,18 @@ function listar(idMaquina) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-    SELECT TOP 7
-        c.nome AS componente_nome,
-        c.descricao AS componente_descricao,
-        c.identificador AS componente_identificador,
-        r.em_uso,
-        FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
-        m.metrica_cpu
-    FROM componente AS c
-    JOIN registro_componente AS r ON c.id = r.componente_id
-    JOIN maquina AS m ON m.id = c.maquina_id
-    WHERE c.maquina_id = ${idMaquina} AND c.nome = 'cpu'
-    ORDER BY r.componente_id DESC;
-`;
+        SELECT TOP 15 c.nome AS componente_nome,
+            c.descricao AS componente_descricao,
+            c.identificador AS componente_identificador,
+            r.em_uso,
+            FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
+            m.metrica_memoria
+        FROM registro_componente AS r
+        JOIN componente AS c ON c.id = r.componente_id
+        JOIN maquina AS m ON m.id = c.maquina_id
+        WHERE c.maquina_id = ${idMaquina} AND c.nome = 'cpu'
+        ORDER BY r.id DESC;
+    `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
@@ -44,18 +43,15 @@ function listarRam(idMaquina) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-        SELECT TOP 7
-            c.nome AS componente_nome,
-            c.descricao AS componente_descricao,
-            c.identificador AS componente_identificador,
+        SELECT TOP 15 c.nome AS componente_nome,
             r.em_uso,
             FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
             m.metrica_memoria
-        FROM componente AS c
-        JOIN registro_componente AS r ON c.id = r.componente_id
+        FROM registro_componente AS r
+        JOIN componente AS c ON c.id = r.componente_id
         JOIN maquina AS m ON m.id = c.maquina_id
-        WHERE c.maquina_id = ${idMaquina} AND c.nome = 'memoria'
-        ORDER BY r.componente_id DESC;
+        WHERE c.maquina_id = ${idMaquina} AND c.nome = 'Memoria'
+        ORDER BY r.id DESC;
     `;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
@@ -82,19 +78,16 @@ function listarDisco(idMaquina) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-        SELECT TOP 7
-        c.nome AS componente_nome,
-        c.descricao AS componente_descricao,
-        c.identificador AS componente_identificador,
-        r.em_uso,
-        FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
-        m.metrica_disco
-    FROM componente AS c
-    JOIN registro_componente AS r ON c.id = r.componente_id
-    JOIN maquina AS m ON m.id = c.maquina_id
-    WHERE c.maquina_id = ${idMaquina} AND c.nome = 'disco'
-    ORDER BY r.componente_id DESC;
-        `;
+        SELECT TOP 15 c.nome AS componente_nome,
+            r.em_uso,
+            FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
+            m.metrica_memoria
+        FROM registro_componente AS r
+        JOIN componente AS c ON c.id = r.componente_id
+        JOIN maquina AS m ON m.id = c.maquina_id
+        WHERE c.maquina_id = ${idMaquina} AND c.nome = 'Disco'
+        ORDER BY r.id DESC;
+    `;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
         var instrucao = `
