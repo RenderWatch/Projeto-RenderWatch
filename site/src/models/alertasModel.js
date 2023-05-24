@@ -127,6 +127,17 @@ function deletarMaquina(idMaquina) {
 ///////////////////// SQL SERVER ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }else if(process.env.AMBIENTE_PROCESSO == "producao"){
+
+function buscarQtdAlertas(nomeComponente){
+    console.log("ACESSEI HISTORICO_ALERTAS E TROUXE A QUANTIDADE DE ALERTAS")
+    var instrucao = `SELECT CONT(*)
+    FROM historico_alerta WHERE nome = '${nomeComponente}';`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
     function buscarDadosCluster(idEmpresa) {
         console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
         var instrucao = `
@@ -253,15 +264,5 @@ function deletarMaquina(idMaquina) {
 }
 
 module.exports = {
-    buscarDadosCluster,
-    buscarDadosMaquina,
-    adicionarCluster,
-    adicionarMaquina,
-    confirmarNomeCluster,
-    deletarCluster,
-    deletarClusterComMaquina,
-    deletarClusterSemMaquina,
-    deletarMaquinaDoCluster,
-    confirmarAlteracaoInfoMaquina,
-    deletarMaquina
+ buscarQtdAlertas
 };
