@@ -139,109 +139,170 @@ function buscarComponenteEmMaisAlertas(idEmpresa) {
     return database.executar(instrucao);
 }
 
-function buscarUsoCpuPorCluster(idEmpresa) {
-    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarUsoCpuPorCluster():", idEmpresa);
+function buscarDadosPorMaquina(idEmpresa) {
+    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarDadosPorMaquina():", idEmpresa);
 
     let instrucao = "";
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucao = `SELECT m.id as idMaquina, m.nome as nomeMaquina, cl.id AS idCluster, cl.nome AS nomeCluster, AVG(rc.em_uso) AS average_uso
-        FROM maquina AS m
-        JOIN componente AS c ON m.id = c.maquina_id
-        JOIN registro_componente AS rc ON c.id = rc.componente_id
+        instrucao = `SELECT
+        m.nome AS nomeMaquina,
+        m.id AS idMaquina,
+        cl.nome AS nomeCluster,
+        cl.id AS idCluster,
+        m.metrica_cpu AS metricaCpu,
+        m.metrica_disco AS metricaDisco,
+        m.metrica_memoria AS metricaMemoria,
+        (
+            SELECT AVG(rc.em_uso)
+            FROM registro_componente rc
+            JOIN componente co ON rc.componente_id = co.id
+            JOIN maquina AS ma ON co.maquina_id = ma.id 
+            JOIN cluster AS clu ON ma.cluster_id = clu.id
+            JOIN empresa AS e ON clu.empresa_id = e.id
+            WHERE e.id = ${idEmpresa}
+                AND MONTH(rc.dt_hora) = MONTH(CURRENT_DATE())
+                AND YEAR(rc.dt_hora) = YEAR(CURRENT_DATE())
+                AND co.nome = 'Disco'
+                AND ma.id = m.id
+        ) AS usoDisco,
+        (
+            SELECT AVG(rc.em_uso)
+            FROM registro_componente rc
+            JOIN componente co ON rc.componente_id = co.id
+            JOIN maquina AS ma ON co.maquina_id = ma.id 
+            JOIN cluster AS clu ON ma.cluster_id = clu.id
+            JOIN empresa AS e ON clu.empresa_id = e.id
+            WHERE e.id = ${idEmpresa}
+                AND MONTH(rc.dt_hora) = MONTH(CURRENT_DATE())
+                AND YEAR(rc.dt_hora) = YEAR(CURRENT_DATE())
+                AND co.nome = 'Memoria'
+                AND ma.id = m.id
+        ) AS usoMemoria,
+        (
+            SELECT AVG(rc.em_uso)
+            FROM registro_componente rc
+            JOIN componente co ON rc.componente_id = co.id
+            JOIN maquina AS ma ON co.maquina_id = ma.id 
+            JOIN cluster AS clu ON ma.cluster_id = clu.id
+            JOIN empresa AS e ON clu.empresa_id = e.id
+            WHERE e.id = ${idEmpresa}
+                AND MONTH(rc.dt_hora) = MONTH(CURRENT_DATE())
+                AND YEAR(rc.dt_hora) = YEAR(CURRENT_DATE())
+                AND co.nome = 'CPU'
+                AND ma.id = m.id
+        ) AS usoCpu,
+        (
+            SELECT COUNT(ha.id) AS qtdAlertasMes
+            FROM historico_alerta AS ha 
+            JOIN maquina AS ma ON ha.maquina_id = ma.id 
+            JOIN cluster AS clu ON ma.cluster_id = clu.id
+            JOIN empresa AS e ON clu.empresa_id = e.id
+            WHERE e.id = ${idEmpresa}
+                AND MONTH(ha.dt_hora) = MONTH(CURRENT_DATE())
+                AND YEAR(ha.dt_hora) = YEAR(CURRENT_DATE())
+                AND ma.id = m.id
+        ) AS qtdAlertas
+    FROM
+        registro_componente AS rc
+        JOIN componente AS co ON rc.componente_id = co.id
+        JOIN maquina AS m ON co.maquina_id = m.id
         JOIN cluster AS cl ON m.cluster_id = cl.id
         JOIN empresa AS e ON cl.empresa_id = e.id
-        WHERE c.nome = 'CPU'
-          AND e.id = ${idEmpresa}
-          AND MONTH(rc.dt_hora) = MONTH(CURDATE())
-          AND YEAR(rc.dt_hora) = YEAR(CURDATE())
-        GROUP BY m.id, m.nome, cl.id, cl.nome;
-        
-        `;
-    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucao = `SELECT m.id as idMaquina, m.nome as nomeMaquina, cl.id AS idCluster, cl.nome AS nomeCluster, AVG(rc.em_uso) AS average_uso
-        FROM maquina AS m
-        JOIN componente AS c ON m.id = c.maquina_id
-        JOIN registro_componente AS rc ON c.id = rc.componente_id
-        JOIN cluster AS cl ON m.cluster_id = cl.id
-        JOIN empresa AS e ON cl.empresa_id = e.id
-        WHERE c.nome = 'CPU'
-        AND e.id = ${idEmpresa}
-        AND MONTH(rc.dt_hora) = MONTH(GETDATE())
-        AND YEAR(rc.dt_hora) = YEAR(GETDATE())
-        GROUP BY m.id, m.nome, cl.id, cl.nome;
-    `;
-    }
-
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function buscarUsoMemoriaPorCluster(idEmpresa) {
-    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarUsoMemoriaPorCluster():", idEmpresa);
-
-    let instrucao = "";
-
-    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucao = `SELECT m.id as idMaquina, m.nome as nomeMaquina, cl.id AS idCluster, cl.nome AS nomeCluster, AVG(rc.em_uso) AS average_uso
-        FROM maquina AS m
-        JOIN componente AS c ON m.id = c.maquina_id
-        JOIN registro_componente AS rc ON c.id = rc.componente_id
-        JOIN cluster AS cl ON m.cluster_id = cl.id
-        JOIN empresa AS e ON cl.empresa_id = e.id
-        WHERE c.nome = 'Memoria'
-          AND e.id = ${idEmpresa}
-          AND MONTH(rc.dt_hora) = MONTH(CURDATE())
-          AND YEAR(rc.dt_hora) = YEAR(CURDATE())
-        GROUP BY m.id, m.nome, cl.id, cl.nome;
-        
-        `;
-    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucao = `SELECT m.id as idMaquina, m.nome as nomeMaquina, cl.id AS idCluster, cl.nome AS nomeCluster, AVG(rc.em_uso) AS average_uso
-        FROM maquina AS m
-        JOIN componente AS c ON m.id = c.maquina_id
-        JOIN registro_componente AS rc ON c.id = rc.componente_id
-        JOIN cluster AS cl ON m.cluster_id = cl.id
-        JOIN empresa AS e ON cl.empresa_id = e.id
-        WHERE c.nome = 'Memoria'
-        AND e.id = ${idEmpresa}
-        AND MONTH(rc.dt_hora) = MONTH(GETDATE())
-        AND YEAR(rc.dt_hora) = YEAR(GETDATE())
-        GROUP BY m.id, m.nome, cl.id, cl.nome;
-    `;
-    }
-
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function buscarDiscoLivrePorCluster(idEmpresa) {
-    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarDiscoLivrePorCluster():", idEmpresa);
-
-    let instrucao = "";
-
-    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucao = `SELECT m.nome AS nomeMaquina, m.id AS idMaquina, c.nome AS nomeCluster, c.id AS idCluster, 
-        (100.0 - AVG(rc.em_uso)) AS discoLivrePercentagem
-    FROM registro_componente AS rc 
-    JOIN componente AS co ON rc.componente_id = co.id
-    JOIN maquina AS m ON co.maquina_id = m.id
-    JOIN cluster AS c ON m.cluster_id = c.id
-    JOIN empresa AS e ON c.empresa_id = e.id
-    WHERE e.id = ${idEmpresa}
-    GROUP BY m.id, c.id;
+    WHERE
+        e.id = ${idEmpresa}
+        AND MONTH(rc.dt_hora) = MONTH(CURRENT_DATE())
+        AND YEAR(rc.dt_hora) = YEAR(CURRENT_DATE())
+    GROUP BY
+        m.nome,
+        m.id,
+        cl.nome,
+        cl.id,
+        m.metrica_cpu,
+        m.metrica_disco,
+        m.metrica_memoria;
+    
     
         `;
     } else if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucao = `SELECT m.nome AS nomeMaquina, m.id AS idMaquina, c.nome AS nomeCluster, c.id AS idCluster, 
-    (100.0 - AVG(rc.em_uso)) AS discoLivrePercentagem
-    FROM registro_componente AS rc 
-    JOIN componente AS co ON rc.componente_id = co.id
-    JOIN maquina AS m ON co.maquina_id = m.id
-    JOIN cluster AS c ON m.cluster_id = c.id
-    JOIN empresa AS e ON c.empresa_id = e.id
-    WHERE e.id = ${idEmpresa}
-    GROUP BY m.nome, m.id, c.nome, c.id;    
+        instrucao = `
+        SELECT
+            m.nome AS nomeMaquina,
+            m.id AS idMaquina,
+            cl.nome AS nomeCluster,
+            cl.id AS idCluster,
+            m.metrica_cpu AS metricaCpu,
+            m.metrica_disco AS metricaDisco,
+            m.metrica_memoria AS metricaMemoria,
+            (
+                SELECT AVG(rc.em_uso)
+                FROM registro_componente rc
+                JOIN componente co ON rc.componente_id = co.id
+                JOIN maquina AS ma ON co.maquina_id = ma.id 
+                JOIN cluster AS clu ON ma.cluster_id = clu.id
+                JOIN empresa AS e ON clu.empresa_id = e.id
+                WHERE e.id = ${idEmpresa}
+                    AND MONTH(rc.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(rc.dt_hora) = YEAR(GETDATE())
+                    AND co.nome = 'Disco'
+                    AND ma.id = m.id
+            ) AS usoDisco,
+            (
+                SELECT AVG(rc.em_uso)
+                FROM registro_componente rc
+                JOIN componente co ON rc.componente_id = co.id
+                JOIN maquina AS ma ON co.maquina_id = ma.id 
+                JOIN cluster AS clu ON ma.cluster_id = clu.id
+                JOIN empresa AS e ON clu.empresa_id = e.id
+                WHERE e.id = ${idEmpresa}
+                    AND MONTH(rc.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(rc.dt_hora) = YEAR(GETDATE())
+                    AND co.nome = 'Memoria'
+                    AND ma.id = m.id
+            ) AS usoMemoria,
+            (
+                SELECT AVG(rc.em_uso)
+                FROM registro_componente rc
+                JOIN componente co ON rc.componente_id = co.id
+                JOIN maquina AS ma ON co.maquina_id = ma.id 
+                JOIN cluster AS clu ON ma.cluster_id = clu.id
+                JOIN empresa AS e ON clu.empresa_id = e.id
+                WHERE e.id = ${idEmpresa}
+                    AND MONTH(rc.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(rc.dt_hora) = YEAR(GETDATE())
+                    AND co.nome = 'CPU'
+                    AND ma.id = m.id
+            ) AS usoCpu,
+            (
+                SELECT COUNT(ha.id) AS qtdAlertasMes
+                FROM historico_alerta AS ha 
+                JOIN maquina AS ma ON ha.maquina_id = ma.id 
+                JOIN cluster AS clu ON ma.cluster_id = clu.id
+                JOIN empresa AS e ON clu.empresa_id = e.id
+                WHERE e.id = ${idEmpresa}
+                    AND MONTH(ha.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(ha.dt_hora) = YEAR(GETDATE())
+                    AND ma.id = m.id
+            ) AS qtdAlertas
+        FROM
+            registro_componente AS rc
+            JOIN componente AS co ON rc.componente_id = co.id
+            JOIN maquina AS m ON co.maquina_id = m.id
+            JOIN cluster AS cl ON m.cluster_id = cl.id
+            JOIN empresa AS e ON cl.empresa_id = e.id
+        WHERE
+            e.id = ${idEmpresa}
+            AND MONTH(rc.dt_hora) = MONTH(GETDATE())
+            AND YEAR(rc.dt_hora) = YEAR(GETDATE())
+        GROUP BY
+            m.nome,
+            m.id,
+            cl.nome,
+            cl.id,
+            m.metrica_cpu,
+            m.metrica_disco,
+            m.metrica_memoria;
+        
     `;
     }
 
@@ -259,7 +320,7 @@ function buscarQtdMaquinas(idEmpresa) {
     JOIN empresa as e ON c.empresa_id = e.id 
     WHERE e.id = ${idEmpresa} ;
     `;
-    
+
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -278,15 +339,70 @@ function buscarQtdClusters(idEmpresa) {
     return database.executar(instrucao);
 }
 
+function buscarDadosRede(idEmpresa) {
+    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarQtdClusters():", idEmpresa);
+
+    let instrucao = `
+    SELECT r.* FROM rede r 
+    JOIN maquina m ON r.maquina_id = m.id
+    JOIN cluster c ON m.cluster_id = c.id
+    JOIN empresa e ON c.empresa_id = e.id
+    WHERE e.id = ${idEmpresa}; ;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarmediaAlertasPorCluster(idEmpresa) {
+    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarmediaAlertasPorCluster():", idEmpresa);
+
+    let instrucao = ""
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucao =  `
+        SELECT c.id AS clusterId, c.nome AS clusterNome, 
+       COUNT(DISTINCT m.id) AS totalMaquinas,
+       COUNT(DISTINCT ha.id) AS totalAlertas
+        FROM cluster c
+        JOIN empresa e ON c.empresa_id = e.id
+        LEFT JOIN maquina m ON c.id = m.cluster_id
+        LEFT JOIN historico_alerta ha ON m.id = ha.maquina_id
+        WHERE e.id = ${idEmpresa}
+        AND MONTH(ha.dt_hora) = MONTH(CURDATE())
+        AND YEAR(ha.dt_hora) = YEAR(CURDATE())
+        GROUP BY c.id, c.nome;
+
+        `
+
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucao =   `
+        SELECT c.id AS clusterId, c.nome AS clusterNome, 
+       (SELECT COUNT(DISTINCT m.id) FROM maquina m WHERE m.cluster_id = c.id) AS totalMaquinas,
+       (SELECT COUNT(DISTINCT ha.id) FROM historico_alerta ha JOIN maquina m ON ha.maquina_id = m.id WHERE m.cluster_id = c.id) AS totalAlertas
+        FROM cluster c
+        JOIN empresa e ON c.empresa_id = e.id
+        LEFT JOIN maquina m ON c.id = m.cluster_id
+        LEFT JOIN historico_alerta ha ON m.id = ha.maquina_id
+        WHERE e.id = ${idEmpresa}
+            AND MONTH(ha.dt_hora) = MONTH(GETDATE())
+            AND YEAR(ha.dt_hora) = YEAR(GETDATE())
+        GROUP BY c.id, c.nome;
+    `;
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarDadosAlertas,
     buscarQuantidadeAlertas,
     buscarClusterComMaisAlertas,
     buscarComponenteEmMaisAlertas,
-    buscarUsoCpuPorCluster,
-    buscarUsoMemoriaPorCluster,
-    buscarDiscoLivrePorCluster,
+    buscarDadosPorMaquina,
     buscarQtdMaquinas,
-    buscarQtdClusters
+    buscarQtdClusters,
+    buscarmediaAlertasPorCluster,
+    buscarDadosRede
 };
 

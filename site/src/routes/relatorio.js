@@ -19,16 +19,8 @@ router.get("/buscarComponenteEmMaisAlertas/:idEmpresa", function (req, res) {
     relatorioController.buscarComponenteEmMaisAlertas(req, res);
 });
 
-router.get("/buscarUsoCpuPorCluster/:idEmpresa", function (req, res) {
-    relatorioController.buscarUsoCpuPorCluster(req, res);
-});
-
-router.get("/buscarUsoMemoriaPorCluster/:idEmpresa", function (req, res) {
-    relatorioController.buscarUsoMemoriaPorCluster(req, res);
-});
-
-router.get("/buscarDiscoLivrePorCluster/:idEmpresa", function (req, res) {
-    relatorioController.buscarDiscoLivrePorCluster(req, res);
+router.get("/buscarDadosPorMaquina/:idEmpresa", function (req, res) {
+    relatorioController.buscarDadosPorMaquina(req, res);
 });
 
 router.get("/buscarQtdClusters/:idEmpresa", function (req, res) {
@@ -37,6 +29,14 @@ router.get("/buscarQtdClusters/:idEmpresa", function (req, res) {
 
 router.get("/buscarQtdMaquinas/:idEmpresa", function (req, res) {
     relatorioController.buscarQtdMaquinas(req, res);
+});
+
+router.get("/buscarmediaAlertasPorCluster/:idEmpresa", function (req, res) {
+    relatorioController.buscarmediaAlertasPorCluster(req, res);
+});
+
+router.get("/buscarDadosRede/:idEmpresa", function (req, res) {
+    relatorioController.buscarDadosRede(req, res);
 });
 
 module.exports = router;

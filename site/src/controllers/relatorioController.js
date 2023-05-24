@@ -68,44 +68,10 @@ function buscarComponenteEmMaisAlertas(req, res) {
         );
 }
 
-function buscarUsoCpuPorCluster(req, res) {
+function buscarDadosPorMaquina(req, res) {
     var idEmpresa = req.params.idEmpresa;
 
-    relatorioModel.buscarUsoCpuPorCluster(idEmpresa)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-function buscarUsoMemoriaPorCluster(req, res) {
-    var idEmpresa = req.params.idEmpresa;
-
-    relatorioModel.buscarUsoMemoriaPorCluster(idEmpresa)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-function buscarDiscoLivrePorCluster(req, res) {
-    var idEmpresa = req.params.idEmpresa;
-
-    relatorioModel.buscarDiscoLivrePorCluster(idEmpresa)
+    relatorioModel.buscarDadosPorMaquina(idEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -153,14 +119,48 @@ function buscarQtdClusters(req, res) {
         );
 }
 
+function buscarmediaAlertasPorCluster(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    relatorioModel.buscarmediaAlertasPorCluster(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function buscarDadosRede(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    relatorioModel.buscarDadosRede(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     buscarDadosAlertas,
     buscarQuantidadeAlertas,
     buscarClusterComMaisAlertas,
     buscarComponenteEmMaisAlertas,
-    buscarUsoCpuPorCluster,
-    buscarUsoMemoriaPorCluster,
-    buscarDiscoLivrePorCluster,
+    buscarDadosPorMaquina,
     buscarQtdMaquinas,
-    buscarQtdClusters
+    buscarQtdClusters,
+    buscarmediaAlertasPorCluster,
+    buscarDadosRede
     }
