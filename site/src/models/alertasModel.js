@@ -3,10 +3,10 @@
 
 
 
-function buscarQtdAlertas(nomeComponente){
+function buscarQtdAlertas(){
     console.log("ACESSEI HISTORICO_ALERTAS E TROUXE A QUANTIDADE DE ALERTAS")
     var instrucao = `SELECT CONT(*)
-    FROM historico_alerta WHERE nome = '${nomeComponente}';`
+    FROM historico_alerta ;`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }

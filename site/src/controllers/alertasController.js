@@ -2,7 +2,8 @@ var clusterModel = require("../models/clusterModel");
 var alertasModel = require("../models/alertasModel");
 
 
-function buscarQtdAlertas(req, res) {
+function buscarQtdAlertas(res) {
+ 
     alertasModel.buscarQtdAlertas().then(function (resultado) {
         if (resultado > 0) {
             res.status(200).json(resultado);
@@ -273,16 +274,6 @@ function deletarMaquina(req, res) {
 }
 
 module.exports = {
-    buscarQtdAlertas,
-    buscarDadosCluster,
-    buscarDadosMaquina,
-    adicionarCluster,
-    adicionarMaquina,
-    confirmarNomeCluster,
-    deletarCluster,
-    deletarClusterComMaquina,
-    deletarClusterSemMaquina,
-    deletarMaquinaDoCluster,
-    confirmarAlteracaoInfoMaquina,
-    deletarMaquina
+    buscarQtdAlertas
+
 }

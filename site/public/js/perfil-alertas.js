@@ -102,10 +102,10 @@
 
 
 
-var nomeComponente = sessionStorage.nome;
+
 
 function buscarQtdAlertas() {
-    fetch(`/historico_alertas/buscarQtdAlertas/${nomeComponente}`).then(function (resposta) {
+    fetch(`../alertas/buscarQtdAlertas/`).then(function (resposta) {
         if (resposta.ok) {
 
             var qtdAlert = resposta

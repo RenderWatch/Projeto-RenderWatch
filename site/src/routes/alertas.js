@@ -3,8 +3,8 @@ var router = express.Router();
 
 var alertasController = require("../controllers/alertasController");
 
-router.get("/buscarQtdAlertas", function (req, res) {
-    alertasController.buscarQtdAlertas(req, res);
+router.get("/buscarQtdAlertas", function ( res) {
+    alertasController.buscarQtdAlertas( res);
 });
 
 
