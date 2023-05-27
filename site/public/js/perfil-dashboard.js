@@ -176,6 +176,8 @@ function atualizarDados() {
             }
           }
 
+          cpuChart.data.labels.reverse();
+
           // Atualizar os gráficos
           cpuChart.update();
 
@@ -236,6 +238,8 @@ function atualizarDadosRam() {
             }
           }
 
+          ramChart.data.labels.reverse();
+
           // Atualizar os gráficos
           ramChart.update();
 
@@ -291,6 +295,8 @@ function atualizarDadosDisco() {
               }
             }
           }
+
+          discoChart.data.labels.reverse();
 
           // Atualizar os gráficos
           discoChart.update();
