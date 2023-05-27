@@ -9,34 +9,35 @@ function qtdAlertasPendentes() {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                
+
                     var container_alerta_pendentes = document.getElementById("container_alerta_pendentes");
 
 
                     if (resposta.length > 0) {
-                        
-                        let descricao; 
-                        
+
+                        let descricao;
+
 
                         for (i = 0; i < resposta.length; i++) {
                             sessionStorage.ID_MAQUINA_ALERTA = resposta[i].maquina_id
 
-                            if( resposta[i].descricao == null){
-                                descricao = resposta[i].nome[0] +" Acima da métrica"
-                                
-                                
-                            }else{
+                            if (resposta[i].descricao == null) {
+                                descricao = resposta[i].nome[0] + " Acima da métrica"
+
+
+                            } else {
                                 descricao = resposta[i].descricao
                             }
-                            
+
                             container_alerta_pendentes.innerHTML += ` 
                                 <span>
                                 <div  class="alerta alerta_resolvido">
                                             <ul class=" alerta_ul alerta_ul_um">
                                                 <li class=" titulo_alerta"><b>Alerta</b></li>
                                                 <li class="alerta_li">
-                                                ${resposta[i].nome[0]}
+                                                
                                                     <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
+                                                    ${resposta[i].nome[0]}
                                                     
                                                 </li>
                                             </ul>
@@ -73,8 +74,8 @@ function qtdAlertasPendentes() {
                         }
 
                         console.log("Quantidade de alertas " + resposta.length)
-                      
-                        
+
+
 
                     } else {
                         var mensagem = document.createElement("span");
@@ -101,34 +102,35 @@ function getAlertasResolvidos() {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                
+
                     var container_alerta_resolvidos = document.getElementById("container_alerta_resolvidos");
 
 
                     if (resposta.length > 0) {
-                        
-                        let descricao; 
-                        
+
+                        let descricao;
+
 
                         for (i = 0; i < resposta.length; i++) {
                             sessionStorage.ID_MAQUINA_ALERTA = resposta[i].maquina_id
 
-                            if( resposta[i].descricao == null){
-                                descricao = resposta[i].nome[0] +" Acima da métrica"
-                                
-                                
-                            }else{
+                            if (resposta[i].descricao == null) {
+                                descricao = resposta[i].nome[0] + " Acima da métrica"
+
+
+                            } else {
                                 descricao = resposta[i].descricao
                             }
-                            
+
                             container_alerta_resolvidos.innerHTML += ` 
                                 <span>
                                 <div  class="alerta alerta_resolvido">
                                             <ul class=" alerta_ul alerta_ul_um">
                                                 <li class=" titulo_alerta"><b>Alerta</b></li>
                                                 <li class="alerta_li">
-                                                ${resposta[i].nome[0]}
+                                               
                                                     <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
+                                                    ${resposta[i].nome[0]}
                                                     
                                                 </li>
                                             </ul>
@@ -165,8 +167,8 @@ function getAlertasResolvidos() {
                         }
 
                         console.log("Quantidade de alertas " + resposta.length)
-                      
-                        
+
+
 
                     } else {
                         var mensagem = document.createElement("span");
