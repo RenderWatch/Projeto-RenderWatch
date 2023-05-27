@@ -24,7 +24,7 @@ body {
     height: 35%;
     width: 100%;
     /* background-color:#d65ba38f; */
-
+/*
 .cor-bg {
     position: absolute;
     margin-top: -602px;
@@ -33,7 +33,7 @@ body {
     background-color: rgba(214, 91, 162, 1);
 
 }
-
+*/
 
 
 
@@ -361,11 +361,12 @@ li {
 }
 
 .resolvido {
+    display: block;
     background-color: green;
     background-image: url(../assets/style-all/check.png);
     background-size: 110%;
     margin-right: -20px;
-
+   
 }
 
 .resolvido:hover {
