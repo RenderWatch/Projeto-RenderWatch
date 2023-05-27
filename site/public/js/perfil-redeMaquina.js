@@ -41,7 +41,6 @@ function atualizarDadosCluster() {
                     } else {
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
 
@@ -56,7 +55,7 @@ function atualizarDadosCluster() {
         });
 }
 
-function atualizarDadosMaquina(idCluster) {
+function atualizarDadosMaquina(idCluster, idMaquina) {
     fetch(`/redeMaquina/listarMaquina/${idCluster}`)
         .then(function (resposta) {
             if (resposta.ok) {
@@ -71,15 +70,9 @@ function atualizarDadosMaquina(idCluster) {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    const dados = resposta[0];
-                    idMaquina = dados.id;
-                    sessionStorage.MAQUINA = dados.id;
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
                     if (resposta.length > 0) {
                         const maquinaContainer = document.querySelector('.selecao-maquina ul');
-                        maquinaContainer.innerHTML="";
+                        maquinaContainer.innerHTML = "";
                         for (let i = 0; i < resposta.length; i++) {
                             const button = document.createElement('button');
                             button.value = `maquina${i + 1}`;
@@ -87,36 +80,62 @@ function atualizarDadosMaquina(idCluster) {
                             button.setAttribute('data-id', resposta[i].id);
                             button.addEventListener('click', function() {
                                 const idMaquina = this.getAttribute('data-id');
-                                atualizarDadosMaquina(idMaquina);
+                                atualizarDadosMaquina(idCluster, idMaquina);
+                                console.log(idMaquina);
+                                atualizarDadosRede(idMaquina);
+                                atualizarDados(idMaquina)
+                                atualizarDadosDisco(idMaquina)
+                                atualizarDadosRam(idMaquina)
+                
                             });
                             const listItem = document.createElement('li');
                             listItem.appendChild(button);
                             maquinaContainer.appendChild(listItem);
                         }
 
-                        const nomeMaquina = dados.nome;
-                        const sistemaOperacional = dados.sistema_operacional;
-                        const fabricante = dados.fabricante;
-                        const arquitetura = dados.arquitetura;
-                        const metricaCpu = dados.metrica_cpu;
-                        const metricaDisco = dados.metrica_disco;
-                        const metricaMemoria = dados.metrica_memoria;
+                        const dados = resposta.find(maquina => maquina.id == idMaquina);
+                        if (dados) {
+                            const nomeMaquina = dados.nome;
+                            const sistemaOperacional = dados.sistema_operacional;
+                            const fabricante = dados.fabricante;
+                            const arquitetura = dados.arquitetura;
+                            const metricaCpu = dados.metrica_cpu;
+                            const metricaDisco = dados.metrica_disco;
+                            const metricaMemoria = dados.metrica_memoria;
 
-                        document.getElementById("apelido").innerHTML = nomeMaquina;
-                        document.getElementById("sistema").innerHTML = sistemaOperacional;
-                        document.getElementById("fabricante").innerHTML = fabricante;
-                        document.getElementById("arquitetura").innerHTML = arquitetura;
-                        document.getElementById("metrica_cpu").innerHTML = `${metricaCpu}%`;
-                        document.getElementById("metrica_hd").innerHTML = `${metricaDisco}%`;
-                        document.getElementById("metrica_ram").innerHTML = `${metricaMemoria}%`;
+                            document.getElementById("apelido").innerHTML = nomeMaquina;
+                            document.getElementById("sistema").innerHTML = sistemaOperacional;
+                            document.getElementById("fabricante").innerHTML = fabricante;
+                            document.getElementById("arquitetura").innerHTML = arquitetura;
+                            document.getElementById("metrica_cpu").innerHTML = `${metricaCpu}%`;
+                            document.getElementById("metrica_hd").innerHTML = `${metricaDisco}%`;
+                            document.getElementById("metrica_ram").innerHTML = `${metricaMemoria}%`;
+
+                            idMaquina = dados.id;
+                            atualizarDadosRede();
+                            setInterval(function () {
+                                atualizarDados(idMaquina);
+                              }, 5000);
+
+                              setInterval(function () {
+                                atualizarDadosDisco(idMaquina);
+                              }, 5000);
+
+                              setInterval(function () {
+                                atualizarDadosRam(idMaquina);
+                              }, 5000);
+
+                        } else {
+                            var mensagem = document.createElement("span");
+                            mensagem.innerHTML = "Nenhum resultado encontrado.";
+                            throw "Nenhum resultado encontrado!";
+                        }
                     } else {
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
 
-                    atualizarDadosRede();
                 });
             } else {
                 throw "Houve um erro na API!";
@@ -127,7 +146,8 @@ function atualizarDadosMaquina(idCluster) {
         });
 }
 
-function atualizarDadosRede() {
+
+function atualizarDadosRede(idMaquina) {
     fetch(`/redeMaquina/listarRede/${idMaquina}`)
         .then(function (resposta) {
             if (resposta.ok) {
@@ -166,5 +186,8 @@ function atualizarDadosRede() {
             console.error(resposta);
         });
 }
+
+
+
 
 atualizarDadosCluster();
