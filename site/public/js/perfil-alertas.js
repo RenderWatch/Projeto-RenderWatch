@@ -61,7 +61,7 @@ function qtdAlertasPendentes() {
                                                 <li class=" titulo_alerta"><b>Status</b></li>
                                                 <li class="alerta_li button_li">
                                                    
-                                                    <button style="opacity: 50%; class="button_status pendente"></button>
+                                                    <button  class="button_status pendente"></button>
                                                 </li>
                                             </ul>
                         
