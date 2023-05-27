@@ -19,6 +19,7 @@ function atualizarDadosCluster() {
 
                     const dados = resposta[0];
                     idCluster = dados.id;
+                    sessionStorage.CLUSTER = dados.id;
 
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
@@ -170,45 +171,7 @@ function atualizarDadosRede() {
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
-                });
-            } else {
-                throw "Houve um erro na API!";
-            }
-        })
-        .catch(function (resposta) {
-            console.error(resposta);
-        });
-}
-
-function atualizarDadosProcesso() {
-    fetch(`/redeMaquina/listarProcessos/${idMaquina}`)
-        .then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-
-                    if (resposta.length > 0) {
-                        for (let i = 0; i < resposta.length; i++) {
-                            const dados = resposta[i];
-                            const total_processos = dados.total_processos;
-                            const total_threads = dados.total_threads;
-                        
-                            document.getElementById("total-processos").innerHTML = `<span>${total_processos}</span>`;
-                            document.getElementById("total-threads").innerHTML = `<span>${total_threads}</span>`;
                     
-                        }
-                    } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
-                        throw "Nenhum resultado encontrado!";
-                    }
-
-                    atualizarDadosProcesso();
-
                 });
             } else {
                 throw "Houve um erro na API!";
@@ -218,6 +181,45 @@ function atualizarDadosProcesso() {
             console.error(resposta);
         });
 }
+
+// function atualizarDadosProcesso() {
+//     fetch(`/redeMaquina/listarProcessos/${idMaquina}`)
+//         .then(function (resposta) {
+//             if (resposta.ok) {
+//                 resposta.json().then(function (resposta) {
+//                     console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+//                     var feed = document.getElementById("feed_container");
+//                     feed.innerHTML = "";
+
+//                     if (resposta.length > 0) {
+//                         for (let i = 0; i < resposta.length; i++) {
+//                             const dados = resposta[i];
+//                             const total_processos = dados.total_processos;
+//                             const total_threads = dados.total_threads;
+                        
+//                             document.getElementById("total-processos").innerHTML = `<span>${total_processos}</span>`;
+//                             document.getElementById("total-threads").innerHTML = `<span>${total_threads}</span>`;
+                    
+//                         }
+//                     } else {
+//                         var mensagem = document.createElement("span");
+//                         mensagem.innerHTML = "Nenhum resultado encontrado.";
+//                         feed.appendChild(mensagem);
+//                         throw "Nenhum resultado encontrado!";
+//                     }
+
+                    
+
+//                 });
+//             } else {
+//                 throw "Houve um erro na API!";
+//             }
+//         })
+//         .catch(function (resposta) {
+//             console.error(resposta);
+//         });
+// }
 
 
 atualizarDadosCluster();
