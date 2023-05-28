@@ -1,7 +1,6 @@
 var razaoSocial = sessionStorage.RAZAO_SOCIAL;
 var idCluster;
-var idMaquina;
-
+let intervalIds = [];
 function atualizarDadosCluster() {
     fetch(`/redeMaquina/listarCluster/${razaoSocial}`)
         .then(function (resposta) {
@@ -16,7 +15,7 @@ function atualizarDadosCluster() {
 
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
-                    
+
                     const dados = resposta[0];
                     idCluster = dados.id;
 
@@ -24,16 +23,25 @@ function atualizarDadosCluster() {
                     feed.innerHTML = "";
                     if (resposta.length > 0) {
                         const clusterContainer = document.querySelector('.selecao-cluster ul');
-                      
+
 
                         for (let i = 0; i < resposta.length; i++) {
                             const button = document.createElement('button');
                             button.value = `cluster${i + 1}`;
                             button.textContent = `Cluster ${i + 1}`;
-                            button.addEventListener('click', function() {
+                            button.addEventListener('click', function () {
                                 const clusterId = resposta[i].id;
                                 atualizarDadosMaquina(clusterId);
+
+                                // Remover a classe "active" de todos os botões de Cluster
+                                const clusterButtons = document.querySelectorAll('.selecao-cluster .cluster-button');
+                                clusterButtons.forEach(btn => btn.classList.remove('active'));
+
+                                // Adicionar a classe "active" apenas ao botão clicado
+                                this.classList.add('active');
+
                             });
+                            button.classList.add('cluster-button');
                             const listItem = document.createElement('li');
                             listItem.appendChild(button);
                             clusterContainer.appendChild(listItem);
@@ -78,16 +86,44 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                             button.value = `maquina${i + 1}`;
                             button.textContent = `Máquina ${i + 1}`;
                             button.setAttribute('data-id', resposta[i].id);
-                            button.addEventListener('click', function() {
+                            button.addEventListener('click', function () {
                                 const idMaquina = this.getAttribute('data-id');
                                 atualizarDadosMaquina(idCluster, idMaquina);
                                 console.log(idMaquina);
                                 atualizarDadosRede(idMaquina);
-                                atualizarDados(idMaquina)
-                                atualizarDadosDisco(idMaquina)
-                                atualizarDadosRam(idMaquina)
-                
+                                atualizarDados(idMaquina);
+                                atualizarDadosRam(idMaquina);
+                                atualizarDadosDisco(idMaquina);
+
+                                // Limpa os intervalos anteriores, se existirem
+                                intervalIds.forEach(intervalId => clearInterval(intervalId));
+                                intervalIds = [];
+
+                                // Define os novos intervalos de atualização
+                                const intervalIdDados = setInterval(function () {
+                                    atualizarDados(idMaquina);
+                                }, 1000);
+                                intervalIds.push(intervalIdDados);
+
+                                const intervalIdRam = setInterval(function () {
+                                    atualizarDadosRam(idMaquina);
+                                }, 1000);
+                                intervalIds.push(intervalIdRam);
+
+                                const intervalIdDisco = setInterval(function () {
+                                    atualizarDadosDisco(idMaquina);
+                                }, 1000);
+                                intervalIds.push(intervalIdDisco);
+
+                                // Remover a classe "active" de todos os botões de Cluster
+                                const maquinaButtons = document.querySelectorAll('.selecao-maquina .maquina-button');
+                                maquinaButtons.forEach(btn => btn.classList.remove('active'));
+
+                                // Adicionar a classe "active" apenas ao botão clicado
+                                this.classList.add('active');
+
                             });
+                            button.classList.add('maquina-button');
                             const listItem = document.createElement('li');
                             listItem.appendChild(button);
                             maquinaContainer.appendChild(listItem);
@@ -103,7 +139,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                             const metricaDisco = dados.metrica_disco;
                             const metricaMemoria = dados.metrica_memoria;
 
-                            document.getElementById("apelido").innerHTML = nomeMaquina;
+                            document.getElementById("maquina").innerHTML = nomeMaquina;
                             document.getElementById("sistema").innerHTML = sistemaOperacional;
                             document.getElementById("fabricante").innerHTML = fabricante;
                             document.getElementById("arquitetura").innerHTML = arquitetura;
@@ -113,17 +149,6 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
 
                             idMaquina = dados.id;
                             atualizarDadosRede();
-                            setInterval(function () {
-                                atualizarDados(idMaquina);
-                              }, 5000);
-
-                              setInterval(function () {
-                                atualizarDadosDisco(idMaquina);
-                              }, 5000);
-
-                              setInterval(function () {
-                                atualizarDadosRam(idMaquina);
-                              }, 5000);
 
                         } else {
                             var mensagem = document.createElement("span");
@@ -164,7 +189,7 @@ function atualizarDadosRede(idMaquina) {
                             const ipv4 = dados.ipv4;
                             const ipv6 = dados.ipv6;
                             const nomeDominio = dados.nome_dominio;
-    
+
                             // Inserir os valores nos elementos HTML correspondentes
                             document.getElementById("nome_rede").innerHTML = `<span>${nomeRede}</span>`;
                             document.getElementById("ipv4").innerHTML = ipv4;

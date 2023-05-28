@@ -313,14 +313,14 @@ function atualizarDadosDisco(idMaquina) {
 }
 
 
-// setInterval(function () {
-//   atualizarDados(idMaquina);
-// }, 5000);
+setInterval(function () {
+  atualizarDados(idMaquina);
+}, 5000);
 
-// setInterval(function () {;
-//   atualizarDadosRam(idMaquina);
-// }, 5000);
+setInterval(function () {;
+  atualizarDadosRam(idMaquina);
+}, 5000);
 
-// setInterval(function () {
-//   atualizarDadosDisco(idMaquina);
-// }, 5000);
+setInterval(function () {
+  atualizarDadosDisco(idMaquina);
+}, 5000);
