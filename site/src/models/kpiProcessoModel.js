@@ -6,12 +6,9 @@ function listarAlertaCluster(idCluster) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
         SELECT COUNT(*) AS quantidade_alertas
-        FROM cluster c
-        INNER JOIN maquina m ON c.id = m.cluster_id
-        INNER JOIN componente comp ON m.id = comp.maquina_id
-        INNER JOIN registro_componente rc ON comp.id = rc.componente_id
-        INNER JOIN alerta a ON rc.id = a.registro_componente_id
-        WHERE c.id = '${idCluster}';
+        FROM historico_alerta a
+        INNER JOIN maquina m ON a.maquina_id = m.id
+        WHERE m.cluster_id = '${idCluster}';        
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -41,12 +38,8 @@ function listarAlertaMaquina(idMaquina) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
         SELECT COUNT(*) AS quantidade_alertas
-        FROM maquina m
-        INNER JOIN componente c ON m.id = c.maquina_id
-        INNER JOIN registro_componente rc ON c.id = rc.componente_id
-        INNER JOIN alerta a ON rc.id = a.registro_componente_id
-        WHERE m.id = '${idMaquina}';
-
+        FROM historico_alerta
+        WHERE maquina_id = '${idMaquina}';       
     `;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
@@ -73,14 +66,11 @@ function listarAlertaComponenteMaquina(idMaquina) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-        SELECT TOP 1 c.nome AS nome_componente, COUNT(*) AS total_alertas
-        FROM maquina m
-        INNER JOIN componente c ON m.id = c.maquina_id
-        INNER JOIN registro_componente rc ON c.id = rc.componente_id
-        INNER JOIN alerta a ON rc.id = a.registro_componente_id
-        WHERE m.id = '${idMaquina}'
-        GROUP BY c.nome
-        ORDER BY total_alertas DESC;
+        SELECT TOP 1 nome AS nome_componente, COUNT(*) AS quantidade_repeticoes
+        FROM historico_alerta
+        WHERE maquina_id = '${idMaquina}'
+        GROUP BY nome
+        ORDER BY quantidade_repeticoes DESC;
         `;
 
 
@@ -113,13 +103,11 @@ function listarMaquinaMaiorAlertas() {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-        SELECT TOP 1 m.nome AS nome_maquina, COUNT(*) AS total_alertas
+        SELECT TOP 1 m.nome AS nome_maquina, COUNT(*) AS quantidade_alertas
         FROM maquina m
-        INNER JOIN componente c ON m.id = c.maquina_id
-        INNER JOIN registro_componente rc ON c.id = rc.componente_id
-        INNER JOIN alerta a ON rc.id = a.registro_componente_id
+        INNER JOIN historico_alerta a ON m.id = a.maquina_id
         GROUP BY m.nome
-        ORDER BY total_alertas DESC;
+        ORDER BY quantidade_alertas DESC;
         `;
 
 
@@ -169,7 +157,6 @@ function listarProcessos(idMaquina) {
     }
 }
 
-
 module.exports = {
     listarAlertaCluster,
     listarAlertaMaquina,
@@ -177,4 +164,3 @@ module.exports = {
     listarMaquinaMaiorAlertas,
     listarProcessos
 }
-
