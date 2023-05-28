@@ -65,6 +65,7 @@ function listarAlertaCluster() {
                         throw "Nenhum resultado encontrado!";
                     }
                     
+                    
                 });
             } else {
                 throw "Houve um erro na API!";
@@ -99,6 +100,7 @@ function listarAlertaMaquina() {
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
+                    
                     
                 });
             } else {
@@ -135,6 +137,7 @@ function listarAlertaComponenteMaquina() {
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
+                    
                     
                 });
             } else {
@@ -181,3 +184,9 @@ function listarMaquinaMaiorAlertas() {
             console.error(resposta);
         });
 }
+
+atualizarDadosProcesso();
+listarAlertaCluster();
+listarAlertaMaquina();
+listarAlertaComponenteMaquina();
+listarMaquinaMaiorAlertas();
