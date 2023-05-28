@@ -36,8 +36,6 @@ function atualizarDadosCluster() {
 
                                 listarAlertaCluster(clusterId);
 
-
-
                                 // Remover a classe "active" de todos os botões de Cluster
                                 const clusterButtons = document.querySelectorAll('.selecao-cluster .cluster-button');
                                 clusterButtons.forEach(btn => btn.classList.remove('active'));
@@ -102,6 +100,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
 
                                 listarAlertaMaquina(idMaquina)
                                 listarAlertaComponenteMaquina(idMaquina);
+                                atualizarDadosProcesso(idMaquina);
 
                                 // Limpa os intervalos anteriores, se existirem
                                 intervalIds.forEach(intervalId => clearInterval(intervalId));

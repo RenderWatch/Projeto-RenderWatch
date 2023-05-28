@@ -1,5 +1,5 @@
 
-function atualizarDadosProcesso() {
+function atualizarDadosProcesso(idMaquina) {
     fetch(`/kpiProcesso/listarProcessos/${idMaquina}`)
         .then(function (resposta) {
             if (resposta.ok) {
@@ -25,9 +25,6 @@ function atualizarDadosProcesso() {
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
-
-                    
-
                 });
             } else {
                 throw "Houve um erro na API!";
@@ -163,7 +160,7 @@ function listarMaquinaMaiorAlertas() {
                             const nome_maquina = dados.nome_maquina;
                            
                             // Inserir os valores nos elementos HTML correspondentes
-                            document.getElementById("span_alertas_maquina").innerHTML = `<span>${nome_maquina}</span>`;
+                            document.getElementById("maior_alertas_maquina").innerHTML = `<span>${nome_maquina}</span>`;
                             
                         }
                     } else {
