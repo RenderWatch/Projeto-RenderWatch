@@ -16,7 +16,7 @@ var redeMaquinaRouter = require("./src/routes/redeMaquina");
 var permissaoRouter = require("./src/routes/permissao");
 var dashboardRouter = require("./src/routes/dashboard");
 var kpiProcessoRouter = require("./src/routes/kpiProcesso");
-
+var relatorioRouter = require("./src/routes/relatorio");
 
 
 app.use(express.json());
@@ -33,8 +33,7 @@ app.use("/redeMaquina", redeMaquinaRouter);
 app.use("/permissao", permissaoRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/kpiProcesso", kpiProcessoRouter);
-
-
+app.use("/relatorio", relatorioRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
