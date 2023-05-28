@@ -153,6 +153,23 @@ function buscarDadosRede(req, res) {
         );
 }
 
+function buscarDadosClusterMaquinas(req, res) {
+    var idEmpresa = req.params.idEmpresa;
+
+    relatorioModel.buscarDadosClusterMaquinas(idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     buscarDadosAlertas,
     buscarQuantidadeAlertas,
@@ -162,5 +179,6 @@ module.exports = {
     buscarQtdMaquinas,
     buscarQtdClusters,
     buscarmediaAlertasPorCluster,
-    buscarDadosRede
+    buscarDadosRede,
+    buscarDadosClusterMaquinas
     }

@@ -90,6 +90,7 @@ let dadosPorMaquina;
 let qtdCluster;
 let qtdMaquina;
 let dadosCluster;
+let dadosClusterMaquina;
 let dadosRede;
 
 
@@ -122,6 +123,9 @@ async function montarDadosRelatorio() {
     .color-pdf-data{
         color: #979797;
     }
+    .maior-alerta-cluster{
+        color: rgb(83, 142, 245)
+    }
     </style>
     <div>
         <h4>Relatório de Uso de Máquinas - ${getMesAnoAtual()}</h4>
@@ -135,11 +139,13 @@ async function montarDadosRelatorio() {
             <li>Quantidade total de alertas em todos os cluster: ${qtdAlertas}</li>
             ${componenteEmMaisAlertas}
             </ul>
+            <ul>
             <h2>Análises Por Cluster</h2>
             ${clusterComMaisAlertas}
             ${dadosCluster}
-            <h2>Análises Por Máquina</h2>
+            </ul>
             <ul>
+            <h2>Análises Por Máquina</h2>
             ${dadosPorMaquina}
             </ul>
             <h2>Maquinas que emitiram alerta no mês</h2>
@@ -179,6 +185,60 @@ async function gerarPdf() {
 
 }
 
+async function montarDadosRelatorioAdaptado() {
+    await getQtdAlertas();
+    await getClusterComMaisAlertas();
+    await getComponenteEmMaisAlertas();
+    await getQtdMaquinas();
+    await getQtdClusters();
+    await getDadosClusterMaquinas();
+
+    dadosAdaptados = `
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(242, 242, 242)
+    }
+    ul {
+        font-size: 15px;
+        line-height: 1.0;
+    }
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    } 
+    .color-pdf-data{
+        color: #979797;
+    }
+    .maior-alerta-cluster{
+        color: rgb(214, 91, 162)
+    }
+    </style>
+    <div>
+        <h4>Relatório de Uso de Máquinas - ${getMesAnoAtual()}</h4>
+        <br> <br>
+        <ul>
+            <ul>
+            <ul>
+            <h2>Valores Totais</h2>
+            <li>Quantidade de clusters: ${qtdCluster}</li>
+            <li>Quantidade de máquinas: ${qtdMaquina}</li>
+            <li>Quantidade total de alertas em todos os cluster: ${qtdAlertas}</li>
+            ${componenteEmMaisAlertas}
+            </ul>
+            <ul>
+            <h2>Análises Por Cluster</h2>
+            ${clusterComMaisAlertas}
+            ${dadosClusterMaquina}
+            </ul>
+        </ul>
+    </div>
+    <span>Data e hora da emissão do relatório: ${getDataAtual()} - ${getHoraAtual()}</span>
+            `
+    return dadosAdaptados;
+}
+
 async function gerarPdfAdaptado() {
 
     await montarDadosRelatorioAdaptado();
@@ -194,7 +254,7 @@ async function gerarPdfAdaptado() {
     docAdaptado.setFillColor(242, 242, 242) // Define a cor de fundo 
     docAdaptado.rect(0, 0, docAdaptado.internal.pageSize.width, docAdaptado.internal.pageSize.height, 'F') // Desenha um retângulo com a cor de fundo definida
     docAdaptado.fromHTML(`<div class="header" style="background-color: blue; padding: 20px;" style="font-size: 14px; line-height: 1.5;"> 
-        <h1 style="color: rgb(214, 91, 162);background-color: black; text-align: center;">Relatório Adaptado</h1>
+        <h1 style="color: rgb(214, 91, 162);background-color: black; text-align: center;">Relatório de Negócios</h1>
         </div>
         ${dadosAdaptados}</div>`, 10, 10)
     docAdaptado.save('relatório.pdf')
@@ -303,7 +363,7 @@ async function getClusterComMaisAlertas() {
                     let dadosAlertaCluster = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosAlertaCluster += `<li>Cluster com o maior numero de alertas: </li><p> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome} - Alertas: ${json[i].totalRegistros}</p>`;
+                        dadosAlertaCluster += `<li class="maior-alerta-cluster">Cluster com o maior numero de alertas: </li><p class="maior-alerta-cluster"> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome} - Alertas: ${json[i].totalRegistros}</p><br><br>`;
                     }
 
                     clusterComMaisAlertas = dadosAlertaCluster;
@@ -352,7 +412,7 @@ async function getDadosPorMaquina() {
                     let dadosMaquina = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosMaquina += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p>Métrica CPU: ${json[i].metricaCpu}</p><p>Métrica Memória: ${json[i].metricaMemoria}</p><p>Métrica Disco: ${json[i].metricaDisco}</p><p>Média de uso de CPU: ${(json[i].usoCpu).toFixed(2)}</p><p>Média de uso de Memória: ${(json[i].usoMemoria).toFixed(2)}</p><p> Disco livre: ${(json[i].usoDisco).toFixed(2)}%</p>`;
+                        dadosMaquina += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p>Quantidade de alertas: ${json[i].qtdAlertas}</p><p>Média de uso de CPU: ${(json[i].usoCpu).toFixed(2)}%</p><p>Média de uso de Memória: ${(json[i].usoMemoria).toFixed(2)}%</p><p> Disco livre: ${(json[i].usoDisco).toFixed(2)}%</p><p>Métrica CPU: ${json[i].metricaCpu}%</p><p>Métrica Memória: ${json[i].metricaMemoria}%</p><p>Métrica Disco: ${json[i].metricaDisco}%</p>`;
                     }
 
                     dadosPorMaquina = dadosMaquina;
@@ -378,8 +438,7 @@ async function getDadosCluster() {
                     let dadosMediaAlertasPorCluster = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosMediaAlertasPorCluster += `<li> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome}</li><p>Quantidade de máquinas no cluster: ${json[i].totalMaquinas}</p><p>Quantidade de alertas nesse mês: ${json[i].totalAlertas}</p>
-                        <p>Média de alerta por dia no cluster: ${((json[i].totalAlertas)/30).toFixed(2)}</p>`;
+                        dadosMediaAlertasPorCluster += `<li> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome}</li><p>Quantidade de máquinas no cluster: ${json[i].totalMaquinas}</p><p>Quantidade de alertas nesse mês: ${json[i].totalAlertas}</p>`;
                     }
 
                     dadosCluster = dadosMediaAlertasPorCluster;
@@ -406,7 +465,7 @@ async function getDadosRede() {
                     let rede = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        rede += `<li>Nome da Rede: ${json[i].nome} - Nome domínio: ${json[i].nome_dominio} - Endereço Mac: ${json[i].endereco_mac}<p>IPV4: ${json[i].ipv4} - IPV6: ${json[i].ipv6}</p></li>`;
+                        rede += `<li>Nome da Rede: ${json[i].nome} - Nome domínio: ${json[i].nome_dominio}<p>Endereço Mac: ${json[i].endereco_mac}</p><p>IPV4: ${json[i].ipv4}</p><p>IPV6: ${json[i].ipv6}</p></li>`;
                     }
 
                     dadosRede = rede;
@@ -421,3 +480,28 @@ async function getDadosRede() {
         })
 }
 
+
+async function getDadosClusterMaquinas() {
+    return fetch(`/relatorio/buscarDadosClusterMaquinas/${idEmpresa}`)
+        .then(resposta => {
+            if (resposta.ok) {
+                return resposta.json().then((json) => {
+                    console.log("Dados recebidos: ", JSON.stringify(json));
+
+                    let dados = "";
+
+                    for (let i = 0; i < json.length; i++) {
+                        dados += `<li> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome}</li><p>Quantidade de máquinas no cluster: ${json[i].totalMaquinas}</p><p>Quantidade de alertas nesse mês: ${json[i].totalAlertas}</p><p>Média de alerta por dia no cluster: ${((json[i].totalAlertas)/30).toFixed(2)}</p><p>Id Máquina com maior número de alertas: ${json[i].maiorAlertaMaquinaId}</p><p>Nome Máquina com maior número de alertas: ${json[i].maiorAlertaMaquinaNome}</p><p>Total de alertas na máquina com maior número de alertas: ${json[i].totalAlertasMaquina}</p><br>`;
+                    }
+
+                    dadosClusterMaquina = dados;
+
+                })
+            } else {
+                throw new Error('Houve um erro na API!');
+            }
+        }).catch(erro => {
+            console.log("Erro na requisição dos dados de disco livre por máquina:", erro);
+            return '';
+        })
+}

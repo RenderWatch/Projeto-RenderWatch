@@ -39,4 +39,8 @@ router.get("/buscarDadosRede/:idEmpresa", function (req, res) {
     relatorioController.buscarDadosRede(req, res);
 });
 
+router.get("/buscarDadosClusterMaquinas/:idEmpresa", function (req, res) {
+    relatorioController.buscarDadosClusterMaquinas(req, res);
+});
+
 module.exports = router;

@@ -394,6 +394,162 @@ function buscarmediaAlertasPorCluster(idEmpresa) {
     return database.executar(instrucao);
 }
 
+function buscarDadosClusterMaquinas(idEmpresa) {
+    console.log("ACESSEI O RELATORIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarDadosClusterMaquinas():", idEmpresa);
+
+    let instrucao = ""
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucao =  `
+        SELECT
+        c.id AS clusterId,
+        c.nome AS clusterNome,
+        tm.countMaquinas AS totalMaquinas,
+        ta.countAlertas AS totalAlertas,
+        tam.totalAlertasMaquina AS totalAlertasMaquina,
+        ma.maquinaId AS maiorAlertaMaquinaId,
+        mn.maquinaNome AS maiorAlertaMaquinaNome
+    FROM cluster c
+    JOIN empresa e ON c.empresa_id = e.id
+    LEFT JOIN (
+        SELECT m.cluster_id, COUNT(DISTINCT m.id) AS countMaquinas
+        FROM maquina m
+        JOIN cluster c ON m.cluster_id = c.id
+        WHERE c.empresa_id = ${idEmpresa}
+        GROUP BY m.cluster_id
+    ) tm ON c.id = tm.cluster_id
+    LEFT JOIN (
+        SELECT m.cluster_id, COUNT(DISTINCT ha.id) AS countAlertas
+        FROM historico_alerta ha
+        JOIN maquina m ON ha.maquina_id = m.id
+        JOIN cluster c ON m.cluster_id = c.id
+        WHERE c.empresa_id = ${idEmpresa}
+            AND MONTH(ha.dt_hora) = MONTH(CURRENT_DATE())
+            AND YEAR(ha.dt_hora) = YEAR(CURRENT_DATE())
+        GROUP BY m.cluster_id
+    ) ta ON c.id = ta.cluster_id
+    JOIN (
+        SELECT m.cluster_id, m.id AS maquinaId,
+               ROW_NUMBER() OVER (PARTITION BY m.cluster_id ORDER BY COUNT(*) DESC) AS rn
+        FROM maquina m
+        JOIN historico_alerta ha ON m.id = ha.maquina_id
+        JOIN cluster c ON m.cluster_id = c.id
+        WHERE c.empresa_id = ${idEmpresa}
+            AND MONTH(ha.dt_hora) = MONTH(CURRENT_DATE())
+            AND YEAR(ha.dt_hora) = YEAR(CURRENT_DATE())
+        GROUP BY m.cluster_id, m.id
+    ) ma ON ma.cluster_id = c.id AND ma.rn = 1
+    JOIN (
+        SELECT m.cluster_id, m.nome AS maquinaNome,
+               ROW_NUMBER() OVER (PARTITION BY m.cluster_id ORDER BY COUNT(*) DESC) AS rn
+        FROM maquina m
+        JOIN historico_alerta ha ON m.id = ha.maquina_id
+        JOIN cluster c ON m.cluster_id = c.id
+        WHERE c.empresa_id = ${idEmpresa}
+            AND MONTH(ha.dt_hora) = MONTH(CURRENT_DATE())
+            AND YEAR(ha.dt_hora) = YEAR(CURRENT_DATE())
+        GROUP BY m.cluster_id, m.nome
+    ) mn ON mn.cluster_id = c.id AND mn.rn = 1
+    LEFT JOIN (
+        SELECT m.cluster_id, ha.maquina_id, COUNT(ha.maquina_id) AS totalAlertasMaquina,
+               ROW_NUMBER() OVER (PARTITION BY m.cluster_id ORDER BY COUNT(ha.maquina_id) DESC) AS rn
+        FROM maquina m
+        JOIN historico_alerta ha ON m.id = ha.maquina_id
+        JOIN cluster c ON m.cluster_id = c.id
+        WHERE c.empresa_id = ${idEmpresa}
+            AND MONTH(ha.dt_hora) = MONTH(CURRENT_DATE())
+            AND YEAR(ha.dt_hora) = YEAR(CURRENT_DATE())
+        GROUP BY m.cluster_id, ha.maquina_id
+    ) tam ON tam.cluster_id = c.id AND tam.rn = 1
+    WHERE e.id = ${idEmpresa}
+    GROUP BY c.id, c.nome, tm.countMaquinas, ta.countAlertas, tam.totalAlertasMaquina, ma.maquinaId, mn.maquinaNome;
+    
+        `
+
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucao =   `
+
+        WITH TotalMaquinas AS (
+            SELECT m.cluster_id, COUNT(DISTINCT m.id) AS countMaquinas
+            FROM maquina m
+            JOIN cluster c ON m.cluster_id = c.id
+            WHERE c.empresa_id = ${idEmpresa}
+            GROUP BY m.cluster_id
+            ),
+            TotalAlertas AS (
+                SELECT m.cluster_id, COUNT(DISTINCT ha.id) AS countAlertas
+                FROM historico_alerta ha
+                JOIN maquina m ON ha.maquina_id = m.id
+                JOIN cluster c ON m.cluster_id = c.id
+                WHERE c.empresa_id = ${idEmpresa}
+                    AND MONTH(ha.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(ha.dt_hora) = YEAR(GETDATE())
+                GROUP BY m.cluster_id
+            ),
+            MaiorAlertaMaquinaId AS (
+                SELECT m.cluster_id, m.id AS maquinaId,
+                       ROW_NUMBER() OVER (PARTITION BY m.cluster_id ORDER BY COUNT(*) DESC) AS rn
+                FROM maquina m
+                JOIN historico_alerta ha ON m.id = ha.maquina_id
+                JOIN cluster c ON m.cluster_id = c.id
+                WHERE c.empresa_id = ${idEmpresa}
+                    AND MONTH(ha.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(ha.dt_hora) = YEAR(GETDATE())
+                GROUP BY m.cluster_id, m.id
+            ),
+            MaiorAlertaMaquinaNome AS (
+                SELECT m.cluster_id, m.nome AS maquinaNome,
+                       ROW_NUMBER() OVER (PARTITION BY m.cluster_id ORDER BY COUNT(*) DESC) AS rn
+                FROM maquina m
+                JOIN historico_alerta ha ON m.id = ha.maquina_id
+                JOIN cluster c ON m.cluster_id = c.id
+                WHERE c.empresa_id = ${idEmpresa}
+                    AND MONTH(ha.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(ha.dt_hora) = YEAR(GETDATE())
+                GROUP BY m.cluster_id, m.nome
+            ),
+            TotalAlertasMaquina AS (
+                SELECT m.cluster_id, ha.maquina_id, COUNT(ha.maquina_id) AS totalAlertasMaquina,
+                       ROW_NUMBER() OVER (PARTITION BY m.cluster_id ORDER BY COUNT(ha.maquina_id) DESC) AS rn
+                FROM maquina m
+                JOIN historico_alerta ha ON m.id = ha.maquina_id
+                JOIN cluster c ON m.cluster_id = c.id
+                WHERE c.empresa_id = ${idEmpresa}
+                    AND MONTH(ha.dt_hora) = MONTH(GETDATE())
+                    AND YEAR(ha.dt_hora) = YEAR(GETDATE())
+                GROUP BY m.cluster_id, ha.maquina_id
+            ),
+            ClusterMaxAlerts AS (
+                SELECT tam.cluster_id, MAX(tam.totalAlertasMaquina) AS maxAlerts
+                FROM TotalAlertasMaquina tam
+                GROUP BY tam.cluster_id
+            )
+            SELECT
+                c.id AS clusterId,
+                c.nome AS clusterNome,
+                tm.countMaquinas AS totalMaquinas,
+                ta.countAlertas AS totalAlertas,
+                tam.totalAlertasMaquina AS totalAlertasMaquina,
+                ma.maquinaId AS maiorAlertaMaquinaId,
+                mn.maquinaNome AS maiorAlertaMaquinaNome
+            FROM cluster c
+            JOIN empresa e ON c.empresa_id = e.id
+            LEFT JOIN TotalMaquinas tm ON c.id = tm.cluster_id
+            LEFT JOIN TotalAlertas ta ON c.id = ta.cluster_id
+            JOIN ClusterMaxAlerts cma ON c.id = cma.cluster_id
+            LEFT JOIN MaiorAlertaMaquinaId ma ON ma.cluster_id = cma.cluster_id AND ma.rn = 1
+            LEFT JOIN MaiorAlertaMaquinaNome mn ON mn.cluster_id = cma.cluster_id AND mn.rn = 1
+            LEFT JOIN TotalAlertasMaquina tam ON c.id = tam.cluster_id AND tam.totalAlertasMaquina = cma.maxAlerts
+            WHERE e.id = ${idEmpresa}
+            GROUP BY c.id, c.nome, tm.countMaquinas, ta.countAlertas, tam.totalAlertasMaquina, ma.maquinaId, mn.maquinaNome;
+            
+            
+    `;
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarDadosAlertas,
     buscarQuantidadeAlertas,
@@ -403,6 +559,7 @@ module.exports = {
     buscarQtdMaquinas,
     buscarQtdClusters,
     buscarmediaAlertasPorCluster,
-    buscarDadosRede
+    buscarDadosRede,
+    buscarDadosClusterMaquinas
 };
 
