@@ -1,6 +1,4 @@
 
-var idMaquina = sessionStorage.MAQUINA;
-var idCluster = sessionStorage.CLUSTER;
 function atualizarDadosProcesso() {
     fetch(`/kpiProcesso/listarProcessos/${idMaquina}`)
         .then(function (resposta) {
@@ -40,7 +38,7 @@ function atualizarDadosProcesso() {
         });
 }
 
-function listarAlertaCluster() {
+function listarAlertaCluster(idCluster) {
     fetch(`/kpiProcesso/listarAlertaCluster/${idCluster}`)
         .then(function (resposta) {
             if (resposta.ok) {
@@ -76,7 +74,7 @@ function listarAlertaCluster() {
         });
 }
 
-function listarAlertaMaquina() {
+function listarAlertaMaquina(idMaquina) {
     fetch(`/kpiProcesso/listarAlertaMaquina/${idMaquina}`)
         .then(function (resposta) {
             if (resposta.ok) {
@@ -112,7 +110,7 @@ function listarAlertaMaquina() {
         });
 }
 
-function listarAlertaComponenteMaquina() {
+function listarAlertaComponenteMaquina(idMaquina) {
     fetch(`/kpiProcesso/listarAlertaComponenteMaquina/${idMaquina}`)
         .then(function (resposta) {
             if (resposta.ok) {

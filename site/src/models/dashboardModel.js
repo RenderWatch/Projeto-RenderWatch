@@ -10,7 +10,7 @@ function listar(idMaquina) {
             c.identificador AS componente_identificador,
             r.em_uso,
             FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
-            m.metrica_memoria
+            m.metrica_cpu
         FROM registro_componente AS r
         JOIN componente AS c ON c.id = r.componente_id
         JOIN maquina AS m ON m.id = c.maquina_id
@@ -26,7 +26,7 @@ function listar(idMaquina) {
             c.identificador AS componente_identificador,
             r.em_uso,
             FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
-            m.metrica_memoria
+            m.metrica_cpu
         FROM registro_componente AS r
         JOIN componente AS c ON c.id = r.componente_id
         JOIN maquina AS m ON m.id = c.maquina_id
@@ -92,7 +92,7 @@ function listarDisco(idMaquina) {
         SELECT TOP 15 c.nome AS componente_nome,
             r.em_uso,
             FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
-            m.metrica_memoria
+            m.metrica_disco
         FROM registro_componente AS r
         JOIN componente AS c ON c.id = r.componente_id
         JOIN maquina AS m ON m.id = c.maquina_id
@@ -105,7 +105,7 @@ function listarDisco(idMaquina) {
         SELECT c.nome AS componente_nome,
             r.em_uso,
             FORMAT(r.dt_hora, 'HH:mm:ss') AS dt_hora_formatada,
-            m.metrica_memoria
+            m.metrica_disco
         FROM registro_componente AS r
         JOIN componente AS c ON c.id = r.componente_id
         JOIN maquina AS m ON m.id = c.maquina_id

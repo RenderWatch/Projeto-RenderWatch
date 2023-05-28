@@ -34,6 +34,10 @@ function atualizarDadosCluster() {
                                 const clusterId = resposta[i].id;
                                 atualizarDadosMaquina(clusterId);
 
+                                listarAlertaCluster(clusterId);
+
+
+
                                 // Remover a classe "active" de todos os botões de Cluster
                                 const clusterButtons = document.querySelectorAll('.selecao-cluster .cluster-button');
                                 clusterButtons.forEach(btn => btn.classList.remove('active'));
@@ -95,6 +99,9 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                                 atualizarDados(idMaquina);
                                 atualizarDadosRam(idMaquina);
                                 atualizarDadosDisco(idMaquina);
+
+                                listarAlertaMaquina(idMaquina)
+                                listarAlertaComponenteMaquina(idMaquina);
 
                                 // Limpa os intervalos anteriores, se existirem
                                 intervalIds.forEach(intervalId => clearInterval(intervalId));
@@ -214,43 +221,6 @@ function atualizarDadosRede(idMaquina) {
         });
 }
 
-// function atualizarDadosProcesso() {
-//     fetch(`/redeMaquina/listarProcessos/${idMaquina}`)
-//         .then(function (resposta) {
-//             if (resposta.ok) {
-//                 resposta.json().then(function (resposta) {
-//                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-//                     var feed = document.getElementById("feed_container");
-//                     feed.innerHTML = "";
-
-//                     if (resposta.length > 0) {
-//                         for (let i = 0; i < resposta.length; i++) {
-//                             const dados = resposta[i];
-//                             const total_processos = dados.total_processos;
-//                             const total_threads = dados.total_threads;
-                        
-//                             document.getElementById("total-processos").innerHTML = `<span>${total_processos}</span>`;
-//                             document.getElementById("total-threads").innerHTML = `<span>${total_threads}</span>`;
-                    
-//                         }
-//                     } else {
-//                         var mensagem = document.createElement("span");
-//                         mensagem.innerHTML = "Nenhum resultado encontrado.";
-//                         feed.appendChild(mensagem);
-//                         throw "Nenhum resultado encontrado!";
-//                     }
-
-                    
-
-//                 });
-//             } else {
-//                 throw "Houve um erro na API!";
-//             }
-//         })
-//         .catch(function (resposta) {
-//             console.error(resposta);
-//         });
-// }
 
 atualizarDadosCluster();

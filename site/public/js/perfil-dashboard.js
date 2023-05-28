@@ -170,6 +170,9 @@ function atualizarDados(idMaquina) {
               if (dados.em_uso > metricaCpu) {
                 porcentCPU.style.color = "orange";
                 cardProcessoCPU.style.borderTop = "15px solid orange";
+              }else {
+                porcentCPU.style.color = "";
+                cardProcessoCPU.style.borderTop = "";
               }
             }
           }
@@ -232,6 +235,9 @@ function atualizarDadosRam(idMaquina) {
               if (dados.em_uso > metricaRam) {
                 porcentRAM.style.color = "orange";
                 cardProcessoRam.style.borderTop = "15px solid orange";
+              }else {
+                porcentRAM.style.color = "";
+                cardProcessoRam.style.borderTop = "";
               }
             }
           }
@@ -290,6 +296,9 @@ function atualizarDadosDisco(idMaquina) {
               if (dados.em_uso > metricaDisco) {
                 porcentHD.style.color = "orange";
                 cardProcessoHD.style.borderTop = "15px solid orange";
+              }else {
+                porcentHD.style.color = "";
+                cardProcessoHD.style.borderTop = "";
               }
             }
           }
