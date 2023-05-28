@@ -152,6 +152,20 @@ body {
   background-color: rgb(83, 142, 245);
 }
 
+.selecao-cluster .cluster-button,
+.selecao-maquina .maquina-button {
+  width: 100%;
+  border: none;
+  height: 10vh;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.selecao-cluster .cluster-button.active,
+.selecao-maquina .maquina-button.active {
+  background-color: rgb(83, 142, 245);
+}
+
 .selecao-maquina {
   flex-direction: column;
   align-items: center;

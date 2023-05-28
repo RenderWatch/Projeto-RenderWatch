@@ -15,6 +15,7 @@ var alertasRouter = require("./src/routes/alertas");
 var redeMaquinaRouter = require("./src/routes/redeMaquina");
 var permissaoRouter = require("./src/routes/permissao");
 var dashboardRouter = require("./src/routes/dashboard");
+var kpiProcessoRouter = require("./src/routes/kpiProcesso");
 
 var testeRouter = require("./src/routes/teste");
 
@@ -31,6 +32,7 @@ app.use("/alertas", alertasRouter);
 app.use("/redeMaquina", redeMaquinaRouter);
 app.use("/permissao", permissaoRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/kpiProcesso", kpiProcessoRouter);
 
 app.use("/teste", testeRouter);
 

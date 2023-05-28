@@ -128,9 +128,7 @@ const cpuChart = new Chart(cpu, {
   }
 });
 
-var idMaquina = sessionStorage.MAQUINA;
-
-function atualizarDados() {
+function atualizarDados(idMaquina) {
   fetch(`/dashboard/listar/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -197,7 +195,7 @@ function atualizarDados() {
 
 
   
-function atualizarDadosRam() {
+function atualizarDadosRam(idMaquina) {
   fetch(`/dashboard/listarRam/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -256,7 +254,7 @@ function atualizarDadosRam() {
     });
 }
 
-function atualizarDadosDisco() {
+function atualizarDadosDisco(idMaquina) {
   fetch(`/dashboard/listarDisco/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -316,13 +314,13 @@ function atualizarDadosDisco() {
 
 
 setInterval(function () {
-  atualizarDados();
+  atualizarDados(idMaquina);
 }, 5000);
 
 setInterval(function () {;
-  atualizarDadosRam();
+  atualizarDadosRam(idMaquina);
 }, 5000);
 
 setInterval(function () {
-  atualizarDadosDisco();
+  atualizarDadosDisco(idMaquina);
 }, 5000);

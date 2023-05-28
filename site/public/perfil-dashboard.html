@@ -102,7 +102,7 @@
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
                 <p>Componente que mais gera alertas na máquina</p>
-                <span id="componente_alerta" class="span_alertas"></span>
+                <span id="componente_alerta" class="span_alertas">nome_componente</span>
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
                 <p>Máquina com maior número de alertas no mês</p>
@@ -117,16 +117,13 @@
             <div style="display: flex;" class="card-maquina">
                 <div class="descricao-maquina">
                     <div class="cluster-maquina-atual">
-                        <h2><span style="border-right: 5px solid rgb(83, 142, 245);" id="cluster">1</span><span
+                        <h2><span style="border-right: 5px solid rgb(83, 142, 245);" id="cluster"></span><span
                                 style="margin: 0 2px;"></span><span id="maquina"></span></h2>
                     </div>
-                    <p>Nome da máquina: <span id="apelido"></span></p>
+                    <!-- <p>Nome da máquina: <span id="apelido"></span></p> -->
                     <p>Sistema operacional: <span id="sistema"></span></p>
                     <p>Fabricante: <span id="fabricante"></span></p>
                     <p>Arquitetura: <span id="arquitetura"></span></p>
-                    <!-- <p>Inicializado: <span id="data-inicializado">2023-04-16 17:40:30</span></p>
-                    <p>Tempo de atividade: <span id="tempo-atividade">5 dias, 22:26:29</span></p>
-                    <p>Permissões: <span id="permissao-usuario">Executando como usuário padrão</span></p> -->
                 </div>
                 <div class="metricas">
                     <p>Alertas definidos - CPU</p><span id="metrica_cpu"></span>
@@ -148,11 +145,9 @@
                     <h2>Rede</h2>
                 </div>
                 <p>Nome: <span id="nome_rede"></span></p>
-                <!-- <p>Hostname: <span id="hostname">Intel Corp</span></p> -->
                 <p>Endereço IPV4: <span id="ipv4"></span></p>
                 <p>Endereço IPV6: <span id="ipv6"></span></p>
                 <p>DNS: <span id="dns"></span></p>
-                <!-- <p>Endereço Mac:  <span id="endereco_mac"> 00:1B:44:11:3A:B7</span></p> -->
             </div>
         </div>
     </div>
@@ -238,6 +233,8 @@
 <script src="js/perfil-dashboard.js"></script>
 <script src="js/perfil-sidebar-header.js"></script>
 <script src="js/perfil-redeMaquina.js"></script>
+<script src="js/perfil-kpiProcesso.js"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
     integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
