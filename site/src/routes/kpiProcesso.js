@@ -20,7 +20,7 @@ router.get("/listarMaquinaMaiorAlertas", function (req, res) {
 });
 
 router.get("/listarProcessos/:idMaquina", function (req, res) {
-    redeMaquinaController.listarProcessos(req, res);
+    kpiProcessoController.listarProcessos(req, res);
 });
 
 module.exports = router;
