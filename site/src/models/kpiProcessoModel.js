@@ -8,7 +8,7 @@ function listarAlertaCluster(idCluster) {
         SELECT COUNT(*) AS quantidade_alertas
         FROM historico_alerta a
         INNER JOIN maquina m ON a.maquina_id = m.id
-        WHERE m.cluster_id = '${idCluster}';        
+        WHERE m.cluster_id = '${idCluster}' AND status = 1;        
         `;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -39,7 +39,7 @@ function listarAlertaMaquina(idMaquina) {
         var instrucao = `
         SELECT COUNT(*) AS quantidade_alertas
         FROM historico_alerta
-        WHERE maquina_id = '${idMaquina}';       
+        WHERE maquina_id = ${idMaquina} AND status = 1;       
     `;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
@@ -103,11 +103,10 @@ function listarMaquinaMaiorAlertas() {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-        SELECT TOP 1 m.nome AS nome_maquina, COUNT(*) AS quantidade_alertas
-        FROM maquina m
-        INNER JOIN historico_alerta a ON m.id = a.maquina_id
-        GROUP BY m.nome
-        ORDER BY quantidade_alertas DESC;
+        SELECT MAX(m.nome) AS maquinaNome  
+        FROM historico_alerta ha
+         JOIN maquina m ON ha.maquina_id = m.id
+		 WHERE ha.maquina_id = m.id;
         `;
 
 
@@ -139,22 +138,18 @@ function listarProcessos(idMaquina) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-        SELECT gp.total_processos AS total_processos, gp.total_threads AS total_threads
-        FROM maquina m
-        INNER JOIN grupo_processos gp ON m.id = gp.maquina_id
-        WHERE m.id = '${idMaquina}';
-      `;
+        SELECT TOP 1 * FROM grupo_processos WHERE maquina_id = ${idMaquina} ORDER BY ID DESC`
+
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         var instrucao = `
-        SELECT gp.total_processos AS total_processos, gp.total_threads AS total_threads
-        FROM maquina m
-        INNER JOIN grupo_processos gp ON m.id = gp.maquina_id
-        WHERE m.id = '${idMaquina}';
-      `;
+        SELECT TOP 1 * FROM grupo_processos WHERE maquina_id = ${idMaquina} ORDER BY ID DESC;`
+            
 
         console.log("Executando a instrução SQL: \n" + instrucao);
         return database.executar(instrucao);
     }
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
 }
 
 module.exports = {

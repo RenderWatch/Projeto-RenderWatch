@@ -141,7 +141,7 @@ function atualizarDados(idMaquina) {
         }
 
         resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
+          //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
           var feed = document.getElementById("feed_container");
           feed.innerHTML = "";
@@ -211,7 +211,7 @@ function atualizarDadosRam(idMaquina) {
         }
 
         resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
+          //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
           var feed = document.getElementById("feed_container");
           feed.innerHTML = "";
@@ -273,7 +273,7 @@ function atualizarDadosDisco(idMaquina) {
         }
 
         resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
+          //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
           var feed = document.getElementById("feed_container");
           feed.innerHTML = "";
@@ -321,15 +321,6 @@ function atualizarDadosDisco(idMaquina) {
     });
 }
 
-
-setInterval(function () {
-  atualizarDados(idMaquina);
-}, 5000);
-
-setInterval(function () {;
-  atualizarDadosRam(idMaquina);
-}, 5000);
-
-setInterval(function () {
-  atualizarDadosDisco(idMaquina);
-}, 5000);
+atualizarDados(1)
+atualizarDadosRam(1)
+atualizarDadosDisco(1)
