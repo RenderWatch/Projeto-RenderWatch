@@ -7,7 +7,7 @@ const ramChart = new Chart(ram, {
       type: 'line',
       label: 'Uso de memória RAM',
       data: [],
-      borderColor: 'rgba(0, 123, 255, 1)', // Cor da linha do gráfico
+      borderColor: 'rgba(0, 123, 255, 1)', 
       backgroundColor: 'rgba(0, 123, 255, 0.3)',
       borderWidth: 1,
       fill: 'start'
@@ -19,24 +19,24 @@ const ramChart = new Chart(ram, {
         beginAtZero: true,
         ticks: {
           callback: function(value) {
-            return value + '%'; // Adiciona o símbolo de porcentagem aos valores do eixo y
+            return value + '%'; 
           }
         }
       },
     },
     plugins: {
       legend: {
-        display: false // Oculta a legenda do gráfico
+        display: false 
       },
     },
     elements: {
       point: {
-        radius: 0 // Remove os pontos de dados no gráfico
+        radius: 0 
       }
     },
     plugins: {
       filler: {
-        propagate: true // Preenche a área sob a linha do gráfico
+        propagate: true 
       }
     }
   }
@@ -128,13 +128,7 @@ const cpuChart = new Chart(cpu, {
   }
 });
 
-var idMaquina = sessionStorage.MAQUINA;
-var componenteAlerta = "";
-let countHD = 0;
-let countCPU = 0;
-let countRam = 0;
-
-function atualizarDados() {
+function atualizarDados(idMaquina) {
   fetch(`/dashboard/listar/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -176,11 +170,11 @@ function atualizarDados() {
               if (dados.em_uso > metricaCpu) {
                 porcentCPU.style.color = "orange";
                 cardProcessoCPU.style.borderTop = "15px solid orange";
-
-                countCPU++;
               }
             }
           }
+
+          cpuChart.data.labels.reverse();
 
           // Atualizar os gráficos
           cpuChart.update();
@@ -188,7 +182,6 @@ function atualizarDados() {
           
           // finalizarAguardar();
 
-          determinarComponenteAlerta();
         });
       } else {
         throw "Houve um erro na API!";
@@ -198,9 +191,11 @@ function atualizarDados() {
       console.error(resposta);
       // finalizarAguardar();
     });
-}
+  }
 
-function atualizarDadosRam() {
+
+  
+function atualizarDadosRam(idMaquina) {
   fetch(`/dashboard/listarRam/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -218,6 +213,7 @@ function atualizarDadosRam() {
           var feed = document.getElementById("feed_container");
           feed.innerHTML = "";
 
+          
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           ramChart.data.datasets[0].data = [];
           ramChart.data.labels = [];
@@ -236,17 +232,16 @@ function atualizarDadosRam() {
               if (dados.em_uso > metricaRam) {
                 porcentRAM.style.color = "orange";
                 cardProcessoRam.style.borderTop = "15px solid orange";
-
-                countRam++;
               }
             }
           }
+
+          ramChart.data.labels.reverse();
 
           // Atualizar os gráficos
           ramChart.update();
 
           // finalizarAguardar();
-          determinarComponenteAlerta();
           
         });
       } else {
@@ -259,7 +254,7 @@ function atualizarDadosRam() {
     });
 }
 
-function atualizarDadosDisco() {
+function atualizarDadosDisco(idMaquina) {
   fetch(`/dashboard/listarDisco/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
@@ -295,16 +290,15 @@ function atualizarDadosDisco() {
               if (dados.em_uso > metricaDisco) {
                 porcentHD.style.color = "orange";
                 cardProcessoHD.style.borderTop = "15px solid orange";
-
-                countHD++;
               }
             }
           }
 
+          discoChart.data.labels.reverse();
+
           // Atualizar os gráficos
           discoChart.update();
           // finalizarAguardar();
-          determinarComponenteAlerta();
         });
       } else {
         throw "Houve um erro na API!";
@@ -318,30 +312,15 @@ function atualizarDadosDisco() {
     });
 }
 
-function determinarComponenteAlerta() {
-  let maxAlertas = Math.max(countCPU, countRAM, countHD);
-  
-  if (maxAlertas === countCPU) {
-    componenteAlerta = "CPU";
-  } else if (maxAlertas === countRam) {
-    componenteAlerta = "RAM";
-  } else if (maxAlertas === countHD) {
-    componenteAlerta = "Disco";
-  }
-  
-  // Exibir o componente que gera mais alertas
-  document.getElementById("componente_alerta").textContent = componenteAlerta;
-}
-
 
 setInterval(function () {
-  atualizarDados();
+  atualizarDados(idMaquina);
 }, 5000);
 
 setInterval(function () {;
-  atualizarDadosRam();
+  atualizarDadosRam(idMaquina);
 }, 5000);
 
 setInterval(function () {
-  atualizarDadosDisco();
+  atualizarDadosDisco(idMaquina);
 }, 5000);

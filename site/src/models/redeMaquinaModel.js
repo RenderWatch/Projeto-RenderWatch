@@ -76,7 +76,7 @@ function listarCluster(razaoSocial) {
 //     JOIN maquina AS m ON m.id = gp.maquina_id
 //     WHERE gp.maquina_id = '${idMaquina}'
 //     ORDER BY gp.maquina_id DESC
-//     ;
+//     LIMIT 1;
 //     `;
 //   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 //     var instrucao = `
