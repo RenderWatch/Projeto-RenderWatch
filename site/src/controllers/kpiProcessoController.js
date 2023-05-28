@@ -74,7 +74,7 @@ function listarProcessos(req, res) {
 
     var idMaquina = req.params.idMaquina;
 
-    redeMaquinaModel.listarProcessos(idMaquina)
+    kpiProcessoModel.listarProcessos(idMaquina)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
