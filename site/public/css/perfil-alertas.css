@@ -11,27 +11,29 @@
     src: local('Trebuchet MS'), url('../fonts/trebuched_ms.woff') format('woff');
 }
 
-body {
-    background-color: #e8e9ea;
-    display: flex;
-   align-items: start;
-    flex-direction: column;
-    justify-content: space-around;
-}
 
-/* .color_back {
-    position: absolute;
-    height: 35%;
-    width: 100%;
-    /* background-color:#d65ba38f; */
 
+
+/*
 .cor-bg {
     position: absolute;
-    margin-top: -602px;
+    margin-top: -200%;
     width: 100%;
     height: 250px;
+   
     background-color: rgba(214, 91, 162, 1);
 
+}
+*/
+body {
+    background-color: #ffffff;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 98%;
+    justify-content: space-around;
+    position: absolute;
+    overflow-x: hidden;
 }
 
 
@@ -42,12 +44,12 @@ main {
     width: 85%;
     margin-top: 100px;
     margin-left: 10vw;
-   
+
     display: flex;
     flex-direction: column;
     align-items: end;
     justify-content: center;
-    
+
 
 
 }
@@ -70,6 +72,7 @@ main {
     color: aliceblue;
     font-size: 10px;
 
+
 }
 
 
@@ -79,8 +82,11 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    width: 90%;
+    justify-content: center;
+    width: 130%;
+
+    background-color: rgba(214, 91, 162, 1);
+    margin-top: -30px;
 
 
 
@@ -91,18 +97,21 @@ main {
 
 
 .cards {
+
+    margin-top: 40px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     border-radius: 10px;
-    width: 40%;
+    width: 400px;
     height: 170px;
     color: black;
-    background-color: rgb(244, 244, 244);
+    background-color: rgb(238, 238, 238);
     margin-bottom: 40PX;
     -webkit-box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.25);
     box-shadow: 5px 5px 8px 2px rgba(0, 0, 0, 0.25);
+
 }
 
 .cards.legenda {
@@ -110,13 +119,13 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: rgb(244, 244, 244);
+    margin-right: 40px;
     justify-content: space-around;
 }
 
 
 .button {
-    margin-top: 10px;
+    margin-left: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,7 +175,7 @@ main {
     border-radius: 100px;
     background-color: rgba(17, 196, 56, 0.8);
     position: relative;
-   
+
 }
 
 .cards_bullet_pendente {
@@ -223,6 +232,7 @@ main {
 
 
 .container-alertas_pendentes {
+
     border: 3px red solid;
     margin-bottom: 20px;
     background-color: rgb(244, 244, 244);
@@ -230,6 +240,7 @@ main {
 }
 
 .container-alertas_resolvidos {
+    margin-right: -12px;
     border: 3px green solid;
     background-color: rgb(244, 244, 244);
 }
@@ -361,10 +372,11 @@ li {
 }
 
 .resolvido {
+    display: block;
     background-color: green;
     background-image: url(../assets/style-all/check.png);
     background-size: 110%;
-    margin-right: -20px;
+    margin-right: -6px;
 
 }
 

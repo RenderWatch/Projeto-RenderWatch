@@ -1,11 +1,10 @@
+var dashboardModel = require("../models/dashboardModel");
 
-var alertasModel = require("../models/alertasModel");
+function listar(req, res) {
 
-function qtdAlertasPendentes(req, res) {
+    var idMaquina = req.params.idMaquina;
 
-    var statusAtual= req.params.statusAtual;
-
-    alertasModel.qtdAlertasPendentes(statusAtual)
+    dashboardModel.listar(idMaquina)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -19,11 +18,29 @@ function qtdAlertasPendentes(req, res) {
         });
 }
 
-function getIdClusterMaquina(req, res) {
+function listarRam(req, res) {
 
     var idMaquina = req.params.idMaquina;
 
-    alertasModel.getIdClusterMaquina(idMaquina)
+    dashboardModel.listarRam(idMaquina)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os dashboards: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function listarDisco(req, res) {
+
+    var idMaquina = req.params.idMaquina;
+
+    dashboardModel.listarDisco(idMaquina)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -40,7 +57,7 @@ function getIdClusterMaquina(req, res) {
 
 
 module.exports = {
-    qtdAlertasPendentes,
-    getIdClusterMaquina
-
+    listar,
+    listarRam,
+    listarDisco
 }

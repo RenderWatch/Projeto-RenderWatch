@@ -1,133 +1,326 @@
 const ram = document.getElementById('myChart');
-const disco = document.getElementById('myChart2');
-const cpu = document.getElementById('myChart3');
-const rede = document.getElementById('myChart4');
-
-// Gerar valores aleatórios para o gráfico de RAM
-const ramData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
-
-// Criar o gráfico de RAM com os dados aleatórios
 const ramChart = new Chart(ram, {
   type: 'line',
   data: {
-    labels: ['13:00:15', '13:00:30', '13:00:45', '13:01:00', '13:01:15', '13:01:30', '13:01:45', '13:02:00', '13:02:15', '13:02:30', '13:02:45'],
+    labels: [],
     datasets: [{
       type: 'line',
-      label: 'Uso de memoria RAM',
-      data: ramData,
-      borderWidth: 1
+      label: 'Uso de memória RAM',
+      data: [],
+      borderColor: 'rgba(0, 123, 255, 1)', 
+      backgroundColor: 'rgba(0, 123, 255, 0.3)',
+      borderWidth: 1,
+      fill: 'start'
     }]
   },
   options: {
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return value + '%'; 
+          }
+        }
+      },
+    },
+    plugins: {
+      legend: {
+        display: false 
+      },
+    },
+    elements: {
+      point: {
+        radius: 0 
+      }
+    },
+    plugins: {
+      filler: {
+        propagate: true 
       }
     }
   }
 });
 
-const discoData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
-
+const disco = document.getElementById('myChart2');
 const discoChart = new Chart(disco, {
-    type: 'line',
-    data: {
-        labels: ['13:00:15', '13:00:30', '13:00:45', '13:01:00', '13:01:15', '13:01:30', '13:01:45', '13:02:00', '13:02:15', '13:02:30', '13:02:45'],
-        datasets: [{
-            label: 'Uso de disco',
-            data: discoData,
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'Uso de disco',
+      data: [],
+      borderColor: 'rgba(255, 99, 132, 1)',
+      backgroundColor: 'rgba(255, 99, 132, 0.3)',
+      borderWidth: 1,
+      fill: 'start'
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return value + '%';
+          }
         }
+      },
+    },
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    plugins: {
+      filler: {
+        propagate: true
+      }
     }
+  }
 });
 
-const cpuData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
-
+const cpu = document.getElementById('myChart3');
 const cpuChart = new Chart(cpu, {
-    type: 'line',
-    data: {
-        labels: ['13:00:15', '13:00:30', '13:00:45', '13:01:00', '13:01:15', '13:01:30', '13:01:45', '13:02:00', '13:02:15', '13:02:30', '13:02:45'],
-        datasets: [{
-            label: 'Uso de CPU',
-            data: cpuData,
-            borderWidth: 1
-        },]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'Uso de CPU',
+      data: [],
+      borderColor: 'rgba(40, 167, 69, 1)',
+      backgroundColor: 'rgba(40, 167, 69, 0.3)',
+      borderWidth: 1,
+      fill: 'start'
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return value + '%';
+          }
         }
+      },
+    },
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    plugins: {
+      filler: {
+        propagate: true
+      }
     }
+  }
 });
 
-const redeData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
-
-const redeChart = new Chart(rede, {
-    data: {
-        labels: ['13:00:15', '13:00:30', '13:00:45', '13:01:00', '13:01:15', '13:01:30', '13:01:45', '13:02:00', '13:02:15', '13:02:30', '13:02:45'],
-        datasets: [{
-            type: 'line',
-            label: 'Rede',
-            data: redeData,
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+function atualizarDados(idMaquina) {
+  fetch(`/dashboard/listar/${idMaquina}`)
+    .then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var feed = document.getElementById("feed_container");
+          var mensagem = document.createElement("span");
+          mensagem.innerHTML = "Nenhum resultado encontrado.";
+          feed.appendChild(mensagem);
+          throw "Nenhum resultado encontrado!";
         }
-    }
-});
+
+        resposta.json().then(function (resposta) {
+          //console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+          var feed = document.getElementById("feed_container");
+          feed.innerHTML = "";
+
+          // Limpar os dados e labels dos gráficos antes de atualizá-los
+          cpuChart.data.datasets[0].data = [];
+          cpuChart.data.labels = [];
+          const metricaCpu = resposta[0].metrica_cpu;
+
+       
+
+          // Atualizar os dados dos gráficos existentes com os novos valores
+          for (let i = 0; i < resposta.length; i++) {
+            let dados = resposta[i];
+            const componenteNome = dados.componente_nome.toLowerCase();
+            const componenteDescricao = dados.componente_descricao;
+            const componenteIdentificador = dados.componente_identificador;
+
+            if (componenteNome === "cpu") {
+              cpuChart.data.datasets[0].data.push(dados.em_uso);
+              cpuChart.data.labels.push(dados.dt_hora_formatada);
+              document.getElementById("nome-componente").innerText = componenteDescricao;
+              document.getElementById("identificador-componente").innerHTML = componenteIdentificador;
+              document.getElementById("porcentCPU").innerHTML = `${parseInt(dados.em_uso)}%`;
+
+              if (dados.em_uso > metricaCpu) {
+                porcentCPU.style.color = "orange";
+                cardProcessoCPU.style.borderTop = "15px solid orange";
+              }else {
+                porcentCPU.style.color = "";
+                cardProcessoCPU.style.borderTop = "";
+              }
+            }
+          }
+
+          cpuChart.data.labels.reverse();
+
+          // Atualizar os gráficos
+          cpuChart.update();
+
+          
+          // finalizarAguardar();
+
+        });
+      } else {
+        throw "Houve um erro na API!";
+      }
+    })
+    .catch(function (resposta) {
+      console.error(resposta);
+      // finalizarAguardar();
+    });
+  }
 
 
-function atualizarDados() {
-  // Gerar novos valores aleatórios para cada gráfico
-  const novoRamData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
-  const novoDiscoData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
-  const novoCpuData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
-  const novoRedeData = Array.from({ length: 11 }, () => Math.floor(Math.random() * 10) + 1);
+  
+function atualizarDadosRam(idMaquina) {
+  fetch(`/dashboard/listarRam/${idMaquina}`)
+    .then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var feed = document.getElementById("feed_container");
+          var mensagem = document.createElement("span");
+          mensagem.innerHTML = "Nenhum resultado encontrado.";
+          feed.appendChild(mensagem);
+          throw "Nenhum resultado encontrado!";
+        }
 
-  // Atualizar os dados dos gráficos existentes com os novos valores
-  ramChart.data.datasets[0].data = novoRamData;
-  ramChart.update();
-  discoChart.data.datasets[0].data = novoDiscoData;
-  discoChart.update();
-  cpuChart.data.datasets[0].data = novoCpuData;
-  cpuChart.update();
-  redeChart.data.datasets[0].data = novoRedeData;
-  redeChart.update();
+        resposta.json().then(function (resposta) {
+          //console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+          var feed = document.getElementById("feed_container");
+          feed.innerHTML = "";
+
+          
+          // Limpar os dados e labels dos gráficos antes de atualizá-los
+          ramChart.data.datasets[0].data = [];
+          ramChart.data.labels = [];
+          const metricaRam = resposta[0].metrica_memoria;
+
+          // Atualizar os dados dos gráficos existentes com os novos valores
+          for (let i = 0; i < resposta.length; i++) {
+            let dados = resposta[i];
+            const componenteNome = dados.componente_nome.toLowerCase();
+
+            if (componenteNome === "memoria") {
+              ramChart.data.datasets[0].data.push(dados.em_uso);
+              ramChart.data.labels.push(dados.dt_hora_formatada);
+              document.getElementById("porcentRAM").innerHTML = `${parseInt(dados.em_uso)}%`;
+
+              if (dados.em_uso > metricaRam) {
+                porcentRAM.style.color = "orange";
+                cardProcessoRam.style.borderTop = "15px solid orange";
+              }else {
+                porcentRAM.style.color = "";
+                cardProcessoRam.style.borderTop = "";
+              }
+            }
+          }
+
+          ramChart.data.labels.reverse();
+
+          // Atualizar os gráficos
+          ramChart.update();
+
+          // finalizarAguardar();
+          
+        });
+      } else {
+        throw "Houve um erro na API!";
+      }
+    })
+    .catch(function (resposta) {
+      console.error(resposta);
+      // finalizarAguardar();
+    });
 }
 
-// Atualizar os dados a cada 5 segundos
-setInterval(atualizarDados, 15000);
+function atualizarDadosDisco(idMaquina) {
+  fetch(`/dashboard/listarDisco/${idMaquina}`)
+    .then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var feed = document.getElementById("feed_container");
+          var mensagem = document.createElement("span");
+          mensagem.innerHTML = "Nenhum resultado encontrado.";
+          feed.appendChild(mensagem);
+          throw "Nenhum resultado encontrado!";
+        }
+
+        resposta.json().then(function (resposta) {
+          //console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+          var feed = document.getElementById("feed_container");
+          feed.innerHTML = "";
+
+          // Limpar os dados e labels dos gráficos antes de atualizá-los
+          discoChart.data.datasets[0].data = [];
+          discoChart.data.labels = [];
+          const metricaDisco = resposta[0].metrica_disco;
+
+          // Atualizar os dados dos gráficos existentes com os novos valores
+          for (let i = 0; i < resposta.length; i++) {
+            let dados = resposta[i];
+            const componenteNome = dados.componente_nome.toLowerCase();
+
+            if (componenteNome === "disco") {
+              discoChart.data.datasets[0].data.push(dados.em_uso);
+              discoChart.data.labels.push(dados.dt_hora_formatada);
+              document.getElementById("porcentHD").innerHTML = `${parseInt(dados.em_uso)}%`;
+
+              if (dados.em_uso > metricaDisco) {
+                porcentHD.style.color = "orange";
+                cardProcessoHD.style.borderTop = "15px solid orange";
+              }else {
+                porcentHD.style.color = "";
+                cardProcessoHD.style.borderTop = "";
+              }
+            }
+          }
+
+          discoChart.data.labels.reverse();
+
+          // Atualizar os gráficos
+          discoChart.update();
+          // finalizarAguardar();
+        });
+      } else {
+        throw "Houve um erro na API!";
+      }
+    })
+    .catch(function (resposta) {
+      console.error(resposta);
 
 
-// Adiciona um event listener para o botão de gerar relatório
-const botaoGerarRelatorio = document.getElementById('botao-gerar-relatorio');
-botaoGerarRelatorio.addEventListener('click', gerarRelatorio);
-
-// Função para gerar o relatório
-function gerarRelatorio() {
-  // Cria um novo documento PDF
-  const doc = new jsPDF();
-
-  // Adiciona os gráficos ao documento
-  doc.addImage(ramChart.toBase64Image(), 'JPEG', 15, 15, 80, 40);
-  doc.addImage(discoChart.toBase64Image(), 'JPEG', 15, 70, 80, 40);
-  doc.addImage(cpuChart.toBase64Image(), 'JPEG', 15, 125, 80, 40);
-  doc.addImage(redeChart.toBase64Image(), 'JPEG', 15, 180, 80, 40);
-
-  // Salva o PDF
-  doc.save('relatorio.pdf');
+      // finalizarAguardar();
+    });
 }
+
+atualizarDados(1)
+atualizarDadosRam(1)
+atualizarDadosDisco(1)
