@@ -52,28 +52,27 @@ function listarCluster(req, res) {
     });
 }
 
-function listarProcessos(req, res) {
+// function listarProcessos(req, res) {
     
-    var idMaquina = req.params.idMaquina;
+//     var idMaquina = req.params.idMaquina;
   
-    redeMaquinaModel.listarProcessos(idMaquina)
-      .then(function (resultado) {
-        if (resultado.length > 0) {
-          res.status(200).json(resultado);
-        } else {
-          res.status(204).send("Nenhum resultado encontrado!");
-        }
-      })
-      .catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar os processos: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-      });
-  }
+//     redeMaquinaModel.listarProcessos(idMaquina)
+//       .then(function (resultado) {
+//         if (resultado.length > 0) {
+//           res.status(200).json(resultado);
+//         } else {
+//           res.status(204).send("Nenhum resultado encontrado!");
+//         }
+//       })
+//       .catch(function (erro) {
+//         console.log(erro);
+//         console.log("Houve um erro ao buscar os processos: ", erro.sqlMessage);
+//         res.status(500).json(erro.sqlMessage);
+//       });
+//   }
 
 module.exports = {
     listarRede,
     listarMaquina,
-    listarCluster,
-    listarProcessos
+    listarCluster
 }

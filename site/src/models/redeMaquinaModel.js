@@ -70,16 +70,8 @@ function listarCluster(razaoSocial) {
 //   console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor do seu BD está rodando corretamente. \n\n function listar()");
 
 //   if (process.env.AMBIENTE_PROCESSO == "producao") {
-//     // var instrucao = `
-//     // SELECT gp.lista_processos, gp.total_processos, gp.total_threads
-//     // FROM grupo_processos AS gp
-//     // JOIN maquina AS m ON m.id = gp.maquina_id
-//     // WHERE gp.maquina_id = '${idMaquina}'
-//     // ORDER BY gp.maquina_id DESC
-//     // LIMIT 7;
-//     // `;
 //     var instrucao = `
-//     SELECT gp.lista_processos, gp.total_processos, gp.total_threads
+//     SELECT top 1 gp.lista_processos, gp.total_processos, gp.total_threads
 //     FROM grupo_processos AS gp
 //     JOIN maquina AS m ON m.id = gp.maquina_id
 //     WHERE gp.maquina_id = '${idMaquina}'
@@ -105,7 +97,7 @@ function listarCluster(razaoSocial) {
   module.exports = {
     listarRede,
     listarMaquina,
-    listarCluster,
+    listarCluster
     // listarProcessos
   }
 
