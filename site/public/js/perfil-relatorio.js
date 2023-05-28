@@ -268,9 +268,19 @@ async function getAlertas() {
                 return resposta.json().then((json) => {
                     console.log("Dados recebidos: ", JSON.stringify(json));
 
+                    var status = 0;
+
                     let dadosAlerta = '';
+
                     for (let i = 0; i < json.length; i++) {
-                        dadosAlerta += `<li>Id Máquina: ${json[i].maquinaId} Máquina: ${json[i].maquinaNome} - Id Cluster: ${json[i].clusterId}  Cluster: ${json[i].clusterNome}  </li><p> Alerta ${json[i].componenteAlerta}  Uso: ${(json[i].usoAlerta).toFixed(2)}%</p><p> <span  class="color-pdf-data">Data: ${json[i].dataAlerta}</span> </p>`;
+
+                        if (json[i].statusAlerta === 0) {
+                            status = 'Resolvido';
+                        } else if (json[i].statusAlerta === 1) {
+                            status = 'Ativo';
+                        }
+
+                        dadosAlerta += `<li>Id Máquina: ${json[i].maquinaId} Máquina: ${json[i].maquinaNome} - Id Cluster: ${json[i].clusterId}  Cluster: ${json[i].clusterNome}  </li><p>Alerta ${json[i].componenteAlerta}  Uso: ${(json[i].usoAlerta).toFixed(2)}%</p><p>Status alerta: ${status}</p><p> <span  class="color-pdf-data">Data: ${json[i].dataAlerta}</span> </p>`;
                     }
 
                     dadosAlertas = dadosAlerta;
@@ -412,7 +422,7 @@ async function getDadosPorMaquina() {
                     let dadosMaquina = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosMaquina += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p>Quantidade de alertas: ${json[i].qtdAlertas}</p><p>Média de uso de CPU: ${(json[i].usoCpu).toFixed(2)}%</p><p>Média de uso de Memória: ${(json[i].usoMemoria).toFixed(2)}%</p><p> Disco livre: ${(json[i].usoDisco).toFixed(2)}%</p><p>Métrica CPU: ${json[i].metricaCpu}%</p><p>Métrica Memória: ${json[i].metricaMemoria}%</p><p>Métrica Disco: ${json[i].metricaDisco}%</p>`;
+                        dadosMaquina += `<li>Id Cluster: ${json[i].idCluster} - Nome Cluster: ${json[i].nomeCluster} - Id Máquina: ${json[i].idMaquina} - Nome Máquina: ${json[i].nomeMaquina} </li><p>Quantidade de alertas: ${json[i].qtdAlertas}</p><p>Quantidade de alertas pendentes: ${json[i].alertasPendentes}</p><p>Quantidade de alertas resolvidos: ${json[i].alertasResolvidos}</p><p>Média de uso de CPU: ${(json[i].usoCpu).toFixed(2)}%</p><p>Média de uso de Memória: ${(json[i].usoMemoria).toFixed(2)}%</p><p> Disco livre: ${(json[i].usoDisco).toFixed(2)}%</p><p>Métrica CPU: ${json[i].metricaCpu}%</p><p>Métrica Memória: ${json[i].metricaMemoria}%</p><p>Métrica Disco: ${json[i].metricaDisco}%</p>`;
                     }
 
                     dadosPorMaquina = dadosMaquina;
@@ -438,7 +448,7 @@ async function getDadosCluster() {
                     let dadosMediaAlertasPorCluster = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dadosMediaAlertasPorCluster += `<li> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome}</li><p>Quantidade de máquinas no cluster: ${json[i].totalMaquinas}</p><p>Quantidade de alertas nesse mês: ${json[i].totalAlertas}</p>`;
+                        dadosMediaAlertasPorCluster += `<li> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome}</li><p>Quantidade de máquinas no cluster: ${json[i].totalMaquinas}</p><p>Quantidade de alertas nesse mês: ${json[i].totalAlertas}</p><p>Quantidade de alertas pendentes: ${json[i].alertasPendentes}</p><p>Quantidade de alertas resolvidos: ${json[i].alertasResolvidos}</p>`;
                     }
 
                     dadosCluster = dadosMediaAlertasPorCluster;
@@ -491,7 +501,7 @@ async function getDadosClusterMaquinas() {
                     let dados = "";
 
                     for (let i = 0; i < json.length; i++) {
-                        dados += `<li> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome}</li><p>Quantidade de máquinas no cluster: ${json[i].totalMaquinas}</p><p>Quantidade de alertas nesse mês: ${json[i].totalAlertas}</p><p>Média de alerta por dia no cluster: ${((json[i].totalAlertas)/30).toFixed(2)}</p><p>Id Máquina com maior número de alertas: ${json[i].maiorAlertaMaquinaId}</p><p>Nome Máquina com maior número de alertas: ${json[i].maiorAlertaMaquinaNome}</p><p>Total de alertas na máquina com maior número de alertas: ${json[i].totalAlertasMaquina}</p><br>`;
+                        dados += `<li> Id Cluster: ${json[i].clusterId} - Cluster: ${json[i].clusterNome}</li><p>Quantidade de máquinas no cluster: ${json[i].totalMaquinas}</p><p>Quantidade de alertas nesse mês: ${json[i].totalAlertas}</p><p>Quantidade de alertas pendentes: ${json[i].alertasPendentes}</p><p>Quantidade de alertas resolvidos: ${json[i].alertasResolvidos}</p><p>Média de alerta por dia no cluster: ${((json[i].totalAlertas) / 30).toFixed(2)}</p><p>Id Máquina com maior número de alertas: ${json[i].maiorAlertaMaquinaId}</p><p>Nome Máquina com maior número de alertas: ${json[i].maiorAlertaMaquinaNome}</p><p>Total de alertas na máquina com maior número de alertas: ${json[i].totalAlertasMaquina}</p><br>`;
                     }
 
                     dadosClusterMaquina = dados;
