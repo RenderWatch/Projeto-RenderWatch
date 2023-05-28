@@ -20,45 +20,38 @@ function atualizarDadosCluster() {
                     idCluster = dados.id;
                     sessionStorage.CLUSTER = dados.id;
 
-
-
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
                     if (resposta.length > 0) {
                         const clusterContainer = document.querySelector('.selecao-cluster ul');
 
 
-
                         for (let i = 0; i < resposta.length; i++) {
                             const button = document.createElement('button');
+                            button.id = `cluster${i + 1}`;
                             button.value = `cluster${i + 1}`;
                             button.textContent = `Cluster ${i + 1}`;
-                            button.id = `Cluster ${i + 1}`
                             button.addEventListener('click', function () {
                                 const clusterId = resposta[i].id;
                                 atualizarDadosMaquina(clusterId);
 
                                 listarAlertaCluster(clusterId);
 
-                                // Remover a classe "active" de todos os botões de Cluster
+                                document.getElementById(`cluster1`).style.backgroundColor = "";
+                            
                                 const clusterButtons = document.querySelectorAll('.selecao-cluster .cluster-button');
-
                                 clusterButtons.forEach(btn => btn.classList.remove('active'));
 
-                                // Adicionar a classe "active" apenas ao botão clicado
                                 this.classList.add('active');
-
-                                document.getElementById(`Cluster 1`).style.backgroundColor = ""
 
                             });
                             button.classList.add('cluster-button');
                             const listItem = document.createElement('li');
                             listItem.appendChild(button);
                             clusterContainer.appendChild(listItem);
-                            document.getElementById("Cluster 1").style.backgroundColor = "rgb(83, 142, 245)"
                         }
 
-
+                        document.getElementById(`cluster1`).style.backgroundColor = "rgb(83, 142, 245)";
                     } else {
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado.";
@@ -76,15 +69,7 @@ function atualizarDadosCluster() {
         });
 }
 
-
 function atualizarDadosMaquina(idCluster, idMaquina) {
-
-
-
-
-
-
-
     fetch(`/redeMaquina/listarMaquina/${idCluster}`)
         .then(function (resposta) {
             if (resposta.ok) {
@@ -105,19 +90,11 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                         for (let i = 0; i < resposta.length; i++) {
                             const button = document.createElement('button');
                             button.value = `maquina${i + 1}`;
-
-                            button.id = `maquina${(i + 1)}`;
                             button.textContent = `Máquina ${i + 1}`;
                             button.setAttribute('data-id', resposta[i].id);
-
-
                             button.addEventListener('click', function () {
                                 const idMaquina = this.getAttribute('data-id');
-                                atualizarDadosMaquina(idCluster, idMaquina)
-
-
-
-
+                                atualizarDadosMaquina(idCluster, idMaquina);
                                 console.log(idMaquina);
                                 atualizarDadosRede(idMaquina);
                                 atualizarDados(idMaquina);
@@ -126,10 +103,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
 
                                 listarAlertaMaquina(idMaquina)
                                 listarAlertaComponenteMaquina(idMaquina);
-                                listarMaquinaMaiorAlertas()
                                 atualizarDadosProcesso(idMaquina);
-
-
 
                                 // Limpa os intervalos anteriores, se existirem
                                 intervalIds.forEach(intervalId => clearInterval(intervalId));
@@ -164,7 +138,6 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                             listItem.appendChild(button);
                             maquinaContainer.appendChild(listItem);
                         }
-
 
                         const dados = resposta.find(maquina => maquina.id == idMaquina);
                         if (dados) {
@@ -239,7 +212,7 @@ function atualizarDadosRede(idMaquina) {
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
-
+                    
                 });
             } else {
                 throw "Houve um erro na API!";
@@ -253,7 +226,5 @@ function atualizarDadosRede(idMaquina) {
 
 
 atualizarDadosCluster();
-
-//DADOS AO ENTRAR NA PÁGINA
 atualizarDadosMaquina(1, 1)
 atualizarDadosRede(1)
