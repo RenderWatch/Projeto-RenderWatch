@@ -28,8 +28,11 @@ router.put("/remover", function (req, res) {
 });
 
 router.get("/listar/:empresa", function (req, res) {
-
     permissaoController.listar(req, res);
+});
+
+router.get("/verificarPermissao/:id", function (req, res) {
+    permissaoController.verificarPermissao(req, res);
 });
 
 router.get("/buscarEmail/:email", function (req, res) {

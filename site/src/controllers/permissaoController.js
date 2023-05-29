@@ -16,6 +16,22 @@ function listar(req, res) {
     });
 }
 
+function verificarPermissao(req, res) {
+    var id = req.params.id;
+
+    permissaoModel.verificarPermissao(id).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os permissao: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function buscarEmail(req, res) {
     var email = req.params.email;
@@ -139,5 +155,6 @@ module.exports = {
     concederPermissaoRegistro,
     concederAcesso,
     remover,
-    buscarEmail
+    buscarEmail,
+    verificarPermissao
 }

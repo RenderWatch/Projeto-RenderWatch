@@ -222,7 +222,7 @@ function concederAcessoRegistro() {
 
 }
 
-function remover(emailEditar) {
+function remover(email) {
     if (sessionStorage.EMAIL_USUARIO == email) {
         Swal.fire({
             icon: 'error',
@@ -236,7 +236,7 @@ function remover(emailEditar) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email: emailEditar
+            email: email
         })
     })
         .then(function (resposta) {

@@ -13,6 +13,18 @@ function listar(empresa) {
     return database.executar(instrucao);
 }
 
+function verificarPermissao(id) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificarPermissao()");
+    var instrucao = `
+        SELECT * 
+        FROM usuario 
+        where id = ${id}
+        ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function buscarEmail(email) {
     console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarEmail()");
     var instrucao = `
@@ -94,5 +106,6 @@ module.exports = {
     concederPermissaoRegistro,
     concederAcesso,
     remover,
-    buscarEmail
+    buscarEmail,
+    verificarPermissao
 }

@@ -224,6 +224,12 @@ footer .container .social>a:hover {
 
 /* Dentro do perfil*/ 
 
+.btn-nao-admin {
+  pointer-events: none;
+  opacity: 0.3;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .link {
   margin-top: -25px;
   margin-left: 12px;

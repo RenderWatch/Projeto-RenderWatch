@@ -23,7 +23,8 @@
         <div class="menu">
             <ul>
                 <div class="link">
-                    <a href="perfil-download.html"><img class="perfil-configuracoes-icon" src="assets/perfil/botaodownload.png"></a>
+                    <a href="perfil-download.html"><img class="perfil-configuracoes-icon"
+                            src="assets/perfil/botaodownload.png"></a>
                     <li><a style="margin-left: 12px;" href="perfil-download.html">Download</a></li>
                 </div>
                 <div class="link">
@@ -36,7 +37,7 @@
                             src="assets/perfil/setting.png" alt=""></a>
                     <li><a href="perfil-configuracoes.html">Configurações</a></li>
                 </div>
-                <div class="link"  onclick="logout()">
+                <div class="link" onclick="logout()">
                     <span><img class="perfil-logout-icon" src="assets/perfil/log-out.png" alt=""></span>
                     <li><span>Sair</span></li>
                 </div>
@@ -46,10 +47,10 @@
     <sidebar>
         <div class="sidebar">
             <ul>
-                <li><a href="perfil-empresa.html" class="sidebar-element">
+                <li><a href="perfil-empresa.html" class="sidebar-element" id="btnEmpresa">
                         <div>Empresa</div>
                     </a></li>
-                <li><a href="permissao.html" class="sidebar-element">
+                <li><a href="permissao.html" class="sidebar-element" id="btnPermissoes">
                         <div>Permissões</div>
                     </a></li>
                 <li><a href="perfil-alertas.html" class="sidebar-element">
@@ -58,13 +59,10 @@
                 <li><a href="perfil-dashboard.html" class="sidebar-element">
                         <div>Dashboard</div>
                     </a></li>
-                <li><a href="perfil-clusters.html" class="sidebar-element">
+                <li><a href="perfil-clusters.html" class="sidebar-element" id="btnClusters">
                         <div>Clusters</div>
                     </a></li>
-                    <!-- <li><a href="perfil-rede.html" class="sidebar-element">
-                        <div>Rede</div>
-                    </a></li> -->
-                    <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
+                <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
                         <div>Suporte</div>
                     </a></li>
             </ul>
@@ -78,47 +76,47 @@
                     <h1>Configurações</h1>
                 </span>
 
-                    <div class="div-info">
-                        <div id="divContainerNome" class="info-usuario">
-                            <div id="divNome" class="div-content">
-                                <h4 class="titulo">Nome: </h4>
-                                <h4 class="info"><span id="spanNome"></span></h4>
-                            </div>
-                            <button onclick="alterarNome()" id="btnEditNome" class="btn-edit">
-                                Editar
-                            </button>
+                <div class="div-info">
+                    <div id="divContainerNome" class="info-usuario">
+                        <div id="divNome" class="div-content">
+                            <h4 class="titulo">Nome: </h4>
+                            <h4 class="info"><span id="spanNome"></span></h4>
                         </div>
-                        <div id="divContainerSobrenome" class="info-usuario">
-                            <div id="divSobrenome" class="div-content">
-                                <h4 class="titulo">Sobrenome: </h4>
-                                <h4 class="info"><span id="spanSobrenome"></span></h4>
-                            </div>
-                            <button onclick="alterarSobrenome()" id="btnEditSobrenome" class="btn-edit">
-                                Editar
-                            </button>
-                        </div>
-                        <div id="divContainerSenha" class="info-email">
-                            <div id="div-senha" class="div-content">
-                                <h4 class="titulo">Senha: </h4>
-                                <h4 class="info"><span id="spanSenha"></span></h4>
-                            </div>
-                            <button onclick="alterarSenha()" id="btnEditSenha" class="btn-edit">
-                                Editar
-                            </button>
-                        </div>
-                        <div id="divContainerTelefone" class="info-email">
-                            <div id="div-telefone" class="div-content">
-                                <h4 class="titulo">Telefone: </h4>
-                                <h4 class="info"><span id="spanTelefone"></span></h4>
-                            </div>
-                            <button onclick="alterarTelefone()" id="btnEditTelefone" class="btn-edit">
-                                Editar
-                            </button>
-                        </div>
+                        <button onclick="alterarNome()" id="btnEditNome" class="btn-edit">
+                            Editar
+                        </button>
                     </div>
-                    <div class="div-senha-logout">
-                        <button onclick="deletarConta()" class="btn-logout">Excluir Conta</button>
+                    <div id="divContainerSobrenome" class="info-usuario">
+                        <div id="divSobrenome" class="div-content">
+                            <h4 class="titulo">Sobrenome: </h4>
+                            <h4 class="info"><span id="spanSobrenome"></span></h4>
+                        </div>
+                        <button onclick="alterarSobrenome()" id="btnEditSobrenome" class="btn-edit">
+                            Editar
+                        </button>
                     </div>
+                    <div id="divContainerSenha" class="info-email">
+                        <div id="div-senha" class="div-content">
+                            <h4 class="titulo">Senha: </h4>
+                            <h4 class="info"><span id="spanSenha"></span></h4>
+                        </div>
+                        <button onclick="alterarSenha()" id="btnEditSenha" class="btn-edit">
+                            Editar
+                        </button>
+                    </div>
+                    <div id="divContainerTelefone" class="info-email">
+                        <div id="div-telefone" class="div-content">
+                            <h4 class="titulo">Telefone: </h4>
+                            <h4 class="info"><span id="spanTelefone"></span></h4>
+                        </div>
+                        <button onclick="alterarTelefone()" id="btnEditTelefone" class="btn-edit">
+                            Editar
+                        </button>
+                    </div>
+                </div>
+                <div class="div-senha-logout">
+                    <button onclick="deletarConta()" class="btn-logout">Excluir Conta</button>
+                </div>
 
             </div>
         </section>
@@ -129,5 +127,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script src="js/perfil-configuracoes.js"></script>
 <script src="js/perfil-sidebar-header.js"></script>
+<script src="js/perfil-verificarAdmin.js"></script>
 
 </html>
