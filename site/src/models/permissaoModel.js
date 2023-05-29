@@ -1,42 +1,87 @@
 var database = require("../database/config");
 
-function listar(razaoSocial) {
+
+function listar(empresa) {
     console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-    SELECT usuario.*
-    FROM usuario
-    JOIN empresa ON usuario.empresa_id = empresa.id
-    WHERE empresa.razao_social = '${razaoSocial}';
-    
+        SELECT * 
+        FROM usuario 
+        where empresa_id = ${empresa}
+        ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function editar(adm, emailEditar) {
-    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", adm, emailEditar);
+function buscarEmail(email) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarEmail()");
     var instrucao = `
-        UPDATE usuario SET adm = 1 WHERE email = '${emailEditar}';
+        SELECT * 
+        FROM usuario 
+        where mail = '${email}'
+        ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function tirar(emailEditar) {
-    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function tirar(): ", emailEditar);
+function tirar(email, empresa) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function tirar(): ");
     var instrucao = `
-        UPDATE usuario SET adm = 0 WHERE email = '${emailEditar}';
+        UPDATE usuario 
+        SET adm = 0
+        WHERE email = '${email}'
+        AND empresa_id = ${empresa}
+        ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function deletar(email) {
-    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idPermissao);
+function concederPermissao(email, empresa) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function concederPermissao(): ", email);
     var instrucao = `
-    UPDATE usuario
-    SET adm = NULL
-    WHERE email = ${email};
+        UPDATE usuario 
+        SET adm = 1 
+        WHERE email = '${email}'
+        AND empresa_id = ${empresa}
+        ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function concederPermissaoRegistro(email, empresa) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function concederPermissaoRegistro(): ", email);
+    var instrucao = `
+        UPDATE usuario 
+        SET adm = 1, empresa_id = ${empresa}
+        WHERE email = '${email}'
+        ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function concederAcesso(email, empresa) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function concederAcesso(): ", email);
+    var instrucao = `
+        UPDATE usuario 
+        SET adm = 0, empresa_id = ${empresa}
+        WHERE email = '${email}'
+        ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function remover(email) {
+    console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function remover(): ", email);
+    var instrucao = `
+        UPDATE usuario 
+        SET adm = 0, empresa_id = null
+        WHERE email = '${email}'
+        ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -44,7 +89,10 @@ function deletar(email) {
 
 module.exports = {
     listar,
-    editar,
-    deletar,
-    tirar
+    tirar,
+    concederPermissao,
+    concederPermissaoRegistro,
+    concederAcesso,
+    remover,
+    buscarEmail
 }

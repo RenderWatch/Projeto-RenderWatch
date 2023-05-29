@@ -32,7 +32,7 @@ function atualizarEmpresaUsuario(idUser, cnpj) {
     //  e na ordem de inserção dos dados.
     var instrucao = `
     UPDATE usuario 
-    SET empresa_id = (SELECT id FROM empresa where cnpj = ${cnpj})
+    SET empresa_id = (SELECT id FROM empresa where cnpj = ${cnpj}), adm = 1
     where id = ${idUser};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);

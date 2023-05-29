@@ -29,12 +29,12 @@ h2{
 }
 
 main {
-  max-width: 48vw;
+  max-width: 54vw;
   position: relative;
   /* display: flex; */
   flex-direction: column;
   /* align-items: center; */
-  margin-left: 30vw;
+  margin-left: 27vw;
   margin-bottom: 60px;
   padding: 10vh 8vw;
   background-color: rgb(244, 244, 244);
@@ -65,13 +65,26 @@ form input[type="checkbox"] {
   margin-right: 5px;
 }
 
-form button[type="submit"] {
+.btn-registrar-admin {
+  background-color: #50a9cc;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+.btn-registrar-user {
   background-color: #4CAF50;
   color: #fff;
   cursor: pointer;
   padding: 10px;
   border: none;
   border-radius: 5px;
+  margin-right: 1vw;
+  margin-left: 1vw;
 }
 
 table {
@@ -101,48 +114,26 @@ button {
   border-radius: 4px;
   cursor: pointer;
   padding: 5px 10px;
-}
-
-.excluir-button {
-  background-color: #f44336;
   color: #fff;
 }
 
-.excluir-button:hover {
+.container-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-excluir {
+  background-color: #f44336;
+}
+
+.btn-excluir:hover {
   background-color: #d32f2f;
 }
 
-.salvar-button {
-  background-color: #4CAF50;
-  color: #fff;
+.btn-admin {
+  background-color: #2d9bc7;
 }
 
-.salvar-button:hover {
-  background-color: #4CAF50;
-}
-
-.salvar-button-conceder {
-  background-color: #4CAF50;
-  color: #fff;
-}
-
-.salvar-button-conceder:hover {
-  background-color: #4CAF50;
-}
-
-.salvar-button-tirar {
-  background-color: #4CAF50;
-  color: #fff;
-}
-
-.salvar-button-tirar:hover {
-  background-color: #4CAF50;
-}
-.editar-button {
-  background-color: rgb(83, 142, 245);
-  color: #fff;
-}
-
-.editar-button:hover {
-  background-color: rgb(83, 142, 245);
+.btn-user {
+  background-color: #2da831;
 }
