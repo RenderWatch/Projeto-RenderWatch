@@ -223,6 +223,13 @@ function concederAcessoRegistro() {
 }
 
 function remover(emailEditar) {
+    if (sessionStorage.EMAIL_USUARIO == email) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Não é possível retirar a sua permissão!',
+        })
+    } else {
     fetch(`/permissao/remover`, {
         method: 'PUT',
         headers: {
@@ -254,6 +261,7 @@ function remover(emailEditar) {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+    }
 
 }
 
