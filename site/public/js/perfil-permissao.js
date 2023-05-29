@@ -1,4 +1,4 @@
-
+var empresa = sessionStorage.ID_EMPRESA
 
 function listar() {
     fetch(`/permissao/listar/${empresa}`)
