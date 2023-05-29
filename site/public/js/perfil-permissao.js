@@ -1,5 +1,7 @@
+var empresa = sessionStorage.ID_EMPRESA
+
 function listar() {
-    fetch("/permissao/listar")
+    fetch(`/permissao/listar/${empresa}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
@@ -17,158 +19,26 @@ function listar() {
                     tbody.innerHTML = "";
 
                     for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+
+                        var status = resposta[i].adm
+                        if (status == 1) {
+                            status = "Administrador"
+                        } else {
+                            status = "Usuário"
+                        }
 
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td>${resposta[i].email}</td>
+                            <td>${status}</td>
                             <td>
-                                <label>
-                                    <input type="checkbox" ${resposta[i].adm !== 0 ? 'checked' : ''} disabled>
-                                </label>
-                            </td>
-                            <td>
-                                <button class="editar-button">Conceder</button>
-                                <button class="salvar-button-tirar" style="display: none;">Salvar</button>
-                                <button class="excluir-button">Retirar</button>
-                                <button class="salvar-button-conceder" style="display: none;">Salvar</button>
+                                <button class="btn-user" onclick="retirarPermissao('${resposta[i].email}')">Usuário</button>
+                                <button class="btn-admin" onclick="concederPermissao('${resposta[i].email}')">Admin</button>
+                                <button class="btn-excluir" onclick="remover('${resposta[i].email}')">Remover</button>
                             </td>
                         `;
 
-                        // Adicione a linha à tabela
                         tbody.appendChild(tr);
-
-                        const editarButton = tr.querySelector('.editar-button');
-                        const excluirButton = tr.querySelector('.excluir-button');
-                        const salvarButtonTirar = tr.querySelector('.salvar-button-tirar');
-                        const salvarButtonConceder = tr.querySelector('.salvar-button-conceder');
-
-                        
-
-                        editarButton.addEventListener('click', () => {
-                            const checkbox = tr.querySelector('input[type="checkbox"]');
-                            checkbox.disabled = false;
-                            checkbox.focus();
-                            editarButton.style.display = 'none';
-                            excluirButton.style.display = 'none';
-                            salvarButtonConceder.style.display = '';
-                        });
-                        
-                        // salvarButtonConceder.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0;
-                        
-                        //     conceder(permissao, email);
-                        
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                        // });
-                        
-                        excluirButton.addEventListener('click', () => {
-                            const checkbox = tr.querySelector('input[type="checkbox"]');
-                            const email = tr.querySelector('td:first-child').textContent;
-
-                        
-                            checkbox.disabled = false;
-                            checkbox.focus();
-                            editarButton.style.display = 'none';
-                            excluirButton.style.display = 'none';
-                            salvarButtonTirar.style.display = '';
-                        });
-                        
-                        
-                        // salvarButtonTirar.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
-                        //     tirar(email);
-                        
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                        //     salvarButtonTirar.style.display = 'none';
-                        // });
-                        
-                        salvarButtonConceder.addEventListener('click', () => {
-                            const checkbox = tr.querySelector('input[type="checkbox"]');
-                            const email = tr.querySelector('td:first-child').textContent;
-                            const permissao = checkbox.checked ? 1 : 0;
-                        
-                            conceder(email, permissao);
-                        
-                            checkbox.disabled = true;
-                            salvarButtonConceder.style.display = 'none';
-                            editarButton.style.display = '';
-                            excluirButton.style.display = '';
-                        });
-                        
-                        salvarButtonTirar.addEventListener('click', () => {
-                            const checkbox = tr.querySelector('input[type="checkbox"]');
-                            const email = tr.querySelector('td:first-child').textContent;
-                            const permissao = checkbox.checked ? 1 : 0;
-                        
-                            tirar(email);
-                        
-                            checkbox.disabled = true;
-                            salvarButtonTirar.style.display = 'none';
-                            editarButton.style.display = '';
-                            excluirButton.style.display = '';
-                        });
-                        
-                        
-                        // editarButton.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     checkbox.disabled = false;
-                        //     checkbox.focus();
-                        //     editarButton.style.display = 'none';
-                        //     excluirButton.style.display = 'none';
-                        //     salvarButton.style.display = '';
-                        // });
-
-                        // salvarButton.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
-
-                        //     conceder(email, permissao); // Alteração na ordem dos parâmetros
-
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                            
-
-                        // });
-
-                        // excluirButton.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     checkbox.disabled = false;
-                        //     checkbox.focus();
-                        //     editarButton.style.display = 'none';
-                        //     excluirButton.style.display = 'none';
-                        //     salvarButtonTirar.style.display = '';
-
-
-                        // });
-                        
-                        // salvarButtonTirar.addEventListener('click', () => {
-                        //     const checkbox = tr.querySelector('input[type="checkbox"]');
-                        //     const email = tr.querySelector('td:first-child').textContent;
-                        //     const permissao = checkbox.checked ? 1 : 0; // Converte o valor booleano em um valor numérico
-                        //     tirar(email);
-                        //     checkbox.disabled = true;
-                        //     salvarButton.style.display = 'none';
-                        //     editarButton.style.display = '';
-                        //     excluirButton.style.display = '';
-                        //     salvarButtonTirar.style.display = 'none';
-
-                        // });
-
 
                     }
                 });
@@ -183,23 +53,33 @@ function listar() {
 
 listar();
 
-function conceder(admEditar, emailEditar) {
-    fetch(`/permissao/editar/${emailEditar}`, {
+function concederPermissao(email) {
+    fetch(`/permissao/concederPermissao`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            adm: admEditar
-        })
+            email,
+            empresa,
+          })
     })
         .then(function (resposta) {
             if (resposta.ok) {
-                window.alert('Permissão atualizada com sucesso!');
-                //window.location = '/permissao.html';
-            } else if (resposta.status == 404) {
-                window.alert('Erro 404: Página não encontrada!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Parabéns',
+                    text: 'Permissão atualizada com sucesso!',
+                })
+
+                setTimeout(listar(), 2000);
+
             } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops...',
+                    text: 'Não foi possível atualizar a permissão! Verifique se o email é válido.',
+                })
                 throw (
                     "Houve um erro ao tentar realizar a atualização da permissão! Código da resposta: " + resposta.status
                 );
@@ -210,20 +90,162 @@ function conceder(admEditar, emailEditar) {
         });
 }
 
-function tirar(emailEditar) {
-    fetch(`/permissao/tirar/${emailEditar}`, {
+function concederPermissaoRegistro() {
+    var email = inputEmail.value
+    if (email.length > 2) {
+        fetch(`/permissao/concederPermissaoRegistro`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                empresa: empresa
+            })
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Parabéns',
+                        text: 'Permissão atualizada com sucesso!',
+                    })
+                    setTimeout(listar(), 2000);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ops...',
+                        text: 'Não foi possível atualizar a permissão! Verifique se o email é válido.',
+                    })
+                    throw (
+                        "Houve um erro ao tentar realizar a atualização da permissão! Código da resposta: " + resposta.status
+                    );
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Email inválido',
+        })
+    }
+}
+
+function retirarPermissao(email) {
+    if (sessionStorage.EMAIL_USUARIO == email) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Não é possível retirar a sua permissão!',
+        })
+    } else {
+        fetch(`/permissao/tirar`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                empresa: empresa
+            })
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Parabéns',
+                        text: 'Permissão atualizada com sucesso!',
+                    })
+                    setTimeout(listar(), 2000);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ops...',
+                        text: 'Não foi possível atualizar a permissão!',
+                    })
+                    throw (
+                        "Houve um erro ao tentar realizar a atualização da permissão! Código da resposta: " + resposta.status
+                    );
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+}
+
+function concederAcessoRegistro() {
+    var email = inputEmail.value
+    if (email.length > 2) {
+        fetch(`/permissao/concederAcesso`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                empresa: empresa
+            })
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Parabéns',
+                        text: 'Permissão atualizada com sucesso!',
+                    })
+                    setTimeout(listar(), 2000);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ops...',
+                        text: 'Não foi possível atualizar a permissão!',
+                    })
+                    throw (
+                        "Houve um erro ao tentar realizar a atualização da permissão! Código da resposta: " + resposta.status
+                    );
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ops...',
+            text: 'Email inválido',
+        })
+    }
+
+}
+
+function remover(emailEditar) {
+    fetch(`/permissao/remover`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+            email: emailEditar
+        })
     })
         .then(function (resposta) {
             if (resposta.ok) {
-                window.alert('Permissão atualizada com sucesso!');
-                //window.location = '/permissao.html';
-            } else if (resposta.status == 404) {
-                window.alert('Erro 404: Página não encontrada!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Parabéns',
+                    text: 'Permissão atualizada com sucesso!',
+                })
+                setTimeout(listar(), 2000);
             } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops...',
+                    text: 'Não foi possível atualizar a permissão!',
+                })
                 throw (
                     "Houve um erro ao tentar realizar a atualização da permissão! Código da resposta: " + resposta.status
                 );
@@ -232,4 +254,5 @@ function tirar(emailEditar) {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+
 }

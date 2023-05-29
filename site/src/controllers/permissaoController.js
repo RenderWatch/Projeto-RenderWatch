@@ -1,12 +1,9 @@
 var permissaoModel = require("../models/permissaoModel");
 
-function testar(req, res) {
-    console.log("ENTRAMOS NO permissaoController");
-    res.send("ENTRAMOS NO Permissao CONTROLLER");
-}
-
 function listar(req, res) {
-    permissaoModel.listar().then(function (resultado) {
+    var empresa = req.params.empresa;
+
+    permissaoModel.listar(empresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -19,56 +16,11 @@ function listar(req, res) {
     });
 }
 
-function listarPorUsuario(req, res) {
-    var idUsuario = req.params.idUsuario;
-
-    
-    permissaoModel.listarPorUsuario(idUsuario)
-        .then(
-            function (resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!");
-                }
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "Houve um erro ao buscar os permissoes: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-}
-
-function editar(req, res) {
-    var emailEditar = req.params.emailEditar;
-    var adm = req.body.adm;
-
-    permissaoModel.editar(emailEditar, adm)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-
-}
-
 function tirar(req, res) {
-    var emailEditar = req.params.emailEditar;
+    var email = req.body.email;
+    var empresa = req.body.empresa;
 
-    permissaoModel.tirar(emailEditar)
+    permissaoModel.tirar(email, empresa)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -84,10 +36,11 @@ function tirar(req, res) {
 
 }
 
-function deletar(req, res) {
-    var email = req.params.email;
+function concederPermissao(req, res) {
+    var email = req.body.email;
+    var empresa = req.body.empresa;
 
-    permissaoModel.deletar(email)
+    permissaoModel.concederPermissao(email, empresa)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -96,18 +49,77 @@ function deletar(req, res) {
         .catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
+
+}
+
+function concederPermissaoRegistro(req, res) {
+    var email = req.body.email;
+    var empresa = req.body.empresa;
+
+    permissaoModel.concederPermissaoRegistro(email, empresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function concederAcesso(req, res) {
+    var email = req.body.email;
+    var empresa = req.body.empresa;
+
+    permissaoModel.concederAcesso(email, empresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function remover(req, res) {
+    var email = req.body.email;
+
+    permissaoModel.remover(email)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
 }
 
 module.exports = {
-    
-    testar,
-    listarPorUsuario,
-    editar,
-    deletar,
     listar,
-    tirar
+    tirar,
+    concederPermissao,
+    concederPermissaoRegistro,
+    concederAcesso,
+    remover
 }

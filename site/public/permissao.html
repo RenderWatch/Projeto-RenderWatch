@@ -74,13 +74,14 @@
         <h2>Permissão</h2>
         <form id="conceder-permissao-form">
             <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="inputEmail" name="email" required>
             <br>
-            <label for="permissao">Permissão administrador:</label>
-            <input type="checkbox" id="permissao" name="permissao">
-            <br>
-            <button type="submit" onclick="atualizarFeed()">Conceder permissão</button>
+            <span class="container-btn">
+                <button onclick="concederPermissaoRegistro()" class="btn-registrar-admin">Registrar Admin</button>
+                <button onclick="concederAcessoRegistro()" class="btn-registrar-user">Registrar Usuário</button>
+            </span>
         </form>
+        <br>
         <hr>
         <h2>Permissões Concedidas</h2>
         <table id="permissao-table">
@@ -92,7 +93,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- linhas da tabela vão ser adicionadas dinamicamente com javascript -->
             </tbody>
         </table>
     </main>
@@ -100,5 +100,6 @@
 
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <script src="js/perfil-permissao.js"></script>
 <script src="js/perfil-sidebar-header.js"></script>
