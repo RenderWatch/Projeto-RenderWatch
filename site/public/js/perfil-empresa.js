@@ -17,7 +17,7 @@ function mostrarDadosEmpresa() {
                 
                     var dados = resposta[0];
                     sessionStorage.ID_EMPRESA = dados.id;
-
+                    sessionStorage.RAZAO_SOCIAL = dados.razao_social;
                     
                 containerInfoEmpresa.innerHTML = `
                 <div id="divContainerRazaoSocial" class="info-empresa container-info-empresa">

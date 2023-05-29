@@ -16,6 +16,7 @@ function listar(req, res) {
     });
 }
 
+
 function buscarEmail(req, res) {
     var email = req.params.email;
 

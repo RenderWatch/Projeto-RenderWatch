@@ -28,6 +28,7 @@ router.put("/remover", function (req, res) {
 });
 
 router.get("/listar/:empresa", function (req, res) {
+
     permissaoController.listar(req, res);
 });
 
