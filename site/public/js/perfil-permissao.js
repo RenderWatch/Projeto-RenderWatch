@@ -121,6 +121,7 @@ function concederPermissaoRegistro() {
                         "Houve um erro ao tentar realizar a atualização da permissão! Código da resposta: " + resposta.status
                     );
                 }
+                setTimeout(listar(), 2000);
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
@@ -255,4 +256,82 @@ function remover(emailEditar) {
             console.log(`#ERRO: ${resposta}`);
         });
 
+}
+
+function buscarEmailPermissaoRegistro() {
+    var email = inputEmail.value
+    fetch(`/permissao/buscarEmail/${email}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+
+                console.log("STATUS: " + resposta.status)
+                
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    if(resposta.status == 204){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ops...',
+                            text: 'Email não encontrado no sistema!',
+                        })
+                    }
+
+                    if (resposta[0].empresa_id != null || resposta[0].empresa_id != ""){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ops...',
+                            text: 'Email já cadastrado em outra empresa!',
+                        })
+                    } else {
+                        concederPermissaoRegistro();
+                    }
+
+                });
+            } else {
+                throw 'Houve um erro na API!';
+            }
+        })
+        .catch(function (resposta) {
+            console.error(resposta);
+        });
+}
+
+function buscarEmailAcessoRegistro() {
+    var email = inputEmail.value
+    fetch(`/permissao/buscarEmail/${email}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+
+                console.log("STATUS: " + resposta.status)
+                
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    if(resposta.status == 204){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ops...',
+                            text: 'Email não encontrado no sistema!',
+                        })
+                    }
+
+                    if (resposta[0].empresa_id != null || resposta[0].empresa_id != ""){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ops...',
+                            text: 'Email já cadastrado em outra empresa!',
+                        })
+                    } else {
+                        concederAcessoRegistro();
+                    }
+
+                });
+            } else {
+                throw 'Houve um erro na API!';
+            }
+        })
+        .catch(function (resposta) {
+            console.error(resposta);
+        });
 }

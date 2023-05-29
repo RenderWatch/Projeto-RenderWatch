@@ -31,4 +31,8 @@ router.get("/listar/:empresa", function (req, res) {
     permissaoController.listar(req, res);
 });
 
+router.get("/buscarEmail/:email", function (req, res) {
+    permissaoController.buscarEmail(req, res);
+});
+
 module.exports = router;
