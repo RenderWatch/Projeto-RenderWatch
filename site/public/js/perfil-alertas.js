@@ -15,12 +15,10 @@ function qtdAlertasPendentes() {
 
                     if (resposta.length > 0) {
 
-                        let descricao;
-
-
                         for (i = 0; i < resposta.length; i++) {
-                            sessionStorage.ID_MAQUINA_ALERTA = resposta[i].maquina_id
+                            
 
+                            let metrica = 0 
                             if (resposta[i].nome[0] = "Memoria") {
                                 metrica = resposta[i].metrica_memoria
                             } else if (resposta[i].nome[0] = "CPU") {
@@ -43,7 +41,7 @@ function qtdAlertasPendentes() {
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_dois">
                                                 <li class=" titulo_alerta"><b>Componente</b></li>
-                                                <li class="alerta_li descricao_alerta">${resposta[i].nome[0]}</li>
+                                                <li class="alerta_li descricao_alerta">${resposta[i].nomeComponente}</li>
                                             </ul>
                                             
                                             <ul class=" alerta_ul alerta_ul_quatro">
@@ -63,13 +61,13 @@ function qtdAlertasPendentes() {
 
                                             <ul class=" alerta_ul alerta_ul_cinco">
                                                 <li class=" titulo_alerta"><b>Em uso</b></li>
-                                                <li class="hora_alerta">${resposta[i].uso}</li>
+                                                <li class="hora_alerta">${resposta[i].usoFormatado}</li>
                                             </ul>
 
                                             
                                              <ul class=" alerta_ul alerta_ul_cinco">
                                                 <li class=" titulo_alerta"><b>Data Hora</b></li>
-                                                <li class="hora_alerta">${resposta[i].dataHoraFormatada}</li>
+                                                <li class="dtHora">${resposta[i].dataHoraFormatada}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_seis">
                                                 <li class=" titulo_alerta"><b>Status</b></li>
@@ -121,19 +119,17 @@ function getAlertasResolvidos() {
 
 
                     if (resposta.length > 0) {
-
-                        let descricao;
-
-
+                        
                         for (i = 0; i < resposta.length; i++) {
-                            sessionStorage.ID_MAQUINA_ALERTA = resposta[i].maquina_id
+                            
 
-                            if (resposta[i].descricao == null) {
-                                descricao = resposta[i].nome[0] + " Acima da métrica"
-
-
-                            } else {
-                                descricao = resposta[i].descricao
+                        let metrica = 0 
+                            if (resposta[i].nome[0] = "Memoria") {
+                                metrica = resposta[i].metrica_memoria
+                            } else if (resposta[i].nome[0] = "CPU") {
+                                metrica = resposta[i].metrica_cpu
+                            } else if (resposta[i].nome[0] = "Disco") {
+                                metrica = resposta[i].metrica_disco
                             }
 
                             container_alerta_resolvidos.innerHTML += ` 
@@ -150,7 +146,7 @@ function getAlertasResolvidos() {
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_dois">
                                                 <li class=" titulo_alerta"><b>Componente</b></li>
-                                                <li class="alerta_li descricao_alerta">${resposta[i].nome[0]}</li>
+                                                <li class="alerta_li descricao_alerta">${resposta[i].nomeComponente}</li>
                                             </ul>
                                             
                                             <ul class=" alerta_ul alerta_ul_quatro">
@@ -170,13 +166,13 @@ function getAlertasResolvidos() {
 
                                             <ul class=" alerta_ul alerta_ul_cinco">
                                                 <li class=" titulo_alerta"><b>Em uso</b></li>
-                                                <li class="hora_alerta">${resposta[i].uso}</li>
+                                                <li class="hora_alerta">${resposta[i].usoFormatado}</li>
                                             </ul>
 
                                             
                                              <ul class=" alerta_ul alerta_ul_cinco">
-                                                <li class=" titulo_alerta"><b>Data Hora</b></li>
-                                                <li class="hora_alerta">${resposta[i].dataHoraFormatada}</li>
+                                                <li class="titulo_alerta"><b>Data Hora</b></li>
+                                                <li class="dtHora">${resposta[i].dataHoraFormatada}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_seis">
                                                 <li class=" titulo_alerta"><b>Status</b></li>

@@ -6,18 +6,24 @@ function atualizarDadosProcesso(idMaquina) {
         .then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
-                    //console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    console.log("Dados recebidos GRUPO PROCESSOS: ", JSON.stringify(resposta));
 
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
 
                     if (resposta.length > 0) {
-                       console.log("GRUPO PROCESSOS " + resposta[0].total_threads)
+                        console.log("GRUPO PROCESSOS " + resposta)
+                        divListaProcessos =  document.getElementById("div-lista-processos")
 
-                            document.getElementById("total-processos").innerHTML = `<span>${resposta[0].total_processos}</span>`;
-                            document.getElementById("total-threads").innerHTML = `<span>${resposta[0].total_threads}</span>`;
-
+                        document.getElementById("total-processos").innerHTML = `<span>${resposta[0].total_processos}</span>`;
+                        document.getElementById("total-threads").innerHTML = `<span>${resposta[0].total_threads}</span>`;
+                        document.getElementById("data-hora").innerHTML = `<span>${resposta[0].dataHoraFormatada}</span>`;
+                        divListaProcessos.innerHTML = ` <span>LISTA PROCESSOS: <br>  ${resposta[0].lista_processos}</span>`;
+                       
                         
+
+
+
                     } else {
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado.";
@@ -41,7 +47,7 @@ function listarAlertaCluster(idCluster) {
                 resposta.json().then(function (resposta) {
                     //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                 
+
 
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
@@ -152,7 +158,7 @@ function listarMaquinaMaiorAlertas() {
 
                     if (resposta.length > 0) {
 
-console.log("Maquina com maior número de alertas " + resposta[0])
+                        console.log("Maquina com maior número de alertas " + resposta[0])
 
                         // Inserir os valores nos elementos HTML correspondentes
                         document.getElementById("maior_alertas_maquina").innerHTML = `<span>${resposta[0].maquinaNome}</span>`;
@@ -177,8 +183,8 @@ console.log("Maquina com maior número de alertas " + resposta[0])
 
 
 atualizarDadosProcesso(1)
-listarAlertaMaquina(1) 
+listarAlertaMaquina(1)
 listarAlertaComponenteMaquina(1)
 listarMaquinaMaiorAlertas()
-listarAlertaCluster(1) 
+listarAlertaCluster(1)
 

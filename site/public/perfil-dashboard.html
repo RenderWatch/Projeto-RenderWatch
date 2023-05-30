@@ -50,23 +50,23 @@
         <div class="sidebar">
             <ul>
                 <li><a href="perfil-empresa.html" class="sidebar-element" id="btnEmpresa">
-                    <div>Empresa</div>
-                </a></li>
-            <li><a href="permissao.html" class="sidebar-element" id="btnPermissoes">
-                    <div>Permissões</div>
-                </a></li>
-            <li><a href="perfil-alertas.html" class="sidebar-element">
-                    <div>Alertas</div>
-                </a></li>
-            <li><a href="perfil-dashboard.html" class="sidebar-element">
-                    <div>Dashboard</div>
-                </a></li>
-            <li><a href="perfil-clusters.html" class="sidebar-element" id="btnClusters">
-                    <div>Clusters</div>
-                </a></li>
-            <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
-                    <div>Suporte</div>
-                </a></li>
+                        <div>Empresa</div>
+                    </a></li>
+                <li><a href="permissao.html" class="sidebar-element" id="btnPermissoes">
+                        <div>Permissões</div>
+                    </a></li>
+                <li><a href="perfil-alertas.html" class="sidebar-element">
+                        <div>Alertas</div>
+                    </a></li>
+                <li><a href="perfil-dashboard.html" class="sidebar-element">
+                        <div>Dashboard</div>
+                    </a></li>
+                <li><a href="perfil-clusters.html" class="sidebar-element" id="btnClusters">
+                        <div>Clusters</div>
+                    </a></li>
+                <li><a href="https://renderwatch.auvo.com.br/Login#signin" target="_blank" class="sidebar-element">
+                        <div>Suporte</div>
+                    </a></li>
             </ul>
         </div>
     </sidebar>
@@ -215,13 +215,19 @@
     <div class="container-card-processos">
         <div class="container-lista-processos">
             <div class="lista">
+
             </div>
             <div class="total">
                 <p>Total de processos: <span id="total-processos"></span></p>
+                <p>Data e Hora: <span id="data-hora"></span></p>
                 <p>Total de threads: <span id="total-threads"></span></p>
             </div>
+
         </div>
+        <div id="div-lista-processos" class="lista-processos" onclick="fecharListaProcessos()">LISTA PROCESSOS</div>
+        <div id="div-lista-processos-none" class="lista-processos-none" onclick="exibirListaProcessos()">LISTA PROCESSOS</div>
     </div>
+
     <div id="feed_container"></div>
 
 
@@ -239,6 +245,27 @@
 </html>
 
 <script>
+    
+    function exibirListaProcessos(){
+      document.getElementById("div-lista-processos-none").style.display = "none"
+      document.getElementById("div-lista-processos").style.display = "flex"
+
+
+    }
+
+    
+    function fecharListaProcessos(){
+      document.getElementById("div-lista-processos-none").style.display = "flex"
+      document.getElementById("div-lista-processos").style.display = "none"
+
+
+    }
+
+
+
+
+
+
 
     // Seleciona os elementos necessários
     const lista = document.querySelector('.lista');

@@ -138,7 +138,8 @@ function listarProcessos(idMaquina) {
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
-        SELECT TOP 1 * FROM grupo_processos WHERE maquina_id = ${idMaquina} ORDER BY ID DESC`
+        SELECT TOP 1 *, FORMAT(dt_hora, 'dd-MM-yyyy hh:mm:ss') as dataHoraFormatada
+        FROM grupo_processos WHERE maquina_id = ${idMaquina} ORDER BY id DESC`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         var instrucao = `

@@ -260,13 +260,13 @@ body {
 
 .card-processo {
   color: white;
-    margin: 5vh auto;
-    width: 20vw;
-    padding: 10px;
-    background-color: rgb(244, 244, 244);
-    height: 15vh;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
-    border-top: 15px solid rgb(83, 142, 245);
+  margin: 5vh auto;
+  width: 20vw;
+  padding: 10px;
+  background-color: rgb(244, 244, 244);
+  height: 15vh;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+  border-top: 15px solid rgb(83, 142, 245);
 }
 
 .card-processo .processo {
@@ -325,7 +325,7 @@ body {
   border-top: 15px solid rgb(83, 142, 245);
   width: 70vw;
   padding: 10px;
-  height:50vh;
+  height: 50vh;
   margin: 5vh auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
 }
@@ -353,7 +353,8 @@ body {
 .cluster-maquina-atual h2 {
   font-size: 30px;
 }
-.cluster-maquina-atual span{
+
+.cluster-maquina-atual span {
   font-size: 30px;
   margin-left: 10px;
 }
@@ -378,7 +379,7 @@ body {
   border-left: 8px solid rgb(83, 142, 245);
 }
 
-.card-rede p{
+.card-rede p {
   margin-bottom: 5px;
 }
 
@@ -394,13 +395,14 @@ body {
 .cluster-rede-atual h2 {
   font-size: 30px;
 }
-.cluster-rede-atual span{
+
+.cluster-rede-atual span {
   font-size: 30px;
   margin-left: 10px;
 }
 
 
-.bytes-rede{
+.bytes-rede {
   margin-left: 0vw;
   margin-top: 0vh;
   font-size: 2vh;
@@ -508,10 +510,13 @@ body {
 .container-card-processos {
   display: flex;
   color: white;
+  flex-direction: column;
+  align-items: center;
   margin: 5vh auto;
   max-height: 60vh;
   /* definindo a altura máxima da div */
   overflow-y: auto;
+  
   /* exibindo a barra de rolagem vertical */
 }
 
@@ -521,17 +526,34 @@ body {
   justify-content: left;
   flex-direction: column;
   background-color: rgb(244, 244, 244);
-  width: 73vw;
+  width: 80%;
   padding: 10px;
-  margin-left: 16vw;
+  margin-right: -100px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   border-top: 15px solid rgb(83, 142, 245);
   color: black;
   height: 13vh;
   /* definindo a altura máxima da div */
-  overflow-y: auto;
+
   /* exibindo a barra de rolagem vertical */
-  cursor: pointer;
+ 
+}
+
+.lista-processos {
+  display: none;
+  margin-right: -100px;
+  color: black;
+  background-color: rgb(255, 255, 254);
+  width: 80%;
+}
+
+.lista-processos-none{
+  display: flex;
+  margin-right: -100px;
+  color: black;
+  background-color: rgb(255, 255, 254);
+  width: 80%;
+
 }
 
 
@@ -579,6 +601,7 @@ body {
   font-size: 15px;
   display: flex;
   margin: auto;
+  height: 20vh;
 }
 
 .total p {
@@ -608,8 +631,8 @@ body {
 
 .enviados {
   margin-top: 12vh;
-    padding: 8px;
-    border-left: 4px dashed rgb(83, 142, 245);
+  padding: 8px;
+  border-left: 4px dashed rgb(83, 142, 245);
 }
 
 .recebidos-grafico {
@@ -625,8 +648,8 @@ body {
 
 .enviados-grafico {
   margin-top: 2vh;
-    padding: 8px;
-    border-left: 4px dashed rgb(83, 142, 245);
+  padding: 8px;
+  border-left: 4px dashed rgb(83, 142, 245);
 }
 
 .descricao-rede {
