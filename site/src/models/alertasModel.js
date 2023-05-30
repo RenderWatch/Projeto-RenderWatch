@@ -6,7 +6,7 @@ function qtdAlertasPendentes(statusAtual) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         var instrucao = `
    
-        SELECT * FROM historico_alerta
+        SELECT *, FORMAT(ha.dt_hora, 'dd-mm-yyyy hh:mm:ss') as dataHoraFormatada  FROM historico_alerta
         AS ha INNER JOIN maquina 
         AS m  ON m.id = ha.maquina_id 
         WHERE ha.status =${statusAtual};`

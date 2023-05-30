@@ -21,13 +21,6 @@ function qtdAlertasPendentes() {
                         for (i = 0; i < resposta.length; i++) {
                             sessionStorage.ID_MAQUINA_ALERTA = resposta[i].maquina_id
 
-                            if (resposta[i].descricao == null) {
-                                descricao = resposta[i].nome[0] + " Acima da métrica"
-
-
-                            } else {
-                                descricao = resposta[i].descricao
-                            }
 
                             container_alerta_pendentes.innerHTML += ` 
                                 <span>
@@ -37,25 +30,34 @@ function qtdAlertasPendentes() {
                                                 <li class="alerta_li">
                                                 
                                                     <img id="img_nivel_alerta" class="alerta_icone" src="assets/style-all/alerta_amarelo.png" alt="">
-                                                    ${resposta[i].nome[0]}
+                                                    
                                                     
                                                 </li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_dois">
-                                                <li class=" titulo_alerta"><b>Descrição</b></li>
-                                                <li class="alerta_li descricao_alerta">${descricao} </li>
+                                                <li class=" titulo_alerta"><b>Componente</b></li>
+                                                <li class="alerta_li descricao_alerta">${resposta[i].nome[0]} </li>
                                             </ul>
+                                            <ul class=" alerta_ul alerta_ul_quatro">
+                                            <li class=" titulo_alerta"><b>Cluster</b></li>
+                                            <li class="alerta_li cluster">${resposta[i].cluster_id}  </li>
+                                        </ul>
                                             <ul class=" alerta_ul alerta_ul_tres">
                                                 <li class=" titulo_alerta"><b>Máquina</b></li>
                                                 <li class="alerta_li maquina">${resposta[i].maquina_id}</li>
                                             </ul>
-                                            <ul class=" alerta_ul alerta_ul_quatro">
-                                                <li class=" titulo_alerta"><b>Cluster</b></li>
-                                                <li class="alerta_li cluster">${resposta[i].cluster_id}</li>
-                                            </ul>
+                                         
                                             <ul class=" alerta_ul alerta_ul_cinco">
                                                 <li class=" titulo_alerta"><b>Em uso</b></li>
                                                 <li class="hora_alerta">${resposta[i].uso}</li>
+                                            </ul>
+                                            <ul class=" alerta_ul alerta_ul_cinco">
+                                                <li class=" titulo_alerta"><b>Métrica</b></li>
+                                                <li class="hora_alerta">${resposta[i].metrica_memoria}%</li>
+                                            </ul>
+                                            <ul class=" alerta_ul alerta_ul_cinco">
+                                                <li class=" titulo_alerta"><b>Data e Hora</b></li>
+                                                <li class="hora_alerta">${resposta[i].dataHoraFormatada}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_seis">
                                                 <li class=" titulo_alerta"><b>Status</b></li>
@@ -104,6 +106,9 @@ function getAlertasResolvidos() {
 
 
                     var container_alerta_resolvidos = document.getElementById("container_alerta_resolvidos");
+
+                    //LOGICA PARA CSS
+                   
 
 
                     if (resposta.length > 0) {
