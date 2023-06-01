@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/style-all.css">
     <link rel="stylesheet" href="css/perfil-dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
 </head>
 
@@ -123,13 +125,13 @@
                     <p>Arquitetura: <span id="arquitetura"></span></p>
                 </div>
                 <div class="metricas">
-                    <p>Alertas definidos - CPU</p><span id="metrica_cpu"></span>
+                    <p>Metricas definidas para os alertas na CPU</p><span id="metrica_cpu"></span>
                 </div>
                 <div class="metricas">
-                    <p>Alértas definidos - HD</p><span id="metrica_hd"></span>
+                    <p>Métricas definidas para os alertas no HD</p><span id="metrica_hd"></span>
                 </div>
                 <div class="metricas">
-                    <p>Alértas definidos - RAM</p><span id="metrica_ram"></span>
+                    <p>Métricas definidas para os alertas na RAM</p><span id="metrica_ram"></span>
                 </div>
             </div>
         </div>
@@ -219,13 +221,15 @@
             </div>
             <div class="total">
                 <p>Total de processos: <span id="total-processos"></span></p>
-                <p>Data e Hora: <span id="data-hora"></span></p>
                 <p>Total de threads: <span id="total-threads"></span></p>
+                <p>Data e Hora: <span id="data-hora"></span></p>
+                <div id="div-lista-processos-none" class="lista-processos-none" onclick="exibirListaProcessos()"><i id="iconeListaProcessos"
+                        class="fa-solid fa-caret-down fa-lg"></i></div>
             </div>
 
         </div>
-        <div id="div-lista-processos" class="lista-processos" onclick="fecharListaProcessos()">LISTA PROCESSOS</div>
-        <div id="div-lista-processos-none" class="lista-processos-none" onclick="exibirListaProcessos()">LISTA PROCESSOS</div>
+        <div id="div-lista-processos" class="lista-processos" onclick="fecharListaProcessos()"></div>
+
     </div>
 
     <div id="feed_container"></div>
@@ -245,27 +249,19 @@
 </html>
 
 <script>
-    
-    function exibirListaProcessos(){
-      document.getElementById("div-lista-processos-none").style.display = "none"
-      document.getElementById("div-lista-processos").style.display = "flex"
 
-
+    function exibirListaProcessos() {
+        var listaProcessos = document.getElementById("div-lista-processos");
+        if (listaProcessos.style.display === "flex") {
+            listaProcessos.style.display = "none";
+            iconeListaProcessos.classList.remove("fa-caret-up");
+            iconeListaProcessos.classList.add("fa-caret-down");
+        } else {
+            listaProcessos.style.display = "flex";
+            iconeListaProcessos.classList.remove("fa-caret-down");
+            iconeListaProcessos.classList.add("fa-caret-up");
+        }
     }
-
-    
-    function fecharListaProcessos(){
-      document.getElementById("div-lista-processos-none").style.display = "flex"
-      document.getElementById("div-lista-processos").style.display = "none"
-
-
-    }
-
-
-
-
-
-
 
     // Seleciona os elementos necessários
     const lista = document.querySelector('.lista');

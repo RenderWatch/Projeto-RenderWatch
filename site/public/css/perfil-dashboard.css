@@ -413,7 +413,7 @@ body {
   padding: 5px;
   height: 6vh;
   margin-top: 2vh;
-  border-left: 4px solid rgb(83, 142, 245);
+  border-left: 4px solid orange;
   margin: auto;
 }
 
@@ -528,7 +528,7 @@ body {
   background-color: rgb(244, 244, 244);
   width: 80%;
   padding: 10px;
-  margin-right: -100px;
+  margin-left: 10vw;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   border-top: 15px solid rgb(83, 142, 245);
   color: black;
@@ -541,21 +541,41 @@ body {
 
 .lista-processos {
   display: none;
-  margin-right: -100px;
+  margin-left: 10vw;
   color: black;
-  background-color: rgb(255, 255, 254);
+  background-color: rgb(244, 244, 244);
   width: 80%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
+  overflow: auto;
+}
+
+.lista-processos::-webkit-scrollbar {
+  width: 12px;
+  /* largura da barra de rolagem */
+}
+
+.lista-processos::-webkit-scrollbar-track {
+  background: rgb(132, 175, 249);
+  /* cor da área de rastreamento */
+  /* border-radius: 20px; */
+}
+
+.lista-processos::-webkit-scrollbar-thumb {
+  background-color: blue;
+  /* cor do polegar de rolagem */
+  border-radius: 20px;
+  /* arredondamento do polegar de rolagem */
 }
 
 .lista-processos-none{
   display: flex;
-  margin-right: -100px;
   color: black;
   background-color: rgb(255, 255, 254);
-  width: 80%;
-
+  justify-content: end;
+  font-size: 25px;
+  margin-left: 20vw;
+  cursor: pointer;
 }
-
 
 .container-lista-processos::-webkit-scrollbar {
   width: 12px;
@@ -575,6 +595,7 @@ body {
   border-radius: 20px;
   /* roundness of the scroll thumb */
 }
+
 
 
 .container-lista-processos h2 {

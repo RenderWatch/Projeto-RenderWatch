@@ -15,15 +15,15 @@ function atualizarDadosProcesso(idMaquina) {
                         console.log("GRUPO PROCESSOS " + resposta)
                         divListaProcessos =  document.getElementById("div-lista-processos")
 
+                        let processos = resposta[0].lista_processos;
+                        let processosFormatados = processos.replace(/PID:/g, '<br>PID:');
+
                         document.getElementById("total-processos").innerHTML = `<span>${resposta[0].total_processos}</span>`;
-                        document.getElementById("total-threads").innerHTML = `<span>${resposta[0].total_threads}</span>`;
                         document.getElementById("data-hora").innerHTML = `<span>${resposta[0].dataHoraFormatada}</span>`;
-                        divListaProcessos.innerHTML = ` <span>LISTA PROCESSOS: <br>  ${resposta[0].lista_processos}</span>`;
-                       
+                        document.getElementById("total-threads").innerHTML = `<span>${resposta[0].total_threads}</span>`;
+                        divListaProcessos.innerHTML = `<span style="white-space: pre-line; margin-left: 1vw;"><br>  ${processosFormatados}</span>`;
+
                         
-
-
-
                     } else {
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado.";

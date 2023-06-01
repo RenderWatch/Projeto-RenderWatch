@@ -101,9 +101,9 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                                 atualizarDadosRam(idMaquina);
                                 atualizarDadosDisco(idMaquina);
 
-                                listarAlertaMaquina(idMaquina)
+                                listarAlertaMaquina(idMaquina);
                                 listarAlertaComponenteMaquina(idMaquina);
-                                atualizarDadosProcesso(idMaquina);
+                               
 
                                 // Limpa os intervalos anteriores, se existirem
                                 intervalIds.forEach(intervalId => clearInterval(intervalId));
@@ -124,6 +124,11 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                                     atualizarDadosDisco(idMaquina);
                                 }, 1000);
                                 intervalIds.push(intervalIdDisco);
+
+                                const intervalIdProcesso = setInterval(function () {
+                                    atualizarDadosProcesso(idMaquina);
+                                }, 5000);
+                                intervalIds.push(intervalIdProcesso);
 
                                 // Remover a classe "active" de todos os botões de Cluster
                                 const maquinaButtons = document.querySelectorAll('.selecao-maquina .maquina-button');
