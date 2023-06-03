@@ -189,10 +189,9 @@ function listarMaquinaMaiorAlertas(idCluster) {
 }
 
 
-atualizarDadosProcesso(idCluster)
-listarAlertaMaquina(idCluster)
-listarAlertaComponenteMaquina(idCluster)
-
-listarAlertaCluster(idCluster)
-listarMaquinaMaiorAlertas(idCluster)
+atualizarDadosProcesso(1);
+listarAlertaMaquina(1);
+listarAlertaComponenteMaquina(1);
+listarAlertaCluster(idCluster);
+listarMaquinaMaiorAlertas(idCluster);
 
