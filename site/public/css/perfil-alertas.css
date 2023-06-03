@@ -453,9 +453,9 @@ button {
 }
 
 button:hover {
-    background-color: #2180cf;
+    background-color: #ccdadc;
     transition: 0.2s;
-    box-shadow: 3px 4px rgb(81, 81, 81);
+    box-shadow: 3px 4px rgb(153, 153, 153);
 }
 
 

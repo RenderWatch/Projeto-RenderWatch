@@ -45,28 +45,28 @@ function qtdAlertasPendentes() {
                                             </ul>
                                             
                                             <ul class=" alerta_ul alerta_ul_quatro">
-                                                <li class=" titulo_alerta"><b>Cluster</b></li>
+                                                <li class=" titulo_alerta"><b>Cluster ID</b></li>
                                                 <li class="alerta_li cluster">${resposta[i].cluster_id}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_tres">
-                                                <li class=" titulo_alerta"><b>Máquina</b></li>
+                                                <li class=" titulo_alerta"><b>Máquina ID</b></li>
                                                 <li class="alerta_li maquina">${resposta[i].maquina_id}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_cinco">
-                                                <li class=" titulo_alerta"><b>Métrica</b></li>
+                                                <li class=" titulo_alerta"><b>Métrica (%)</b></li>
                                                 <li class="hora_alerta">${metrica + "%"}</li>
                                             </ul>
 
 
 
                                             <ul class=" alerta_ul alerta_ul_cinco">
-                                                <li class=" titulo_alerta"><b>Em uso</b></li>
+                                                <li class=" titulo_alerta"><b>Em uso (%)</b></li>
                                                 <li class="hora_alerta">${resposta[i].usoFormatado}</li>
                                             </ul>
 
                                             
                                              <ul class=" alerta_ul alerta_ul_cinco">
-                                                <li class=" titulo_alerta"><b>Data Hora</b></li>
+                                                <li class=" titulo_alerta"><b>Data/Hora</b></li>
                                                 <li class="dtHora">${resposta[i].dataHoraFormatada}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_seis">
@@ -150,28 +150,28 @@ function getAlertasResolvidos() {
                                             </ul>
                                             
                                             <ul class=" alerta_ul alerta_ul_quatro">
-                                                <li class=" titulo_alerta"><b>Cluster</b></li>
+                                                <li class=" titulo_alerta"><b>Cluster ID</b></li>
                                                 <li class="alerta_li cluster">${resposta[i].cluster_id}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_tres">
-                                                <li class=" titulo_alerta"><b>Máquina</b></li>
+                                                <li class=" titulo_alerta"><b>Máquina ID</b></li>
                                                 <li class="alerta_li maquina">${resposta[i].maquina_id}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_cinco">
-                                                <li class=" titulo_alerta"><b>Métrica</b></li>
+                                                <li class=" titulo_alerta"><b>Métrica (%)</b></li>
                                                 <li class="hora_alerta">${metrica + "%"}</li>
                                             </ul>
 
 
 
                                             <ul class=" alerta_ul alerta_ul_cinco">
-                                                <li class=" titulo_alerta"><b>Em uso</b></li>
+                                                <li class=" titulo_alerta"><b>Em uso (%)</b></li>
                                                 <li class="hora_alerta">${resposta[i].usoFormatado}</li>
                                             </ul>
 
                                             
                                              <ul class=" alerta_ul alerta_ul_cinco">
-                                                <li class="titulo_alerta"><b>Data Hora</b></li>
+                                                <li class="titulo_alerta"><b>Data/Hora</b></li>
                                                 <li class="dtHora">${resposta[i].dataHoraFormatada}</li>
                                             </ul>
                                             <ul class=" alerta_ul alerta_ul_seis">

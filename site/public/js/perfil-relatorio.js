@@ -181,7 +181,7 @@ async function gerarPdf() {
         </div>
         <div>
         ${dados}</div>`, 10, 10)
-    doc.save('relatório.pdf')
+    doc.save('RelatórioTécnico.pdf')
 
 }
 
@@ -257,7 +257,7 @@ async function gerarPdfAdaptado() {
         <h1 style="color: rgb(214, 91, 162);background-color: black; text-align: center;">Relatório de Negócios</h1>
         </div>
         ${dadosAdaptados}</div>`, 10, 10)
-    docAdaptado.save('relatório.pdf')
+    docAdaptado.save('RelatórioNegocios.pdf')
 }
 
 
