@@ -195,3 +195,4 @@ listarAlertaComponenteMaquina(1);
 listarAlertaCluster(idCluster);
 listarMaquinaMaiorAlertas(idCluster);
 
+

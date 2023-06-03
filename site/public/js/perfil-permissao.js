@@ -341,4 +341,4 @@ function buscarEmailAcessoRegistro() {
         .catch(function (resposta) {
             console.error(resposta);
         });
-}
+};
