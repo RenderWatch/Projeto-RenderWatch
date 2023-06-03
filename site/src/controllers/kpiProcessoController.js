@@ -55,8 +55,11 @@ function listarAlertaComponenteMaquina(req, res) {
 } 
 
 function listarMaquinaMaiorAlertas(req, res) {
+    var idCluster = req.params.idCluster;
 
-    kpiProcessoModel.listarMaquinaMaiorAlertas()
+
+
+    kpiProcessoModel.listarMaquinaMaiorAlertas(idCluster)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

@@ -1,4 +1,4 @@
-
+idCluster = sessionStorage.CLUSTER
 function atualizarDadosProcesso(idMaquina) {
 
 
@@ -13,7 +13,7 @@ function atualizarDadosProcesso(idMaquina) {
 
                     if (resposta.length > 0) {
                         console.log("GRUPO PROCESSOS " + resposta)
-                        divListaProcessos =  document.getElementById("div-lista-processos")
+                        divListaProcessos = document.getElementById("div-lista-processos")
 
                         let processos = resposta[0].lista_processos;
                         let processosFormatados = processos.replace(/PID:/g, '<br>PID:');
@@ -23,7 +23,7 @@ function atualizarDadosProcesso(idMaquina) {
                         document.getElementById("total-threads").innerHTML = `<span>${resposta[0].total_threads}</span>`;
                         divListaProcessos.innerHTML = `<span style="white-space: pre-line; margin-left: 1vw;"><br>  ${processosFormatados}</span>`;
 
-                        
+
                     } else {
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado.";
@@ -53,6 +53,7 @@ function listarAlertaCluster(idCluster) {
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
                             const quantidade_alertas = dados.quantidade_alertas;
+                            listarMaquinaMaiorAlertas(idCluster)
 
                             // Inserir os valores nos elementos HTML correspondentes
                             document.getElementById("span_alertas_cluster").innerHTML = `<span>${quantidade_alertas}</span>`;
@@ -95,6 +96,7 @@ function listarAlertaMaquina(idMaquina) {
                         }
                     } else {
                         var mensagem = document.createElement("span");
+
                         mensagem.innerHTML = "Nenhum resultado encontrado.";
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
@@ -148,24 +150,29 @@ function listarAlertaComponenteMaquina(idMaquina) {
         });
 }
 
-function listarMaquinaMaiorAlertas() {
-    fetch(`/kpiProcesso/listarMaquinaMaiorAlertas`)
+function listarMaquinaMaiorAlertas(idCluster) {
+    fetch(`/kpiProcesso/listarMaquinaMaiorAlertas/${idCluster}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    console.log("NUMERO DO CLUSTER EM QUESTAO:" + idCluster)
+                    console.log("NUMERO DO CLUSTER EM QUESTAO NOME MAQUINA:" + resposta[0].maquinaNome)
 
 
                     if (resposta.length > 0) {
 
                         console.log("Maquina com maior número de alertas " + resposta[0])
-
-                        // Inserir os valores nos elementos HTML correspondentes
-                        document.getElementById("maior_alertas_maquina").innerHTML = `<span>${resposta[0].maquinaNome}</span>`;
-
+                        if (resposta[0].maquinaNome != null) {
+                            // Inserir os valores nos elementos HTML correspondentes
+                            document.getElementById("maior_alertas_maquina").innerHTML = `<span>${resposta[0].maquinaNome}</span>`;
+                        }else{
+                        document.getElementById("maior_alertas_maquina").innerHTML  ='Sem alertas'
+                        }
 
                     } else {
                         var mensagem = document.createElement("span");
+
                         mensagem.innerHTML = "Nenhum resultado encontrado.";
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
@@ -182,9 +189,10 @@ function listarMaquinaMaiorAlertas() {
 }
 
 
-atualizarDadosProcesso(1)
-listarAlertaMaquina(1)
-listarAlertaComponenteMaquina(1)
-listarMaquinaMaiorAlertas()
-listarAlertaCluster(1)
+atualizarDadosProcesso(idCluster)
+listarAlertaMaquina(idCluster)
+listarAlertaComponenteMaquina(idCluster)
+
+listarAlertaCluster(idCluster)
+listarMaquinaMaiorAlertas(idCluster)
 

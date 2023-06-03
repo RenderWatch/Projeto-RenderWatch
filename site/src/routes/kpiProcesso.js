@@ -15,7 +15,7 @@ router.get("/listarAlertaComponenteMaquina/:idMaquina", function (req, res) {
     kpiProcessoController.listarAlertaComponenteMaquina(req, res);
 }); 
 
-router.get("/listarMaquinaMaiorAlertas", function (req, res) {
+router.get("/listarMaquinaMaiorAlertas/:idCluster", function (req, res) {
     kpiProcessoController.listarMaquinaMaiorAlertas(req, res);
 });
 
