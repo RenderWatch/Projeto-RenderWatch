@@ -24,7 +24,7 @@ function atualizarDadosCluster() {
                             const button = document.createElement('button');
                             button.id = `cluster${i + 1}`;
                             button.value = `cluster${i + 1}`;
-                            button.textContent = `Cluster ${i + 1}`;
+                            button.textContent = resposta[i].nome;
                             button.addEventListener('click', function () {
                                 const clusterId = resposta[i].id;
                                 atualizarDadosMaquina(clusterId);
@@ -80,7 +80,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                         for (let i = 0; i < resposta.length; i++) {
                             const button = document.createElement('button');
                             button.value = `maquina${i + 1}`;
-                            button.textContent = `Máquina ${i + 1}`;
+                            button.textContent = resposta[i].nome;
                             button.setAttribute('data-id', resposta[i].id);
                             button.addEventListener('click', function () {
                                 const idMaquina = this.getAttribute('data-id');
