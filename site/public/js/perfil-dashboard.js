@@ -538,11 +538,12 @@ function atualizarDadosCluster() {
               button.textContent = `Cluster ${i + 1}`;
               button.addEventListener('click', async function () {
                 const clusterId = resposta[i].id;
-                atualizarDadosMaquina(clusterId);
-
+                
                 listarAlertaCluster(clusterId);
-
+                
                 var idPrimeiraMaquina = await buscarIdPrimeiraMaquinaCluster(clusterId);
+                
+                atualizarDadosMaquina(clusterId, idPrimeiraMaquina);
 
                 console.log("ID PRIMEIRA MAQUINA NO CLUSTER: " + idPrimeiraMaquina);
 
