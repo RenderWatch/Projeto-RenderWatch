@@ -8,9 +8,6 @@ function atualizarDadosProcesso(idMaquina) {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos GRUPO PROCESSOS: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-
                     if (resposta.length > 0) {
                         console.log("GRUPO PROCESSOS " + resposta)
                         divListaProcessos =  document.getElementById("div-lista-processos")
@@ -25,9 +22,6 @@ function atualizarDadosProcesso(idMaquina) {
 
                         
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
                 });
@@ -47,8 +41,6 @@ function listarAlertaCluster(idCluster) {
                 resposta.json().then(function (resposta) {
                     //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-
-
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
@@ -58,9 +50,6 @@ function listarAlertaCluster(idCluster) {
                             document.getElementById("span_alertas_cluster").innerHTML = `<span>${quantidade_alertas}</span>`;
                         }
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
 
@@ -82,9 +71,6 @@ function listarAlertaMaquina(idMaquina) {
                 resposta.json().then(function (resposta) {
                     //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
@@ -94,9 +80,6 @@ function listarAlertaMaquina(idMaquina) {
                             document.getElementById("span_alertas_maquina").innerHTML = `<span>${quantidade_alertas}</span>`;
                         }
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
 
@@ -118,9 +101,6 @@ function listarAlertaComponenteMaquina(idMaquina) {
                 resposta.json().then(function (resposta) {
                     //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
@@ -131,9 +111,6 @@ function listarAlertaComponenteMaquina(idMaquina) {
 
                         }
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
 
@@ -165,9 +142,6 @@ function listarMaquinaMaiorAlertas() {
 
 
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
 

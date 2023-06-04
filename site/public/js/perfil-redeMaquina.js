@@ -6,10 +6,6 @@ function atualizarDadosCluster() {
         .then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado.";
-                    feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!";
                 }
 
@@ -20,8 +16,6 @@ function atualizarDadosCluster() {
                     idCluster = dados.id;
                     sessionStorage.CLUSTER = dados.id;
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
                     if (resposta.length > 0) {
                         const clusterContainer = document.querySelector('.selecao-cluster ul');
 
@@ -74,10 +68,6 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
         .then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado.";
-                    feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!";
                 }
 
@@ -194,9 +184,6 @@ function atualizarDadosRede(idMaquina) {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
@@ -212,9 +199,6 @@ function atualizarDadosRede(idMaquina) {
                             document.getElementById("dns").innerHTML = nomeDominio;
                         }
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
                     

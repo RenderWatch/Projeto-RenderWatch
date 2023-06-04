@@ -90,9 +90,6 @@ function qtdAlertasPendentes() {
 
 
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
                     // atualizarDadosProcesso();
@@ -195,9 +192,6 @@ function getAlertasResolvidos() {
 
 
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
                     // atualizarDadosProcesso();
