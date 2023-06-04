@@ -440,25 +440,20 @@ function listarAlertaComponenteMaquina(idMaquina) {
   fetch(`/kpiProcesso/listarAlertaComponenteMaquina/${idMaquina}`)
     .then(function (resposta) {
       if (resposta.ok) {
-        resposta.json().then(function (resposta) {
-          console.log("COMPONENTE ALERTA -> Dados recebidos: ", JSON.stringify(resposta));
-
-          if (resposta.length > 0) {
-
-            for (let i = 0; i < resposta.length; i++) {
-              const dados = resposta[i];
-              const nome_componente = dados.nome_componente;
-
-              // Inserir os valores nos elementos HTML correspondentes
-              document.getElementById("componente_alerta").innerHTML = `<span>${nome_componente}</span>`;
-
+        resposta.text().then(function (texto) {
+          if (texto) {
+            const jsonResposta = JSON.parse(texto);
+            console.log("COMPONENTE ALERTA -> Dados recebidos: ", JSON.stringify(jsonResposta));
+            
+            if (jsonResposta.length > 0) {
+              document.getElementById("componente_alerta").innerHTML = `<span>${jsonResposta[0].nome_componente}</span>`;
+            } else {
+              document.getElementById("componente_alerta").innerHTML = 'Sem alertas';
             }
-
           } else {
-            document.getElementById("componente_alerta").innerHTML = 'Sem alertas'
+            document.getElementById("componente_alerta").innerHTML = 'Sem alertas';
           }
-
-        })
+        });
       } else {
         throw "Houve um erro na API!";
       }
@@ -467,6 +462,8 @@ function listarAlertaComponenteMaquina(idMaquina) {
       console.error(resposta);
     });
 }
+
+
 
 function listarMaquinaMaiorAlertas(idCluster) {
   fetch(`/kpiProcesso/listarMaquinaMaiorAlertas/${idCluster}`)
@@ -538,11 +535,11 @@ function atualizarDadosCluster() {
               button.textContent = `Cluster ${i + 1}`;
               button.addEventListener('click', async function () {
                 const clusterId = resposta[i].id;
-                
+
                 listarAlertaCluster(clusterId);
-                
+
                 var idPrimeiraMaquina = await buscarIdPrimeiraMaquinaCluster(clusterId);
-                
+
                 atualizarDadosMaquina(clusterId, idPrimeiraMaquina);
 
                 console.log("ID PRIMEIRA MAQUINA NO CLUSTER: " + idPrimeiraMaquina);
@@ -771,13 +768,13 @@ function atualizarDadosRede(idMaquina) {
 function exibirListaProcessos() {
   var listaProcessos = document.getElementById("div-lista-processos");
   if (listaProcessos.style.display === "flex") {
-      listaProcessos.style.display = "none";
-      iconeListaProcessos.classList.remove("fa-caret-up");
-      iconeListaProcessos.classList.add("fa-caret-down");
+    listaProcessos.style.display = "none";
+    iconeListaProcessos.classList.remove("fa-caret-up");
+    iconeListaProcessos.classList.add("fa-caret-down");
   } else {
-      listaProcessos.style.display = "flex";
-      iconeListaProcessos.classList.remove("fa-caret-down");
-      iconeListaProcessos.classList.add("fa-caret-up");
+    listaProcessos.style.display = "flex";
+    iconeListaProcessos.classList.remove("fa-caret-down");
+    iconeListaProcessos.classList.add("fa-caret-up");
   }
 }
 
