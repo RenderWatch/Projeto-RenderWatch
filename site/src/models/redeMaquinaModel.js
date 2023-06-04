@@ -20,7 +20,7 @@ function listarRede(idMaquina) {
   } else {
     console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
     return
-  }
+  } 
 
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -42,6 +42,32 @@ function listarMaquina(idCluster) {
         SELECT id, nome, sistema_operacional, fabricante, arquitetura, metrica_cpu, metrica_disco, metrica_memoria
         FROM maquina
         WHERE cluster_id = '${idCluster}';
+        `
+
+  } else {
+    console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+    return
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
+function buscarIdPrimeiraMaquinaCluster(idCluster) {
+  console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    var instrucao = `
+      SELECT TOP 1 m.id as idMaquina FROM maquina m
+      JOIN cluster c ON m.cluster_id = c.id
+      WHERE c.id = ${idCluster};
+        `;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+
+    var instrucao = `
+      SELECT m.id as idMaquina FROM maquina m
+      JOIN cluster c ON m.cluster_id = c.id
+      WHERE c.id = ${idCluster} LIMIT 1;
         `
 
   } else {
@@ -97,7 +123,8 @@ function listarCluster(razaoSocial) {
   module.exports = {
     listarRede,
     listarMaquina,
-    listarCluster
+    listarCluster,
+    buscarIdPrimeiraMaquinaCluster
     // listarProcessos
   }
 

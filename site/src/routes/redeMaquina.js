@@ -11,6 +11,10 @@ router.get("/listarMaquina/:idCluster", function (req, res) {
     redeMaquinaController.listarMaquina(req, res);
 });
 
+router.get("/buscarIdPrimeiraMaquinaCluster/:idCluster", function (req, res) {
+    redeMaquinaController.buscarIdPrimeiraMaquinaCluster(req, res);
+});
+
 router.get("/listarCluster/:razaoSocial", function (req, res) {
     redeMaquinaController.listarCluster(req, res);
 });

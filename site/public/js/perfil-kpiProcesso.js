@@ -53,7 +53,7 @@ function listarAlertaCluster(idCluster) {
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
                             const quantidade_alertas = dados.quantidade_alertas;
-                            listarMaquinaMaiorAlertas(idCluster)
+                            listarMaquinaMaiorAlertas(idCluster);
 
                             // Inserir os valores nos elementos HTML correspondentes
                             document.getElementById("span_alertas_cluster").innerHTML = `<span>${quantidade_alertas}</span>`;
@@ -114,16 +114,15 @@ function listarAlertaMaquina(idMaquina) {
 }
 
 function listarAlertaComponenteMaquina(idMaquina) {
+
     fetch(`/kpiProcesso/listarAlertaComponenteMaquina/${idMaquina}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
-                    //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
+                    console.log("COMPONENTE ALERTA -> Dados recebidos: ", JSON.stringify(resposta));
 
                     if (resposta.length > 0) {
+
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
                             const nome_componente = dados.nome_componente;
@@ -132,15 +131,12 @@ function listarAlertaComponenteMaquina(idMaquina) {
                             document.getElementById("componente_alerta").innerHTML = `<span>${nome_componente}</span>`;
 
                         }
+
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
-                        throw "Nenhum resultado encontrado!";
+                        document.getElementById("componente_alerta").innerHTML = 'Sem alertas'
                     }
 
-
-                });
+                })
             } else {
                 throw "Houve um erro na API!";
             }
@@ -166,8 +162,8 @@ function listarMaquinaMaiorAlertas(idCluster) {
                         if (resposta[0].maquinaNome != null) {
                             // Inserir os valores nos elementos HTML correspondentes
                             document.getElementById("maior_alertas_maquina").innerHTML = `<span>${resposta[0].maquinaNome}</span>`;
-                        }else{
-                        document.getElementById("maior_alertas_maquina").innerHTML  ='Sem alertas'
+                        } else {
+                            document.getElementById("maior_alertas_maquina").innerHTML = 'Sem alertas'
                         }
 
                     } else {

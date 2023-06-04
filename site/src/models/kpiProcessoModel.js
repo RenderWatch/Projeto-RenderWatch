@@ -68,7 +68,7 @@ function listarAlertaComponenteMaquina(idMaquina) {
         var instrucao = `
         SELECT TOP 1 nome AS nome_componente, COUNT(*) AS quantidade_repeticoes
         FROM historico_alerta
-        WHERE maquina_id = '${idMaquina}'
+        WHERE maquina_id = ${idMaquina}
         GROUP BY nome
         ORDER BY quantidade_repeticoes DESC;
         `;

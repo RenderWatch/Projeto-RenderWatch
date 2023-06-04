@@ -26,19 +26,29 @@ function atualizarDadosCluster() {
                         const clusterContainer = document.querySelector('.selecao-cluster ul');
 
 
+
                         for (let i = 0; i < resposta.length; i++) {
                             const button = document.createElement('button');
                             button.id = `cluster${i + 1}`;
                             button.value = `cluster${i + 1}`;
                             button.textContent = `Cluster ${i + 1}`;
-                            button.addEventListener('click', function () {
+                            button.addEventListener('click', async function () {
                                 const clusterId = resposta[i].id;
                                 atualizarDadosMaquina(clusterId);
 
                                 listarAlertaCluster(clusterId);
 
+                                var idPrimeiraMaquina = await buscarIdPrimeiraMaquinaCluster(clusterId);
+
+                                console.log("ID PRIMEIRA MAQUINA NO CLUSTER: " + idPrimeiraMaquina);
+
+                                listarAlertaMaquina(idPrimeiraMaquina);
+                                listarAlertaComponenteMaquina(idPrimeiraMaquina);
+
+                                sessionStorage.MAQUINA_ID = idPrimeiraMaquina;
+
                                 document.getElementById(`cluster1`).style.backgroundColor = "";
-                            
+
                                 const clusterButtons = document.querySelectorAll('.selecao-cluster .cluster-button');
                                 clusterButtons.forEach(btn => btn.classList.remove('active'));
 
@@ -69,6 +79,28 @@ function atualizarDadosCluster() {
         });
 }
 
+async function buscarIdPrimeiraMaquinaCluster(idCluster) {
+    return fetch(`/redeMaquina/buscarIdPrimeiraMaquinaCluster/${idCluster}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json().then(function (resposta) {
+                    console.log("DADO SOBRE O ID DA PRIMEIRA MAQUINA NO CLUSTER: ", JSON.stringify(resposta));
+
+                    var idMaquina = resposta[0].idMaquina;
+
+                    console.log("ID DA MAQUINA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + idMaquina)
+                    return idMaquina;
+                });
+            } else {
+                throw "Houve um erro na API!";
+            }
+        })
+        .catch(function (resposta) {
+            console.error(resposta);
+        });
+}
+
+
 function atualizarDadosMaquina(idCluster, idMaquina) {
     fetch(`/redeMaquina/listarMaquina/${idCluster}`)
         .then(function (resposta) {
@@ -96,6 +128,9 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                                 const idMaquina = this.getAttribute('data-id');
                                 atualizarDadosMaquina(idCluster, idMaquina);
                                 console.log(idMaquina);
+
+                                sessionStorage.MAQUINA_ID = resposta[i].id;
+
                                 atualizarDadosRede(idMaquina);
                                 atualizarDados(idMaquina);
                                 atualizarDadosRam(idMaquina);
@@ -103,7 +138,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
 
                                 listarAlertaMaquina(idMaquina);
                                 listarAlertaComponenteMaquina(idMaquina);
-                               
+
 
                                 // Limpa os intervalos anteriores, se existirem
                                 intervalIds.forEach(intervalId => clearInterval(intervalId));
@@ -217,7 +252,7 @@ function atualizarDadosRede(idMaquina) {
                         feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
-                    
+
                 });
             } else {
                 throw "Houve um erro na API!";
