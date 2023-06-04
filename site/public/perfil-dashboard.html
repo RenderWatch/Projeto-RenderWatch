@@ -223,8 +223,8 @@
                 <p>Total de processos: <span id="total-processos"></span></p>
                 <p>Total de threads: <span id="total-threads"></span></p>
                 <p>Data e Hora: <span id="data-hora"></span></p>
-                <div id="div-lista-processos-none" class="lista-processos-none" onclick="exibirListaProcessos()"><i id="iconeListaProcessos"
-                        class="fa-solid fa-caret-down fa-lg"></i></div>
+                <div id="div-lista-processos-none" class="lista-processos-none" onclick="exibirListaProcessos()"><i
+                        id="iconeListaProcessos" class="fa-solid fa-caret-down fa-lg"></i></div>
             </div>
 
         </div>
@@ -238,36 +238,11 @@
 </body>
 <script src="js/perfil-dashboard.js"></script>
 <script src="js/perfil-sidebar-header.js"></script>
-<script src="js/perfil-redeMaquina.js"></script>
-<script src="js/perfil-kpiProcesso.js"></script>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
     integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
     crossorigin="anonymous"></script>
 
-</html>
-
-<script>
-
-    function exibirListaProcessos() {
-        var listaProcessos = document.getElementById("div-lista-processos");
-        if (listaProcessos.style.display === "flex") {
-            listaProcessos.style.display = "none";
-            iconeListaProcessos.classList.remove("fa-caret-up");
-            iconeListaProcessos.classList.add("fa-caret-down");
-        } else {
-            listaProcessos.style.display = "flex";
-            iconeListaProcessos.classList.remove("fa-caret-down");
-            iconeListaProcessos.classList.add("fa-caret-up");
-        }
-    }
-
-    // Seleciona os elementos necessários
-    const lista = document.querySelector('.lista');
-    const containerLista = document.querySelector('.container-lista-processos');
-
-    let exibirProcessos = true;
-</script>
-<script src="js/perfil-sidebar-header.js"></script>
 <script src="js/perfil-verificarAdmin.js"></script>
+
+</html>
