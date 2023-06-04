@@ -1,8 +1,8 @@
-var razaoSocial = sessionStorage.RAZAO_SOCIAL;
+var idEmpresa = sessionStorage.ID_EMPRESA;
 var idCluster;
 let intervalIds = [];
 function atualizarDadosCluster() {
-    fetch(`/redeMaquina/listarCluster/${razaoSocial}`)
+    fetch(`/redeMaquina/listarCluster/${idEmpresa}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {

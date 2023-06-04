@@ -37,9 +37,9 @@ function listarMaquina(req, res) {
 }
 
 function listarCluster(req, res) {
-    var razaoSocial = req.params.razaoSocial
+    var idEmpresa = req.params.idEmpresa
 
-    redeMaquinaModel.listarCluster(razaoSocial).then(function (resultado) {
+    redeMaquinaModel.listarCluster(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
