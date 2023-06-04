@@ -104,7 +104,7 @@
                 <span id="componente_alerta" class="span_alertas"></span>
             </div>
             <div id="caixa-alerta" class="caixa-alerta">
-                <p>Máquina com maior número de alertas</p>
+                <p>Máquina com maior número de alertas no cluster</p>
                 <span id="maior_alertas_maquina" class="span_alertas"></span>
             </div>
         </div>
@@ -131,7 +131,7 @@
                     <p>Metrica de uso máximo (%) para a emissão de alertas de Disco</p><span id="metrica_hd"></span>
                 </div>
                 <div class="metricas">
-                    <p>Metrica de uso máximo (%) para a emissão de alertas de Memória Ram</p><span id="metrica_ram"></span>
+                    <p>Metrica de uso máximo (%) para a emissão de alertas de Memória</p><span id="metrica_ram"></span>
                 </div>
             </div>
         </div>
@@ -173,26 +173,12 @@
             <span>Uso de memória RAM em tempo real</span>
             <span id="registro-data"></span>
             <canvas id="myChart"></canvas>
-            <!-- <div class="descricao">
-                <div class="descricao-componente" style="margin-top: 5vh;">
-                    <p>Memória disponível: <span id="memoria-disponivel">2,0</span></p>
-                    <p>Memória total: <span id="memoria-disponivel">8,0</span></p>
-                </div>
-            </div> -->
         </div>
         <div class="grafico">
             <span>Uso de disco em tempo real</span>
             <canvas style="height: 300px;" id="myChart2"></canvas>
             <div class="descricao">
                 <div class="descricao-componente">
-                    <!-- <div class="bytes">
-                        <div class="recebidos-grafico">
-                            <p>Disco total:</p><span id="bytes-recebidos">550Gb</span>
-                        </div>
-                        <div class="enviados-grafico">
-                            <p>Disponível</p><span id="bytes-enviados">258Mb</span>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -232,8 +218,6 @@
 
     </div>
 
-    <div id="feed_container"></div>
-
 
 </body>
 <script src="js/perfil-dashboard.js"></script>
@@ -243,13 +227,14 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
-    integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
-    crossorigin="anonymous"></script>
+integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+crossorigin="anonymous"></script>
 
-</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="js/perfil-verificarAdmin.js"></script>
 
 <script>
-
+    
     function exibirListaProcessos() {
         var listaProcessos = document.getElementById("div-lista-processos");
         if (listaProcessos.style.display === "flex") {
@@ -262,12 +247,11 @@
             iconeListaProcessos.classList.add("fa-caret-up");
         }
     }
-
+    
     // Seleciona os elementos necessários
     const lista = document.querySelector('.lista');
     const containerLista = document.querySelector('.container-lista-processos');
-
+    
     let exibirProcessos = true;
 </script>
-<script src="js/perfil-sidebar-header.js"></script>
-<script src="js/perfil-verificarAdmin.js"></script>
+    </html>

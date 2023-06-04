@@ -133,18 +133,11 @@ function atualizarDados(idMaquina) {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
         resposta.json().then(function (resposta) {
           //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
 
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           cpuChart.data.datasets[0].data = [];
@@ -203,19 +196,11 @@ function atualizarDadosRam(idMaquina) {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
         resposta.json().then(function (resposta) {
           //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
-
           
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           ramChart.data.datasets[0].data = [];
@@ -265,18 +250,11 @@ function atualizarDadosDisco(idMaquina) {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
         resposta.json().then(function (resposta) {
           //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
 
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           discoChart.data.datasets[0].data = [];

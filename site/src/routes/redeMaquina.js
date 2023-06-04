@@ -11,7 +11,7 @@ router.get("/listarMaquina/:idCluster", function (req, res) {
     redeMaquinaController.listarMaquina(req, res);
 });
 
-router.get("/listarCluster/:razaoSocial", function (req, res) {
+router.get("/listarCluster/:idEmpresa", function (req, res) {
     redeMaquinaController.listarCluster(req, res);
 });
 

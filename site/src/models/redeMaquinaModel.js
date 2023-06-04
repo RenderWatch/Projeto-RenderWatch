@@ -53,13 +53,12 @@ function listarMaquina(idCluster) {
   return database.executar(instrucao);
 }
 
-function listarCluster(razaoSocial) {
+function listarCluster(idEmpresa) {
   console.log("ACESSEI O permissao MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucao = `
-  SELECT cluster.*
+  SELECT *
   FROM cluster
-  JOIN empresa ON cluster.empresa_id = empresa.id
-  WHERE empresa.razao_social = '${razaoSocial}';
+  WHERE empresa_id = ${idEmpresa};
   
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);

@@ -1,15 +1,11 @@
-var razaoSocial = sessionStorage.RAZAO_SOCIAL;
+var idEmpresa = sessionStorage.ID_EMPRESA;
 var idCluster;
 let intervalIds = [];
 function atualizarDadosCluster() {
-    fetch(`/redeMaquina/listarCluster/${razaoSocial}`)
+    fetch(`/redeMaquina/listarCluster/${idEmpresa}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado.";
-                    feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!";
                 }
 
@@ -20,8 +16,6 @@ function atualizarDadosCluster() {
                     idCluster = dados.id;
                     sessionStorage.CLUSTER = dados.id;
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
                     if (resposta.length > 0) {
                         const clusterContainer = document.querySelector('.selecao-cluster ul');
 
@@ -30,7 +24,7 @@ function atualizarDadosCluster() {
                             const button = document.createElement('button');
                             button.id = `cluster${i + 1}`;
                             button.value = `cluster${i + 1}`;
-                            button.textContent = `Cluster ${i + 1}`;
+                            button.textContent = resposta[i].nome;
                             button.addEventListener('click', function () {
                                 const clusterId = resposta[i].id;
                                 atualizarDadosMaquina(clusterId);
@@ -74,10 +68,6 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
         .then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado.";
-                    feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!";
                 }
 
@@ -90,7 +80,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
                         for (let i = 0; i < resposta.length; i++) {
                             const button = document.createElement('button');
                             button.value = `maquina${i + 1}`;
-                            button.textContent = `Máquina ${i + 1}`;
+                            button.textContent = resposta[i].nome;
                             button.setAttribute('data-id', resposta[i].id);
                             button.addEventListener('click', function () {
                                 const idMaquina = this.getAttribute('data-id');
@@ -103,6 +93,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
 
                                 listarAlertaMaquina(idMaquina);
                                 listarAlertaComponenteMaquina(idMaquina);
+                                listarMaquinaMaiorAlertas(idCluster);
                                
 
                                 // Limpa os intervalos anteriores, se existirem
@@ -194,9 +185,6 @@ function atualizarDadosRede(idMaquina) {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
                             const dados = resposta[i];
@@ -212,9 +200,6 @@ function atualizarDadosRede(idMaquina) {
                             document.getElementById("dns").innerHTML = nomeDominio;
                         }
                     } else {
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado.";
-                        feed.appendChild(mensagem);
                         throw "Nenhum resultado encontrado!";
                     }
                     

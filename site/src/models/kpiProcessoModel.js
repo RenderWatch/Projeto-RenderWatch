@@ -98,7 +98,7 @@ function listarAlertaComponenteMaquina(idMaquina) {
     return database.executar(instrucao);
 }
 
-function listarMaquinaMaiorAlertas() {
+function listarMaquinaMaiorAlertas(idCluster) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
@@ -106,7 +106,8 @@ function listarMaquinaMaiorAlertas() {
         SELECT MAX(m.nome) AS maquinaNome  
         FROM historico_alerta ha
          JOIN maquina m ON ha.maquina_id = m.id
-		 WHERE ha.maquina_id = m.id;
+		 WHERE ha.maquina_id = m.id
+         AND m.cluster_id = ${idCluster};
         `;
 
 
@@ -118,6 +119,7 @@ function listarMaquinaMaiorAlertas() {
         INNER JOIN componente c ON m.id = c.maquina_id
         INNER JOIN registro_componente rc ON c.id = rc.componente_id
         INNER JOIN alerta a ON rc.id = a.registro_componente_id
+        WHERE m.cluster_id = ${idCluster}
         GROUP BY m.nome
         ORDER BY total_alertas DESC
         LIMIT 1;

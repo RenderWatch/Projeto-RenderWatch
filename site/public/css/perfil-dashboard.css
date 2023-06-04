@@ -5,6 +5,13 @@ body {
   width: 100%;
 }
 
+.descricao-maquina {
+display: flex;
+flex-direction: column;
+width: 30%;
+margin-top: 6vh;
+}
+
 .container-selecao-cluster {
   /* display: flex;  */
   width: 12vw;
