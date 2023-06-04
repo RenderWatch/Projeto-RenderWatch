@@ -142,18 +142,11 @@ function atualizarDados(idMaquina) {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
         resposta.json().then(function (resposta) {
           //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
 
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           cpuChart.data.datasets[0].data = [];
@@ -207,19 +200,11 @@ function atualizarDadosRam(idMaquina) {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
         resposta.json().then(function (resposta) {
           //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
-
 
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           ramChart.data.datasets[0].data = [];
@@ -269,18 +254,11 @@ function atualizarDadosDisco(idMaquina) {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
         resposta.json().then(function (resposta) {
           //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
 
           // Limpar os dados e labels dos gráficos antes de atualizá-los
           discoChart.data.datasets[0].data = [];
@@ -333,9 +311,6 @@ function atualizarDadosProcesso(idMaquina) {
         resposta.json().then(function (resposta) {
           console.log("Dados recebidos GRUPO PROCESSOS: ", JSON.stringify(resposta));
 
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
-
           if (resposta.length > 0) {
             console.log("GRUPO PROCESSOS " + resposta)
             divListaProcessos = document.getElementById("div-lista-processos")
@@ -350,9 +325,6 @@ function atualizarDadosProcesso(idMaquina) {
 
 
           } else {
-            var mensagem = document.createElement("span");
-            mensagem.innerHTML = "Nenhum resultado encontrado.";
-            feed.appendChild(mensagem);
             throw "Nenhum resultado encontrado!";
           }
         });
@@ -384,9 +356,6 @@ function listarAlertaCluster(idCluster) {
               document.getElementById("span_alertas_cluster").innerHTML = `<span>${quantidade_alertas}</span>`;
             }
           } else {
-            var mensagem = document.createElement("span");
-            mensagem.innerHTML = "Nenhum resultado encontrado.";
-            feed.appendChild(mensagem);
             throw "Nenhum resultado encontrado!";
           }
 
@@ -407,9 +376,6 @@ function listarAlertaMaquina(idMaquina) {
         resposta.json().then(function (resposta) {
           //console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
-
           if (resposta.length > 0) {
             for (let i = 0; i < resposta.length; i++) {
               const dados = resposta[i];
@@ -419,10 +385,6 @@ function listarAlertaMaquina(idMaquina) {
               document.getElementById("span_alertas_maquina").innerHTML = `<span>${quantidade_alertas}</span>`;
             }
           } else {
-            var mensagem = document.createElement("span");
-
-            mensagem.innerHTML = "Nenhum resultado encontrado.";
-            feed.appendChild(mensagem);
             throw "Nenhum resultado encontrado!";
           }
 
@@ -485,10 +447,6 @@ function listarMaquinaMaiorAlertas(idCluster) {
             }
 
           } else {
-            var mensagem = document.createElement("span");
-
-            mensagem.innerHTML = "Nenhum resultado encontrado.";
-            feed.appendChild(mensagem);
             throw "Nenhum resultado encontrado!";
           }
 
@@ -509,10 +467,6 @@ function atualizarDadosCluster() {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
@@ -523,8 +477,6 @@ function atualizarDadosCluster() {
           idCluster = dados.id;
           sessionStorage.CLUSTER = dados.id;
 
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
           if (resposta.length > 0) {
             const clusterContainer = document.querySelector('.selecao-cluster ul');
 
@@ -651,10 +603,6 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
     .then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
-          var feed = document.getElementById("feed_container");
-          var mensagem = document.createElement("span");
-          mensagem.innerHTML = "Nenhum resultado encontrado.";
-          feed.appendChild(mensagem);
           throw "Nenhum resultado encontrado!";
         }
 
@@ -775,9 +723,6 @@ function atualizarDadosRede(idMaquina) {
         resposta.json().then(function (resposta) {
           console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-          var feed = document.getElementById("feed_container");
-          feed.innerHTML = "";
-
           if (resposta.length > 0) {
             for (let i = 0; i < resposta.length; i++) {
               const dados = resposta[i];
@@ -793,9 +738,6 @@ function atualizarDadosRede(idMaquina) {
               document.getElementById("dns").innerHTML = nomeDominio;
             }
           } else {
-            var mensagem = document.createElement("span");
-            mensagem.innerHTML = "Nenhum resultado encontrado.";
-            feed.appendChild(mensagem);
             throw "Nenhum resultado encontrado!";
           }
 
