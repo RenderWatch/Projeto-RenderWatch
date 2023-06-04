@@ -96,44 +96,40 @@ function listarAlertaMaquina(idMaquina) {
 
 function listarAlertaComponenteMaquina(idMaquina) {
     fetch(`/kpiProcesso/listarAlertaComponenteMaquina/${idMaquina}`)
-        .then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-                    //console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    if (resposta.length > 0) {
-                        for (let i = 0; i < resposta.length; i++) {
-                            const dados = resposta[i];
-                            const nome_componente = dados.nome_componente;
-
-                            // Inserir os valores nos elementos HTML correspondentes
-                            document.getElementById("componente_alerta").innerHTML = `<span>${nome_componente}</span>`;
-
-                        }
-                    } else {
-                        throw "Nenhum resultado encontrado!";
-                    }
-
-
-                });
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.text().then(function (texto) {
+            if (texto) {
+              const jsonResposta = JSON.parse(texto);
+              console.log("COMPONENTE ALERTA -> Dados recebidos: ", JSON.stringify(jsonResposta));
+              
+              if (jsonResposta.length > 0) {
+                document.getElementById("componente_alerta").innerHTML = `<span>${jsonResposta[0].nome_componente}</span>`;
+              } else {
+                document.getElementById("componente_alerta").innerHTML = 'Sem alertas';
+              }
             } else {
-                throw "Houve um erro na API!";
+              document.getElementById("componente_alerta").innerHTML = 'Sem alertas';
             }
-        })
-        .catch(function (resposta) {
-            console.error(resposta);
-        });
-}
+          });
+        } else {
+          throw "Houve um erro na API!";
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta);
+      });
+  }
 
-function listarMaquinaMaiorAlertas() {
-    fetch(`/kpiProcesso/listarMaquinaMaiorAlertas`)
+function listarMaquinaMaiorAlertas(idCluster) {
+    fetch(`/kpiProcesso/listarMaquinaMaiorAlertas/${idCluster}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
 
-                    if (resposta.length > 0) {
+                    if (resposta.length > 0 && resposta[0].maquinaNome != "null"  && resposta[0].maquinaNome != null) {
 
                         console.log("Maquina com maior número de alertas " + resposta[0])
 
@@ -142,10 +138,11 @@ function listarMaquinaMaiorAlertas() {
 
 
                     } else {
-                        throw "Nenhum resultado encontrado!";
+                        document.getElementById("maior_alertas_maquina").innerHTML = `<span>Sem alertas</span>`;
+                        throw "Nenhum alerta no cluster";
                     }
-
                 });
+
             } else {
                 throw "Houve um erro na API!";
             }
@@ -159,6 +156,6 @@ function listarMaquinaMaiorAlertas() {
 atualizarDadosProcesso(1)
 listarAlertaMaquina(1)
 listarAlertaComponenteMaquina(1)
-listarMaquinaMaiorAlertas()
+listarMaquinaMaiorAlertas(1)
 listarAlertaCluster(1)
 

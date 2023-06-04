@@ -93,6 +93,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
 
                                 listarAlertaMaquina(idMaquina);
                                 listarAlertaComponenteMaquina(idMaquina);
+                                listarMaquinaMaiorAlertas(idCluster);
                                
 
                                 // Limpa os intervalos anteriores, se existirem
