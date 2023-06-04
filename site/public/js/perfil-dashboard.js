@@ -556,6 +556,49 @@ function atualizarDadosCluster() {
 
                 this.classList.add('active');
 
+
+                atualizarDadosRede(idPrimeiraMaquina);
+                atualizarDados(idPrimeiraMaquina);
+                atualizarDadosRam(idPrimeiraMaquina);
+                atualizarDadosDisco(idPrimeiraMaquina);
+
+                listarAlertaMaquina(idPrimeiraMaquina);
+                listarAlertaComponenteMaquina(idPrimeiraMaquina);
+
+
+                // Limpa os intervalos anteriores, se existirem
+                intervalIds.forEach(intervalId => clearInterval(intervalId));
+                intervalIds = [];
+
+                // Define os novos intervalos de atualização
+                const intervalIdDados = setInterval(function () {
+                  atualizarDados(idPrimeiraMaquina);
+                }, 1000);
+                intervalIds.push(intervalIdDados);
+
+                const intervalIdRam = setInterval(function () {
+                  atualizarDadosRam(idPrimeiraMaquina);
+                }, 1000);
+                intervalIds.push(intervalIdRam);
+
+                const intervalIdDisco = setInterval(function () {
+                  atualizarDadosDisco(idPrimeiraMaquina);
+                }, 1000);
+                intervalIds.push(intervalIdDisco);
+
+                const intervalIdProcesso = setInterval(function () {
+                  atualizarDadosProcesso(idPrimeiraMaquina);
+                }, 5000);
+                intervalIds.push(intervalIdProcesso);
+
+                // Remover a classe "active" de todos os botões de Cluster
+                const maquinaButtons = document.querySelectorAll('.selecao-maquina .maquina-button');
+                maquinaButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Adicionar a classe "active" apenas ao botão clicado
+                this.classList.add('active');
+
+
               });
               button.classList.add('cluster-button');
               const listItem = document.createElement('li');
@@ -627,6 +670,7 @@ function atualizarDadosMaquina(idCluster, idMaquina) {
               button.textContent = `Máquina ${i + 1}`;
               button.setAttribute('data-id', resposta[i].id);
               button.addEventListener('click', function () {
+
                 const idMaquina = this.getAttribute('data-id');
                 atualizarDadosMaquina(idCluster, idMaquina);
                 console.log(idMaquina);
